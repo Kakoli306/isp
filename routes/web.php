@@ -27,6 +27,14 @@ Route::get('/create-user', 'UserController@create')->name('create-user');
 Route::post('/store-user', 'UserController@store')->name('user-store');
 
 
+
+    Route::group(['prefix'=>'customer'], function() {
+    Route::get('/create', 'CustomerController@create')->name('add-customer');
+    Route::post('/new', 'CustomerController@save')->name('new-customer');
+
+  });
+
+
 });
 
 
@@ -35,6 +43,13 @@ Route::group(['middleware'=>'role:admin'], function() {
 Route::get('/adminPage', 'SuperAdminController@index');
 Route::get('/create-user', 'UserController@create')->name('create-user');
 Route::post('/store-user', 'UserController@store')->name('user-store');
+
+
+Route::group(['prefix'=>'customer'], function() {
+Route::get('/create', 'CustomerController@create')->name('add-customer');
+Route::post('/new', 'CustomerController@save')->name('new-customer');
+
+});
 
 
 });
