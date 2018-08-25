@@ -1,6 +1,5 @@
-
-
 @extends('superadmin.master')
+
 @section('content')
 
     <div class="card">
@@ -60,16 +59,19 @@
                     </div>
 
                     <div class="col-md-4">
+                        <div class="form-group">
+                                    <label for="exampleInputEmail1">Zone</label>
+                            <a class="btn btn-default" style="padding: 0px 6px;font-size: 12px;
+                                    float:right;"href="" data-toggle="modal" data-target="#create">
+                                <i class="fas fa-plus">Add Zone</i></a>
 
-
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Zone</label><a class="btn btn-default" style="padding: 0px 6px;font-size: 12px; float:right;" href="" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-plus">Add Zone</i></a>
-                                    <select name="zone" class="form-control" style="margin-bottom: 5px;" required>
-                                        <option value="1">alltime</option>
-                                        <option value="0">meaningless</option>
+                            <select id="zone_id" type="zone_id" class="form-control"
+                                    name="zone_id" required>
+                                 @foreach ($zone as $value)
+                                            <option value="{{$value->id}}" > {{$value->zone_name}}</option>
+                                @endforeach
                                     </select>
-
-                            </div>
+                               </div>
 
 
                         <div class="form-group">
@@ -113,53 +115,90 @@
                             </select>
                         </div>
 
-
-
-
-                        <div class="row" style="padding: 5px 0px 15px 0px; float:right; font-size: 12px; text-align: center;">
+                            <div class="row" style="padding: 5px 0px 15px 0px; float:right; font-size: 12px; text-align: center;">
                             <button type="submit" name="submit" class="btn btn-success">Submit</button>
                         </div>
-
+                        </div>
                     </div>
-
-
-
-                </div>
-
                 </div>
             </form>
         </div>
-
-    </div>
+        </div>
 
 
 <!-- zone modal -->
-
-
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Add New Zone</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-    <form action="" method="post">
-
-      <div class="form-group">
-          <label for="speed">Zone Name</label>
-          <input type="string" name="zone" class="form-control" id="speed" placeholder="Speed" required>
-      </div>
-
-    </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" style="float:center;" class="btn btn-primary">Save</button>
-      </div>
+        <div id="create" class="modal fade" role="dialog" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title"></h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal" role="form">
+                            <div class="form-group row add">
+                                <label class="control-label col-sm-2" for="zone_name">Zone :</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="zone_name" name="zone_name"
+                                           placeholder="Your Title Here" required>
+                                    <p class="error text-center alert alert-danger hidden"></p>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-warning" type="submit" id="add">
+                            <span class="glyphicon glyphicon-plus"></span>Save Post
+                        </button>
+                        <button class="btn btn-warning" type="button" data-dismiss="modal">
+                            <span class="glyphicon glyphicon-remobe"></span>Close
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
+
+    <script type="text/javascript">
+
+        {{-- ajax Form Add Zone--}}
+        $(document).on('click','.create-modal', function() {
+            $('#create').modal('show');
+            $('.form-horizontal').show();
+            $('.modal-zone_name').text('Add Zone');
+        });
+        $("#add").click(function() {
+            $.ajax({
+                type: 'POST',
+                url: 'addZone',
+                data: {
+                    '_token': $('input[name=_token]').val(),
+                    'zone_name': $('input[name=zone_name]').val(),
+                },
+                success: function(data){
+                    if ((data.errors)) {
+                        $('.error').removeClass('hidden');
+                        $('.error').text(data.errors.zone_name);
+                    } else {
+                        $('.error').remove();
+                        $('#table').append("<tr class='zone" + data.id + "'>"+
+                            "<td>" + data.id + "</td>"+
+                            "<td>" + data.zone_name + "</td>"+
+                            "<td>" + data.created_at + "</td>"+
+                            "<td><button class='show-modal btn btn-info btn-sm' data-id='" + data.id + "' data-zone_name='" + data.zone_name + "'>" +
+                            "<span class='fa fa-eye'></span></button> " +
+                            "<button class='edit-modal btn btn-warning btn-sm' data-id='" + data.id + "' data-zone_name='" + data.zone_name + "'>" +
+                            "<span class='glyphicon glyphicon-pencil'></span>" +
+                            "</button> " +
+                            "<button class='delete-modal btn btn-danger btn-sm' data-id='" + data.id + "' data-zone_name='" + data.zone_name  + "'>" +
+                            "<span class='glyphicon glyphicon-trash'></span></button></td>"+
+                            "</tr>");
+                    }
+                },
+            });
+            $('#zone_name').val('');
+
+        });
+    </script>
 
 @endsection

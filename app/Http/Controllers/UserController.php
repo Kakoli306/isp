@@ -19,10 +19,7 @@ return view('superadmin.user.createUser',compact('roles','permissions'));
 
   }
 
-
-
-
-public function store(Request $request){
+  public function store(Request $request){
 
  ;
 

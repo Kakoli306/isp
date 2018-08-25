@@ -90,7 +90,8 @@ isp-manager
                         <div class="form-group" style="border: 1px solid #CCCCCC; padding: 5px; border-radius:4px;">
                             @foreach($permissions as $permission)
                           <label class="checkbox-inline">
-                            <input type="checkbox" name="WorkPermission[]" style="font-size: 12px;" class="wclschekbox" id="inlineCheckbox1" value="{{$permission->id}}" > {{$permission->name}}
+                            <input type="checkbox" name="WorkPermission[]" style="font-size: 12px;" class="wclschekbox" id="inlineCheckbox1"
+                                   value="{{$permission->id}}" > {{$permission->name}}
                           </label>
                             @endforeach
                         </div>

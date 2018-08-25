@@ -25,7 +25,10 @@
 		<link rel="stylesheet" href="{{asset('superadmin/')}}/vendor/magnific-popup/magnific-popup.css" />
 		<link rel="stylesheet" href="{{asset('superadmin/')}}/vendor/bootstrap-datepicker/css/bootstrap-datepicker3.css" />
 
-		<!-- Specific Page Vendor CSS -->		<link rel="stylesheet" href="{{asset('superadmin/')}}/vendor/jquery-ui/jquery-ui.css" />		<link rel="stylesheet" href="{{asset('superadmin/')}}/vendor/jquery-ui/jquery-ui.theme.css" />		<link rel="stylesheet" href="{{asset('superadmin/')}}/vendor/bootstrap-multiselect/bootstrap-multiselect.css" />		<link rel="stylesheet" href="{{asset('superadmin/')}}/vendor/morris/morris.css" />
+		<!-- Specific Page Vendor CSS -->		<link rel="stylesheet" href="{{asset('superadmin/')}}/vendor/jquery-ui/jquery-ui.css" />
+	<link rel="stylesheet" href="{{asset('superadmin/')}}/vendor/jquery-ui/jquery-ui.theme.css" />
+	<link rel="stylesheet" href="{{asset('superadmin/')}}/vendor/bootstrap-multiselect/bootstrap-multiselect.css" />
+	<link rel="stylesheet" href="{{asset('superadmin/')}}/vendor/morris/morris.css" />
 
 		<!-- Theme CSS -->
 		<link rel="stylesheet" href="{{asset('superadmin/')}}/css/theme.css" />
@@ -34,9 +37,10 @@
 		<link rel="stylesheet" href="{{asset('superadmin/')}}/css/custom.css">
 
 		<!-- Head Libs -->
-		<script src="{{asset('superadmin/')}}/vendor/modernizr/modernizr.js"></script>		<script src="master/style-switcher/style.switcher.localstorage.js"></script>
+		<script src="{{asset('superadmin/')}}/vendor/modernizr/modernizr.js"></script>
+	<script src="{{asset('superadmin/')}}/master/style-switcher/style.switcher.localstorage.js"></script>
 
-	</head>
+</head>
 	<body>
 
 			<!-- end: header -->
@@ -48,15 +52,13 @@
 
 @include('superadmin.includes.aside')
 
-
-
-		</section>
-
 		<!-- Vendor -->
 		<script src="{{asset('superadmin/')}}/vendor/jquery/jquery.js"></script>
 		<script src="{{asset('superadmin/')}}/vendor/jquery-browser-mobile/jquery.browser.mobile.js"></script>
 			<script src="{{asset('superadmin/')}}/vendor/jquery-cookie/jquery-cookie.js"></script>
-				<script src="master/style-switcher/style.switcher.js"></script>		<script src="{{asset('superadmin/')}}/vendor/popper/umd/popper.min.js"></script>		<script src="{{asset('superadmin/')}}/vendor/bootstrap/js/bootstrap.js"></script>
+				<script src="{{asset('superadmin/')}}/master/style-switcher/style.switcher.js"></script>
+			<script src="{{asset('superadmin/')}}/vendor/popper/umd/popper.min.js"></script>
+			<script src="{{asset('superadmin/')}}/vendor/bootstrap/js/bootstrap.js"></script>
 		<script src="{{asset('superadmin/')}}/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
 			<script src="{{asset('superadmin/')}}/vendor/common/common.js"></script>
 				<script src="{{asset('superadmin/')}}/vendor/nanoscroller/nanoscroller.js"></script>
@@ -67,7 +69,13 @@
 
 		<script src="{{asset('superadmin/')}}/vendor/jquery-ui/jquery-ui.js">
 
-		</script>		<script src="{{asset('superadmin/')}}/vendor/jqueryui-touch-punch/jqueryui-touch-punch.js"></script>		<script src="{{asset('superadmin/')}}/vendor/jquery-appear/jquery-appear.js"></script>		<script src="{{asset('superadmin/')}}/vendor/bootstrap-multiselect/bootstrap-multiselect.js"></script>		<script src="{{asset('superadmin/')}}/vendor/jquery.easy-pie-chart/jquery.easy-pie-chart.js"></script>		<script src="{{asset('superadmin/')}}/vendor/flot/jquery.flot.js"></script>		<script src="{{asset('superadmin/')}}/vendor/flot.tooltip/flot.tooltip.js"></script>		<script src="{{asset('superadmin/')}}/vendor/flot/jquery.flot.pie.js"></script>		<script src="{{asset('superadmin/')}}/vendor/flot/jquery.flot.categories.js"></script>		<script src="{{asset('superadmin/')}}/vendor/flot/jquery.flot.resize.js"></script>		<script src="{{asset('superadmin/')}}/vendor/jquery-sparkline/jquery-sparkline.js"></script>		<script src="{{asset('superadmin/')}}/vendor/raphael/raphael.js"></script>		<script src="{{asset('superadmin/')}}/vendor/morris/morris.js"></script>		<script src="{{asset('superadmin/')}}/vendor/gauge/gauge.js"></script>		<script src="{{asset('superadmin/')}}/vendor/snap.svg/snap.svg.js"></script>		<script src="{{asset('superadmin/')}}/vendor/liquid-meter/liquid.meter.js"></script>		<script src="{{asset('superadmin/')}}/vendor/jqvmap/jquery.vmap.js"></script>		<script src="{{asset('superadmin/')}}/vendor/jqvmap/data/jquery.vmap.sampledata.js"></script>		<script src="{{asset('superadmin/')}}/vendor/jqvmap/maps/jquery.vmap.world.js"></script>		<script src="{{asset('superadmin/')}}/vendor/jqvmap/maps/continents/jquery.vmap.africa.js"></script>		<script src="{{asset('superadmin/')}}/vendor/jqvmap/maps/continents/jquery.vmap.asia.js"></script>		<script src="{{asset('superadmin/')}}/vendor/jqvmap/maps/continents/jquery.vmap.australia.js"></script>		<script src="{{asset('superadmin/')}}/vendor/jqvmap/maps/continents/jquery.vmap.europe.js"></script>		<script src="{{asset('superadmin/')}}/vendor/jqvmap/maps/continents/jquery.vmap.north-america.js"></script>		<script src="{{asset('superadmin/')}}/vendor/jqvmap/maps/continents/jquery.vmap.south-america.js"></script>
+		</script>		<script src="{{asset('superadmin/')}}/vendor/jqueryui-touch-punch/jqueryui-touch-punch.js"></script>
+			<script src="{{asset('superadmin/')}}/vendor/jquery-appear/jquery-appear.js"></script>
+			<script src="{{asset('superadmin/')}}/vendor/bootstrap-multiselect/bootstrap-multiselect.js"></script>
+			<script src="{{asset('superadmin/')}}/vendor/jquery.easy-pie-chart/jquery.easy-pie-chart.js"></script>
+			<script src="{{asset('superadmin/')}}/vendor/flot/jquery.flot.js"></script>
+			<script src="{{asset('superadmin/')}}/vendor/flot.tooltip/flot.tooltip.js"></script>
+			<script src="{{asset('superadmin/')}}/vendor/flot/jquery.flot.pie.js"></script>		<script src="{{asset('superadmin/')}}/vendor/flot/jquery.flot.categories.js"></script>		<script src="{{asset('superadmin/')}}/vendor/flot/jquery.flot.resize.js"></script>		<script src="{{asset('superadmin/')}}/vendor/jquery-sparkline/jquery-sparkline.js"></script>		<script src="{{asset('superadmin/')}}/vendor/raphael/raphael.js"></script>		<script src="{{asset('superadmin/')}}/vendor/morris/morris.js"></script>		<script src="{{asset('superadmin/')}}/vendor/gauge/gauge.js"></script>		<script src="{{asset('superadmin/')}}/vendor/snap.svg/snap.svg.js"></script>		<script src="{{asset('superadmin/')}}/vendor/liquid-meter/liquid.meter.js"></script>		<script src="{{asset('superadmin/')}}/vendor/jqvmap/jquery.vmap.js"></script>		<script src="{{asset('superadmin/')}}/vendor/jqvmap/data/jquery.vmap.sampledata.js"></script>		<script src="{{asset('superadmin/')}}/vendor/jqvmap/maps/jquery.vmap.world.js"></script>		<script src="{{asset('superadmin/')}}/vendor/jqvmap/maps/continents/jquery.vmap.africa.js"></script>		<script src="{{asset('superadmin/')}}/vendor/jqvmap/maps/continents/jquery.vmap.asia.js"></script>		<script src="{{asset('superadmin/')}}/vendor/jqvmap/maps/continents/jquery.vmap.australia.js"></script>		<script src="{{asset('superadmin/')}}/vendor/jqvmap/maps/continents/jquery.vmap.europe.js"></script>		<script src="{{asset('superadmin/')}}/vendor/jqvmap/maps/continents/jquery.vmap.north-america.js"></script>		<script src="{{asset('superadmin/')}}/vendor/jqvmap/maps/continents/jquery.vmap.south-america.js"></script>
 
 		<!-- Theme Base, Components and Settings -->
 		<script src="{{asset('superadmin/')}}/js/theme.js"></script>
@@ -80,6 +88,8 @@
 		<!-- Analytics to Track Preview Website -->		<script>		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)		  })(window,document,'script','../../../www.google-analytics.com/analytics.js','ga');		  ga('create', 'UA-42715764-8', 'auto');		  ga('send', 'pageview');		</script>
 		<!-- Examples -->
 		<script src="{{asset('superadmin/')}}/js/examples/examples.dashboard.js"></script>
+			<script src="{{asset('superadmin/')}}/js/examples/examples.modals.js"></script>
+
 
 	</body>
 
