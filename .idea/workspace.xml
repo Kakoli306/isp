@@ -2,45 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="76fd6b11-2e7f-4f86-9477-088928b2a757" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/js/zonescript.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/income/create.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/income/edit.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/income/index.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/income/show.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/superadmin/billing/category.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/superadmin/billing/connection.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/superadmin/customer/actives.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/superadmin/customer/current.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/superadmin/customer/editCustomer.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/superadmin/customer/inactives.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/superadmin/customer/manageCustomer.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/superadmin/expense/expview.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/superadmin/expense/new.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/superadmin/head/headview.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/superadmin/zone/zoneview.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Console/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Console/Kernel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CustomerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CustomerController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2018_08_13_090216_create_customers_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2018_08_13_090216_create_customers_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/assets/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/superadmin/customer/createCustomer.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/superadmin/customer/createCustomer.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/superadmin/includes/sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/superadmin/includes/sidebar.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/superadmin/master.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/superadmin/master.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/superadmin/user/createUser.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/superadmin/user/createUser.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/ClassLoader.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/ClassLoader.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_static.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_static.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/installed.json" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/installed.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/egulias/email-validator/EmailValidator/Validation/DNSCheckValidation.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/egulias/email-validator/EmailValidator/Validation/DNSCheckValidation.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/egulias/email-validator/EmailValidator/Validation/SpoofCheckValidation.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/egulias/email-validator/EmailValidator/Validation/SpoofCheckValidation.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/egulias/email-validator/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/egulias/email-validator/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -507,16 +469,15 @@
       <workItem from="1535081187583" duration="4630000" />
       <workItem from="1535101058285" duration="11860000" />
       <workItem from="1535166754825" duration="2996000" />
-      <workItem from="1535181804050" duration="14271000" />
+      <workItem from="1535181804050" duration="15212000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="195608000" />
+    <option name="totallyTimeSpent" value="196549000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="10" />
       <window_info anchor="bottom" id="Event Log" order="0" side_tool="true" />
@@ -524,8 +485,8 @@
       <window_info anchor="bottom" id="Version Control" order="1" />
       <window_info anchor="bottom" id="Run" order="6" />
       <window_info id="npm" order="0" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="2" weight="0.3251634" />
-      <window_info active="true" content_ui="combo" id="Project" order="2" visible="true" weight="0.2322239" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="2" visible="true" weight="0.3251634" />
+      <window_info content_ui="combo" id="Project" order="2" visible="true" weight="0.2322239" />
       <window_info anchor="bottom" id="Docker" order="3" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="0" />
       <window_info anchor="bottom" id="Find" order="5" weight="0.32843137" />
