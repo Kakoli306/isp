@@ -8,14 +8,10 @@
 
     <section class="card">
         <div class="container">
-            @if(Session::has('flash_message'))
-                <div class="alert alert-success">
-                    {{ Session::get('flash_message') }}
-                </div>
-            @endif
 
             <header class="card-header">
             <h3>{{Session::get('message')}}</h3>
+
             <h2 class="card-title">View Customer Information</h2>
         </header>
         <div class="card-body">
@@ -34,6 +30,9 @@
 
                 <thead>
                 <tr>
+
+
+                    <th>No</th>
                     <th>Customer Name</th>
                     <th>Customer ID</th>
                     <th>Address</th>
@@ -43,7 +42,6 @@
                     <th>Connection Date</th>
                     <th>Zone</th>
                     <th>IP</th>
-                    <th>Status</th>
                     <th>Customer Status</th>
                     <th>Actions</th>
                 </tr>
@@ -52,6 +50,7 @@
 
                 @foreach($customers as $customer)
                     <tr>
+                        <td>{{ ++$i }}</td>
                         <td>{{ $customer->customer_name }}</td>
                         <td>{{ $customer->id }}</td>
                         <td>{{ $customer->address }}</td>
@@ -59,9 +58,8 @@
                         <td>{{ $customer->speed}}</td>
                         <td>{{ $customer->bill_amount	}}</td>
                         <td>{{ $customer->connection_date}}</td>
-                        <td> {{ $customer->zone_id }}</td>
+                        <td> {{ $customer->zone_name }}</td>
                         <td>{{ $customer->ip_address}}</td>
-                        <td>{{ $customer->status == 1 ? 'Active' : 'Inactive' }}</td>
                         <td class="center">
                             @if($customer->status == 1)
 
@@ -81,28 +79,29 @@
                                 </form>
 
                         @endif
+                        </td>
 
                         <td class="center">
                             <input type="hidden" value="{{ $customer->id }}" name="customer_id">
                             <a href="{{ route('edit',['id'=>$customer->id]) }}" class="on-default edit-row">
                                 <i class="fas fa-pencil-alt"></i></a>
 
-                            <form action="{{ route('delete') }}" method="POST" style ="..." data-toggle="tooltip" title="Delete" >
+                            <form action="{{ route('delete') }}" method="POST"  title="Delete" >
                                 {{csrf_field()}}
 
                                 <input type="hidden" value="{{$customer->id}}" name="customer_id">
                                 <button type="submit" name="btn" onclick="return confirm('Are u sure to delete this !!!')"
-                                        class="btn btn-danger btn-sm">
-                                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                        class="btn btn-danger btn-sm">Delete
                                 </button>
                             </form>
 
-                            <!--<a href="{{ route('delete',['id'=>$customer->customerId] )}}" class="on-default edit-row"><i class="fas fa-arrows-alt-v"></i></a> -->
                         </td>
                     </tr>
                 </tbody>
                 @endforeach
             </table>
+            {{ $customers->links() }}
+
         </div>
         </div>
     </section>

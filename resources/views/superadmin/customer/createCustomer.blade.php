@@ -1,6 +1,10 @@
 @extends('superadmin.master')
 
+@section('title')
+    Create Customer
+    @endsection
 @section('content')
+
 
     <div class="card">
         <div class="view overlay">
@@ -61,9 +65,9 @@
                     <div class="col-md-4">
                         <div class="form-group">
                                     <label for="exampleInputEmail1">Zone</label>
-                            <a class="btn btn-default" style="padding: 0px 6px;font-size: 12px;
+                            <!--<a class="btn btn-default" style="padding: 0px 6px;font-size: 12px;
                                     float:right;"href="" data-toggle="modal" data-target="#create">
-                                <i class="fas fa-plus">Add Zone</i></a>
+                                <i class="fas fa-plus">Add Zone</i></a> -->
 
                             <select id="zone_id" type="zone_id" class="form-control"
                                     name="zone_id" required>

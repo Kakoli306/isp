@@ -15,6 +15,7 @@ class ExpenseController extends Controller
     public function index()
     {
         $expenses = Expense::all();
+
         return view('superadmin.expense.expview')->with('expenses', $expenses);
     }
 
@@ -26,10 +27,29 @@ class ExpenseController extends Controller
      */
     public function store(Request $request)
     {
-        print($request);
+        //print($request);
+       /* $expense = new Expense();
+        $expense->userId = Auth::user()->userId ;
+        $expense->name = $request->name;
+        $expense->price = $request->price;
+        $expense->save();*/
+
         $expense = Expense::create($request->input());
 
         return response()->json($expense);
+    }
+
+    public function expense(Request $request){
+        return $request->all();
+
+        $expense = new Expense();
+        $expense->userId = Auth::user()->userId ;
+        $expense->name = $request->name;
+        $expense->price = $request->price;
+        $expense->save();
+
+        return view('superadmin.expense.expview');
+
     }
 
     /**

@@ -33,15 +33,8 @@
                                         User Create
                                     </a>
 
-                                    <a class="nav-link" href="tables-basic.html">
+                                    <a class="nav-link" href="{{route('user-show')}}">
                                         View User Info
-                                    </a>
-
-                                    <a class="nav-link" href="pages-user-profile.html">
-                                        User Profile
-                                    </a>
-                                    <a class="nav-link" href="pages-recover-password.html">
-                                        Recover Password
                                     </a>
                                 </li>
 
@@ -119,7 +112,7 @@
                                         Account Head
                                     </a>
 
-                                    <a class="nav-link" href="tables-basic.html">
+                                    <a class="nav-link" href="{{route('discount')}}">
                                         Discount
                                     </a>
 
@@ -129,7 +122,7 @@
                                     <a class="nav-link" href="{{route('expense_report')}}">
                                         Expense Report
                                     </a>
-                                    <a class="nav-link" href="pages-recover-password.html">
+                                    <a class="nav-link" href="{{route('statement')}}">
                                         Account Statement
                                     </a>
 
@@ -145,7 +138,7 @@
                             </a>
                             <ul class="nav nav-children">
                                 <li>
-                                    <a class="nav-link" href="forms-basic.html">
+                                    <a class="nav-link" href="{{route('monthly')}}">
                                         Monthly Balance Report
                                     </a>
 
@@ -181,85 +174,6 @@
 
                             </ul>
                         </li>
-
-
-
-                        <li class="nav-parent">
-                            <a class="nav-link" href="#">
-                                <i class="fas fa-copy" aria-hidden="true"></i>
-                                <span>Pages</span>
-                            </a>
-                            <ul class="nav nav-children">
-                                <li>
-                                    <a class="nav-link" href="pages-signin.html">
-                                        Sign In
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="nav-link" href="pages-invoice.html">
-                                        Invoice
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="nav-link" href="pages-invoice-print.html">
-                                        Invoice Print
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li class="nav-parent">
-                            <a class="nav-link" href="#">
-                                <i class="fas fa-list-alt" aria-hidden="true"></i>
-                                <span>Forms</span>
-                            </a>
-                            <ul class="nav nav-children">
-                                <li>
-                                    <a class="nav-link" href="forms-basic.html">
-                                        Basic
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nav-parent">
-                            <a class="nav-link" href="#">
-                                <i class="fas fa-table" aria-hidden="true"></i>
-                                <span>Tables</span>
-                            </a>
-                            <ul class="nav nav-children">
-                                <li>
-                                    <a class="nav-link" href="tables-basic.html">
-                                        Basic
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="nav-link" href="tables-advanced.html">
-                                        Advanced
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="nav-link" href="tables-responsive.html">
-                                        Responsive
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="nav-link" href="tables-editable.html">
-                                        Editable
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="nav-link" href="tables-ajax.html">
-                                        Ajax
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="nav-link" href="tables-pricing.html">
-                                        Pricing
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
 
                         <script>
                             // Maintain Scroll Position
@@ -300,4 +214,3 @@
         </header>
 
         <!-- start: page -->
-

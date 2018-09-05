@@ -69,7 +69,7 @@ $(document).ready(function(){
             dataType: 'json',
             success: function (data) {
                 console.log(data);
-                var zone = '<tr id="zone' + data.id + '"><td>' + data.id + '</td><td>' + data.name + '</td><td>';
+                var zone = '<tr id="zone' + data.id + '"><td>' + data.id + '</td><td>' + data.zone_name + '</td><td>';
 
                 zone += '<td><button class="btn btn-warning btn-detail open_modal" value="' + data.id + '">Edit</button>';
 
@@ -84,8 +84,10 @@ $(document).ready(function(){
                 $('#myModal').modal('hide')
             },
             error: function (data) {
-                $('#myModal').append(data.responseText);
-                console.log('Error:', data.responseText);
+               /* $('#myModal').append(data.responseText);
+                console.log('Error:', data.responseText);*/
+                console.log('Error:', data);
+
             }
         });
     });

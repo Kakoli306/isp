@@ -19,7 +19,7 @@
                         <table class="table table-striped table-hover ">
                             <thead>
                             <tr class="info">
-                                <th>ID </th>
+                                <th>Head name </th>
                                 <th>Expense</th>
 
                             </tr>
@@ -27,7 +27,7 @@
                             <tbody id="products-list" name="products-list">
                             @foreach ($expenses as $expense)
                                 <tr id="expense{{$expense->id}}" class="active">
-                                    <td>{{$expense->id}}</td>
+                                    <td>{{$expense->name}}</td>
                                     <td>{{$expense->price}}</td>
                                 </tr>
                             @endforeach

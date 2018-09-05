@@ -28,8 +28,9 @@ View All Expense Information
                         <tr class="info">
                             <th>ID </th>
                             <th>Date</th>
+                            <th>Head</th>
                             <th>Description</th>
-                            <th>Expense</th>
+                            <th>Expense Amount</th>
                             <th>Actions</th>
                         </tr>
                         </thead>
@@ -38,6 +39,7 @@ View All Expense Information
                         <tr id="expense{{$expense->id}}" class="active">
                             <td>{{$expense->id}}</td>
                             <td>{{$expense->created_at}}</td>
+                            <td>{{$expense->name}}</td>
                             <td>{{$expense->name}}</td>
                             <td>{{$expense->price}}</td>
                             <td width="35%">
@@ -64,7 +66,8 @@ View All Expense Information
                         <h4 class="modal-title" id="myModalLabel">Expense Form</h4>
                     </div>
                     <div class="modal-body">
-                        <form id="frmProducts" name="frmProducts" class="form-horizontal" novalidate="">
+                        <form method="POST" action="{{url('exp')}}">
+                            {{csrf_field()}}
                             <div class="form-group error">
                                 <label for="inputName" class="col-sm-3 control-label">Description</label>
                                 <div class="col-sm-9">
@@ -77,21 +80,24 @@ View All Expense Information
                                     <input type="number" class="form-control" id="price" name="price" placeholder="Amount" value="">
                                 </div>
                             </div>
+                            <div class="orm-group">
+                                <input type="hidden" id="expense_id" name="expense_id" value="0">
+                                <button type="submit" data-dismiss="modal" class="btn btn-primary" id="btn-save" value="add">Save Changes</button>
+
+                            </div>
                         </form>
+
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" id="btn-save" value="add">Save Changes</button>
-                        <input type="hidden" id="expense_id" name="expense_id" value="0">
-                    </div>
+
                 </div>
             </div>
         </div>
         </body>
 
         <!-- Scripts -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-        <script src="{{asset('js/expensescript.js')}}"></script>
+  <script src="{{asset('js/expensescript.js')}}"></script>
         </html>
+    </div>
+</section>
 
         @endsection

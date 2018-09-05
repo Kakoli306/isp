@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Product;
+use App\User;
 use Illuminate\Http\Request;
 use App\Income;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 class IncomeController extends Controller
 {
     /**
@@ -15,9 +17,16 @@ class IncomeController extends Controller
      */
     public function index()
     {
+        $shows = DB::table('incomes')
+            ->join('products', 'incomes.product_id', '=', 'products.id')
+            ->select('incomes.*', 'products.name')
+            ->paginate(5);
+        //dd($shows);
+
+
         $total = DB::table('incomes')->sum('amount');
-        $incomes = Income::latest()->paginate(5);
-        return view('income.index',compact('incomes','total'))
+       // $incomes = Income::latest()->paginate(5);
+        return view('income.index',compact('total','shows'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
 
     }
@@ -41,16 +50,21 @@ class IncomeController extends Controller
      */
     public function store(Request $request)
     {
+
         request()->validate([
             'product_id' => 'required',
             'amount' => 'required',
             'account_details' => 'required'
         ]);
+      $income = new Income();
+        $income->userId = Auth::user()->userId ;
+        $income->product_id = $request->product_id;
+        $income->amount = $request->amount;
+        $income->account_details = $request->account_details;
+        $income->save();
 
-
-        Income::create($request->all());
         return redirect()->route('income.index')
-            ->with('success',' created successfully.');
+            ->with('success',' created successfully.',compact('income'));
         }
 
     /**
@@ -61,6 +75,7 @@ class IncomeController extends Controller
      */
     public function show(Income $income)
     {
+
         return view('income.index',compact('income'));
     }
 

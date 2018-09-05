@@ -1,7 +1,7 @@
 @extends('superadmin.master')
 
 @section('title')
-   Only Active
+    Only InActive
 @endsection
 
 @section('content')
@@ -16,12 +16,13 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-sm-6">
-                               </div>
+                    </div>
                 </div>
                 <table class="table table-bordered table-striped mb-0 table-responsive" id="datatable-editable">
 
                     <thead>
                     <tr>
+                        <th>No</th>
                         <th>Customer Name</th>
                         <th>Customer ID</th>
                         <th>Address</th>
@@ -40,8 +41,9 @@
 
                     @foreach($customers as $customer)
                         <tr>
+                            <td>{{ ++$i }}</td>
                             <td>{{ $customer->customer_name }}</td>
-                            <td>{{ $customer->customerId }}</td>
+                            <td>{{ $customer->id }}</td>
                             <td>{{ $customer->address }}</td>
                             <td>{{ $customer->mobile_no }}</td>
                             <td>{{ $customer->speed}}</td>
@@ -53,7 +55,7 @@
                             <td class="center">
                                 @if($customer->status == 1)
 
-                                    <form action="{{ route('inactive-customer',['id'=>$customer->customerId]) }}" method="POST">
+                                    <form action="{{ route('inactive-customer',['id'=>$customer->id]) }}" method="POST">
                                         {{ csrf_field() }}
                                         <button type="submit" class="btn btn-primary btn-sm" title="Inactive">
                                             <i class="fas fa-arrow-alt-circle-up"></i></a>
@@ -61,7 +63,7 @@
                                     </form>
 
                                 @else
-                                    <form action="{{ route('active-customer',['id'=>$customer->customerId]) }}" method="POST">
+                                    <form action="{{ route('active-customer',['id'=>$customer->id]) }}" method="POST">
                                         {{ csrf_field() }}
                                         <button type="submit" class="btn btn-warning btn-sm" title="Active">
                                             <i class="fas fa-arrow-alt-circle-down"></i></a>
@@ -71,15 +73,19 @@
                             @endif
 
                             <td class="center">
-                                <input type="hidden" value="{{ $customer->customerId }}" name="customerId">
-                                <a href="{{ route('edit',['id'=>$customer->customerId]) }}" class="on-default edit-row">
+                                <input type="hidden" value="{{ $customer->id }}" name="customerId">
+                                <a href="{{ route('edit',['id'=>$customer->id]) }}" class="on-default edit-row">
                                     <i class="fas fa-pencil-alt"></i></a>
 
                                 <a href="{{ route('delete')}}" class="on-default edit-row"><i class="fas fa-arrows-alt-v"></i></a>
                             </td>
                         </tr>
                     </tbody>
-                    </table>
+                    @endforeach
+
+                </table>
+                {{ $customers->links() }}
+
             </div>
         </div>
     </section>

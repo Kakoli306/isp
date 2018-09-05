@@ -35,17 +35,7 @@
 
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Blood Group</label>
-                                <select name="blood_group" class="form-control" style="margin-bottom: 5px;" value="{{$customerById->blood_group}}">
-                                    <option value="">Blood Group</option>
-                                    <option value="A+=">A Positive(A + ve)</option>
-                                    <option value="A-">A Negative(A - ve)</option>
-                                    <option value="B+">B Positive(B + ve)</option>
-                                    <option value="B-">B Negative(B - ve)</option>
-                                    <option value="AB+">AB Positive(AB + ve)</option>
-                                    <option value="AB-">AB Negative(AB - ve)</option>
-                                    <option value="O+">O Positive(O + ve)</option>
-                                    <option value="O-">O Negative(O - ve)</option>
-                                </select>
+                                <input type="text" name="blood_group" class="form-control" id="exampleInputEmail1" placeholder="Email Address" value="{{$customerById->blood_group}}">
                             </div>
 
                             <div class="form-group">

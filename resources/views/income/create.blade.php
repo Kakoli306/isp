@@ -32,6 +32,8 @@
     <form action="{{ route('income.store') }}" method="POST">
         @csrf
 
+
+
         <div class="card">
             <div class="view overlay">
                 <div class="card-body">

@@ -3,119 +3,216 @@
 namespace App\Http\Controllers;
 
 use App\Billing;
+use App\Payment;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Customer;
-
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class BillingController extends Controller
 {
     public function add(){
+
         $customers = Customer::all();
+
+       // $all = $customers->bill_status;
+       // dd($all);
+
+//        $customers = DB::table('billings')
+//            ->join('customers', 'billings.customer_id', '=', 'customers.id')
+//            ->select('customers.*', 'billings.bill_status')
+//            ->get();
+
+      //  $customer = pluck($customers);
+
+            //->paginate(5);
         //dd($customers);
-        return view('superadmin.billing.add',['customers'=> $customers]);
+        return view('superadmin.billing.add',['customers'=> $customers])
+            ->with('i', (request()->input('page', 1) - 1) * 5);
+
     }
-
-   /* public function editBilling($customer_id)
-    {
-        $BillingById = Customer::where('id', '=',$customer_id)->get();
-        return view('superadmin.billing.edit',['BillingById'=> $BillingById, 'id'=>$customer_id ]);
-    }*/
-
 
     public function editBilling($id){
-        // dd($id);
+
         $BillingById = Customer::where('id',$id)->first();
-        // dd($BillingById);
-        return view('superadmin.billing.edit',compact('BillingById'));
+
+        //For update
+        $date = DB::table('billings')
+            ->join('customers', 'billings.customer_id', '=', 'customers.id')
+            ->select('billings.*', 'billings.updated_at')
+           ->first();
+
+
+       //Auth->user->name
+        $users = DB::table('billings')
+            ->join('users', 'billings.userId', '=', 'users.userId')
+            ->select('billings.*', 'users.username')
+            ->where('billings.userId',Auth::user()->userId)
+            ->first();
+
+        $bills = Billing::where('customer_id',$id)->get();
+
+
+        $dues = DB::table('customers')
+              ->join('billings','billings.customer_id', '=', 'customers.id')
+              ->select('billings.*','customers.*')
+            ->where('billings.customer_id','=',$id)
+        ->count('bill_amount');
+
+
+
+        $new = 0;
+
+        if($dues > 0) {
+
+$bill_amount=0;
+            $due = DB::table('customers')
+                ->join('billings','billings.customer_id', '=', 'customers.id')
+                ->select('billings.*','customers.*')
+                ->where('billings.customer_id','=',$id)
+                ->first();
+
+
+            $connection_charge = $due->connection_charge;
+            $month_amount = $due->month_amount;
+            $new = ($bill_amount + $connection_charge - $month_amount);
+        }
+
+
+
+        else
+        {
+            $due = DB::table('customers')
+                ->where('id',$id)
+                ->first();
+
+           // dd($due);
+
+
+
+        }
+        // dd($bill_amount, $connection_charge, $month_amount, $new);
+
+       // dd($due);
+
+        return view('superadmin.billing.edit',compact('BillingById','bills','users','date','new'));
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        return view('superadmin.category');
-    }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, $customer_id)
+    public function adding(Request $request)
     {
+
         $billings = new Billing();
-        $billings->customer_id = $customer_id;
+        $billings->customer_id = $request->id;
+        $billings->userId = Auth::user()->userId;
         $billings->bill_status = 0;
         $billings->payment_amount = $request->payment_amount;
         $billings->discount = $request->discount;
         $billings->payment_description = $request->payment_description;
+        $billings->month = Carbon::now();
         $billings->save();
-        return redirect('superadmin.billing.edit/{$customer_id}')->with('message', 'Billing info saved ');
+        return redirect()->back()->with('message', 'Billing info saved ');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function editAmount($id){
+        $bills = Billing::where('id',$id)->first();
+        return view('superadmin.billing.amountedit',compact('bills'));
+    }
+    public function updateBilling(Request $request )
     {
-        //
+        $billings = Billing::find($request->billing_id);
+        $billings->payment_amount = $request->payment_amount;
+        $billings->save();
+
+        return redirect()->back()->with('message', 'Billing info updated successfully ');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+
+    public function deleteBilling( Request $request)
     {
-        //
-    }
+        $billings = Billing::find($request->billing_id);
+        $billings->delete();
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        $passport= \App\Passport::find($id);
-        $passport->name=$request->get('name');
-        $passport->email=$request->get('email');
-        $passport->number=$request->get('number');
-        $passport->office=$request->get('office');
-        $passport->save();
-        return redirect('passports');
+        return redirect()->back()->with('message',' deleted successfully');
 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+    public function discount(){
+
+        $customers = DB::table('billings')
+            ->join('customers', 'billings.customer_id', '=', 'customers.id')
+            ->select('billings.*', 'customers.customer_name')
+        ->get();
+
+        $users = DB::table('billings')
+            ->join('users', 'billings.userId', '=', 'users.userId')
+            ->select('billings.*', 'users.username')
+            ->where('billings.userId',Auth::user()->userId)
+            ->first();
+
+        return view ('superadmin.billing.discount',compact( 'customers','users'));
     }
+
+    public function payment(Request $request, $customer_id){
+        $payment = new Payment();
+        $payment->customer_id = $customer_id;
+        //$payment->bill_amount = 800;
+        $payment->pay_amount = $request->pay_amount;
+        $payment->due_amount = $request->due_amount;
+        $payment->save();
+        return $request->all();
+
+    }
+    public function lifetime_paid($BillingById) {
+
+        DB::table('payments')->where('customer_id',$BillingById->id)->sum('pay_amount');
+        return redirect('/customer/manage')->with('message', 'this guy is  unactive now');
+    }
+
+
+    public function paid(Request $request){
+
+        $billings = Billing::where('customer_id',$request->id)->first();
+        $billings->bill_status = 0;
+        $billings->save();
+        return redirect()->back();
+    }
+
+    public function unpaid(Request $request){
+
+        $billings = Billing::where('customer_id',$request->id)->first();
+        $billings->bill_status = 1;
+        $billings->save();
+        return redirect()->back();
+    }
+
+    public function statement(){
+
+        // $currentMonth = Carbon::now()->startOfMonth();
+
+        $billings = DB::table('billings')
+            ->join('customers', 'billings.customer_id', '=', 'customers.id')
+            ->select('billings.*', 'customers.customer_name','customers.ip_address')
+            ->whereMonth('month','9')
+            ->get();
+
+
+        $users = DB::table('billings')
+            ->join('users', 'billings.userId', '=', 'users.userId')
+            ->select('billings.*', 'users.username')
+            ->where('billings.userId',Auth::user()->userId)
+            ->first();
+
+
+        return view ('superadmin.report.statement',['billings' =>$billings,'users' => $users])
+            ->with('i', (request()->input('page', 1) - 1) * 5);
+    }
+
+    public function monthly(){
+        return view('superadmin.report.monthly');
+    }
+
+
 }

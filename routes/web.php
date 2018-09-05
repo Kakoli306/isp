@@ -20,23 +20,33 @@ Route::get('/', function () {
 // Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 // Route::post('register', 'Auth\RegisterController@register');
 
-//Route::group(['middleware'=>'role:superadmin'], function() {
+Route::group(['middleware'=>'role:superadmin'], function() {
 
-Route::get('/superadminPage', 'SuperAdminController@index');
-Route::get('/create-user', 'UserController@create')->name('create-user');
-Route::post('/store-user', 'UserController@store')->name('user-store');
+    Route::get('/superadminPage', 'SuperAdminController@index');
+
+});
 
 Route::group(['middleware'=>'role:admin'], function() {
 
 Route::get('/adminPage', 'SuperAdminController@index');
-Route::get('/create-user', 'UserController@create')->name('create-user');
-Route::post('/store-user', 'UserController@store')->name('user-store');
+
 
 });
 
-    Auth::routes();
+Route::group(['middleware'=>'role:superadmin||admin'], function() {
+    Route::get('/create-user', 'UserController@create')->name('create-user');
+    Route::post('/store-user', 'UserController@store')->name('user-store');
+    Route::get('/manage-user', 'UserController@show')->name('user-show');
+    Route::get('/changePassword','UserController@showChangePasswordForm')->name('ch');
+    Route::post('/changePassword','UserController@changePassword')->name('changePassword');
+    Route::get('/details/{id}', 'UserController@details')->name('user-details');
+    Route::get('/user/edit/{id}', 'UserController@edit');
+    Route::post('/update', 'UserController@update')->name('update-user');
+    Route::post('/delete', 'UserController@deleteUser')->name('delete-user');
 
-//Route::get('/home', 'HomeController@index')->name('home');
+});
+
+Auth::routes();
 
 
 //customer
@@ -60,9 +70,21 @@ Route::get('/charge', 'CustomerController@charge')->name('connection');
 
 Route::get('/billing', 'BillingController@add')->name('index');
 Route::get('/billing/edit/{id}', 'BillingController@editBilling')->name('edit-billing');
-Route::post('/save', 'BillingController@store')->name('bill_cat');
+Route::post('billing/add/{id}', 'BillingController@adding')->name('add-billing');
+Route::get('/billing/edit/{id}/amount', 'BillingController@editAmount')->name('edit-amount');
 Route::post('/billing/update', 'BillingController@updateBilling')->name('update-billing');
 Route::post('/billing/delete', 'BillingController@deleteBilling')->name('delete-billing');
+Route::post('/billing/paid', 'BillingController@paid')->name('show-paid');
+Route::post('/billing/unpaid', 'BillingController@unpaid')->name('show-unpaid');
+Route::get('/discount', 'BillingController@discount')->name('discount');
+
+Route::get('/monthly', 'BillingController@monthly')->name('monthly');
+Route::get('/account_statement', 'BillingController@statement')->name('statement');
+
+
+
+Route::post('/payment/add/{id}', 'BillingController@payment');
+
 
 //Head
 Route::get('/product', 'ProductController@index');
@@ -88,6 +110,8 @@ Route::get('expense/{expense_id?}', 'ExpenseController@show');
 Route::post('expense', 'ExpenseController@store');
 Route::put('expense/{expense_id}', 'ExpenseController@update');
 Route::delete('expense/{expense_id}', 'ExpenseController@destroy');
+
+Route::get('/exp', 'ExpenseController@expense');
 
 Route::get('/exp_report', 'ExpenseController@report')->name('expense_report');
 

@@ -26,6 +26,7 @@ $(document).ready(function(){
                 $('#expense_id').val(data.id);
                 $('#name').val(data.name);
                 $('#price').val(data.price);
+
                 $('#btn-save').val("update");
                 $('#myModal').modal('show');
             },
@@ -49,9 +50,11 @@ $(document).ready(function(){
         var formData = {
             name: $('#name').val(),
             price: $('#price').val(),
+
+
         }
 
-        console.log(formData);
+       // console.log(formData);
 
         //used to determine the http verb to use [add=POST], [update=PUT]
         var state = $('#btn-save').val();
@@ -81,8 +84,10 @@ $(document).ready(function(){
                 $('#myModal').modal('hide')
             },
             error: function (data) {
-                $('#myModal').append(data.responseText);
-                console.log('Error:', data.responseText);
+                console.log('Error:', data);
+
+                // $('#myModal').append(data.responseText);
+               // console.log('Error:', data.responseText);
             }
         });
     });

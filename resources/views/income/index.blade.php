@@ -39,18 +39,21 @@
             <th>Description</th>
             <th width="280px">Action</th>
         </tr>
-        @foreach ($incomes as $income)
+
+
+
+        @foreach ($shows as $income)
             <tr>
                 <td>{{ ++$i }}</td>
                 <td>{{ $income->created_at }}</td>
-                <td>{{ $income->product_id }}</td>
+                <td>{{ $income->name }}</td>
                 <td>{{ $income->amount	 }}</td>
                 <td>{{ $income->account_details }}</td>
                 <td>
                     <form action="{{ route('income.destroy',$income->id) }}" method="POST">
 
 
-                        <a class="btn btn-info" href="{{ route('income.show',$income->id) }}">Show</a>
+                    <!--<a class="btn btn-info" href="{{ route('income.show',$income->id) }}">Show</a>-->
                         <a class="btn btn-primary" href="{{ route('income.edit',$income->id) }}">Edit</a>
 
 
@@ -64,8 +67,5 @@
 
 
     </table>
-
-
-
 
 @endsection

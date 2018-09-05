@@ -12,11 +12,11 @@ class CustomerController extends Controller
     public function create(){
 
         $zone = Zone::all();
-        //dd($zone);
         return view('superadmin.customer.createCustomer',compact('zone'));
         }
 
     public function save( Request $request){
+
 
         $customers = new Customer();
         $customers->customer_name = $request->customer_name;
@@ -34,25 +34,30 @@ class CustomerController extends Controller
         $customers->connection_date = $request->connection_date;
         $customers->speed = $request->speed;
         $customers->status = $request->status;
-
         $customers->save();
         return redirect("customer/create")->with('message', 'Customer info saved ');
     }
 
     public function manageCustomer(){
-        $customers = Customer::all();
-        return view('superadmin.customer.manageCustomer',['customers'=> $customers]);
+
+        $customers = DB::table('customers')
+                ->join('zones', 'customers.zone_id', '=', 'zones.id')
+                ->select('customers.*', 'zones.zone_name')
+                ->paginate(5);
+
+        return view('superadmin.customer.manageCustomer',['customers'=> $customers])
+            ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     public function inactiveCustomer($id) {
 
         DB::table('customers')->where('id',$id)->update(['status' => 0]);
-        return redirect('/customer/manage')->with('message', 'this is  unactive now');
+        return redirect('/customer/manage')->with('message', 'this guy is  unactive now');
     }
     public function activeCustomer($id) {
 
         DB::table('customers')->where('id',$id)->update(['status' => 1]);
-        return redirect('/customer/manage')->with('message', 'Manufacturer info published successfully');
+        return redirect('/customer/manage')->with('message', 'this guy is  active now successfully');
     }
 
     public function editCustomer($id){
@@ -87,22 +92,26 @@ class CustomerController extends Controller
     {
         $customer = Customer::find($request->customer_id);
         $customer->delete();
-        return redirect('customer/manage')
-            ->with('success',' deleted successfully');
+
+        return redirect('customer/manage')->with('success',' deleted successfully');
     }
 
     public function actives(){
         $customers = DB::table('customers')
             ->where('status', 1)
-            ->get();
-        return view ('superadmin.customer.actives',['customers' =>$customers]);
+            ->paginate(10);
+        return view ('superadmin.customer.actives',['customers' =>$customers])
+            ->with('i', (request()->input('page', 1) - 1) * 5);
+
     }
 
     public function inactive(){
         $customers = DB::table('customers')
             ->where('status', 0)
-            ->get();
-        return view ('superadmin.customer.inactives',['customers' =>$customers]);
+            ->paginate(10);
+        return view ('superadmin.customer.inactives',['customers' =>$customers])
+            ->with('i', (request()->input('page', 1) - 1) * 5);
+
     }
 
     public function current(){
@@ -120,8 +129,10 @@ class CustomerController extends Controller
         $customers = DB::table('customers')
             ->whereRaw('MONTH(connection_date) = ?',[$currentMonth])
             ->get();
-        //print_r($customers);
+
         return view ('superadmin.billing.connection',['customers' =>$customers]);
 
     }
+
+
 }

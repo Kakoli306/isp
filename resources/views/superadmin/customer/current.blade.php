@@ -48,8 +48,8 @@
                             <td>{{ $customer->connection_charge}}</td>
                             <td>{{ $customer->ip_address}}</td>
                             <td class="center">
-                                <input type="hidden" value="{{ $customer->customerId }}" name="customerId">
-                                <a href="{{ url('billing/edit/'.$customer->customerId) }}" class="on-default edit-row"><i class="fas fa-pencil-alt"></i></a>
+                                <input type="hidden" value="{{ $customer->id }}" name="customerId">
+                                <a href="{{ url('billing/edit/'.$customer->id) }}" class="on-default edit-row"><i class="fas fa-pencil-alt"></i></a>
                             </td>
                         </tr>
                     </tbody>
