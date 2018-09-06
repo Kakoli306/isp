@@ -39,22 +39,71 @@
 
                     @foreach($billings as $billing)
                         <tr>
-                            <td>{{ ++$i }}</td>
+
+                            <?php
+
+                            $custId = $billing->customer_id;
+                            $dues = DB::table('customers')
+                                ->join('billings','billings.customer_id', '=', 'customers.id')
+                                ->select('billings.*','customers.*')
+                                ->where('billings.customer_id','=',$custId)
+                                ->count('bill_amount');
+
+                            $new = 0;
+
+                            if($dues > 0) {
+
+                                $bill_amount=0;
+
+                                $due = DB::table('customers')
+                                    ->join('billings','billings.customer_id', '=', 'customers.id')
+                                    ->select('billings.*','customers.*')
+                                    ->where('billings.customer_id','=',$custId)
+                                    ->first();
+
+
+                                $connection_charge = $due->connection_charge;
+                                $month_amount = $due->month_amount;
+                                $new = ($bill_amount + $connection_charge - $month_amount);
+                            }
+
+                            else
+                            {
+                                $due = DB::table('customers')
+                                    ->where('id',$custId)
+                                    ->first();
+                            }
+                            ?>
+
+                            <?php
+
+                            if($new = 0) {
+
+                                $bill_amount;
+
+                                print_r($record);
+
+
+                              }
+                              else
+                                  echo "a";
+
+                                ?>
+
+                            <td>{{++$i}}
                             <td>{{ $billing->month }}</td>
                             <td>{{ $billing->payment_description }}</td>
                             <td>{{ $billing->customer_name }}</td>
                             <td>{{ $billing->ip_address }}</td>
                             <td>{{ $users->username }}</td>
                             <td>{{ $billing->payment_amount }}</td>
-
+                                <td>{{ $new }}</td>
+                              <td>  <input type="hidden" value="{{ $billing->customer_id }}" name="customer_id">
+                                <a href="{{ route('show-billing',['$custId'=>$billing->customer_id]) }}"class="on-default edit-row"><i class="fas fa-pencil-alt"></i></a>
 
                         </tr>
                     </tbody>
                     @endforeach
-
-
-
-
                 </table>
             </div>
         </div>

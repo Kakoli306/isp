@@ -14,7 +14,7 @@
                 <form role="form" enctype="multipart/form-data" method="post" action="{{ route('update-billing')}}">
                     {{ csrf_field() }}
 
-                    <input type="hidden"  name="id" value="{{$BillingById->id}}">
+                    <input type="hidden"  name="id" value="{{$BillingById->customer_id}}">
 
                     <table class="table table-bordered table-striped mb-0 table-responsive" id="datatable-editable">
 

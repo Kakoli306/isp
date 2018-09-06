@@ -14,11 +14,6 @@
 Route::get('/', function () {
     return view('welcome');
 });
-//
-// Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
-// Route::post('/login', 'Auth\LoginController@login');
-// Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
-// Route::post('register', 'Auth\RegisterController@register');
 
 Route::group(['middleware'=>'role:superadmin'], function() {
 
@@ -78,8 +73,10 @@ Route::post('/billing/paid', 'BillingController@paid')->name('show-paid');
 Route::post('/billing/unpaid', 'BillingController@unpaid')->name('show-unpaid');
 Route::get('/discount', 'BillingController@discount')->name('discount');
 
-Route::get('/monthly', 'BillingController@monthly')->name('monthly');
-Route::get('/account_statement', 'BillingController@statement')->name('statement');
+Route::get('/monthly', 'NewController@monthly')->name('monthly');
+Route::get('/account_statement', 'NewController@statement')->name('statement');
+Route::get('/billing/show/{id}', 'NewController@showBilling')->name('show-billing');
+Route::get('/daily', 'NewController@daily')->name('daily');
 
 
 

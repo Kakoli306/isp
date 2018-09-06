@@ -53,20 +53,19 @@ class BillingController extends Controller
 
         $bills = Billing::where('customer_id',$id)->get();
 
-
+// For dues
         $dues = DB::table('customers')
               ->join('billings','billings.customer_id', '=', 'customers.id')
               ->select('billings.*','customers.*')
             ->where('billings.customer_id','=',$id)
         ->count('bill_amount');
 
-
-
         $new = 0;
 
         if($dues > 0) {
 
-$bill_amount=0;
+            $bill_amount=0;
+
             $due = DB::table('customers')
                 ->join('billings','billings.customer_id', '=', 'customers.id')
                 ->select('billings.*','customers.*')
@@ -79,8 +78,6 @@ $bill_amount=0;
             $new = ($bill_amount + $connection_charge - $month_amount);
         }
 
-
-
         else
         {
             $due = DB::table('customers')
@@ -89,17 +86,10 @@ $bill_amount=0;
 
            // dd($due);
 
-
-
         }
-        // dd($bill_amount, $connection_charge, $month_amount, $new);
-
-       // dd($due);
 
         return view('superadmin.billing.edit',compact('BillingById','bills','users','date','new'));
     }
-
-
 
     public function adding(Request $request)
     {
@@ -186,32 +176,6 @@ $bill_amount=0;
         $billings->bill_status = 1;
         $billings->save();
         return redirect()->back();
-    }
-
-    public function statement(){
-
-        // $currentMonth = Carbon::now()->startOfMonth();
-
-        $billings = DB::table('billings')
-            ->join('customers', 'billings.customer_id', '=', 'customers.id')
-            ->select('billings.*', 'customers.customer_name','customers.ip_address')
-            ->whereMonth('month','9')
-            ->get();
-
-
-        $users = DB::table('billings')
-            ->join('users', 'billings.userId', '=', 'users.userId')
-            ->select('billings.*', 'users.username')
-            ->where('billings.userId',Auth::user()->userId)
-            ->first();
-
-
-        return view ('superadmin.report.statement',['billings' =>$billings,'users' => $users])
-            ->with('i', (request()->input('page', 1) - 1) * 5);
-    }
-
-    public function monthly(){
-        return view('superadmin.report.monthly');
     }
 
 
