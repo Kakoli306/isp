@@ -59,8 +59,8 @@ Bill Collection
     <td>{{ $customer->speed}}</td>
 	  <td>{{ $customer->bill_amount	}}</td>
 	  <td>{{ $customer->ip_address}}</td>
-					<td>{{ $customer->ip_address}}</td>
-					<td>{{ $customer->ip_address}}</td>
+					<td></td>
+					<td></td>
 
 
 
@@ -89,15 +89,13 @@ Bill Collection
 							</form>
 
 						@endif
-
 					</td>
 				</tr>
-
-				</tbody>
+			</tbody>
 
     @endforeach
 		</table>
-
+		{{ $customers->links() }}
 	</div>
 </section>
 <!-- end: page -->

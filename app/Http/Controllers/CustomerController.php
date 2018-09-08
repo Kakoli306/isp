@@ -34,6 +34,7 @@ class CustomerController extends Controller
         $customers->connection_date = $request->connection_date;
         $customers->speed = $request->speed;
         $customers->status = $request->status;
+        $customers->bill_status = 0;
         $customers->save();
         return redirect("customer/create")->with('message', 'Customer info saved ');
     }
@@ -43,7 +44,7 @@ class CustomerController extends Controller
         $customers = DB::table('customers')
                 ->join('zones', 'customers.zone_id', '=', 'zones.id')
                 ->select('customers.*', 'zones.zone_name')
-                ->paginate(5);
+                 ->orderBy('id', 'DESC')->paginate(5);
 
         return view('superadmin.customer.manageCustomer',['customers'=> $customers])
             ->with('i', (request()->input('page', 1) - 1) * 5);

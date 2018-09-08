@@ -76,7 +76,9 @@ Route::get('/discount', 'BillingController@discount')->name('discount');
 Route::get('/monthly', 'NewController@monthly')->name('monthly');
 Route::get('/account_statement', 'NewController@statement')->name('statement');
 Route::get('/billing/show/{id}', 'NewController@showBilling')->name('show-billing');
-Route::get('/daily', 'NewController@daily')->name('daily');
+Route::get('/daily/{date}', 'NewController@daily')->name('daily');
+Route::get('/income_report', 'NewController@report')->name('inc_report');
+
 
 
 
@@ -102,13 +104,6 @@ Route::delete('zone/{zone_id}', 'ZoneController@destroy');
 
 //Expense
 //Display Index Page
-Route::get('/expense', 'ExpenseController@index');
-Route::get('expense/{expense_id?}', 'ExpenseController@show');
-Route::post('expense', 'ExpenseController@store');
-Route::put('expense/{expense_id}', 'ExpenseController@update');
-Route::delete('expense/{expense_id}', 'ExpenseController@destroy');
-
-Route::get('/exp', 'ExpenseController@expense');
+Route::resource('expenses','ExpenseController');
 
 Route::get('/exp_report', 'ExpenseController@report')->name('expense_report');
-

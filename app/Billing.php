@@ -11,7 +11,7 @@ class Billing extends Model
     protected $guraded = ['id'];
 
     protected $fillable = [
-        'customer_id','userId', 'bill_status', 'payment_amount','discount','payment_description','month'
+        'customer_id','userId', 'payment_amount','discount','payment_description','month'
     ];
 
 }

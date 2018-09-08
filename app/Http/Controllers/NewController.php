@@ -87,11 +87,55 @@ class NewController extends Controller
 
         return view('superadmin.report.showBilling',compact('custId','new','users','bills'));
     }
-public function daily()
+public function daily($date)
 {
-    $todays = Billing::whereDate('created_at', Carbon::today())->get();
-    return view('superadmin.report.today',compact('todays'));
 
+    //dd($date);
+    $todays = Billing::whereDate('created_at',$date)->get();
+
+
+    $weekdate = new Carbon;
+
+    $weekdate->subWeek();
+    //dd($date);
+    $date = $weekdate->toDateString() ;
+   // dd($date);
+   // News::where('created_at', '>', $date->toDateTimeString() )->get();
+
+
+    $todays = DB::table('billings')
+    ->whereRaw('date(created_at) = ?', [date('Y-m-d')]);
+    dd($todays);
+
+
+      //  ->where( 'created_at', '>', Carbon::now()->subDays(3));
+
+    $billings = DB::table('billings')
+        ->join('customers', 'billings.customer_id', '=', 'customers.id')
+        ->select('billings.*', 'customers.customer_name','customers.ip_address')
+        ->get();
+
+    $users = DB::table('billings')
+        ->join('users', 'billings.userId', '=', 'users.userId')
+        ->select('billings.*', 'users.username')
+        ->where('billings.userId',Auth::user()->userId)
+        ->first();
+
+
+
+    return view('superadmin.report.today',compact('billings','users','todays'));
+}
+
+public function report(){
+
+    $customers = DB::table('customers')
+        ->join('billings', 'billings.customer_id', '=', 'customers.id')
+        ->select('customers.*', 'customers.created_at')
+    ->select('billings.*', 'billings.created_at')
+        ->get();
+    dd($customers);
+
+    return view ('superadmin.report.inc_report');
 
 }
 

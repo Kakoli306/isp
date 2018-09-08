@@ -14,20 +14,23 @@ class BillingController extends Controller
 {
     public function add(){
 
-        $customers = Customer::all();
+        $customers  = DB::table('customers')
+            ->join('zones', 'customers.zone_id', '=', 'zones.id')
+            ->select('customers.*', 'zones.zone_name')
+            ->orderBy('id', 'DESC')->paginate(8);
 
        // $all = $customers->bill_status;
        // dd($all);
 
-//        $customers = DB::table('billings')
-//            ->join('customers', 'billings.customer_id', '=', 'customers.id')
-//            ->select('customers.*', 'billings.bill_status')
-//            ->get();
+      /* $customers = DB::table('billings')
+            ->join('customers', 'billings.customer_id', '=', 'customers.id')
+            ->select('customers.*', 'billings.bill_status')
+           ->paginate(10);*/
 
       //  $customer = pluck($customers);
 
             //->paginate(5);
-        //dd($customers);
+
         return view('superadmin.billing.add',['customers'=> $customers])
             ->with('i', (request()->input('page', 1) - 1) * 5);
 
@@ -36,13 +39,6 @@ class BillingController extends Controller
     public function editBilling($id){
 
         $BillingById = Customer::where('id',$id)->first();
-
-        //For update
-        $date = DB::table('billings')
-            ->join('customers', 'billings.customer_id', '=', 'customers.id')
-            ->select('billings.*', 'billings.updated_at')
-           ->first();
-
 
        //Auth->user->name
         $users = DB::table('billings')
@@ -83,9 +79,6 @@ class BillingController extends Controller
             $due = DB::table('customers')
                 ->where('id',$id)
                 ->first();
-
-           // dd($due);
-
         }
 
         return view('superadmin.billing.edit',compact('BillingById','bills','users','date','new'));
@@ -97,7 +90,6 @@ class BillingController extends Controller
         $billings = new Billing();
         $billings->customer_id = $request->id;
         $billings->userId = Auth::user()->userId;
-        $billings->bill_status = 0;
         $billings->payment_amount = $request->payment_amount;
         $billings->discount = $request->discount;
         $billings->payment_description = $request->payment_description;
@@ -164,7 +156,7 @@ class BillingController extends Controller
 
     public function paid(Request $request){
 
-        $billings = Billing::where('customer_id',$request->id)->first();
+        $billings = Customer::where('id',$request->id)->first();
         $billings->bill_status = 0;
         $billings->save();
         return redirect()->back();
@@ -172,7 +164,7 @@ class BillingController extends Controller
 
     public function unpaid(Request $request){
 
-        $billings = Billing::where('customer_id',$request->id)->first();
+        $billings = Customer::where('id',$request->id)->first();
         $billings->bill_status = 1;
         $billings->save();
         return redirect()->back();

@@ -1,11 +1,8 @@
 @extends('superadmin.master')
-
 @section('title')
-    Monthly Report
+    View Payment Information
 @endsection
-
 @section('content')
-    {{ date('Y-m-d H:i:s') }}
 
     <section class="card">
         <div class="container">
@@ -27,34 +24,17 @@
                         <th>Bill Collection</th>
                         <th>Connection Charge</th>
                         <th>Others Income</th>
-                        <th>Expense</th>
+                        <th>Total</th>
                     </tr>
                     </thead>
                     <tbody>
 
-                    @foreach($customers as $billing)
-                        <tr>
-                            <td>{{ $billing->id }}</td>
-                            <td>{{ Carbon\Carbon::parse($billing->created_at)->format('d.m.Y') }}</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td class="center">
-                                <a href="{{ route('daily',['created_at'=>$billing->created_at]) }}" class="on-default edit-row">
-                                    <i class="fas fa-pencil-alt"></i></a>
-                            </td>
 
 
-                        </tr>
-                    </tbody>
-                    @endforeach
-
-
-                </table>
+                          </table>
             </div>
         </div>
     </section>
-    <!-- end: page -->
+
 
 @endsection

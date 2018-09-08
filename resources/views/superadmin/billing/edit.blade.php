@@ -117,7 +117,7 @@
 
                                         <div class="form-group">
                                             <label class="exampleInputEmail1" for="inputDisabled">Payment Date</label>
-                                            <input class="form-control" id="inputDisabled" type="Disable" value="{{$date->updated_at}}" name="" placeholder="Disabled input here..." disabled="">
+                                            <input class="form-control" id="inputDisabled" type="Disable" value="{{$BillingById->updated_at}}" name="" placeholder="Disabled input here..." disabled="">
                                         </div>
 
                                     </div>

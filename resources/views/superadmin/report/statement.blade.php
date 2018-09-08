@@ -36,6 +36,7 @@
                     </thead>
                     <tbody>
 
+                    <?php $sum=0; ?>
 
                     @foreach($billings as $billing)
                         <tr>
@@ -75,22 +76,7 @@
                             }
                             ?>
 
-                            <?php
-
-                            if($new = 0) {
-
-                                $bill_amount;
-
-                                print_r($record);
-
-
-                              }
-                              else
-                                  echo "a";
-
-                                ?>
-
-                            <td>{{++$i}}
+                            <td>{{++$i}}</td>
                             <td>{{ $billing->month }}</td>
                             <td>{{ $billing->payment_description }}</td>
                             <td>{{ $billing->customer_name }}</td>
@@ -98,6 +84,17 @@
                             <td>{{ $users->username }}</td>
                             <td>{{ $billing->payment_amount }}</td>
                                 <td>{{ $new }}</td>
+                                <td>
+                                   <?php
+
+
+                                     $flag=$billing->payment_amount-$new;
+
+                                     $sum=$sum+$flag;
+                                    echo $sum;
+
+                                ?>
+                                </td>
                               <td>  <input type="hidden" value="{{ $billing->customer_id }}" name="customer_id">
                                 <a href="{{ route('show-billing',['$custId'=>$billing->customer_id]) }}"class="on-default edit-row"><i class="fas fa-pencil-alt"></i></a>
 

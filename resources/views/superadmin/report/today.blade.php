@@ -1,7 +1,7 @@
 @extends('superadmin.master')
 
 @section('title')
-    Monthly Report
+    Daily Account Statement
 @endsection
 
 @section('content')
@@ -18,6 +18,8 @@
                     <div class="col-sm-6">
                     </div>
                 </div>
+
+
                 <table class="table table-bordered table-striped mb-0 table-responsive" id="datatable-editable">
 
                     <thead>
@@ -35,6 +37,20 @@
                     </thead>
                     <tbody>
 
+                    @foreach($billings as $billing)
+
+                             <td></td>
+                            <td>{{  }}</td>
+                            <td>{{ $billing->payment_description }}</td>
+                            <td>{{ $billing->customer_name }}</td>
+                            <td>{{ $billing->ip_address }}</td>
+                            <td>{{ $users->username }}</td>
+                            <td>{{ $billing->payment_amount }}</td>
+                            <td></td>
+
+                         </tr>
+                    </tbody>
+                    @endforeach
 
 
                 </table>

@@ -1,4 +1,4 @@
-<section class="body">
+
 
   <!-- start: header -->
   <header class="header">
@@ -76,4 +76,3 @@
     </div>
     <!-- end: search & user box -->
   </header>
-</section>

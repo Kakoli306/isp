@@ -92,7 +92,7 @@
                                     <a class="nav-link" href="{{ url('income') }}">
                                         Others Income
                                     </a>
-                                    <a class="nav-link" href="pages-recover-password.html">
+                                    <a class="nav-link" href="{{route('inc_report')}}">
                                         Income Report
                                     </a>
 
@@ -116,7 +116,7 @@
                                         Discount
                                     </a>
 
-                                    <a class="nav-link" href="{{ url('/expense') }}">
+                                    <a class="nav-link" href="{{ url('expenses') }}">
                                         Expense
                                     </a>
                                     <a class="nav-link" href="{{route('expense_report')}}">

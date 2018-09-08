@@ -124,8 +124,7 @@
             <script src="{{asset('superadmin/')}}/js/examples/examples.wizard.js"></script>
 
 
-			<!-- Scripts -->
-			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
 	</body>
 
 <!-- Mirrored from preview.oklerthemes.com/porto-admin/2.1.1/layouts-default.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Aug 2018 11:36:35 GMT -->
