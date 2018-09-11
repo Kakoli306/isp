@@ -16,7 +16,6 @@ class CreateCustomersTable extends Migration
         Schema::create('customers', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('zone_id');
-            $table->integer('billing_id');
             $table->string('customer_name');
             $table->string('mobile_no');
             $table->string('email')->unique();
@@ -31,6 +30,7 @@ class CreateCustomersTable extends Migration
             $table->date('connection_date');
             $table->string('speed');
             $table->tinyInteger('status');
+            $table->tinyInteger('bill_status');
 
             $table->timestamps();
         });

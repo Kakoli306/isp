@@ -50,11 +50,11 @@
                 <td>{{ $income->amount	 }}</td>
                 <td>{{ $income->account_details }}</td>
                 <td>
-                    <form action="{{ route('income.destroy',$income->id) }}" method="POST">
+                    <form action="{{ route('income.destroy',$income->incomeId) }}" method="POST">
 
 
-                    <!--<a class="btn btn-info" href="{{ route('income.show',$income->id) }}">Show</a>-->
-                        <a class="btn btn-primary" href="{{ route('income.edit',$income->id) }}">Edit</a>
+                    <!--<a class="btn btn-info" href="{{ route('income.show',$income->incomeId) }}">Show</a>-->
+                        <a class="btn btn-primary" href="{{ route('income.edit',$income->incomeId) }}">Edit</a>
 
 
                         @csrf
@@ -64,8 +64,8 @@
                 </td>
             </tr>
         @endforeach
-
-
     </table>
+    {{ $shows->links() }}
+
 
 @endsection

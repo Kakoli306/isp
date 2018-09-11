@@ -9,7 +9,7 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>Total Other Income</h2>
+                <h2>Total Other Expense</h2>
             </div>
 
             <div class="pull-left">
@@ -45,7 +45,7 @@
             <tr>
                 <td>{{ ++$i }}</td>
                 <td>{{ $expense->created_at }}</td>
-                <td>{{ $expense->product_id }}</td>
+                <td>{{ $expense->name }}</td>
                 <td>{{ $expense->price }}</td>
                 <td>{{ $expense->name	 }}</td>
                 <td>

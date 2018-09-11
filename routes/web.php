@@ -15,6 +15,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/superadminPage', 'SuperAdminController@index');
+
+
 Route::group(['middleware'=>'role:superadmin'], function() {
 
     Route::get('/superadminPage', 'SuperAdminController@index');
@@ -72,6 +75,9 @@ Route::post('/billing/delete', 'BillingController@deleteBilling')->name('delete-
 Route::post('/billing/paid', 'BillingController@paid')->name('show-paid');
 Route::post('/billing/unpaid', 'BillingController@unpaid')->name('show-unpaid');
 Route::get('/discount', 'BillingController@discount')->name('discount');
+Route::get('/paid', 'NewController@paid')->name('show-paid');
+Route::get('/unpaid', 'NewController@unpaid')->name('show-unpaid');
+
 
 Route::get('/monthly', 'NewController@monthly')->name('monthly');
 Route::get('/account_statement', 'NewController@statement')->name('statement');

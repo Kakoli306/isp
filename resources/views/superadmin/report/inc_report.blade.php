@@ -1,6 +1,6 @@
 @extends('superadmin.master')
 @section('title')
-    View Payment Information
+    Income Report
 @endsection
 @section('content')
 
@@ -20,7 +20,8 @@
                     <thead>
                     <tr>
                         <th>#</th>
-                        <th>Date</th>
+                        <th>Customer Connection Date</th>
+                        <th>Billing Date</th>
                         <th>Bill Collection</th>
                         <th>Connection Charge</th>
                         <th>Others Income</th>
@@ -29,9 +30,21 @@
                     </thead>
                     <tbody>
 
+                    @foreach($date as $customer)
+                        <tr>
+                            <td></td>
+                            <td>{{$customer->connection_date}}</td>
+                            <td>{{Carbon\Carbon::parse($customer->created_at)->format('d.m.Y')}}</td>
+                            <td>{{$customer->payment_amount}}</td>
+                            <td>{{$customer->connection_charge}}</td>
+                            <td>{{$income}}</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                    @endforeach
 
 
-                          </table>
+                </table>
             </div>
         </div>
     </section>

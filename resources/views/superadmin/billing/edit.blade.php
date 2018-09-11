@@ -55,51 +55,6 @@
                     </table>
                 </form>
 
-
-               <!-- <div class="card">
-                    <div class="view overlay">
-                        <div class="card-body">
-
-                            <form role="form" enctype="multipart/form-data" method="post" action="{{url('/payment/add/'.$BillingById->id)}}">
-                                {{ csrf_field() }}
-
-
-
-                                <div class="row" style="padding:10px; font-size: 12px;">
-
-                                    <div class="col-md-4 col-md-offset-1">
-
-                                        <div class="form-group">
-                                            <label class="exampleInputEmail1" for="created_at">Payment Date</label>
-                                            <input class="form-control" id="created_at" type="date" name="created_at" placeholder="Disabled input here..." >
-                                        </div>
-
-                                    </div>
-
-                                    <div class="col-md-4 col-md-offset-1">
-                                        <div class="form-group">
-                                            <label class="exampleInputEmail1" for="pay_amount">Pay Amount</label>
-                                            <input class="form-control" id="pay_amount" type="number" name="pay_amount" placeholder="Disabled input here..." >
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-4 col-md-offset-1">
-                                        <div class="form-group">
-                                            <label class="exampleInputEmail1" for="due_amount">Due Amount</label>
-                                            <input class="form-control" id="due_amount" type="Disabled" name ="due_amount" placeholder=" input here..." >
-                                        </div>
-
-                                    </div>
-
-                                    <div class="col-md-12">
-                                    </div>
-
-                                    <div class="row" style="padding: 5px 0px 15px 0px; float:right; font-size: 12px; text-align: center;">
-                                        <button type="submit" name="submit" class="btn btn-success">Submit</button>
-                                    </div>
-                                </div>
-                            </form> -->
-
                             <form role="form" enctype="multipart/form-data" method="post" action="{{url('/billing/add/'.$BillingById->id)}}">
                                 {{ csrf_field() }}
 
@@ -140,9 +95,38 @@
                                     <div class="col-md-4 col-md-offset-1">
                                         <div class="form-group">
                                             <label class="exampleInputEmail1" for="inputDisabled">Due Amount</label>
-                                            <?php $lifetime_due=DB::table('payments')->where('customer_id',$BillingById->id)->sum('due_amount'); ?>
 
-                                            <input class="form-control" id="inputDisabled" type="Disabled" name = "due_amount" value="{{$new}}" placeholder=" input here..." disabled="">
+                                            <?php
+                                            $flag=$BillingById->bill_amount;
+                                                $flag1 = $BillingById->month_amount;
+
+                                            $sum=$flag - $flag1;
+                                            ?>
+
+                                         <?php
+
+
+                                            $date = Carbon\Carbon::parse(($BillingById->connection_date));
+                                            $now = Carbon\Carbon::now();
+
+                                            $diff = $date->diffInMonths($now);
+                                            $a =$diff * $BillingById->bill_amount;
+
+                                            $flag=$BillingById->bill_amount;
+                                            $flag1 = $BillingById->month_amount;
+
+                                            $sum=$flag - $flag1;
+
+                                            $pay = $lifetime_paid;
+                                            $ok = $pay - $sum;
+
+                                            $due = $a - $ok;
+
+                                            //dd($due);
+                                            ?>
+
+
+                                            <input class="form-control" id="inputDisabled" type="Disabled" name = "due_amount" value="{{$due}}" placeholder=" input here..." disabled="">
                                         </div>
 
                                         <div class="form-group">
@@ -209,7 +193,7 @@
                             <form action="{{ route('delete-billing') }}" method="POST">
                                 {{ csrf_field() }}
                                 <input type="hidden" value="{{$value->id}}" name="billing_id">
-                                <button type="submit" onclick="return confirm('Are u sure to delete this !!!')"
+                                <button type="submit" onclick="return confirm('Are u sure want to delete this !!!')"
                                         class="on-default remove-row"><i class="far fa-trash-alt"></i>
                                 </button>
                             </form>
@@ -221,8 +205,4 @@
                         </table>
                     </div>
                 </div>
-
-
-
-
 @endsection

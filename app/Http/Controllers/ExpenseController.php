@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Expense;
 use App\Product;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 class ExpenseController extends Controller
 {
     /**
@@ -15,8 +16,10 @@ class ExpenseController extends Controller
      */
     public function index()
     {
-        $expenses = Expense::latest()->paginate(5);
-
+        $expenses = DB::table('expenses')
+            ->join('products', 'expenses.product_id', '=', 'products.id')
+            ->select('expenses.*', 'products.name')
+            ->latest()->paginate(3);
         return view('expenses.index',compact('expenses'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
@@ -46,11 +49,16 @@ class ExpenseController extends Controller
             'product_id' => 'required',
             'name' => 'required',
             'price' => 'required',
+
         ]);
+        $expense = new Expense();
+        $expense->product_id = $request->product_id;
+        $expense->name = $request->name;
+        $expense->price = $request->price;
+        $expense->date = Carbon::now();
+        $expense->save();
 
-        Expense::create($request->all());
-
-        return redirect()->route('expenses.index')
+        return redirect()->route('expenses.index',compact('expense'))
             ->with('success','Expenses created successfully');
     }
 
@@ -121,10 +129,14 @@ class ExpenseController extends Controller
     public function report()
     {
         $total = DB::table('expenses')->sum('price');
-        $currentMonth = date('m');
+
         $expenses = DB::table('expenses')
-            ->whereRaw('MONTH(created_at) = ?',[$currentMonth])
-            ->get();
+            ->join('products', 'expenses.product_id', '=', 'products.id')
+            ->select('expenses.*', 'products.name')
+            ->whereMonth('date', Carbon::now()->month)
+            ->latest()->paginate(8);
+
+        //dd($expenses);
         return view ('superadmin.expense.new',['expenses' =>$expenses,'total' => $total]);
     }
 }

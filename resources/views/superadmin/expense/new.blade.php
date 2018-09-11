@@ -34,6 +34,7 @@
                             </tbody>
                            Total expense {{$total}}
                         </table>
+                        {{ $expenses->links() }}
                     </div>
                 </div>
             </div>

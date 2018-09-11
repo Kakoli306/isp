@@ -129,9 +129,10 @@ class CustomerController extends Controller
         $currentMonth = date('m');
         $customers = DB::table('customers')
             ->whereRaw('MONTH(connection_date) = ?',[$currentMonth])
-            ->get();
+            ->paginate(8);
 
-        return view ('superadmin.billing.connection',['customers' =>$customers]);
+        return view ('superadmin.billing.connection',['customers' =>$customers])
+            ->with('i', (request()->input('page', 1) - 1) * 5);
 
     }
 

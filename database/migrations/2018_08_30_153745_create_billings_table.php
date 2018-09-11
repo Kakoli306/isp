@@ -17,7 +17,7 @@ class CreateBillingsTable extends Migration
             $table->increments('id');
             $table->integer('customer_id');
             $table->integer('userId');
-            $table->tinyInteger('bill_status');
+            $table->integer('incomeId');
             $table->float('payment_amount');
             $table->float('discount');
             $table->text('payment_description');

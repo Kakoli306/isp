@@ -12,7 +12,6 @@
         <div class="container">
 
             <header class="card-header">
-                <h3>{{Session::get('message')}}</h3>
                 <h2 class="card-title">View Customer Information</h2>
             </header>
             <div class="card-body">

@@ -60,23 +60,51 @@ Bill Collection
 	  <td>{{ $customer->bill_amount	}}</td>
 	  <td>{{ $customer->ip_address}}</td>
 					<td></td>
-					<td></td>
+					<td>
+                        <?php $lifetime_paid=DB::table('billings')->where('customer_id',$customer->id)->sum('payment_amount'); ?>
+                        <?php
+                        $flag=$customer->bill_amount;
+                        $flag1 = $customer->month_amount;
+
+                        $sum=$flag - $flag1;
+                        ?>
+
+                        <?php
 
 
+                        $date = Carbon\Carbon::parse(($customer->connection_date));
+                        $now = Carbon\Carbon::now();
+
+                        $diff = $date->diffInMonths($now);
+                        $a =$diff * $customer->bill_amount;
+
+                        $flag=$customer->bill_amount;
+                        $flag1 = $customer->month_amount;
+
+                        $sum=$flag - $flag1;
+
+                        $pay = $lifetime_paid;
+                        $ok = $pay - $sum;
+
+                        $due = $a - $ok;
+
+                        //dd($due);
+                        ?>
+
+						{{$due}}</td>
 
 
 					<td class="center">
 						<input type="hidden" value="{{ $customer->id }}" name="customer_id">
 						<a href="{{ url('billing/edit/'.$customer->id) }}" class="on-default edit-row"><i class="fas fa-pencil-alt"></i></a>
 
-
-
-                        @if($customer->bill_status == 0)
+						@if($customer->bill_status == 0)
 
 							<form action="{{ route('show-unpaid') }}" method="POST">
 								{{ csrf_field() }}
 								<input type="hidden" value="{{$customer->id}}}" name="id">
-									<button type="submit"><i class="fas fa fa-window-close">Unpaid</i></button>
+									<button type="submit" onclick="return confirm('Are u sure want to paid this !!!')">
+										<i class="fas fa fa-window-close">Unpaid</i></button>
 
 							</form>
 
@@ -85,7 +113,8 @@ Bill Collection
 								{{ csrf_field() }}
 								<input type="hidden" value="{{$customer->id}}}" name="id">
 
-								<button type="submit"><i class="fas fa fa-check-square">Paid</i></button>
+								<button type="submit" onclick="return confirm('Are u sure want to unpaid this !!!')"
+								><i class="fas fa fa-check-square">Paid</i></button>
 							</form>
 
 						@endif

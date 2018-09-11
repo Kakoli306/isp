@@ -29,7 +29,7 @@
     @endif
 
 
-    <form action="{{ route('income.update',$income->id) }}" method="POST">
+    <form action="{{ route('income.update',$income->incomeId) }}" method="POST">
         @csrf
         @method('PUT')
 

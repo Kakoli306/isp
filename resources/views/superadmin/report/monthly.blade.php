@@ -28,20 +28,27 @@
                         <th>Connection Charge</th>
                         <th>Others Income</th>
                         <th>Expense</th>
+                        <th>Billing</th>
                     </tr>
                     </thead>
                     <tbody>
 
-                    @foreach($customers as $billing)
+
+                    @foreach($billings as $billing)
                         <tr>
                             <td>{{ $billing->id }}</td>
-                            <td>{{ Carbon\Carbon::parse($billing->created_at)->format('d.m.Y') }}</td>
+                            <td>{{ $billing->connection_date  }}<a href="{{ url('daily/'.$billing->connection_date) }}" class="on-default edit-row">
+                                    <i class="fas fa-pencil-alt"></i></a></td>
                             <td></td>
                             <td></td>
                             <td></td>
                             <td></td>
+                            <td>{{$billing->month}}</td>
                             <td class="center">
-                                <a href="{{ route('daily',['created_at'=>$billing->created_at]) }}" class="on-default edit-row">
+                                <?php
+                               $date = $billing->month;
+                                ?>
+                                <a href="{{ url('daily/'.$date) }}" class="on-default edit-row">
                                     <i class="fas fa-pencil-alt"></i></a>
                             </td>
 

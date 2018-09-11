@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Income;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 class IncomeController extends Controller
 {
     /**
@@ -75,7 +76,6 @@ class IncomeController extends Controller
      */
     public function show(Income $income)
     {
-
         return view('income.index',compact('income'));
     }
 

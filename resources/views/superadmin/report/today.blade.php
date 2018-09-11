@@ -40,7 +40,7 @@
                     @foreach($billings as $billing)
 
                              <td></td>
-                            <td>{{  }}</td>
+                            <td>{{ $billing->month }}</td>
                             <td>{{ $billing->payment_description }}</td>
                             <td>{{ $billing->customer_name }}</td>
                             <td>{{ $billing->ip_address }}</td>

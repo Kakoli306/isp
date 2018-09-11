@@ -24,6 +24,7 @@
 
                     <thead>
                     <tr>
+                        <th>#</th>
                         <th>Connection Date</th>
                         <th>Customer Name</th>
                         <th>Address</th>
@@ -37,6 +38,7 @@
 
                     @foreach($customers as $customer)
                         <tr>
+                            <td>{{ ++$i }}</td>
                             <td>{{ $customer->connection_date}}</td>
                             <td>{{ $customer->customer_name }}</td>
                             <td>{{ $customer->address }}</td>

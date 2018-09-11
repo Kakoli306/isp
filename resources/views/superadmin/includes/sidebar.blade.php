@@ -17,7 +17,7 @@
 
                     <ul class="nav nav-main">
                         <li>
-                            <a class="nav-link" href="layouts-default.html">
+                            <a class="nav-link" href="{{url("/superadminPage")}}">
                                 <i class="fas fa-home" aria-hidden="true"></i>
                                 <span>Dashboard</span>
                             </a>
@@ -79,11 +79,11 @@
                                         Bill Collection
                                     </a>
 
-                                    <a class="nav-link" href="tables-basic.html">
+                                    <a class="nav-link" href="{{route('show-unpaid')}}">
                                         All Dues
                                     </a>
 
-                                    <a class="nav-link" href="pages-user-profile.html">
+                                    <a class="nav-link" href="{{route('show-paid')}}">
                                         All Paid Customer
                                     </a>
                                     <a class="nav-link" href="{{route('connection')}}">
@@ -200,11 +200,6 @@
 
             <div class="right-wrapper text-right">
                 <ol class="breadcrumbs">
-                    <li>
-                        <a href="index.html">
-                            <i class="fas fa-home"></i>
-                        </a>
-                    </li>
                     <li><span>Layouts</span></li>
                     <li><span>Default</span></li>
                 </ol>
@@ -212,5 +207,6 @@
                 <a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fas fa-chevron-left"></i></a>
             </div>
         </header>
+
 
         <!-- start: page -->

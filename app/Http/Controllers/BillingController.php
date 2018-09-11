@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Billing;
-use App\Payment;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Customer;
@@ -19,18 +18,6 @@ class BillingController extends Controller
             ->select('customers.*', 'zones.zone_name')
             ->orderBy('id', 'DESC')->paginate(8);
 
-       // $all = $customers->bill_status;
-       // dd($all);
-
-      /* $customers = DB::table('billings')
-            ->join('customers', 'billings.customer_id', '=', 'customers.id')
-            ->select('customers.*', 'billings.bill_status')
-           ->paginate(10);*/
-
-      //  $customer = pluck($customers);
-
-            //->paginate(5);
-
         return view('superadmin.billing.add',['customers'=> $customers])
             ->with('i', (request()->input('page', 1) - 1) * 5);
 
@@ -38,9 +25,10 @@ class BillingController extends Controller
 
     public function editBilling($id){
 
+
         $BillingById = Customer::where('id',$id)->first();
 
-       //Auth->user->name
+       //For Auth->user->name
         $users = DB::table('billings')
             ->join('users', 'billings.userId', '=', 'users.userId')
             ->select('billings.*', 'users.username')
@@ -137,16 +125,7 @@ class BillingController extends Controller
         return view ('superadmin.billing.discount',compact( 'customers','users'));
     }
 
-    public function payment(Request $request, $customer_id){
-        $payment = new Payment();
-        $payment->customer_id = $customer_id;
-        //$payment->bill_amount = 800;
-        $payment->pay_amount = $request->pay_amount;
-        $payment->due_amount = $request->due_amount;
-        $payment->save();
-        return $request->all();
 
-    }
     public function lifetime_paid($BillingById) {
 
         DB::table('payments')->where('customer_id',$BillingById->id)->sum('pay_amount');
