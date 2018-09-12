@@ -20,9 +20,20 @@ class ExpenseController extends Controller
             ->join('products', 'expenses.product_id', '=', 'products.id')
             ->select('expenses.*', 'products.name')
             ->latest()->paginate(3);
-        return view('expenses.index',compact('expenses'))
+
+      /*  $exp = DB::table('expenses')
+            ->select('price', DB::raw('count(*) as count'))
+            ->groupBy('product_id')
+        ->get();
+       // dd($exp);*/
+
+        return view('expenses.index',compact('expenses','exp'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
+
+
     }
+
+
 
 
     /**
@@ -47,13 +58,13 @@ class ExpenseController extends Controller
     {
         request()->validate([
             'product_id' => 'required',
-            'name' => 'required',
             'price' => 'required',
+            'description' => 'required',
 
         ]);
         $expense = new Expense();
         $expense->product_id = $request->product_id;
-        $expense->name = $request->name;
+        $expense->description = $request->description;
         $expense->price = $request->price;
         $expense->date = Carbon::now();
         $expense->save();
@@ -101,7 +112,7 @@ class ExpenseController extends Controller
     {
         request()->validate([
             'product_id' => 'required',
-            'name' => 'required',
+            'description' => 'required',
             'price' => 'required',
         ]);
 
@@ -136,7 +147,31 @@ class ExpenseController extends Controller
             ->whereMonth('date', Carbon::now()->month)
             ->latest()->paginate(8);
 
-        //dd($expenses);
-        return view ('superadmin.expense.new',['expenses' =>$expenses,'total' => $total]);
+        $all= DB::table('expenses')
+            ->join('products', 'expenses.product_id', '=', 'products.id')
+            ->select('expenses.*', 'products.name')
+            ->select('product_id',DB::raw('count(*) as count'))
+            ->groupBy('product_id')
+            ->get();
+
+
+        $exp = DB::table('expenses')
+            ->join('products', 'expenses.product_id', '=', 'products.id')
+            ->select('expenses.*', 'products.name')
+            ->get();
+       // dd($exp);
+
+
+       /* $exp = DB::table('expenses')
+            ->select('product_id', DB::raw('count(*) as price'))
+            ->groupBy('product_id')
+            ->pluck('product_id','price')->all();
+        dd($exp);*/
+
+
+
+        return view ('superadmin.expense.new',['expenses' =>$expenses,'total' => $total,'exp' => $exp])
+            ->with('i', (request()->input('page', 1) - 1) * 5);
+
     }
 }

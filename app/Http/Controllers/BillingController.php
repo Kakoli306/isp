@@ -114,7 +114,7 @@ class BillingController extends Controller
         $customers = DB::table('billings')
             ->join('customers', 'billings.customer_id', '=', 'customers.id')
             ->select('billings.*', 'customers.customer_name')
-        ->get();
+            ->orderBy('id', 'DESC')->paginate(8);
 
         $users = DB::table('billings')
             ->join('users', 'billings.userId', '=', 'users.userId')
@@ -122,7 +122,9 @@ class BillingController extends Controller
             ->where('billings.userId',Auth::user()->userId)
             ->first();
 
-        return view ('superadmin.billing.discount',compact( 'customers','users'));
+        return view ('superadmin.billing.discount',compact( 'customers','users'))
+            ->with('i', (request()->input('page', 1) - 1) * 5);
+
     }
 
 
@@ -135,17 +137,17 @@ class BillingController extends Controller
 
     public function paid(Request $request){
 
-        $billings = Customer::where('id',$request->id)->first();
-        $billings->bill_status = 0;
-        $billings->save();
+        $customers = Customer::where('id',$request->id)->first();
+        $customers->bill_status = 0;
+        $customers->save();
         return redirect()->back();
     }
 
     public function unpaid(Request $request){
 
-        $billings = Customer::where('id',$request->id)->first();
-        $billings->bill_status = 1;
-        $billings->save();
+        $customers = Customer::where('id',$request->id)->first();
+        $customers->bill_status = 1;
+        $customers->save();
         return redirect()->back();
     }
 

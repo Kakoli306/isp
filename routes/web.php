@@ -75,8 +75,8 @@ Route::post('/billing/delete', 'BillingController@deleteBilling')->name('delete-
 Route::post('/billing/paid', 'BillingController@paid')->name('show-paid');
 Route::post('/billing/unpaid', 'BillingController@unpaid')->name('show-unpaid');
 Route::get('/discount', 'BillingController@discount')->name('discount');
-Route::get('/paid', 'NewController@paid')->name('show-paid');
-Route::get('/unpaid', 'NewController@unpaid')->name('show-unpaid');
+Route::get('/paid', 'NewController@paid')->name('paid_customer');
+Route::get('/unpaid', 'NewController@unpaid')->name('unpaid_customer');
 
 
 Route::get('/monthly', 'NewController@monthly')->name('monthly');
@@ -84,11 +84,6 @@ Route::get('/account_statement', 'NewController@statement')->name('statement');
 Route::get('/billing/show/{id}', 'NewController@showBilling')->name('show-billing');
 Route::get('/daily/{date}', 'NewController@daily')->name('daily');
 Route::get('/income_report', 'NewController@report')->name('inc_report');
-
-
-
-
-Route::post('/payment/add/{id}', 'BillingController@payment');
 
 
 //Head
@@ -111,5 +106,5 @@ Route::delete('zone/{zone_id}', 'ZoneController@destroy');
 //Expense
 //Display Index Page
 Route::resource('expenses','ExpenseController');
-
+Route::get('/head/show/{id}', 'SuperAdminController@headshow')->name('head-show');
 Route::get('/exp_report', 'ExpenseController@report')->name('expense_report');

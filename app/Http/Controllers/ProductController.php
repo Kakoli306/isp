@@ -14,8 +14,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
-        return view('superadmin.head.headview')->with('products', $products);
+        $products = Product::latest()->paginate(5);
+        return view('superadmin.head.headview')->with('products', $products)
+            ->with('i', (request()->input()));
     }
 
     /**

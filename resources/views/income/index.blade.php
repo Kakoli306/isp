@@ -45,7 +45,7 @@
         @foreach ($shows as $income)
             <tr>
                 <td>{{ ++$i }}</td>
-                <td>{{ $income->created_at }}</td>
+                <td> {{ Carbon\Carbon::parse($income->created_at)->format('d-m-Y') }}</td>
                 <td>{{ $income->name }}</td>
                 <td>{{ $income->amount	 }}</td>
                 <td>{{ $income->account_details }}</td>

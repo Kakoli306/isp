@@ -79,11 +79,11 @@
                                         Bill Collection
                                     </a>
 
-                                    <a class="nav-link" href="{{route('show-unpaid')}}">
+                                    <a class="nav-link" href="{{route('unpaid_customer')}}">
                                         All Dues
                                     </a>
 
-                                    <a class="nav-link" href="{{route('show-paid')}}">
+                                    <a class="nav-link" href="{{route('paid_customer')}}">
                                         All Paid Customer
                                     </a>
                                     <a class="nav-link" href="{{route('connection')}}">

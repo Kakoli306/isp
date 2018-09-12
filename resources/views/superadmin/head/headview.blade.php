@@ -45,6 +45,8 @@ View Account Head
                             @endforeach
                             </tbody>
                         </table>
+                        {{ $products->links() }}
+
                     </div>
                 </div>
             </div>

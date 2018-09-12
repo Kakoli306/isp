@@ -27,12 +27,12 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Email Address</label>
-                            <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Email Address" required>
+                            <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Email Address">
                         </div>
 
                         <div class="form-group">
                             <label for="exampleInputEmail1">Blood Group</label>
-                            <select name="blood_group" class="form-control" style="margin-bottom: 5px;" required>
+                            <select name="blood_group" class="form-control" style="margin-bottom: 5px;">
                                 <option value="">Blood Group</option>
                                 <option value="A+=">A Positive(A + ve)</option>
                                 <option value="A-">A Negative(A - ve)</option>
@@ -52,7 +52,7 @@
 
                         <div class="form-group">
                             <label for="exampleInputEmail1">Occupation</label>
-                            <input type="text" name="occupation" class="form-control" id="Inputoccupation" placeholder="Occupation" required>
+                            <input type="text" name="occupation" class="form-control" id="Inputoccupation" placeholder="Occupation">
                         </div>
 
 
@@ -80,7 +80,7 @@
 
                         <div class="form-group">
                             <label for="exampleInputPassword1">Month Amount</label>
-                            <input type="float" name="month_amount" class="form-control" id="month_amount" placeholder="Month Amount" required>
+                            <input type="float" name="month_amount" class="form-control" id="month_amount" placeholder="Month Amount">
                         </div>
 
 

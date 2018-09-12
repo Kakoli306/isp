@@ -23,6 +23,7 @@
 
                     <thead>
                     <tr>
+                        <th>#</th>
                         <th>Customer Name</th>
                         <th>Address</th>
                         <th>Connection Date</th>
@@ -38,6 +39,7 @@
 
                     @foreach($customers as $customer)
                         <tr>
+                            <td>{{ ++$i }}</td>
                             <td>{{ $customer->customer_name }}</td>
                             <td>{{ $customer->address }}</td>
                             <td>{{ $customer->connection_date}}</td>
@@ -54,6 +56,8 @@
                     </tbody>
                     @endforeach
                 </table>
+                {{ $customers->links() }}
+
             </div>
         </div>
     </section>

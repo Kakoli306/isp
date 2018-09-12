@@ -51,7 +51,7 @@
 
                 <div class="form-group">
                     <strong>Detail:</strong>
-                    <input class="form-control"  name="name" value="{{ $expenses->name }}"placeholder="Detail"></input>
+                    <input class="form-control"  name="description" value="{{ $expenses->description }}"placeholder="Detail">
                 </div>
 
                 <div class="col-xs-12 col-sm-12 col-md-12 text-center">

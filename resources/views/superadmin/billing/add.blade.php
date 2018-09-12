@@ -96,25 +96,24 @@ Bill Collection
 
 					<td class="center">
 						<input type="hidden" value="{{ $customer->id }}" name="customer_id">
-						<a href="{{ url('billing/edit/'.$customer->id) }}" class="on-default edit-row"><i class="fas fa-pencil-alt"></i></a>
+						<a href="{{ url('billing/edit/'.$customer->id) }}" class="on-default edit-row"><i class="fas fa-pencil-alt">
+							</i></a>
 
 						@if($customer->bill_status == 0)
 
 							<form action="{{ route('show-unpaid') }}" method="POST">
 								{{ csrf_field() }}
 								<input type="hidden" value="{{$customer->id}}}" name="id">
-									<button type="submit" onclick="return confirm('Are u sure want to paid this !!!')">
+									<button type="submit" onclick="return confirm('Are u sure want to unpaid this !!!')">
 										<i class="fas fa fa-window-close">Unpaid</i></button>
-
 							</form>
 
 						@else
 							<form action="{{ route('show-paid') }}" method="POST">
 								{{ csrf_field() }}
 								<input type="hidden" value="{{$customer->id}}}" name="id">
-
-								<button type="submit" onclick="return confirm('Are u sure want to unpaid this !!!')"
-								><i class="fas fa fa-check-square">Paid</i></button>
+								<button type="submit" onclick="return confirm('Are u sure want to paid this !!!')">
+									<i class="fas fa fa-check-square">Paid</i></button>
 							</form>
 
 						@endif

@@ -40,14 +40,14 @@
         </tr>
 
 
-
         @foreach ($expenses as $expense)
             <tr>
                 <td>{{ ++$i }}</td>
-                <td>{{ $expense->created_at }}</td>
+                <td>{{ Carbon\Carbon::parse($expense->created_at)->format('d-m-Y') }}</td>
                 <td>{{ $expense->name }}</td>
                 <td>{{ $expense->price }}</td>
-                <td>{{ $expense->name	 }}</td>
+                <td>{{ $expense->description }}</td>
+
                 <td>
                     <form action="{{ route('expenses.destroy',$expense->id) }}" method="POST">
 

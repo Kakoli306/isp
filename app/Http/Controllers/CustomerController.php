@@ -100,7 +100,8 @@ class CustomerController extends Controller
     public function actives(){
         $customers = DB::table('customers')
             ->where('status', 1)
-            ->paginate(10);
+            ->orderBy('id', 'DESC')->paginate(8);
+
         return view ('superadmin.customer.actives',['customers' =>$customers])
             ->with('i', (request()->input('page', 1) - 1) * 5);
 
@@ -109,7 +110,7 @@ class CustomerController extends Controller
     public function inactive(){
         $customers = DB::table('customers')
             ->where('status', 0)
-            ->paginate(10);
+            ->orderBy('id', 'DESC')->paginate(8);
         return view ('superadmin.customer.inactives',['customers' =>$customers])
             ->with('i', (request()->input('page', 1) - 1) * 5);
 
@@ -119,9 +120,11 @@ class CustomerController extends Controller
         $currentMonth = date('m');
        $customers = DB::table('customers')
            ->whereRaw('MONTH(connection_date) = ?',[$currentMonth])
-              ->get();
-        //print_r($customers);
-        return view ('superadmin.customer.current',['customers' =>$customers]);
+              ->orderBy('id', 'DESC')->paginate(8);
+
+        return view ('superadmin.customer.current',['customers' =>$customers])
+            ->with('i');
+
 
     }
 

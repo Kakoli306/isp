@@ -32,21 +32,19 @@
                     </thead>
                     <tbody>
 
-
-
-                        @foreach($customers as $billing)
+                    @foreach($customers as $billing)
                         <tr>
-                            <td>{{ $billing->id }}</td>
-                            <td>{{ $billing->created_at }}</td>
+                            <td>{{  ++$i  }}</td>
+                            <td>{{ Carbon\Carbon::parse($billing->created_at)->format('d-m-Y') }}</td>
                             <td>{{ $billing->customer_name }}</td>
                             <td>{{ $billing->payment_amount }}</td>
                             <td>{{ $users->username }}</td>
-
-
                         </tr>
                     </tbody>
                     @endforeach
                 </table>
+                {{ $customers->links() }}
+
             </div>
         </div>
     </section>

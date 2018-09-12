@@ -41,41 +41,6 @@
                     @foreach($billings as $billing)
                         <tr>
 
-                            <?php
-
-                            $custId = $billing->customer_id;
-                            $dues = DB::table('customers')
-                                ->join('billings','billings.customer_id', '=', 'customers.id')
-                                ->select('billings.*','customers.*')
-                                ->where('billings.customer_id','=',$custId)
-                                ->count('bill_amount');
-
-                            $new = 0;
-
-                            if($dues > 0) {
-
-                                $bill_amount=0;
-
-                                $due = DB::table('customers')
-                                    ->join('billings','billings.customer_id', '=', 'customers.id')
-                                    ->select('billings.*','customers.*')
-                                    ->where('billings.customer_id','=',$custId)
-                                    ->first();
-
-
-                                $connection_charge = $due->connection_charge;
-                                $month_amount = $due->month_amount;
-                                $new = ($bill_amount + $connection_charge - $month_amount);
-                            }
-
-                            else
-                            {
-                                $due = DB::table('customers')
-                                    ->where('id',$custId)
-                                    ->first();
-                            }
-                            ?>
-
                             <td>{{++$i}}</td>
                             <td>{{ $billing->month }}</td>
                             <td>{{ $billing->payment_description }}</td>
@@ -83,12 +48,43 @@
                             <td>{{ $billing->ip_address }}</td>
                             <td>{{ $users->username }}</td>
                             <td>{{ $billing->payment_amount }}</td>
-                                <td>{{ $new }}</td>
                                 <td>
-                                   <?php
+
+                                    <?php $lifetime_paid=DB::table('billings')->where('customer_id',$billing->id)->sum('payment_amount'); ?>
+
+                                    <?php
+                                    $flag=$billing->bill_amount;
+                                    $flag1 = $billing->month_amount;
+
+                                    $sum=$flag - $flag1;
+                                    ?>
+
+                                    <?php
 
 
-                                     $flag=$billing->payment_amount-$new;
+                                    $date = Carbon\Carbon::parse(($billing->connection_date));
+                                    $now = Carbon\Carbon::now();
+
+                                    $diff = $date->diffInMonths($now);
+                                    $a =$diff * $billing->bill_amount;
+
+                                    $flag=$billing->bill_amount;
+                                    $flag1 = $billing->month_amount;
+
+                                    $sum=$flag - $flag1;
+
+                                    $pay = $lifetime_paid;
+                                    $ok = $pay - $sum;
+
+                                    $due = $a - $ok;
+
+                                    //dd($due);
+                                    ?>
+                                    {{$due}}</td>
+
+                                  <td>
+                            <?php
+                                    $flag=$billing->payment_amount-$due;
 
                                      $sum=$sum+$flag;
                                     echo $sum;

@@ -21,9 +21,7 @@ class IncomeController extends Controller
         $shows = DB::table('incomes')
             ->join('products', 'incomes.product_id', '=', 'products.id')
             ->select('incomes.*', 'products.name')
-            ->paginate(5);
-        //dd($shows);
-
+            ->orderBy('id', 'DESC')->paginate(5);
 
         $total = DB::table('incomes')->sum('amount');
        // $incomes = Income::latest()->paginate(5);

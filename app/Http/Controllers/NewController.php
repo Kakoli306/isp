@@ -15,7 +15,7 @@ class NewController extends Controller
 
         $billings = DB::table('billings')
             ->join('customers', 'billings.customer_id', '=', 'customers.id')
-            ->select('billings.*', 'customers.customer_name','customers.ip_address')
+            ->select('billings.*', 'customers.*')
             ->whereMonth('month',Carbon::now()->month)
             ->get();
 
@@ -25,15 +25,14 @@ class NewController extends Controller
             ->where('billings.userId',Auth::user()->userId)
             ->first();
 
-
-
         return view ('superadmin.report.statement',['billings' =>$billings,'users' => $users])
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
     public function paid(){
         $customers = DB::table('customers')
             ->where('bill_status', 1)
-            ->paginate(10);
+            ->orderBy('id', 'DESC')->paginate(8);
+
         return view ('superadmin.customer.paid',['customers' =>$customers])
             ->with('i', (request()->input('page', 1) - 1) * 5);
 
@@ -42,7 +41,7 @@ class NewController extends Controller
     public function unpaid(){
         $customers = DB::table('customers')
             ->where('bill_status', 0)
-            ->paginate(10);
+            ->orderBy('id', 'DESC')->paginate(8);
         return view ('superadmin.customer.unpaid',['customers' =>$customers])
             ->with('i', (request()->input('page', 1) - 1) * 5);
 
@@ -67,7 +66,13 @@ class NewController extends Controller
         $custId = Customer::where('id',$id)->first();
         $bills = Billing::where('customer_id',$id)->get();
 
-        return view('superadmin.report.showBilling',compact('custId','new','users','bills'));
+        $users = DB::table('billings')
+            ->join('users', 'billings.userId', '=', 'users.userId')
+            ->select('billings.*', 'users.username')
+            ->where('billings.userId',Auth::user()->userId)
+            ->first();
+
+        return view('superadmin.report.showBilling',compact('custId','bills','users'));
     }
 public function daily($date)
 {

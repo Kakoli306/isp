@@ -51,14 +51,9 @@
                             </td>
                         </tr>
 
-
-
-
-
-                            <div class="row" style="padding:10px; font-size: 12px;">
+                        <div class="row" style="padding:10px; font-size: 12px;">
 
                                 <div class="col-md-4 col-md-offset-1">
-
 
                                 </div>
 
@@ -81,7 +76,48 @@
                                     <div class="form-group">
                                         <label class="exampleInputEmail1" for="inputDisabled">Due Amount</label>
 
-                                        <input class="form-control" id="inputDisabled" type="Disabled" name = "due_amount" value="{{$new}}" placeholder=" input here..." disabled="">
+                                        <?php $lifetime_paid=DB::table('billings')->where('customer_id',$custId->id)->sum('payment_amount'); ?>
+
+                                        <?php
+                                        $flag=$custId->bill_amount;
+                                        $flag1 = $custId->month_amount;
+
+                                        $sum=$flag - $flag1;
+                                        ?>
+
+                                        <?php
+
+
+                                        $date = Carbon\Carbon::parse(($custId->connection_date));
+                                        $now = Carbon\Carbon::now();
+
+                                        $diff = $date->diffInMonths($now);
+                                        $a =$diff * $custId->bill_amount;
+
+                                        $flag=$custId->bill_amount;
+                                        $flag1 = $custId->month_amount;
+
+                                        $sum=$flag - $flag1;
+
+                                        $pay = $lifetime_paid;
+                                        $ok = $pay - $sum;
+
+                                        $due = $a - $ok;
+
+                                        //dd($due);
+                                        ?>
+                                       <td> {{$due}}</td>
+
+                                        <td>
+                                            <?php
+                                            $flag=$custId->payment_amount-$due;
+
+                                            $sum=$sum+$flag;
+                                            echo $sum;
+
+                                            ?>
+
+                                        <input class="form-control" id="inputDisabled" type="Disabled" name = "due_amount" value="{{$due}}" placeholder=" input here..." disabled="">
                                     </div>
 
                                       </div>
