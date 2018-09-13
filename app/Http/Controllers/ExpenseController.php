@@ -141,11 +141,11 @@ class ExpenseController extends Controller
     {
         $total = DB::table('expenses')->sum('price');
 
-        $expenses = DB::table('expenses')
+        /*$expenses = DB::table('expenses')
             ->join('products', 'expenses.product_id', '=', 'products.id')
             ->select('expenses.*', 'products.name')
             ->whereMonth('date', Carbon::now()->month)
-            ->latest()->paginate(8);
+            ->latest()->paginate(8);*/
 
         $all= DB::table('expenses')
             ->join('products', 'expenses.product_id', '=', 'products.id')
@@ -161,12 +161,13 @@ class ExpenseController extends Controller
             ->get();
        // dd($exp);
 
-
-       /* $exp = DB::table('expenses')
-            ->select('product_id', DB::raw('count(*) as price'))
-            ->groupBy('product_id')
-            ->pluck('product_id','price')->all();
-        dd($exp);*/
+        $expenses = Expense::select(
+            DB::raw('sum(price) as sums'),
+            DB::raw("DATE_FORMAT(created_at,'%D %M %Y') as dates",Carbon::now()->month)
+        )
+            ->groupBy('dates')
+            ->get();
+//dd($expenses);
 
 
 

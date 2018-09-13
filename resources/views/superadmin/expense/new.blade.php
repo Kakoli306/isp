@@ -25,37 +25,28 @@
                             </tr>
                             </thead>
                             <tbody id="products-list" name="products-list">
+
                             <?php $all= DB::table('expenses')
                                 ->join('products', 'expenses.product_id', '=', 'products.id')
                                 ->select('expenses.*', 'products.name')
                                 ->select('product_id')
                                 ->groupBy('product_id')
                                 ->get();
-                            print_r($all)
                               ?>
 
 
-                            @foreach ($all as $expense)
+                            @foreach ($expenses as $expense)
                                 <tr id="expense{{$expense->product_id}}" class="active">
                                     <td>{{ ++$i }}</td>
-                                    <td><?php
-                                        $all= DB::table('expenses')
-                                            ->join('products', 'expenses.product_id', '=', 'products.id')
-                                            ->select( 'products.name')
-                                            ->get();
-
-                                        ?>{{$all}} <td>{{$expense->product_id}}</td>
+                                    <td>{{$expense->dates}}<td>
+                                    <td>{{$expense->sums}}</td>
                                     <td>
-
                                         <?php
 
                                         $var = DB::table('expenses')->where('product_id',$expense->product_id)->sum('price') ;
 
                                         ?>
-
-
-                                        {{ $var }}
-                                         </td>
+                                    </td>
                                 </tr>
                             @endforeach
                             </tbody>

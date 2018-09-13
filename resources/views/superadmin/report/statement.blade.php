@@ -61,7 +61,6 @@
 
                                     <?php
 
-
                                     $date = Carbon\Carbon::parse(($billing->connection_date));
                                     $now = Carbon\Carbon::now();
 
@@ -80,13 +79,12 @@
 
                                     //dd($due);
                                     ?>
-                                    {{$due}}</td>
+                                    {{$due = 0}}</td>
 
                                   <td>
                             <?php
-                                    $flag=$billing->payment_amount-$due;
-
-                                     $sum=$sum+$flag;
+                                    $flag=$billing->payment_amount;
+                                    $sum=$sum+$flag;
                                     echo $sum;
 
                                 ?>

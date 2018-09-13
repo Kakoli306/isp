@@ -30,7 +30,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Email Address</label>
-                                <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Email Address" value="{{$customerById->email}}" required>
+                                <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Email Address" value="{{$customerById->email}}">
                             </div>
 
                             <div class="form-group">
@@ -51,7 +51,7 @@
 
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Address</label>
-                                <input type="text" class="form-control"  name="address"  rows="4" value="{{$customerById->address}}"></input>
+                                <input type="text" class="form-control"  name="address"  rows="4" value="{{$customerById->address}}">
                             </div>
                         </div>
 
@@ -72,13 +72,13 @@
 
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Month Amount</label>
-                                <input type="float" name="month_amount" class="form-control" id="month_amount" placeholder="Month Amount" value="{{$customerById->month_amount}}" required>
+                                <input type="float" name="month_amount" class="form-control" id="month_amount" placeholder="Month Amount" value="{{$customerById->month_amount}}">
                             </div>
 
 
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Bill Amount</label>
-                                <input type="float" name="bill_amount" class="form-control" id="bill_amount" placeholder="Bill Amount" value="{{$customerById->bill_amount}}" required>
+                                <input type="float" name="bill_amount" class="form-control" id="bill_amount" placeholder="Bill Amount" value="{{$customerById->bill_amount}}">
                             </div>
 
                             <div class="form-group">
@@ -98,14 +98,14 @@
 
                             <div class="form-group">
                                 <label for="speed">Speed</label>
-                                <input type="string" name="speed" class="form-control" id="speed" placeholder="Speed" value="{{$customerById->speed}}" required>
+                                <input type="string" name="speed" class="form-control" id="speed" placeholder="Speed" value="{{$customerById->speed}}">
                             </div>
 
 
                             <div class="box-body">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1"> Status</label>
-                                    <select name="status" class="form-control" style="margin-bottom: 5px;" required>
+                                    <select name="status" class="form-control" style="margin-bottom: 5px;">
                                         <option value="1">Active</option>
                                         <option value="0">InActive</option>
                                     </select>

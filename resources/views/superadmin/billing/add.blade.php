@@ -58,8 +58,7 @@ Bill Collection
     <td>{{ $customer->mobile_no }}</td>
     <td>{{ $customer->speed}}</td>
 	  <td>{{ $customer->bill_amount	}}</td>
-	  <td>{{ $customer->ip_address}}</td>
-					<td></td>
+					<td>{{ $customer->ip_address}}</td>
 					<td>
                         <?php $lifetime_paid=DB::table('billings')->where('customer_id',$customer->id)->sum('payment_amount'); ?>
                         <?php
@@ -70,9 +69,32 @@ Bill Collection
                         ?>
 
                         <?php
+						$date = Carbon\Carbon::parse(($customer->connection_date));
+						$now = Carbon\Carbon::now()->subMonth();
 
+						$diff = $date->diffInMonths($now);
+                        $a =$diff * $customer->bill_amount;
 
-                        $date = Carbon\Carbon::parse(($customer->connection_date));
+                        $flag=$customer->bill_amount;
+                        $flag1 = $customer->month_amount;
+
+                        $sum=$flag - $flag1;
+
+                        $pay = $lifetime_paid;
+                        $ok = $pay - $sum;
+
+                        $predue = $a - $ok;
+
+                        echo $predue
+
+                        ?>
+
+					</td>
+					<td>
+
+                        <?php
+
+						$date = Carbon\Carbon::parse(($customer->connection_date));
                         $now = Carbon\Carbon::now();
 
                         $diff = $date->diffInMonths($now);

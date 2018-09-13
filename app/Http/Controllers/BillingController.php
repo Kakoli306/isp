@@ -42,7 +42,7 @@ class BillingController extends Controller
               ->join('billings','billings.customer_id', '=', 'customers.id')
               ->select('billings.*','customers.*')
             ->where('billings.customer_id','=',$id)
-        ->count('bill_amount');
+            ->count('bill_amount');
 
         $new = 0;
 
@@ -55,8 +55,6 @@ class BillingController extends Controller
                 ->select('billings.*','customers.*')
                 ->where('billings.customer_id','=',$id)
                 ->first();
-
-
             $connection_charge = $due->connection_charge;
             $month_amount = $due->month_amount;
             $new = ($bill_amount + $connection_charge - $month_amount);

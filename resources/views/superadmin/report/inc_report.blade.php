@@ -20,8 +20,7 @@
                     <thead>
                     <tr>
                         <th>#</th>
-                        <th>Customer Connection Date</th>
-                        <th>Billing Date</th>
+                        <th>Date</th>
                         <th>Bill Collection</th>
                         <th>Connection Charge</th>
                         <th>Others Income</th>
@@ -30,18 +29,41 @@
                     </thead>
                     <tbody>
 
-                    @foreach($date as $customer)
+                    @foreach($billings as $customer)
                         <tr>
                             <td></td>
-                            <td>{{$customer->connection_date}}</td>
-                            <td>{{Carbon\Carbon::parse($customer->created_at)->format('d.m.Y')}}</td>
-                            <td>{{$customer->payment_amount}}</td>
-                            <td>{{$customer->connection_charge}}</td>
-                            <td>{{$income}}</td>
+                            <td>{{$customer->dates}}</td>
+                            <td>{{$customer->sums}}</td>
                             <td></td>
+                            <td></td>
+                             </tr>
+                    </tbody>
+                    @endforeach
+
+                    <tbody>
+                    @foreach($con as $conn)
+                        <tr>
+                            <td></td>
+                            <td>{{$conn->dates}}</td>
+                            <td></td>
+                            <td>{{$conn->charge}}</td>
+                            <td></td>
+                           </tr>
+                        </tbody>
+                   @endforeach
+
+                    <tbody>
+                    @foreach($income as $in)
+                        <tr>
+                            <td></td>
+                            <td>{{$in->dates}}</td>
+                            <td></td>
+                            <td></td>
+                            <td>{{$in->incomes}}</td>
                         </tr>
                     </tbody>
                     @endforeach
+
 
 
                 </table>

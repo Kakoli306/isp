@@ -16,6 +16,7 @@
 
                     <input type="hidden"  name="id" value="{{$BillingById->customer_id}}">
 
+
                     <table class="table table-bordered table-striped mb-0 table-responsive" id="datatable-editable">
 
                         <thead>
@@ -26,6 +27,7 @@
                             <th>Mobile Number</th>
                             <th>Speed</th>
                             <th>Bill</th>
+                            <th>Month Amount</th>
                             <th>Connection Date</th>
                             <th>Zone</th>
                             <th>IP</th>
@@ -42,9 +44,11 @@
                             <td>{{$BillingById->mobile_no}}</td>
                             <td>{{$BillingById->speed}}</td>
                             <td>{{$BillingById->bill_amount}}</td>
+                            <td>{{$BillingById->month_amount}}</td>
                             <td>{{$BillingById->connection_date}}</td>
                             <td>{{$BillingById->zone_id}}</td>
                             <td>{{$BillingById->ip_address}}</td>
+
 
                             <td class="center">
                                 <input type="hidden" value="{{ $BillingById->id }}" name="customer_id">
@@ -60,6 +64,7 @@
 
                                 <input type="hidden"  name="id" value="{{$BillingById->id}}">
 
+                                <?php $new = DB::table('billings')->where('customer_id',$BillingById->id)->first(); ?>
 
 
                                 <div class="row" style="padding:10px; font-size: 12px;">
@@ -72,7 +77,7 @@
 
                                         <div class="form-group">
                                             <label class="exampleInputEmail1" for="inputDisabled">Payment Date</label>
-                                            <input class="form-control" id="inputDisabled" type="Disable" value="{{$BillingById->updated_at}}" name="" placeholder="Disabled input here..." disabled="">
+                                            <input class="form-control" id="inputDisabled" type="Disable" value="" name="" placeholder="Disabled input here..." disabled="">
                                         </div>
 
                                     </div>
@@ -173,7 +178,7 @@
                         @foreach($bills as $value)
                     <tr>
                                 <td>{{ $value->id }}</td>
-                                <td>{{ $value->created_at }}</td>
+                                <td>{{ Carbon\Carbon::parse($value->created_at)->format('d-m-Y') }}</td>
                                 <td>{{ $value->payment_description }}</td>
                                 <td>{{ $value->payment_amount }}</td>
                                  <td>{{ $users->username }}</td>

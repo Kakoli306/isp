@@ -33,29 +33,54 @@
                     </thead>
                     <tbody>
 
-
-                    @foreach($billings as $billing)
+                    @foreach($bills as $customer)
                         <tr>
-                            <td>{{ $billing->id }}</td>
-                            <td>{{ $billing->connection_date  }}<a href="{{ url('daily/'.$billing->connection_date) }}" class="on-default edit-row">
-                                    <i class="fas fa-pencil-alt"></i></a></td>
+                            <td></td>
+                            <td>{{$customer->dates}}</td>
+                            <td>{{$customer->sums}}</td>
                             <td></td>
                             <td></td>
-                            <td></td>
-                            <td></td>
-                            <td>{{$billing->month}}</td>
-                            <td class="center">
-                                <?php
-                               $date = $billing->month;
-                                ?>
-                                <a href="{{ url('daily/'.$date) }}" class="on-default edit-row">
-                                    <i class="fas fa-pencil-alt"></i></a>
-                            </td>
-
-
                         </tr>
                     </tbody>
                     @endforeach
+
+                    <tbody>
+                    @foreach($con as $conn)
+                        <tr>
+                            <td></td>
+                            <td>{{$conn->dates}}
+                            <td></td>
+                            <td>{{$conn->charge}}</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                    @endforeach
+
+                    <tbody>
+                    @foreach($income as $in)
+                        <tr>
+                            <td></td>
+                            <td>{{$in->dates}}</td>
+                            <td></td>
+                            <td></td>
+                            <td>{{$in->incomes}}</td>
+                        </tr>
+                    </tbody>
+                    @endforeach
+
+                    <tbody>
+                    @foreach($expenses as $exp)
+                        <tr>
+                            <td></td>
+                            <td>{{$conn->dates}}
+                            <td></td>
+                            <td>{{$conn->charge}}</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                    @endforeach
+
+
 
 
                 </table>
