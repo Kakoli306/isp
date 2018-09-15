@@ -9,8 +9,8 @@ Bill Collection
 <section class="card">
 	<header class="card-header">
 
-						
-		<h2 class="card-title">View Customer Billing Information Aug</h2>
+
+		<h2 class="card-title">View Customer Billing Information </h2>
 	</header>
 
 
@@ -47,9 +47,17 @@ Bill Collection
 			@foreach($customers as $customer)
 
 				<tr>
-					<td>{{ ++$i }}</td>
- <td><a href="#" target="_blank" class="btn btn-primary">
- <i class="fas fa-print"></i> Print</a>	</td>
+                    <?php
+                    $date = Carbon\Carbon::parse(($customer->connection_date));
+                    $now = Carbon\Carbon::now();
+
+                    $diff = $date->diffInMonths($now);
+
+                    ?>
+					@if($diff > 0)
+
+						<td>{{ ++$i }}</td>
+ <td><a href="#" target="_blank" class="btn btn-primary"><i class="fas fa-print"></i> Print</a>	</td>
 
     <td>{{ $customer->customer_name }}</td>
     <td>{{ $customer->id }}</td>
@@ -59,6 +67,7 @@ Bill Collection
     <td>{{ $customer->speed}}</td>
 	  <td>{{ $customer->bill_amount	}}</td>
 					<td>{{ $customer->ip_address}}</td>
+
 					<td>
                         <?php $lifetime_paid=DB::table('billings')->where('customer_id',$customer->id)->sum('payment_amount'); ?>
                         <?php
@@ -73,6 +82,7 @@ Bill Collection
 						$now = Carbon\Carbon::now()->subMonth();
 
 						$diff = $date->diffInMonths($now);
+
                         $a =$diff * $customer->bill_amount;
 
                         $flag=$customer->bill_amount;
@@ -84,12 +94,11 @@ Bill Collection
                         $ok = $pay - $sum;
 
                         $predue = $a - $ok;
-
-                        echo $predue
+                        echo $predue;
 
                         ?>
-
 					</td>
+
 					<td>
 
                         <?php
@@ -141,6 +150,10 @@ Bill Collection
 						@endif
 					</td>
 				</tr>
+				@else
+
+				@endif
+
 			</tbody>
 
     @endforeach

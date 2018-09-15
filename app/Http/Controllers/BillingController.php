@@ -11,9 +11,24 @@ use Illuminate\Support\Facades\DB;
 
 class BillingController extends Controller
 {
-    public function add(){
+    public function add()
+    {
 
-        $customers  = DB::table('customers')
+
+       /* $new = DB::table('customers')
+            ->join('billings', 'billings.customer_id', '=', 'customers.id')
+            ->select('customers.connection_date')
+            ->get();
+        dd($new);
+
+        $date = Carbon::parse($new->connection_date);
+        $now = Carbon::now()->subMonth();
+
+        $diff = $date->diffInMonths($now);
+         dd($diff);*/
+
+
+        $customers = DB::table('customers')
             ->join('zones', 'customers.zone_id', '=', 'zones.id')
             ->select('customers.*', 'zones.zone_name')
             ->orderBy('id', 'DESC')->paginate(8);
@@ -55,6 +70,7 @@ class BillingController extends Controller
                 ->select('billings.*','customers.*')
                 ->where('billings.customer_id','=',$id)
                 ->first();
+
             $connection_charge = $due->connection_charge;
             $month_amount = $due->month_amount;
             $new = ($bill_amount + $connection_charge - $month_amount);

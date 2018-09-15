@@ -26,9 +26,9 @@
                         <th>Date</th>
                         <th>Bill Collection</th>
                         <th>Connection Charge</th>
+
                         <th>Others Income</th>
                         <th>Expense</th>
-                        <th>Billing</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -37,52 +37,33 @@
                         <tr>
                             <td></td>
                             <td>{{$customer->dates}}</td>
-                            <td>{{$customer->sums}}</td>
-                            <td></td>
-                            <td></td>
+                            <td>{{$customer->sums}}
+                                <?php
+                                $date = $customer->connection_date;
+                                ?>
+                                <a href="{{ url('daily/dates'.$customer->dates) }}" class="on-default edit-row">
+                                    <i class="fas fa-pencil-alt"></i></a>
+                            </td>
+                            <td>
+                                <?php
+                                $connection = App\Customer::where('connection_date',$customer->dates)->sum('connection_charge');
+                            ?>
+                                {{$connection}}
+                            </td>
+                            <td><?php
+                                $incomes = App\Income::where('created_at',$customer->dates)->sum('amount');
+                                ?>
+                               {{$incomes}}
+                            </td>
+
+                            <td><?php
+                                $expense = App\Expense::where('created_at',$customer->dates)->sum('price');
+                                ?>
+                                {{$expense}}
+                            </td>
                         </tr>
                     </tbody>
                     @endforeach
-
-                    <tbody>
-                    @foreach($con as $conn)
-                        <tr>
-                            <td></td>
-                            <td>{{$conn->dates}}
-                            <td></td>
-                            <td>{{$conn->charge}}</td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                    @endforeach
-
-                    <tbody>
-                    @foreach($income as $in)
-                        <tr>
-                            <td></td>
-                            <td>{{$in->dates}}</td>
-                            <td></td>
-                            <td></td>
-                            <td>{{$in->incomes}}</td>
-                        </tr>
-                    </tbody>
-                    @endforeach
-
-                    <tbody>
-                    @foreach($expenses as $exp)
-                        <tr>
-                            <td></td>
-                            <td>{{$conn->dates}}
-                            <td></td>
-                            <td>{{$conn->charge}}</td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                    @endforeach
-
-
-
-
                 </table>
             </div>
         </div>

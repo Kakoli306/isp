@@ -82,7 +82,7 @@ Route::get('/unpaid', 'NewController@unpaid')->name('unpaid_customer');
 Route::get('/monthly', 'NewController@monthly')->name('monthly');
 Route::get('/account_statement', 'NewController@statement')->name('statement');
 Route::get('/billing/show/{id}', 'NewController@showBilling')->name('show-billing');
-Route::get('/daily/{date}', 'NewController@daily')->name('daily');
+Route::get('/daily/{date}', 'NewController@daily');
 Route::get('/income_report', 'NewController@report')->name('inc_report');
 
 

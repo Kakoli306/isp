@@ -106,7 +106,7 @@
 
                         <div class="form-group">
                             <label for="speed">Speed</label>
-                            <input type="string" name="speed" class="form-control" id="speed" placeholder="Speed" required>
+                            <input type="string" name="speed" class="form-control" id="speed" placeholder="Speed">
                         </div>
 
 

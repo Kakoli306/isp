@@ -72,12 +72,12 @@
                                     <div class="col-md-4 col-md-offset-1">
                                         <div class="form-group">
                                             <label class="exampleInputEmail1" for="inputDisabled">Connection Charge</label>
-                                            <input class="form-control" id="inputDisabled" type="Disable" value="{{$BillingById->connection_charge}}" placeholder="input here..." disabled="">
+                                            <input class="form-control" id="inputDisabled" type="Disable" value="{{$BillingById->connection_charge}}" disabled="">
                                         </div>
 
                                         <div class="form-group">
                                             <label class="exampleInputEmail1" for="inputDisabled">Payment Date</label>
-                                            <input class="form-control" id="inputDisabled" type="Disable" value="" name="" placeholder="Disabled input here..." disabled="">
+                                            <input class="form-control" id="inputDisabled" type="Disable" value="" name="" disabled="">
                                         </div>
 
                                     </div>
@@ -87,7 +87,7 @@
                                             <label class="exampleInputEmail1" for="inputDisabled">Pay Amount</label>
                                             <?php $lifetime_paid=DB::table('billings')->where('customer_id',$BillingById->id)->sum('payment_amount'); ?>
 
-                                            <input class="form-control" id="inputDisabled" type="text" name="pay_amount" value="{{$lifetime_paid}}" placeholder="Disabled input here..." disabled="" >
+                                            <input class="form-control" id="inputDisabled" type="text" name="pay_amount" value="{{$lifetime_paid}}"  disabled="" >
                                         </div>
 
                                         <div class="form-group">

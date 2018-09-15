@@ -41,6 +41,7 @@
                                     <td>{{$expense->dates}}<td>
                                     <td>{{$expense->sums}}</td>
                                     <td>
+
                                         <?php
 
                                         $var = DB::table('expenses')->where('product_id',$expense->product_id)->sum('price') ;

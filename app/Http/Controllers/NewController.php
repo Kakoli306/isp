@@ -55,7 +55,9 @@ class NewController extends Controller
             DB::raw('sum(payment_amount) as sums'),
             DB::raw("DATE_FORMAT(created_at,'%D %M %Y') as dates")
         )
+            ->whereMonth('created_at',Carbon::now()->month)
             ->groupBy('dates')
+            ->orderBy('id', 'DESC')
             ->get();
 
         $con = Customer::select(
@@ -63,7 +65,10 @@ class NewController extends Controller
             DB::raw("DATE_FORMAT(connection_date,'%D %M %Y') as dates")
         )
             ->groupBy('dates')
+            ->whereMonth('connection_date',Carbon::now()->month)
             ->get();
+
+
 
         $income = Income::select(
             DB::raw('sum(amount) as incomes'),
@@ -83,12 +88,17 @@ class NewController extends Controller
         $billings = DB::table('billings')
             ->join('customers', 'billings.customer_id', '=', 'customers.id')
             ->select('billings.*', 'customers.*')
-            ->select(DB::raw('DATE(connection_date) as date'))
+            ->select(DB::raw('sum(connection_charge) as charge'),
+                DB::raw("DATE_FORMAT(connection_date,'%D %M %Y') as date")
+
+
+            )
+
             ->whereMonth('month', Carbon::now()->month)
             ->whereMonth('connection_date', Carbon::now()->month)
             ->groupBy('date')
             ->get();
-
+//dd($billings);
 
        /* $results = Customer::sortBy('created_at');
         dd($results);*/
@@ -109,10 +119,17 @@ class NewController extends Controller
     }
 public function daily($date)
 {
+   // return $date;
     $billings = DB::table('billings')
         ->join('customers', 'billings.customer_id', '=', 'customers.id')
         ->select('billings.*', 'customers.customer_name','customers.ip_address')
-        ->where('month', '=', $date.' 00:00:00')->get();
+       // ->where('month', '=', $date.' 00:00:00')->get();
+    //->whereRaw('date(month) = ?', [date('Y-m-d')])->get();
+            //Billing::where( DB::raw('date(month)'), '=', date('n') )->get();
+
+    ->where('month', '=', $date().' 00:00:00')->get();
+
+    dd($billings);
 
     $users = DB::table('billings')
         ->join('users', 'billings.userId', '=', 'users.userId')
@@ -146,7 +163,8 @@ public function report(){
         ->groupBy('dates')
         ->get();
 
-   // dd($billings,$con,$income);
+
+   // dd($billings,$con,$income,$expenses);
 
     return view ('superadmin.report.inc_report',compact('billings','con','income'));
 }
