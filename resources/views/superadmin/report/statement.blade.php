@@ -36,7 +36,7 @@
                     </thead>
                     <tbody>
 
-                    <?php $sum=0; ?>
+                    <?php $ab=0; ?>
 
                     @foreach($billings as $billing)
                         <tr>
@@ -48,44 +48,18 @@
                             <td>{{ $billing->ip_address }}</td>
                             <td>{{ $users->username }}</td>
                             <td>{{ $billing->payment_amount }}</td>
-                                <td>
 
-                                    <?php $lifetime_paid=DB::table('billings')->where('customer_id',$billing->id)->sum('payment_amount'); ?>
+                                <td><?php $lifetime_paid=DB::table('billings')->where('customer_id',$billing->id)->latest('payment_amount'); ?>
 
-                                    <?php
-                                    $flag=$billing->bill_amount;
-                                    $flag1 = $billing->month_amount;
+                                    {{$due = 0}}
 
-                                    $sum=$flag - $flag1;
-                                    ?>
-
-                                    <?php
-
-                                    $date = Carbon\Carbon::parse(($billing->connection_date));
-                                    $now = Carbon\Carbon::now();
-
-                                    $diff = $date->diffInMonths($now);
-                                    $a =$diff * $billing->bill_amount;
-
-                                    $flag=$billing->bill_amount;
-                                    $flag1 = $billing->month_amount;
-
-                                    $sum=$flag - $flag1;
-
-                                    $pay = $lifetime_paid;
-                                    $ok = $pay - $sum;
-
-                                    $due = $a - $ok;
-
-                                    //dd($due);
-                                    ?>
-                                    {{$due = 0}}</td>
+                            </td>
 
                                   <td>
                             <?php
                                     $flag=$billing->payment_amount;
-                                    $sum=$sum+$flag;
-                                    echo $sum;
+                                    $ab=$ab+$flag;
+                                    echo $ab;
 
                                 ?>
                                 </td>

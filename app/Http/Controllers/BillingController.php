@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Billing;
+use App\Expense;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Customer;
@@ -13,20 +14,6 @@ class BillingController extends Controller
 {
     public function add()
     {
-
-
-       /* $new = DB::table('customers')
-            ->join('billings', 'billings.customer_id', '=', 'customers.id')
-            ->select('customers.connection_date')
-            ->get();
-        dd($new);
-
-        $date = Carbon::parse($new->connection_date);
-        $now = Carbon::now()->subMonth();
-
-        $diff = $date->diffInMonths($now);
-         dd($diff);*/
-
 
         $customers = DB::table('customers')
             ->join('zones', 'customers.zone_id', '=', 'zones.id')
@@ -40,6 +27,9 @@ class BillingController extends Controller
 
     public function editBilling($id){
 
+
+        //$ExpById = Expense::where('id', $id)->first();
+        //dd($ExpById);
 
         $BillingById = Customer::where('id',$id)->first();
 
@@ -83,7 +73,7 @@ class BillingController extends Controller
                 ->first();
         }
 
-        return view('superadmin.billing.edit',compact('BillingById','bills','users','date','new'));
+        return view('superadmin.billing.edit',compact('BillingById','bills','users','date','ExpById'));
     }
 
     public function adding(Request $request)
@@ -92,6 +82,7 @@ class BillingController extends Controller
         $billings = new Billing();
         $billings->customer_id = $request->id;
         $billings->userId = Auth::user()->userId;
+        $billings->expense_id = $request->expense_id;
         $billings->payment_amount = $request->payment_amount;
         $billings->discount = $request->discount;
         $billings->payment_description = $request->payment_description;

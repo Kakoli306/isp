@@ -77,7 +77,6 @@
                                         <label class="exampleInputEmail1" for="inputDisabled">Due Amount</label>
 
                                         <?php $lifetime_paid=DB::table('billings')->where('customer_id',$custId->id)->sum('payment_amount'); ?>
-
                                         <?php
                                         $flag=$custId->bill_amount;
                                         $flag1 = $custId->month_amount;
@@ -86,12 +85,11 @@
                                         ?>
 
                                         <?php
-
-
                                         $date = Carbon\Carbon::parse(($custId->connection_date));
-                                        $now = Carbon\Carbon::now();
+                                        $now = Carbon\Carbon::now()->subMonth();
 
                                         $diff = $date->diffInMonths($now);
+
                                         $a =$diff * $custId->bill_amount;
 
                                         $flag=$custId->bill_amount;
@@ -102,22 +100,11 @@
                                         $pay = $lifetime_paid;
                                         $ok = $pay - $sum;
 
-                                        $due = $a - $ok;
+                                        $predue = $a - $ok;
+                                        echo $predue;
 
-                                        //dd($due);
                                         ?>
-                                       <td> {{$due}}</td>
-
-                                        <td>
-                                            <?php
-                                            $flag=$custId->payment_amount-$due;
-
-                                            $sum=$sum+$flag;
-                                            echo $sum;
-
-                                            ?>
-
-                                        <input class="form-control" id="inputDisabled" type="Disabled" name = "due_amount" value="{{$due}}" placeholder=" input here..." disabled="">
+                                        <input class="form-control" id="inputDisabled" type="Disabled" name = "due_amount" value="{{$predue}}" placeholder=" input here..." disabled="">
                                     </div>
 
                                       </div>

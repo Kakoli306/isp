@@ -16,9 +16,12 @@ class NewController extends Controller
 
         $billings = DB::table('billings')
             ->join('customers', 'billings.customer_id', '=', 'customers.id')
-            ->select('billings.*', 'customers.*')
+            ->join('expenses', 'billings.expense_id', '=', 'expenses.id')
+            ->select('billings.*', 'customers.*','expenses.price')
             ->whereMonth('month',Carbon::now()->month)
             ->get();
+
+       // dd($billings);
 
         $users = DB::table('billings')
             ->join('users', 'billings.userId', '=', 'users.userId')
@@ -50,58 +53,60 @@ class NewController extends Controller
 
     public function monthly(){
 
-
         $bills = Billing::select(
-            DB::raw('sum(payment_amount) as sums'),
+           // DB::raw('sum(payment_amount) as sums'),
             DB::raw("DATE_FORMAT(created_at,'%D %M %Y') as dates")
         )
             ->whereMonth('created_at',Carbon::now()->month)
             ->groupBy('dates')
-            ->orderBy('id', 'DESC')
             ->get();
+
 
         $con = Customer::select(
-            DB::raw('sum(connection_charge) as charge'),
+           // DB::raw('sum(connection_charge) as charge'),
             DB::raw("DATE_FORMAT(connection_date,'%D %M %Y') as dates")
         )
-            ->groupBy('dates')
             ->whereMonth('connection_date',Carbon::now()->month)
+            ->groupBy('dates')
             ->get();
-
-
+        dd($bills , $con);
 
         $income = Income::select(
-            DB::raw('sum(amount) as incomes'),
+           // DB::raw('sum(amount) as incomes'),
             DB::raw("DATE_FORMAT(created_at,'%D %M %Y') as dates")
         )
+            ->whereMonth('created_at',Carbon::now()->month)
             ->groupBy('dates')
             ->get();
 
         $expenses = Expense::select(
-            DB::raw('sum(price) as prices'),
+           // DB::raw('sum(price) as prices'),
             DB::raw("DATE_FORMAT(created_at,'%D %M %Y') as dates")
         )
             ->groupBy('dates')
             ->get();
 
-
-        $billings = DB::table('billings')
-            ->join('customers', 'billings.customer_id', '=', 'customers.id')
-            ->select('billings.*', 'customers.*')
-            ->select(DB::raw('sum(connection_charge) as charge'),
-                DB::raw("DATE_FORMAT(connection_date,'%D %M %Y') as date")
+        $merged = $bills->merge($con);
+        //$merged = $merged->merge($income);
+        //$merged = $merged->merge($expenses);
 
 
-            )
+        dd($merged);
 
-            ->whereMonth('month', Carbon::now()->month)
-            ->whereMonth('connection_date', Carbon::now()->month)
-            ->groupBy('date')
-            ->get();
-//dd($billings);
 
-       /* $results = Customer::sortBy('created_at');
-        dd($results);*/
+         $billings = DB::table('billings')
+             ->join('customers', 'billings.customer_id', '=', 'customers.id')
+             ->select('billings.*', 'customers.*')
+             ->select(DB::raw("DATE_FORMAT(connection_date,'%D %M %Y') as date")
+
+             )
+              ->whereMonth('month', Carbon::now()->month)
+             ->whereMonth('connection_date', Carbon::now()->month)
+             ->groupBy('date')
+             ->get();
+         //dd($billings);
+
+
         return view('superadmin.report.monthly',compact('billings','con','income','expenses','bills'));
     }
 

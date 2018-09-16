@@ -25,7 +25,8 @@
 	<link rel="stylesheet" href="{{asset('superadmin/')}}/vendor/magnific-popup/magnific-popup.css" />
 	<link rel="stylesheet" href="{{asset('superadmin/')}}/vendor/bootstrap-datepicker/css/bootstrap-datepicker3.css" />
 
-	<!-- Specific Page Vendor CSS -->		<link rel="stylesheet" href="{{asset('superadmin/')}}/vendor/jquery-ui/jquery-ui.css" />
+	<!-- Specific Page Vendor CSS -->
+	<link rel="stylesheet" href="{{asset('superadmin/')}}/vendor/jquery-ui/jquery-ui.css" />
 	<link rel="stylesheet" href="{{asset('superadmin/')}}/vendor/jquery-ui/jquery-ui.theme.css" />
 	<link rel="stylesheet" href="{{asset('superadmin/')}}/vendor/bootstrap-multiselect/bootstrap-multiselect.css" />
 	<link rel="stylesheet" href="{{asset('superadmin/')}}/vendor/morris/morris.css" />

@@ -64,7 +64,8 @@
 
                                 <input type="hidden"  name="id" value="{{$BillingById->id}}">
 
-                                <?php $new = DB::table('billings')->where('customer_id',$BillingById->id)->first(); ?>
+
+                            <?php $new = DB::table('billings')->where('customer_id',$BillingById->id)->first(); ?>
 
 
                                 <div class="row" style="padding:10px; font-size: 12px;">

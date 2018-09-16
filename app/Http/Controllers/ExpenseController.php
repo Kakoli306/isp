@@ -29,12 +29,7 @@ class ExpenseController extends Controller
 
         return view('expenses.index',compact('expenses','exp'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
-
-
     }
-
-
-
 
     /**
      * Show the form for creating a new resource.

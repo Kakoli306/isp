@@ -26,7 +26,6 @@
                         <th>Date</th>
                         <th>Bill Collection</th>
                         <th>Connection Charge</th>
-
                         <th>Others Income</th>
                         <th>Expense</th>
                     </tr>
@@ -38,9 +37,7 @@
                             <td></td>
                             <td>{{$customer->dates}}</td>
                             <td>{{$customer->sums}}
-                                <?php
-                                $date = $customer->connection_date;
-                                ?>
+
                                 <a href="{{ url('daily/dates'.$customer->dates) }}" class="on-default edit-row">
                                     <i class="fas fa-pencil-alt"></i></a>
                             </td>
