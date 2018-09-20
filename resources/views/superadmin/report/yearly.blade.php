@@ -30,25 +30,22 @@
                         <th>Expense</th>
                     </tr>
                     </thead>
-                   <tbody>
+                    <tbody>
                     @foreach($res as $key => $merged)
                         <tr>
-                        <td></td>
-                       <td>{{ $key  }}</td>
-                     <td>
-                       @foreach($merged as $customer)
-
-                             <a href="{{ url('/daily/date/'.Carbon\Carbon::parse($customer->dates)->format('Y-m-d ')) }}">{{ $customer->sums }}</a>
-                     </td>
+                            <td></td>
+                            <td>{{ $key  }}</td>
                     <td>
-                            <a href="{{ url('/daily/date/'.Carbon\Carbon::parse($customer->dates)->format('Y-m-d ')) }}">{{ $customer->charge }}</a>
-                        </td>
+                            @foreach($merged as $customer)
 
-                         @endforeach
+                                <a href="{{ url('/daily/date/'.Carbon\Carbon::parse($customer->dates)->format('Y-m-d ')) }}">{{ $customer->sums }}</a>
+
+                            @endforeach
+                        </td>
 
                         </tr>
                     @endforeach
-                   </tbody>
+                    </tbody>
                 </table>
             </div>
         </div>

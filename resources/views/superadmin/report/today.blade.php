@@ -38,7 +38,7 @@
                     <tbody>
 
                     @foreach($billings as $billing)
-
+<tr>
                              <td></td>
                             <td>{{ $billing->month }}</td>
                             <td>{{ $billing->payment_description }}</td>

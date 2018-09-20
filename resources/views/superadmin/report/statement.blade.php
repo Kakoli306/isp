@@ -38,37 +38,29 @@
 
                     <?php $ab=0; ?>
 
-                    @foreach($billings as $billing)
+                    @foreach($merged as $new)
                         <tr>
 
                             <td>{{++$i}}</td>
-                            <td>{{ $billing->month }}</td>
-                            <td>{{ $billing->payment_description }}</td>
-                            <td>{{ $billing->customer_name }}</td>
-                            <td>{{ $billing->ip_address }}</td>
-                            <td>{{ $users->username }}</td>
-                            <td>{{ $billing->payment_amount }}</td>
-
-                                <td><?php $lifetime_paid=DB::table('billings')->where('customer_id',$billing->id)->latest('payment_amount'); ?>
-
-                                    {{$due = 0}}
-
-                            </td>
-
-                                  <td>
-                            <?php
-                                    $flag=$billing->payment_amount;
-                                    $ab=$ab+$flag;
-                                    echo $ab;
-
-                                ?>
-                                </td>
-                              <td>  <input type="hidden" value="{{ $billing->customer_id }}" name="customer_id">
-                                <a href="{{ route('show-billing',['$custId'=>$billing->customer_id]) }}"class="on-default edit-row"><i class="fas fa-pencil-alt"></i></a>
+                            <td>{{$new->dates}}</td>
+                            <td></td>
 
                         </tr>
                     </tbody>
                     @endforeach
+
+                    @foreach($bills as $new)
+                        <tr>
+
+                            <td></td>
+                            <td></td>
+                            <td>{{$new->payment_description}}</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    @endforeach
+
                 </table>
             </div>
         </div>

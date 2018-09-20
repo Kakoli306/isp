@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Expense;
 use App\Product;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 class ExpenseController extends Controller
@@ -59,6 +60,7 @@ class ExpenseController extends Controller
         ]);
         $expense = new Expense();
         $expense->product_id = $request->product_id;
+        $expense->userId = Auth::user()->userId;
         $expense->description = $request->description;
         $expense->price = $request->price;
         $expense->date = Carbon::now();

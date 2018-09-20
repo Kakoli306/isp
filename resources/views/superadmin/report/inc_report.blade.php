@@ -29,42 +29,18 @@
                     </thead>
                     <tbody>
 
-                    @foreach($billings as $customer)
+
+
+                        @foreach($merged as $customer)
                         <tr>
                             <td></td>
                             <td>{{$customer->dates}}</td>
                             <td>{{$customer->sums}}</td>
-                            <td></td>
-                            <td></td>
+                            <td>{{$customer->charge}}</td>
+                            <td>{{$customer->incomes}}</td>
                              </tr>
                     </tbody>
                     @endforeach
-
-                    <tbody>
-                    @foreach($con as $conn)
-                        <tr>
-                            <td></td>
-                            <td>{{$conn->dates}}</td>
-                            <td></td>
-                            <td>{{$conn->charge}}</td>
-                            <td></td>
-                           </tr>
-                        </tbody>
-                   @endforeach
-
-                    <tbody>
-                    @foreach($income as $in)
-                        <tr>
-                            <td></td>
-                            <td>{{$in->dates}}</td>
-                            <td></td>
-                            <td></td>
-                            <td>{{$in->incomes}}</td>
-                        </tr>
-                    </tbody>
-                    @endforeach
-
-
 
                 </table>
             </div>

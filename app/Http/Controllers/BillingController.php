@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Billing;
-use App\Expense;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Customer;
@@ -26,10 +25,6 @@ class BillingController extends Controller
     }
 
     public function editBilling($id){
-
-
-        //$ExpById = Expense::where('id', $id)->first();
-        //dd($ExpById);
 
         $BillingById = Customer::where('id',$id)->first();
 
@@ -82,7 +77,6 @@ class BillingController extends Controller
         $billings = new Billing();
         $billings->customer_id = $request->id;
         $billings->userId = Auth::user()->userId;
-        $billings->expense_id = $request->expense_id;
         $billings->payment_amount = $request->payment_amount;
         $billings->discount = $request->discount;
         $billings->payment_description = $request->payment_description;
