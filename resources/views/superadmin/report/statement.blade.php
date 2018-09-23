@@ -25,9 +25,6 @@
                     <tr>
                         <th>#</th>
                         <th>Date</th>
-                        <th>Particular</th>
-                        <th>Client</th>
-                        <th>Ip</th>
                         <th>User</th>
                         <th>Credit</th>
                         <th>Debit</th>
@@ -37,29 +34,17 @@
                     <tbody>
 
                     <?php $ab=0; ?>
-
-                    @foreach($merged as $new)
+                    @foreach($merged as $key)
                         <tr>
-
-                            <td>{{++$i}}</td>
-                            <td>{{$new->dates}}</td>
                             <td></td>
-
+                            <td>{{ $key->dates  }}</td>
+                            <td>{{$users->username}}</td>
+                            <td>{{ $key->sums  }}</td>
+                            <td>{{ $key->expenses  }}</td>
+                           <td></td>
                         </tr>
+                    @endforeach
                     </tbody>
-                    @endforeach
-
-                    @foreach($bills as $new)
-                        <tr>
-
-                            <td></td>
-                            <td></td>
-                            <td>{{$new->payment_description}}</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    @endforeach
 
                 </table>
             </div>

@@ -53,13 +53,14 @@ class IncomeController extends Controller
         request()->validate([
             'product_id' => 'required',
             'amount' => 'required',
-            'account_details' => 'required'
+
         ]);
       $income = new Income();
         $income->userId = Auth::user()->userId ;
         $income->product_id = $request->product_id;
         $income->amount = $request->amount;
         $income->account_details = $request->account_details;
+        $income->incda = Carbon::now();
         $income->save();
 
         return redirect()->route('income.index')
@@ -102,7 +103,7 @@ class IncomeController extends Controller
         request()->validate([
             'product_id' => 'required',
             'amount' => 'required',
-            'account_details' => 'required'
+
         ]);
         $income->update($request->all());
 

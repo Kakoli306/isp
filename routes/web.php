@@ -27,8 +27,6 @@ Route::group(['middleware'=>'role:superadmin'], function() {
 Route::group(['middleware'=>'role:admin'], function() {
 
 Route::get('/adminPage', 'SuperAdminController@index');
-
-
 });
 
 Route::group(['middleware'=>'role:superadmin||admin'], function() {
@@ -43,9 +41,7 @@ Route::group(['middleware'=>'role:superadmin||admin'], function() {
     Route::post('/delete', 'UserController@deleteUser')->name('delete-user');
 
 });
-
 Auth::routes();
-
 
 //customer
 Route::group(['prefix'=>'customer'], function() {
@@ -80,13 +76,18 @@ Route::get('/unpaid', 'NewController@unpaid')->name('unpaid_customer');
 
 
 Route::get('/monthly', 'NewController@monthly')->name('monthly');
-Route::get('/yearly', 'NewController@yearly')->name('monthly');
+Route::get('/yearly', 'SuperAdminController@yearly')->name('yearly');
+Route::get('/new/month/{id}', 'SuperAdminController@new');
+
 
 Route::get('/account_statement', 'NewController@statement')->name('statement');
 Route::get('/billing/show/{id}', 'NewController@showBilling')->name('show-billing');
 Route::get('/daily/date/{id}', 'NewController@daily');
-Route::get('/income_report', 'NewController@report')->name('inc_report');
+Route::get('/con/date/{id}', 'NewController@con');
+Route::get('/inc/date/{id}', 'NewController@inc');
+Route::get('/exp/date/{id}', 'NewController@exp');
 
+Route::get('/income_report', 'NewController@report')->name('inc_report');
 
 //Head
 Route::get('/product', 'ProductController@index');

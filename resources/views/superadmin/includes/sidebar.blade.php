@@ -122,9 +122,6 @@
                                     <a class="nav-link" href="{{route('expense_report')}}">
                                         Expense Report
                                     </a>
-                                    <a class="nav-link" href="{{route('statement')}}">
-                                        Account Statement
-                                    </a>
 
                                 </li>
 
@@ -142,7 +139,7 @@
                                         Monthly Balance Report
                                     </a>
 
-                                    <a class="nav-link" href="tables-basic.html">
+                                    <a class="nav-link" href="{{route('yearly')}}">
                                         Yearly Balance Report
                                     </a>
 

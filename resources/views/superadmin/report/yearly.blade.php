@@ -1,11 +1,10 @@
 @extends('superadmin.master')
 
 @section('title')
-    Monthly Report
+    Yearly Report
 @endsection
 
 @section('content')
-    {{ date('Y-m-d H:i:s') }}
 
     <section class="card">
         <div class="container">
@@ -23,29 +22,53 @@
                     <thead>
                     <tr>
                         <th>#</th>
-                        <th>Date</th>
-                        <th>Bill Collection</th>
+                        <th>Month</th>
+                        <th>Opening Balance</th>
+                        <th>Customer Payment</th>
+                        <th>Others Payment</th>
                         <th>Connection Charge</th>
-                        <th>Others Income</th>
-                        <th>Expense</th>
+                        <th>Total</th>
+                        <th>Expense Statement</th>
+                        <th>Closing Balance</th>
                     </tr>
                     </thead>
+
                     <tbody>
-                    @foreach($res as $key => $merged)
+                    @foreach($year as $key => $merged)
                         <tr>
                             <td></td>
-                            <td>{{ $key  }}</td>
-                    <td>
-                            @foreach($merged as $customer)
+                            <td><a href="{{ url('/new/month/'.Carbon\Carbon::parse($key)->format('Y-m')) }}">{{ $key  }}</a></td>
+                            <td></td>
+                            <td>
+                                @foreach($merged as $customer)
+                                    {{ $customer->sums }}
+                                @endforeach
+                            </td>
 
-                                <a href="{{ url('/daily/date/'.Carbon\Carbon::parse($customer->dates)->format('Y-m-d ')) }}">{{ $customer->sums }}</a>
+                            <td>
+                                @foreach($merged as $customer)
+                                    {{ $customer->incomes }}
+                                @endforeach
+                            </td>
 
-                            @endforeach
-                        </td>
+                            <td>
+                                @foreach($merged as $customer)
+                                    {{ $customer->charge }}
+                                @endforeach
+                            </td>
+
+                            <td></td>
+
+                            <td>
+                                @foreach($merged as $customer)
+                                    {{ $customer->expenses }}
+                                @endforeach
+                            </td>
+                            <td></td>
 
                         </tr>
                     @endforeach
-                    </tbody>
+
                 </table>
             </div>
         </div>

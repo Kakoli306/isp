@@ -29,19 +29,34 @@
                     </thead>
                     <tbody>
 
-
-
-                        @foreach($merged as $customer)
+                    @foreach($res as $key => $merged)
                         <tr>
                             <td></td>
-                            <td>{{$customer->dates}}</td>
-                            <td>{{$customer->sums}}</td>
-                            <td>{{$customer->charge}}</td>
-                            <td>{{$customer->incomes}}</td>
-                             </tr>
-                    </tbody>
-                    @endforeach
+                            <td>{{ $key  }}</td>
+                            <td>
+                                @foreach($merged as $customer)
+                                    {{ $customer->sums }}@endforeach
+                            </td>
+                            <td>
+                                @foreach($merged as $customer)
+                                    {{ $customer->charge }}
+                                @endforeach
+                            </td>
 
+                            <td>
+                                @foreach($merged as $customer)
+                                    {{ $customer->incomes }}
+                                @endforeach
+                            </td>
+
+                            <td>
+                                @foreach($merged as $customer)
+                                    {{ $customer->expenses }}
+                                @endforeach
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
                 </table>
             </div>
         </div>

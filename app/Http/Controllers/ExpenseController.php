@@ -55,7 +55,6 @@ class ExpenseController extends Controller
         request()->validate([
             'product_id' => 'required',
             'price' => 'required',
-            'description' => 'required',
 
         ]);
         $expense = new Expense();

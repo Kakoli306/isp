@@ -38,17 +38,17 @@
                     <tbody>
 
                     @foreach($billings as $billing)
-                       <tr>
-                             <td></td>
-                            <td>{{ $billing->month }}</td>
-                            <td>{{ $billing->payment_description }}</td>
-                            <td>{{ $billing->customer_name }}</td>
-                            <td>{{ $billing->ip_address }}</td>
+                        <tr>
+                            <td></td>
+                            <td>{{ $billing->incda }}</td>
+                            <td>{{ $billing->account_details }}</td>
+                            <td></td>
+                            <td></td>
                             <td>{{ $users->username }}</td>
-                            <td>{{ $billing->payment_amount }}</td>
+                            <td>{{ $billing->amount }}</td>
                             <td></td>
 
-                         </tr>
+                        </tr>
                     </tbody>
                     @endforeach
 
