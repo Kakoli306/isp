@@ -111,3 +111,8 @@ Route::delete('zone/{zone_id}', 'ZoneController@destroy');
 Route::resource('expenses','ExpenseController');
 Route::get('/head/show/{id}', 'SuperAdminController@headshow')->name('head-show');
 Route::get('/exp_report', 'ExpenseController@report')->name('expense_report');
+
+Route::get('pdfview',array('as'=>'pdfview'));
+
+Route::get('/downloadPDF/{id}','SuperAdminController@downloadPDF');
+

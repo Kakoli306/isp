@@ -183,26 +183,31 @@ isp-management
 							<h2 class="card-title">Basic</h2>
 						</header>
 						<div class="card-body">
-							<table class="table table-bordered table-striped mb-0" id="datatable-default">
+							<table class="table table-bordered table-striped" id="datatable-default">
 								<thead>
 								<tr>
-									<th>Rendering engine</th>
-									<th>Browser</th>
-									<th>Platform(s)</th>
-									<th class="d-lg-none">Engine version</th>
-									<th class="d-lg-none">CSS grade</th>
+									<th>Customer Name</th>
+									<th>Mobile Number</th>
+									<th>Speed</th>
+									<th>Connection Date</th>
+									<th>Customer Status</th>
 								</tr>
 								</thead>
 								<tbody>
-								<tr>
-									<td>Trident</td>
-									<td>Internet
-										Explorer 4.0
-									</td>
-									<td>Win 95+</td>
-									<td class="center d-lg-none">4</td>
-									<td class="center d-lg-none">X</td>
-								</tr>
+
+								@foreach($cust as $customer)
+									<tr>
+										<td>{{ $customer->customer_name }}</td>
+										<td>{{ $customer->mobile_no }}</td>
+										<td>{{ $customer->speed}}</td>
+										<td>{{ $customer->connection_date}}</td>
+										<td>@if($customer->status == 1)
+												Active
+												@else
+												Non Active
+											@endif
+										</td>
+									@endforeach
 
 								</tbody>
 							</table>

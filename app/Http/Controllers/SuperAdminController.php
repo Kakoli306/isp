@@ -12,6 +12,8 @@ use App\Zone;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use Barryvdh\DomPDF\Facade as PDF;
+
 class SuperAdminController extends Controller
 {
     public function index(){
@@ -22,8 +24,9 @@ class SuperAdminController extends Controller
         $incomes = Income::count();
         $expenses = Expense::count();
         $heads = Product::count();
+        $cust = Customer::orderBy('id', 'desc')->take(3)->get();
 
-        return view('superadmin.home.homeContent',compact('zones','users','customers','incomes','expenses','heads'));
+        return view('superadmin.home.homeContent',compact('zones','users','customers','incomes','expenses','heads','cust'));
     }
 
     public function headshow($id){
@@ -75,33 +78,42 @@ class SuperAdminController extends Controller
             ->groupBy(function ($merged) {
                 return $merged->months;
             });
-       // dd($year);
-
         return view ('superadmin.report.yearly',compact('year','merged'));
 
     }
 
     public function new($month)
     {
-
         // return $month;
 
         $ab = Billing::select(
             DB::raw('sum(payment_amount) as sums'),
-            DB::raw("DATE_FORMAT(created_at,'Y-m') as months")
-                       // DB::raw("month")
+            DB::raw("DATE_FORMAT(month,'%Y-%m') as months")
         )
             ->groupBy('months')
-            ->where('month', '=', $month)
             ->get();
         dd($ab);
 
-        $billings = DB::table('customers')
-            ->join('billings','billings.customer_id', '=', 'customers.id')
-            ->select('billings.*','customers.*')
-            ->where('month', '=', $month)
-            ->get();
+    }
+
+  /*  public function pdfview($id){
+
+        $customers = Customer::find($id);
+        //$users = DB::table("users")->get();
+        view()->share('customers',$customers);
+
+            $pdf = PDF::loadView('superadmin.pdfview');
+            return $pdf->download('pdfview.pdf');
+
+    }*/
+
+    public function downloadPDF($id)
+    {
+        $customers = Customer::find($id);
+
+        $pdf = PDF::loadView('superadmin.pdf', compact('customers'));
+        return $pdf->download('invoice.pdf');
+    }
 
 
     }
-}

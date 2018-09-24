@@ -33,15 +33,39 @@
                     </thead>
                     <tbody>
 
-                    <?php $ab=0; ?>
-                    @foreach($merged as $key)
+                    <?php $new = 0;
+                    ?>
+                      @foreach($res as $key)
                         <tr>
                             <td></td>
-                            <td>{{ $key->dates  }}</td>
+                           <td><a href="{{ url('/daily/date/'.Carbon\Carbon::parse($key->dates)->format('Y-m-d ')) }}">{{ $key->dates }}</a></td>
                             <td>{{$users->username}}</td>
                             <td>{{ $key->sums  }}</td>
                             <td>{{ $key->expenses  }}</td>
-                           <td></td>
+                           <td>
+
+
+                               <?php
+
+
+                    if  ($key->expenses == null )
+
+                    {
+                        $new = $key->sums + $new;
+
+                    }
+
+                    else
+                    {
+                        $new = $new - $key->expenses;
+
+                        }
+
+                    ?>
+
+                      {{$new}}
+
+                           </td>
                         </tr>
                     @endforeach
                     </tbody>

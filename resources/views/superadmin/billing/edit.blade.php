@@ -93,7 +93,7 @@
 
                                         <div class="form-group">
                                             <label for="payment_amount">Payment Amount</label>
-                                            <input type="number" name="payment_amount" class="form-control" id="payment_amount" placeholder="Payment Amount" required>
+                                            <input type="number" name="payment_amount" class="form-control" id="payment_amount" placeholder="Payment Amount">
                                         </div>
 
                                     </div>

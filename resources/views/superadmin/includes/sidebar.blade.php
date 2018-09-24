@@ -122,6 +122,9 @@
                                     <a class="nav-link" href="{{route('expense_report')}}">
                                         Expense Report
                                     </a>
+                                    <a class="nav-link" href="{{route('statement')}}">
+                                        Account Statement
+                                    </a>
 
                                 </li>
 

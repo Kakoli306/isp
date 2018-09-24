@@ -35,7 +35,9 @@
                             <td>{{ $key  }}</td>
                             <td>
                                 @foreach($merged as $customer)
-                                    {{ $customer->sums }}@endforeach
+                                    {{ $customer->sums }}
+
+                                @endforeach
                             </td>
                             <td>
                                 @foreach($merged as $customer)
@@ -50,10 +52,8 @@
                             </td>
 
                             <td>
-                                @foreach($merged as $customer)
-                                    {{ $customer->expenses }}
-                                @endforeach
-                            </td>
+                                </td>
+
                         </tr>
                     @endforeach
                     </tbody>

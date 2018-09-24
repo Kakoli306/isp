@@ -26,13 +26,9 @@
                     <tr>
                         <th>#</th>
                         <th>Date</th>
-                        <th>Particular</th>
-                        <th>Client</th>
-                        <th>Ip</th>
-                        <th>User</th>
-                        <th>Credit</th>
-                        <th>Debit</th>
-                        <th>Balance</th>
+                        <th>Account Head</th>
+                        <th>Description</th>
+                        <th>Expense</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -41,12 +37,9 @@
                         <tr>
                             <td></td>
                             <td>{{ $billing->date }}</td>
+                            <td>{{ $billing->name }}</td>
                             <td>{{ $billing->description }}</td>
-                            <td></td>
-                            <td></td>
-                            <td>{{ $users->username }}</td>
                             <td>{{ $billing->price }}</td>
-                            <td></td>
 
                         </tr>
                     </tbody>

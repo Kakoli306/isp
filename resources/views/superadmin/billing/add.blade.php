@@ -57,7 +57,7 @@ Bill Collection
 					@if($diff > 0)
 
 						<td>{{ ++$i }}</td>
- <td><a href="#" target="_blank" class="btn btn-primary"><i class="fas fa-print"></i> Print</a>	</td>
+ <td><a href="{{action('SuperAdminController@downloadPDF', $customer->id)}}" target="_blank" class="btn btn-primary"><i class="fas fa-print"></i> Print</a>	</td>
 
     <td>{{ $customer->customer_name }}</td>
     <td>{{ $customer->id }}</td>

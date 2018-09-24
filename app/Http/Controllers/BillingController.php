@@ -105,7 +105,6 @@ class BillingController extends Controller
         $billings->delete();
 
         return redirect()->back()->with('message',' deleted successfully');
-
     }
 
     public function discount(){

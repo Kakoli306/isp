@@ -13,29 +13,38 @@ class NewController extends Controller
 {
     public function statement(){
 
-        $expenses = DB::table('expenses')
-            ->join('users', 'expenses.userId', '=', 'users.userId')
-            ->select('expenses.*', 'users.username')
-            ->whereMonth('date',Carbon::now()->month)
-            ->get();
-        dd($expenses);
-
-        $customers = DB::table('billings')
-            ->join('customers', 'billings.customer_id', '=', 'customers.id')
-            ->select('billings.*', 'customers.customer_name')
-            ->whereMonth('month',Carbon::now()->month);
-
         $users = DB::table('incomes')
             ->join('users', 'incomes.userId', '=', 'users.userId')
             ->select('incomes.*', 'users.username')
             ->where('incomes.userId',Auth::user()->userId)
             ->first();
 
+        $billings = Billing::select(
+            DB::raw('(payment_amount) as sums'),
+            DB::raw("DATE_FORMAT(created_at,'%D %M %Y') as dates")
+        )
+            ->whereMonth('created_at',Carbon::now()->month)
+            ->orderBy('dates')
+            ->get();
 
-        $news = collect($customers)->merge($expenses);
-        dd($news);
+        $expense = Expense::select(
+            DB::raw('(price) as expenses'),
+            DB::raw("DATE_FORMAT(created_at,'%D %M %Y') as dates")
+        )
+            ->whereMonth('created_at',Carbon::now()->month)
+            ->orderBy('dates')
+            ->get();
 
-        return view ('superadmin.report.statement',compact('merged','users'))
+        $news = collect($expense)->merge($billings);
+        $merged = $news->sortBy('dates');
+
+        $res = $news->sortBy(function ($merged) {
+                return $merged->dates;
+            });
+
+        // dd($res);
+
+        return view ('superadmin.report.statement',compact('res','users'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
     public function paid(){
@@ -202,18 +211,12 @@ public function con($date){
     }
 
     public function exp($date){
+
         $billings = DB::table('expenses')
-            ->join('users', 'expenses.userId', '=', 'users.userId')
-            ->select('expenses.*', 'users.username')
+            ->join('products', 'expenses.product_id', '=', 'products.id')
+            ->select('expenses.*', 'products.name')
             ->where('date', '=', $date)
             ->get();
-
-        $users = DB::table('incomes')
-            ->join('users', 'incomes.userId', '=', 'users.userId')
-            ->select('incomes.*', 'users.username')
-            ->where('incomes.userId',Auth::user()->userId)
-            ->first();
-
         return view('superadmin.report.showallexp',compact('billings','users'));
     }
 }
