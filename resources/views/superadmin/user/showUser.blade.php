@@ -14,7 +14,7 @@
                 <h2 class="card-title">View User Information</h2>
             </header>
             <div class="card-body">
-                <table class="table table-bordered table-striped mb-0 table-responsive" id="datatable-editable">
+                <table class="table table-responsive-lg table-bordered table-striped table-sm mb-0">
 
                     <thead>
                     <tr>
@@ -31,6 +31,8 @@
                     </tr>
                     </thead>
                     <tbody>
+
+
 
                     @foreach($users as $user)
                         <tr>

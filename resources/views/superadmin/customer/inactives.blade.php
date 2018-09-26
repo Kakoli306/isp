@@ -52,13 +52,14 @@
                             <td>{{ $customer->zone_id }}</td>
                             <td>{{ $customer->ip_address}}</td>
                             <td>{{ $customer->status == 1 ? 'Active' : 'Inactive' }}</td>
+
                             <td class="center">
                                 @if($customer->status == 1)
 
                                     <form action="{{ route('inactive-customer',['id'=>$customer->id]) }}" method="POST">
                                         {{ csrf_field() }}
                                         <button type="submit" class="btn btn-primary btn-sm" title="Inactive">
-                                            <i class="fas fa-arrow-alt-circle-up"></i></a>
+                                            <i class="fas fa-arrow-alt-circle-up"></i>
                                         </button>
                                     </form>
 
@@ -66,7 +67,7 @@
                                     <form action="{{ route('active-customer',['id'=>$customer->id]) }}" method="POST">
                                         {{ csrf_field() }}
                                         <button type="submit" class="btn btn-warning btn-sm" title="Active">
-                                            <i class="fas fa-arrow-alt-circle-down"></i></a>
+                                            <i class="fas fa-arrow-alt-circle-down"></i>
                                         </button>
                                     </form>
 
@@ -77,7 +78,6 @@
                                 <a href="{{ route('edit',['id'=>$customer->id]) }}" class="on-default edit-row">
                                     <i class="fas fa-pencil-alt"></i></a>
 
-                                <a href="{{ route('delete')}}" class="on-default edit-row"><i class="fas fa-arrows-alt-v"></i></a>
                             </td>
                         </tr>
                     </tbody>

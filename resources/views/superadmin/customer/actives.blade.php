@@ -15,7 +15,7 @@
             </header>
             <div class="card-body">
                 <div class="row">
-                    <div class="col-sm-6">
+                    <div class="col-sm-12">
                     </div>
                 </div>
                 <table class="table table-bordered table-striped mb-0 table-responsive" id="datatable-editable">
@@ -77,7 +77,6 @@
                                 <a href="{{ route('edit',['id'=>$customer->id]) }}" class="on-default edit-row">
                                     <i class="fas fa-pencil-alt"></i></a>
 
-                                <a href="{{ route('delete')}}" class="on-default edit-row"><i class="fas fa-arrows-alt-v"></i></a>
                             </td>
                         </tr>
                     </tbody>

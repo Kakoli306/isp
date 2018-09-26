@@ -114,5 +114,5 @@ Route::get('/exp_report', 'ExpenseController@report')->name('expense_report');
 
 Route::get('pdfview',array('as'=>'pdfview'));
 
-Route::get('/downloadPDF/{id}','SuperAdminController@downloadPDF');
+Route::get('/downloadPDF/{id}','SuperAdminController@downloadPDF')->name('pdf');
 

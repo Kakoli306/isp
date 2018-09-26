@@ -15,7 +15,7 @@
                     <div class="col-sm-6">
                     </div>
                 </div>
-                <table class="table table-bordered table-striped mb-0 table-responsive" id="datatable-editable">
+                <table class="table table-bordered table-striped mb-0" id="datatable-default">
 
                     <thead>
                     <tr>
@@ -52,6 +52,15 @@
                             </td>
 
                             <td>
+                            <?php
+
+                                $total = $merged->sum(function ($merged) {
+                                    return $merged->sums + $merged->charge + $merged->incomes;
+                                });
+
+                                ?>
+
+                                {{$total}}
                                 </td>
 
                         </tr>

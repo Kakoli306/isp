@@ -45,7 +45,7 @@
                             <td>{{ $customer->speed}}</td>
                             <td>{{ $customer->bill_amount	}}</td>
                             <td>{{ $customer->email}}</td>
-                            <td></td>
+                            <td>0</td>
                             <td>{{ $customer->ip_address}}</td>
                         </tr>
                     </tbody>

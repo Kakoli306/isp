@@ -146,7 +146,7 @@
                                         Yearly Balance Report
                                     </a>
 
-                                    <a class="nav-link" href="pages-user-profile.html">
+                                    <a class="nav-link" href="#">
                                         Export in Excel file
                                     </a>
 
@@ -162,11 +162,11 @@
                             </a>
                             <ul class="nav nav-children">
                                 <li>
-                                    <a class="nav-link" href="forms-basic.html">
+                                    <a class="nav-link" href="#">
                                         Due SMS
                                     </a>
 
-                                    <a class="nav-link" href="tables-basic.html">
+                                    <a class="nav-link" href="#">
                                         Occational SMS
                                     </a>
 

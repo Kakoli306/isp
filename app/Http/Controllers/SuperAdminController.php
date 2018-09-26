@@ -21,8 +21,8 @@ class SuperAdminController extends Controller
         $zones = Zone::count();
         $users = User::count();
         $customers = Customer::count();
-        $incomes = Income::count();
-        $expenses = Expense::count();
+        $incomes = Income::sum('amount');
+        $expenses = Expense::sum('price');
         $heads = Product::count();
         $cust = Customer::orderBy('id', 'desc')->take(3)->get();
 
