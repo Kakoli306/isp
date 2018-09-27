@@ -18,11 +18,11 @@
             <div class="row">
                 <div class="col-sm-6">
                     <div class="mb-3">
-                        <a href="{{ route('show-actives')}}" class="on-default edit-row">Only Active</a>
+                        <strong class="amount"><a href="{{route('show-actives')}}"></a>Only Active</strong>
                     </div>
 
                     <div class="mb-3">
-                        <a href="{{ route('show-inactives')}}" class="on-default edit-row">Only InActive</a>
+                        <strong class="amount"><a href="{{route('manage-customer')}}"></a>Only InActive</strong>
                     </div>
                 </div>
             </div>

@@ -5,7 +5,6 @@
 @endsection
 
 @section('content')
-    {{ date('Y-m-d H:i:s') }}
 
 
     <section class="card">
@@ -50,7 +49,7 @@
                             <td>{{ $customer->ip_address}}</td>
                             <td class="center">
                                 <input type="hidden" value="{{ $customer->id }}" name="customerId">
-                                <a href="{{ url('billing/edit/'.$customer->id) }}" class="on-default edit-row"><i class="fas fa-pencil-alt"></i></a>
+                                <a href="{{ url('billing/edit/'.$customer->id) }}" class=""><i class="fas fa-pencil-alt"></i></a>
                             </td>
                         </tr>
                     </tbody>

@@ -123,6 +123,8 @@
 <!-- Examples -->
 <script src="{{asset('superadmin/')}}/js/examples/examples.wizard.js"></script>
 
+<script src="{{asset('superadmin/')}}/js/examples/examples.dashboard.js"></script>
+
 
 
 </body>

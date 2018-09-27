@@ -5,6 +5,7 @@ isp-management
 @section('content')
 
 	<!-- start: page -->
+	<div class="container">
 		<div class="row">
 			<div class="col-lg-6">
 				<section class="card">
@@ -48,6 +49,7 @@ isp-management
 							</tbody>
 						</table>
 					</div>
+				</section>
 
 					<div class="card-body">
 						<table class="table table-responsive-md mb-0">
@@ -82,7 +84,22 @@ isp-management
 						</table>
 					</div>
 
-				</section>
+				<div class="row">
+					<div class="col-md-10 col-md-offset-2">
+						<section class="card card-featured-left card-featured-quaternary">
+							<div class="panel panel-default">
+								<div class="panel-heading"><b>sdf</b></div>
+								<div class="panel-body">
+									<canvas id="abc" height="280" width="400"></canvas>
+								</div>
+							</div>
+						</section>
+					</div>
+				</div>
+
+
+
+
 			</div>
 
 			<div class="col-lg-6">
@@ -235,8 +252,99 @@ isp-management
 				</div>
 			</section>
 		</div>
-
 	</div>
-</div>
-</div>
+				<div class="row">
+		<div class="col-md-10 col-md-offset-2">
+			<section class="card card-featured-left card-featured-quaternary">
+				<div class="panel panel-default">
+					<div class="panel-heading"><b>Charts</b></div>
+					<div class="panel-body">
+						<canvas id="canvas" height="280" width="400"></canvas>
+					</div>
+				</div>
+			</section>
+		</div>
+	</div>
+			</div>
+		</div>
+	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.3/js/bootstrap-select.min.js" charset="utf-8"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.js" charset="utf-8"></script>
+	<script>
+        var url = "{{url('stock/chart')}}";
+        var Months = new Array();
+       // var Labels = new Array();
+        var Prices = new Array();
+        $(document).ready(function(){
+            $.get(url, function(response){
+                response.forEach(function(data){
+                    Months.push(data.crated_at);
+                    //Labels.push(data.stockName);
+                    Prices.push(data.price);
+                });
+                var ctx = document.getElementById("canvas").getContext('2d');
+                var myChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels:Years,
+                        datasets: [{
+                            label: ' Price',
+                            data: Prices,
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero:true
+                                }
+
+                            }]
+                        }
+                    }
+                });
+            });
+        });
+	</script>
+
+	<script>
+        var url = "{{url('stock/chart')}}";
+        var Years = new Array();
+        //var Labels = new Array();
+        var Prices = new Array();
+        $(document).ready(function(){
+            $.get(url, function(response){
+                response.forEach(function(data){
+                    Years.push(data.stockYear);
+                    Labels.push(data.stockName);
+                    Prices.push(data.stockPrice);
+                });
+                var ctx = document.getElementById("abc").getContext('3d');
+                var myChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels:Years,
+                        datasets: [{
+                            label: 'Infosys Price',
+                            data: Prices,
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero:true
+                                }
+                            }]
+                        }
+                    }
+                });
+            });
+        });
+	</script>
+
 @endsection

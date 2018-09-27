@@ -5,8 +5,6 @@
 @endsection
 
 @section('content')
-    {{ date('Y-m-d H:i:s') }}
-
 
     <section class="card">
         <div class="container">

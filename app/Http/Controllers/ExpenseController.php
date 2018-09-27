@@ -63,8 +63,8 @@ class ExpenseController extends Controller
         $expense->description = $request->description;
         $expense->price = $request->price;
         $expense->date = Carbon::now();
+       // $expense->month = Carbon::now()->format('M -Y');
         $expense->save();
-
         return redirect()->route('expenses.index',compact('expense'))
             ->with('success','Expenses created successfully');
     }

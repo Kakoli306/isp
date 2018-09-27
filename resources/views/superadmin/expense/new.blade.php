@@ -51,12 +51,18 @@
                                 </tr>
                             @endforeach
                             </tbody>
-                           Total expense {{$total}}
                         </table>
                     </div>
                 </div>
             </div>
             </body>
+
+            <div class="mb-3">
+                <strong class="amount">Total expense {{$total}}</strong>
+
+            </div>
+
+
         </div>
     </section>
 

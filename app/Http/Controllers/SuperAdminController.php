@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use Barryvdh\DomPDF\Facade as PDF;
-
+use ConsoleTVs\Charts;
 class SuperAdminController extends Controller
 {
     public function index(){
@@ -115,5 +115,57 @@ class SuperAdminController extends Controller
         return $pdf->download('invoice.pdf');
     }
 
-
+    public function abc()
+    {
+        return view('index');
     }
+
+    public function chart()
+    {
+        $result = DB::table('expenses')
+            ->select(
+                DB::raw("month(created_at) as month"),
+                DB::raw("(price) as total_click"))
+              ->orderBy('month', 'ASC')
+            ->get();
+        return response()->json($result);
+    }
+
+   /* public function chart()
+    {
+        $result = DB::table('stocks')
+            ->select(
+                DB::raw("month(created_at) as month"))
+            ->orderBy('stockYear', 'ASC')
+                    ->where('stockName','=','Infosys')
+
+                    ->get();
+        return response()->json($result);
+    }*/
+
+  /*  public function chart()
+
+    {
+          $result = \DB::table('stocks')
+                    ->where('stockName','=','Infosys')
+                    ->orderBy('stockYear', 'ASC')
+                    ->get();
+
+        $income = DB::table('incomes')
+            ->select(
+                DB::raw("month(created_at) as month"),
+                DB::raw("SUM(amount) as total_click"))
+            ->orderBy("created_at")
+            ->groupBy(DB::raw("month(created_at)"))
+            ->get();
+
+        $result[] = ['Month','Amount'];
+        foreach ($income as $key => $value) {
+            $result[++$key] = [$value->month, (int)$value->total_click];
+        }
+
+        return response()->json($result);
+
+    }*/
+
+}

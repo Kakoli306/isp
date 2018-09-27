@@ -37,7 +37,7 @@
                     @foreach($year as $key => $merged)
                         <tr>
                             <td></td>
-                            <td><a href="{{ url('/new/month/'.Carbon\Carbon::parse($key)->format('Y-m')) }}">{{ $key  }}</a></td>
+                            <td style="color: RoyalBlue;"><a style="color: RoyalBlue;" href="{{ url('/new/month/'.Carbon\Carbon::parse($key)->format('Y-m')) }}">{{ $key  }}</a></td>
                             <td></td>
                             <td>
                                 @foreach($merged as $customer)

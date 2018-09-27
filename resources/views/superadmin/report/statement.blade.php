@@ -5,7 +5,6 @@
 @endsection
 
 @section('content')
-    {{ date('Y-m-d H:i:s') }}
 
 
     <section class="card">
@@ -38,7 +37,7 @@
                       @foreach($res as $key)
                         <tr>
                             <td></td>
-                           <td><a href="{{ url('/daily/date/'.Carbon\Carbon::parse($key->dates)->format('Y-m-d ')) }}">{{ $key->dates }}</a></td>
+                            <td style="color: RoyalBlue;"><a style="color: RoyalBlue;" href="{{ url('/daily/date/'.Carbon\Carbon::parse($key->dates)->format('Y-m-d ')) }}"> {{ $key->dates }}</a></td>
                             <td>{{$users->username}}</td>
                             <td>{{ $key->sums  }}</td>
                             <td>{{ $key->expenses  }}</td>

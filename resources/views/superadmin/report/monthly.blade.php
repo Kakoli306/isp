@@ -35,26 +35,26 @@
                         <tr>
                         <td></td>
                        <td>{{ $key  }}</td>
-                     <td>
+                     <td style="color: RoyalBlue;">
                        @foreach($merged as $customer)
-                             <a href="{{ url('/daily/date/'.Carbon\Carbon::parse($customer->dates)->format('Y-m-d ')) }}">{{ $customer->sums }}</a>
-                         @endforeach
+                                 <a style="color: RoyalBlue;" href="{{ url('/daily/date/'.Carbon\Carbon::parse($customer->dates)->format('Y-m-d ')) }}">{{ $customer->sums }}</a>
+                                @endforeach
                      </td>
-                            <td>
+                            <td style="color: RoyalBlue;">
                                 @foreach($merged as $customer)
-                                    <a href="{{ url('/con/date/'.Carbon\Carbon::parse($customer->dates)->format('Y-m-d ')) }}">{{ $customer->charge }}</a>
+                                    <a style="color: RoyalBlue;"  href="{{ url('/con/date/'.Carbon\Carbon::parse($customer->dates)->format('Y-m-d ')) }}">{{ $customer->charge }}</>
                                 @endforeach
                             </td>
 
                             <td>
                                 @foreach($merged as $customer)
-                                    <a href="{{ url('/inc/date/'.Carbon\Carbon::parse($customer->dates)->format('Y-m-d ')) }}">{{ $customer->incomes }}</a>
+                                    <a style="color: RoyalBlue;"  href="{{ url('/inc/date/'.Carbon\Carbon::parse($customer->dates)->format('Y-m-d ')) }}">{{ $customer->incomes }}</a>
                                 @endforeach
                             </td>
 
                             <td>
                                 @foreach($merged as $customer)
-                                    <a href="{{ url('/exp/date/'.Carbon\Carbon::parse($customer->dates)->format('Y-m-d ')) }}">{{ $customer->expenses }}</a>
+                                    <a style="color: RoyalBlue;" href="{{ url('/exp/date/'.Carbon\Carbon::parse($customer->dates)->format('Y-m-d ')) }}">{{ $customer->expenses }}</>
                                 @endforeach
                             </td>
                         </tr>
