@@ -42,11 +42,21 @@ class CustomerController extends Controller
     public function manageCustomer(){
 
         $customers = DB::table('customers')
-                ->join('zones', 'customers.zone_id', '=', 'zones.id')
-                ->select('customers.*', 'zones.zone_name')
-                 ->orderBy('id', 'DESC')->paginate(5);
+            ->orderBy('id', 'DESC')->paginate(8);
 
-        return view('superadmin.customer.manageCustomer',['customers'=> $customers])
+        $zones = DB::table('zones')
+              ->get();
+
+          //  dd($customers,$zones);
+           // ->orderBy('id', 'DESC')->paginate(8);
+
+        /* DB::table('customers')
+             ->join('zones', 'customers.zone_id', '=', 'zones.id')
+             ->select('customers.*', 'zones.zone_name')
+             ->orderBy('id', 'DESC')->paginate(8);*/
+
+
+        return view('superadmin.customer.manageCustomer',['customers'=> $customers,'zones' => $zones])
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -137,6 +147,22 @@ class CustomerController extends Controller
         return view ('superadmin.billing.connection',['customers' =>$customers])
             ->with('i', (request()->input('page', 1) - 1) * 5);
 
+    }
+
+    public function search() {
+
+        // Sets the parameters from the get request to the variables.
+        $name = Request::get('name');
+        $hasCoffeeMachine = Request::get('hasCoffeeMachine');
+
+        // Perform the query using Query Builder
+        $result = DB::table('zones')
+            ->select(DB::raw("*"))
+            ->where('zone_name', '=', $name)
+            ->where('has_coffee_machine', '=', $hasCoffeeMachine)
+            ->get();
+
+        return $result;
     }
 
 

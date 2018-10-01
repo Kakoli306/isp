@@ -68,8 +68,8 @@
 
 <!-- Specific Page Vendor -->
 
-<script src="{{asset('superadmin/')}}/vendor/jquery-ui/jquery-ui.js">
-</script>		<script src="{{asset('superadmin/')}}/vendor/jqueryui-touch-punch/jqueryui-touch-punch.js"></script>
+<script src="{{asset('superadmin/')}}/vendor/jquery-ui/jquery-ui.js"></script>
+<script src="{{asset('superadmin/')}}/vendor/jqueryui-touch-punch/jqueryui-touch-punch.js"></script>
 <script src="{{asset('superadmin/')}}/vendor/jquery-appear/jquery-appear.js"></script>
 <script src="{{asset('superadmin/')}}/vendor/bootstrap-multiselect/bootstrap-multiselect.js"></script>
 <script src="{{asset('superadmin/')}}/vendor/jquery.easy-pie-chart/jquery.easy-pie-chart.js"></script>

@@ -42,27 +42,22 @@
                             <td>{{ $user->email }}</td>
                             <td>{{ $user->phone }}</td>
                             <td>
-                                @if($user->status == 1)
                                     Superadmin
-                                @else
-                                    Admin
-
-                                @endif
                             </td>
                             <td>
                                 @if($user->status == 1)
-                                    <i class="fas fa-arrow-alt-circle-up"></i>
+                                    Active
                                 @else
-                                    <i class="fas fa-arrow-alt-circle-down"></i>
-
+                                   InActive
                                 @endif
                             </td>
-                            <td><a href="{{ route('user-details',['id'=>$user->userId])  }}">User details</a></td>
+
+                            <td><a style="color: RoyalBlue;" href="{{ route('user-details',['id'=>$user->userId])  }}">User details</a></td>
 
 
-                           <td><a href="{{url('user/edit/'.$user->userId)}}">Edit</a> </td>
+                           <td><a style="color: RoyalBlue;" href="{{url('user/edit/'.$user->userId)}}">Edit</a> </td>
 
-                            <td><a href="{{ route('ch') }}">Change Password</a></td>
+                            <td><a style="color: RoyalBlue;" href="{{ route('ch') }}">Change Password</a></td>
 
                             <!--<td><form action="{{ route('delete-user') }}" method="POST">
                                 @csrf

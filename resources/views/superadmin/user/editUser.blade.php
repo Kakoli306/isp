@@ -74,31 +74,6 @@
                             </select>
                         </div>
 
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">User Type</label>
-                            <select name="user_type" class="form-control" style="margin-bottom: 5px;" required>
-                                <option value="">Select User Type</option>
-                                @foreach($roles as $role)
-                                    <option value="{{$role->name}}">{{$role->name}}</option>
-
-                                @endforeach
-
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Permission</label>
-
-                            <div class="form-group" style="border: 1px solid #CCCCCC; padding: 5px; border-radius:4px;">
-                                @foreach($permissions as $permission)
-                                    <label class="checkbox-inline">
-                                        <input type="checkbox" name="WorkPermission[]" style="font-size: 12px;" class="wclschekbox" id="inlineCheckbox1"
-                                               value="{{$permission->id}}" > {{$permission->name}}
-                                    </label>
-                                @endforeach
-                            </div>
-                        </div>
-
 
                         <div class="row" style="padding: 5px 0px 15px 0px; float:right; font-size: 12px; text-align: center;">
                             <button type="submit" name="submit" class="btn btn-success">Submit</button>

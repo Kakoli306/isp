@@ -112,11 +112,16 @@ Route::resource('expenses','ExpenseController');
 Route::get('/head/show/{id}', 'SuperAdminController@headshow')->name('head-show');
 Route::get('/exp_report', 'ExpenseController@report')->name('expense_report');
 
-Route::get('pdfview',array('as'=>'pdfview'));
+//Route::get('pdfview/{id}',array('as'=>'pdfview'));
 
 Route::get('/downloadPDF/{id}','SuperAdminController@downloadPDF')->name('pdf');
 
-Route::get('stocks','SuperAdminController@abc');
 Route::get('/stock/chart','SuperAdminController@chart');
+
+Route::get('/chart','SuperAdminController@newchart');
+
+Route::get('/search', 'CustomerController@search');
+
+
 
 

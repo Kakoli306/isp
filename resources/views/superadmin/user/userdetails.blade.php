@@ -13,6 +13,10 @@
                     <!--Dashboard Section-->
                     <div class="panel panel-default">
                         <div class="panel-heading" id="" > <i class="fa fa-user"></i> <SPAN>Profile</SPAN>
+                            <div class="text-left;">
+                                <a href="{{ route('user-show') }}" type="button" class="btn btn-outline-success" ><i class="fa fa-pencil-square-o"></i>Back</a>
+                            </div>
+
                         </div>
 
                         <div class="panel-body" id="testApp">
@@ -42,7 +46,13 @@
                                                     <tr>
                                                         <td>Status</td>
                                                         <td>:</td>
-                                                        <td>{{$userId->status}}</td>
+                                                        <td>
+                                                        @if($userId->status == 1)
+                                                            Superadmin
+                                                        @else
+                                                           admin
+                                                        @endif
+                                                        </td>
                                                     </tr>
 
                                                     <tr>
@@ -57,17 +67,25 @@
                                                         <td>{{$userId->address}}</td>
                                                     </tr>
 
-                                                    <h4 class="mb-3">Entry By :
-                                                    </h4>
+                                                    <tr>
+                                                        <td>Work Permission</td>
+                                                        <td>:</td>
+                                                        <td>
+                                                                add,view,edit,delete
+                                                        </td>
+                                                    </tr>
+
+
+                                                    <h4 class="mb-3">Entry By :</h4>
 
                                                     <tr>
-                                                        <td>Address</td>
+                                                        <td>Entry By</td>
                                                         <td>:</td>
                                                         <td>{{$userId->created_at}}</td>
                                                     </tr>
 
                                                     <tr>
-                                                        <td>Address</td>
+                                                        <td>Updated By</td>
                                                         <td>:</td>
                                                         <td>{{$userId->updated_at}}</td>
                                                     </tr>
@@ -76,10 +94,6 @@
 
                                                 </table>
 
-                                                <div class="text-right" style="margin-bottom:5px;">
-                                                    <a href="{{ route('user-show') }}" type="button" class="btn btn-primary" ><i class="fa fa-pencil-square-o"></i>Back</a>
-                                                    <a href="{{ route('ch') }}" type="button" class="btn btn-success btn-sm" ><i class="fa fa-lock" aria-hidden="true"></i> Change Your Password</a>
-                                                </div>
 
                                             </div>
                                         </div>

@@ -58,7 +58,7 @@
             </body>
 
             <div class="mb-3">
-                <strong class="amount">Total expense {{$total}}</strong>
+                <strong class="amount">Total expense : {{$total}}</strong>
 
             </div>
 

@@ -10,14 +10,22 @@
         <div class="container">
 
             <header class="card-header">
-                <h3>{{Session::get('message')}}</h3>
-                <h2 class="card-title">View Customer Information</h2>
+                <h2 class="card-title">View Inactive Customer Information</h2>
             </header>
             <div class="card-body">
                 <div class="row">
-                    <div class="col-sm-6">
+                        <div class="col-sm-6">
+                            <div class="pull-right">
+                                <a class="btn btn-default" href="{{ route('show-actives') }}"> Only Active </a>
+                                <a class="btn btn-default" href="{{ route('show-inactives') }}"> Only InActive </a>
+                            </div>
+                            <div class="pull-left">
+                            </div>
+                        </div>
                     </div>
                 </div>
+            <br/>
+            <br/>
                 <table class="table table-bordered table-striped mb-0 table-responsive" id="datatable-editable">
 
                     <thead>
@@ -58,17 +66,13 @@
 
                                     <form action="{{ route('inactive-customer',['id'=>$customer->id]) }}" method="POST">
                                         {{ csrf_field() }}
-                                        <button type="submit" class="btn btn-primary btn-sm" title="Inactive">
-                                            <i class="fas fa-arrow-alt-circle-up"></i>
-                                        </button>
+                                        <button type="submit" name="btn"  class="btn btn-danger btn-sm">Inactive</button>
                                     </form>
 
                                 @else
                                     <form action="{{ route('active-customer',['id'=>$customer->id]) }}" method="POST">
                                         {{ csrf_field() }}
-                                        <button type="submit" class="btn btn-warning btn-sm" title="Active">
-                                            <i class="fas fa-arrow-alt-circle-down"></i>
-                                        </button>
+                                        <button type="submit" name="btn"  class="btn btn-success btn-sm">active</button>
                                     </form>
 
                             @endif

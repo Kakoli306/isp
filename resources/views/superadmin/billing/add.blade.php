@@ -17,11 +17,11 @@ Bill Collection
 	<div class="card-body">
 		<div class="row">
 			<div class="col-sm-6">
-				<div class="mb-3">
-					<button id="addToTable" class="btn btn-primary">Add <i class="fas fa-plus"></i></button>
-				</div>
 			</div>
 		</div>
+
+		<br/>
+		<br/>
 		<table class="table table-bordered table-striped mb-0 table-responsive" id="datatable-editable">
 
 			<thead>
@@ -62,7 +62,7 @@ Bill Collection
     <td>{{ $customer->customer_name }}</td>
     <td>{{ $customer->id }}</td>
     <td>{{ $customer->address }}</td>
-    <td>{{ $customer->zone_id }}</td>
+    <td>{{ $customer->zone_name }}</td>
     <td>{{ $customer->mobile_no }}</td>
     <td>{{ $customer->speed}}</td>
 	  <td>{{ $customer->bill_amount	}}</td>
@@ -135,16 +135,16 @@ Bill Collection
 							<form action="{{ route('show-unpaid') }}" method="POST">
 								{{ csrf_field() }}
 								<input type="hidden" value="{{$customer->id}}}" name="id">
-									<button type="submit" onclick="return confirm('Are u sure want to unpaid this !!!')">
-										<i class="fas fa fa-window-close">Unpaid</i></button>
+									<button type="submit" onclick="return confirm('Are u sure want to unpaid this !!!')"
+										class="btn btn-info btn-sm">Unpaid</button>
 							</form>
 
 						@else
 							<form action="{{ route('show-paid') }}" method="POST">
 								{{ csrf_field() }}
 								<input type="hidden" value="{{$customer->id}}}" name="id">
-								<button type="submit" onclick="return confirm('Are u sure want to paid this !!!')">
-									<i class="fas fa fa-check-square">Paid</i></button>
+								<button type="submit" onclick="return confirm('Are u sure want to paid this !!!')"
+										class="btn btn-outline-success btn-sm">Paid</button>
 							</form>
 
 						@endif

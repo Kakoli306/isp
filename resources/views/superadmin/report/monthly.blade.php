@@ -42,7 +42,7 @@
                      </td>
                             <td style="color: RoyalBlue;">
                                 @foreach($merged as $customer)
-                                    <a style="color: RoyalBlue;"  href="{{ url('/con/date/'.Carbon\Carbon::parse($customer->dates)->format('Y-m-d ')) }}">{{ $customer->charge }}</>
+                                    <a style="color: RoyalBlue;" href="{{ url('/con/date/'.Carbon\Carbon::parse($customer->dates)->format('Y-m-d ')) }}">{{ $customer->charge }}</a>
                                 @endforeach
                             </td>
 
@@ -54,7 +54,7 @@
 
                             <td>
                                 @foreach($merged as $customer)
-                                    <a style="color: RoyalBlue;" href="{{ url('/exp/date/'.Carbon\Carbon::parse($customer->dates)->format('Y-m-d ')) }}">{{ $customer->expenses }}</>
+                                    <a style="color: RoyalBlue;" href="{{ url('/exp/date/'.Carbon\Carbon::parse($customer->dates)->format('Y-m-d ')) }}">{{ $customer->expenses }}</a>
                                 @endforeach
                             </td>
                         </tr>

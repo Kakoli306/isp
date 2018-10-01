@@ -10,28 +10,47 @@
         <div class="container">
 
             <header class="card-header">
-            <h3>{{Session::get('message')}}</h3>
+                <h2 class="card-title">View Customer Information</h2>
+                <br/>
+                <br/>
 
-            <h2 class="card-title">View Customer Information</h2>
-        </header>
+
+
+                       <div class="pull-right">
+                           <select id="zone_id" type="zone_id" class="form-control"
+                                   name="zone_id" required>
+                               @foreach ($zones as $value)
+                                   <option value="{{$value->id}}" > {{$value->zone_name}}</option>
+                               @endforeach
+                           </select>
+
+                           <form method="GET">
+                               <input type="text" name="name">
+                               <input type="checkbox" name="hasCoffeeMachine" value="1"><span> Apply Filter</span>
+                           </form>
+                       </div>
+
+            </header>
+        </div>
+
         <div class="card-body">
             <div class="row">
                 <div class="col-sm-6">
-                    <div class="mb-3">
-                        <strong class="amount"><a href="{{route('show-actives')}}"></a>Only Active</strong>
-                    </div>
-
-                    <div class="mb-3">
-                        <strong class="amount"><a href="{{route('manage-customer')}}"></a>Only InActive</strong>
-                    </div>
+                    <div class="pull-right">
+                        <a class="btn btn-default" href="{{ route('show-actives') }}"> Only Active </a>
+                        <a class="btn btn-default" href="{{ route('show-inactives') }}"> Only InActive </a>
+                        <div class="pull-right">
+                            <a class="btn btn-default" href="{{ route('create-user') }}"> Create user </a>
+                        </div>
+                        </div>
                 </div>
             </div>
+            <br/>
+            <br/>
             <table class="table table-bordered table-striped mb-0 table-responsive" id="datatable-editable">
 
                 <thead>
                 <tr>
-
-
                     <th>No</th>
                     <th>Customer Name</th>
                     <th>Customer ID</th>
@@ -58,24 +77,20 @@
                         <td>{{ $customer->speed}}</td>
                         <td>{{ $customer->bill_amount	}}</td>
                         <td>{{ $customer->connection_date}}</td>
-                        <td> {{ $customer->zone_name }}</td>
+                        <td> {{ $customer->zone_id }}</td>
                         <td>{{ $customer->ip_address}}</td>
                         <td class="center">
                             @if($customer->status == 1)
 
                                 <form action="{{ route('inactive-customer',['id'=>$customer->id]) }}" method="POST">
                                     {{ csrf_field() }}
-                                    <button type="submit" class="btn btn-primary btn-sm" title="Inactive">
-                                        <i class="fas fa-arrow-alt-circle-up"></i></a>
-                                    </button>
+                                    <button type="submit" name="btn"  class="btn btn-danger btn-sm">Inactive</button>
                                 </form>
 
                             @else
                                 <form action="{{ route('active-customer',['id'=>$customer->id]) }}" method="POST">
                                     {{ csrf_field() }}
-                                    <button type="submit" class="btn btn-warning btn-sm" title="Active">
-                                        <i class="fas fa-arrow-alt-circle-down"></i></a>
-                                    </button>
+                                    <button type="submit" name="btn"  class="btn btn-success btn-sm">active</button>
                                 </form>
 
                         @endif
@@ -100,7 +115,6 @@
                 </tbody>
                 @endforeach
             </table>
-            {{ $customers->links() }}
 
         </div>
         </div>

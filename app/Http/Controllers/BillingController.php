@@ -81,6 +81,7 @@ class BillingController extends Controller
         $billings->discount = $request->discount;
         $billings->payment_description = $request->payment_description;
         $billings->month = Carbon::now();
+        $billings->dmon = Carbon::now()->format('M -Y');
         $billings->save();
         return redirect()->back()->with('message', 'Billing info saved ');
     }

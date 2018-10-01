@@ -64,7 +64,11 @@
 
                     <div class="col-md-4">
                         <div class="form-group">
-                                    <label for="exampleInputEmail1">Zone</label>
+                            <button id="btn_add" name="btn_add" class="btn btn-default pull-right">Add New Zone</button>
+                            <label for="exampleInputEmail1">Zone</label>
+
+                            <br/>
+                            <br/>
                             <!--<a class="btn btn-default" style="padding: 0px 6px;font-size: 12px;
                                     float:right;"href="" data-toggle="modal" data-target="#create">
                                 <i class="fas fa-plus">Add Zone</i></a> -->
@@ -163,10 +167,37 @@
         </div>
     </div>
 
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Zone Form</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="frmProducts" name="frmProducts" class="form-horizontal" novalidate="">
+                        <div class="form-group error">
+                            <label for="inputName" class="col-sm-3 control-label">Name</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control has-error" id="zone_name" name="zone_name" placeholder="Zone Name" value="">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="btn-save" value="add">Save Changes</button>
+                    <input type="hidden" id="zone_id" name="zone_id" value="0">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <script type="text/javascript">
 
+
         {{-- ajax Form Add Zone--}}
-        $(document).on('click','.create-modal', function() {
+        {{-- $(document).on('click','.create-modal', function() {
             $('#create').modal('show');
             $('.form-horizontal').show();
             $('.modal-zone_name').text('Add Zone');
@@ -202,7 +233,12 @@
             });
             $('#zone_name').val('');
 
-        });
+        }); --}}
     </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="{{asset('js/zonescript.js')}}"></script>
+
 
 @endsection

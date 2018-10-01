@@ -9,11 +9,12 @@ use App\Income;
 use App\Product;
 use App\User;
 use App\Zone;
+use function foo\func;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use Barryvdh\DomPDF\Facade as PDF;
-use ConsoleTVs\Charts;
+
 class SuperAdminController extends Controller
 {
     public function index(){
@@ -26,7 +27,16 @@ class SuperAdminController extends Controller
         $heads = Product::count();
         $cust = Customer::orderBy('id', 'desc')->take(3)->get();
 
-        return view('superadmin.home.homeContent',compact('zones','users','customers','incomes','expenses','heads','cust'));
+        $result = DB::table('expenses')
+            ->select(
+                DB::raw("month as month"),
+                DB::raw("SUM(price) as price"))
+            ->orderBy('month', 'ASC')
+            ->groupBy(DB::raw("month"))
+            ->get();
+        //dd($result);
+
+        return view('superadmin.home.homeContent',compact('zones','users','customers','incomes','expenses','heads','cust','result'));
     }
 
     public function headshow($id){
@@ -96,76 +106,46 @@ class SuperAdminController extends Controller
 
     }
 
-  /*  public function pdfview($id){
-
-        $customers = Customer::find($id);
-        //$users = DB::table("users")->get();
-        view()->share('customers',$customers);
-
-            $pdf = PDF::loadView('superadmin.pdfview');
-            return $pdf->download('pdfview.pdf');
-
-    }*/
-
     public function downloadPDF($id)
     {
         $customers = Customer::find($id);
+        //$cust = Customer::all();
 
-        $pdf = PDF::loadView('superadmin.pdf', compact('customers'));
-        return $pdf->download('invoice.pdf');
+      //  dd($customers,$cust );
+
+            $pdf = PDF::loadView('superadmin.pdf', compact('customers'));
+            return $pdf->stream('invoice.pdf');
     }
 
-    public function abc()
-    {
-        return view('index');
-    }
-
-    public function chart()
+      public function chart()
     {
         $result = DB::table('expenses')
             ->select(
-                DB::raw("month(created_at) as month"),
-                DB::raw("(price) as total_click"))
-              ->orderBy('month', 'ASC')
+                DB::raw("month as month"),
+                DB::raw("SUM(price) as price"))
+            ->orderBy('month', 'ASC')
+            ->groupBy(DB::raw("month"))
             ->get();
+
+        //dd($result);
         return response()->json($result);
+
     }
 
-   /* public function chart()
-    {
-        $result = DB::table('stocks')
+    public function newchart(){
+        $result1 = DB::table('billings')
             ->select(
-                DB::raw("month(created_at) as month"))
-            ->orderBy('stockYear', 'ASC')
-                    ->where('stockName','=','Infosys')
-
-                    ->get();
-        return response()->json($result);
-    }*/
-
-  /*  public function chart()
-
-    {
-          $result = \DB::table('stocks')
-                    ->where('stockName','=','Infosys')
-                    ->orderBy('stockYear', 'ASC')
-                    ->get();
-
-        $income = DB::table('incomes')
-            ->select(
-                DB::raw("month(created_at) as month"),
-                DB::raw("SUM(amount) as total_click"))
-            ->orderBy("created_at")
-            ->groupBy(DB::raw("month(created_at)"))
+                DB::raw("dmon as dmon"),
+                DB::raw("SUM(payment_amount) as amount"))
+            ->orderBy('dmon', 'ASC')
+            ->groupBy(DB::raw("dmon"))
             ->get();
 
-        $result[] = ['Month','Amount'];
-        foreach ($income as $key => $value) {
-            $result[++$key] = [$value->month, (int)$value->total_click];
-        }
+        return response()->json($result1);
 
-        return response()->json($result);
 
-    }*/
+    }
+
+
 
 }
