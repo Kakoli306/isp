@@ -132,7 +132,8 @@ class SuperAdminController extends Controller
 
     }
 
-    public function newchart(){
+    public function newchart()
+    {
         $result1 = DB::table('billings')
             ->select(
                 DB::raw("dmon as dmon"),
@@ -142,10 +143,6 @@ class SuperAdminController extends Controller
             ->get();
 
         return response()->json($result1);
-
-
     }
-
-
 
 }

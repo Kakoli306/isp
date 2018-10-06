@@ -32,7 +32,10 @@ Route::get('/adminPage', 'SuperAdminController@index');
 Route::group(['middleware'=>'role:superadmin||admin'], function() {
     Route::get('/create-user', 'UserController@create')->name('create-user');
     Route::post('/store-user', 'UserController@store')->name('user-store');
-    Route::get('/manage-user', 'UserController@show')->name('user-show');
+   Route::get('/manage-user', 'UserController@show')->name('user-show');
+
+    Route::get('autocomplete-ajax',array('as'=>'autocomplete.ajax','uses'=>'UserController@ajaxData'));
+
     Route::get('/changePassword','UserController@showChangePasswordForm')->name('ch');
     Route::post('/changePassword','UserController@changePassword')->name('changePassword');
     Route::get('/details/{id}', 'UserController@details')->name('user-details');
@@ -48,6 +51,7 @@ Route::group(['prefix'=>'customer'], function() {
     Route::get('/create', 'CustomerController@create')->name('add-customer');
     Route::post('/new', 'CustomerController@save')->name('new-customer');
     Route::get('/manage', 'CustomerController@manageCustomer')->name('manage-customer');
+
     Route::post('/inactive/{id}', 'CustomerController@inactiveCustomer')->name('inactive-customer');
     Route::post('/active/{id}', 'CustomerController@activeCustomer')->name('active-customer');
     Route::get('/edit/{id}', 'CustomerController@editCustomer')->name('edit');
@@ -120,7 +124,12 @@ Route::get('/stock/chart','SuperAdminController@chart');
 
 Route::get('/chart','SuperAdminController@newchart');
 
-Route::get('/search', 'CustomerController@search');
+//Route::get('/manage-user',array('as'=>'autocomplete.ajax','uses'=>'UserController@ajaxData'));
+
+
+
+
+
 
 
 

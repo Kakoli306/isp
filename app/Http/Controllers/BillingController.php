@@ -17,9 +17,12 @@ class BillingController extends Controller
         $customers = DB::table('customers')
             ->join('zones', 'customers.zone_id', '=', 'zones.id')
             ->select('customers.*', 'zones.zone_name')
-            ->orderBy('id', 'DESC')->paginate(8);
+            ->orderBy('customers.id', 'ASC')->paginate(8);
 
-        return view('superadmin.billing.add',['customers'=> $customers])
+        $zones = DB::table('zones')->get();
+
+
+        return view('superadmin.billing.add',['customers'=> $customers,'zones'=>$zones])
             ->with('i', (request()->input('page', 1) - 1) * 5);
 
     }
@@ -27,8 +30,6 @@ class BillingController extends Controller
     public function editBilling($id){
 
         $BillingById = Customer::where('id',$id)->first();
-
-       //For Auth->user->name
         $users = DB::table('billings')
             ->join('users', 'billings.userId', '=', 'users.userId')
             ->select('billings.*', 'users.username')

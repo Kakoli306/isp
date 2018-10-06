@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Billing;
 use App\Customer;
 use App\Zone;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Facades\Input;
+use Carbon\Carbon;
 class CustomerController extends Controller
 {
     public function create(){
@@ -36,29 +38,27 @@ class CustomerController extends Controller
         $customers->status = $request->status;
         $customers->bill_status = 0;
         $customers->save();
-        return redirect("customer/create")->with('message', 'Customer info saved ');
+        return redirect()->back()->with('message', 'Customer info saved ');
     }
 
-    public function manageCustomer(){
+    public function manageCustomer(Request $request){
 
-        $customers = DB::table('customers')
-            ->orderBy('id', 'DESC')->paginate(8);
-
-        $zones = DB::table('zones')
-              ->get();
-
-          //  dd($customers,$zones);
-           // ->orderBy('id', 'DESC')->paginate(8);
-
-        /* DB::table('customers')
+        $customers =   DB::table('customers')
              ->join('zones', 'customers.zone_id', '=', 'zones.id')
              ->select('customers.*', 'zones.zone_name')
-             ->orderBy('id', 'DESC')->paginate(8);*/
+             ->orderBy('customers.id', 'DESC')
+            ->paginate(8);
+
+      //  dd($customers);
+
+        $sun = Customer::sum('bill_amount');
+        $zones = DB::table('zones')->get();
 
 
-        return view('superadmin.customer.manageCustomer',['customers'=> $customers,'zones' => $zones])
+        return view('superadmin.customer.manageCustomer',['customers'=> $customers,'zones' => $zones,'sun' => $sun])
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
+
 
     public function inactiveCustomer($id) {
 
@@ -112,7 +112,10 @@ class CustomerController extends Controller
             ->where('status', 1)
             ->orderBy('id', 'DESC')->paginate(8);
 
-        return view ('superadmin.customer.actives',['customers' =>$customers])
+        $zones = DB::table('zones')->get();
+        $sun = Customer::sum('bill_amount');
+
+        return view ('superadmin.customer.actives',['customers' =>$customers,'zones' => $zones,'sun'=>$sun])
             ->with('i', (request()->input('page', 1) - 1) * 5);
 
     }
@@ -121,7 +124,11 @@ class CustomerController extends Controller
         $customers = DB::table('customers')
             ->where('status', 0)
             ->orderBy('id', 'DESC')->paginate(8);
-        return view ('superadmin.customer.inactives',['customers' =>$customers])
+
+        $zones = DB::table('zones')->get();
+        $sun = Customer::sum('bill_amount');
+
+        return view ('superadmin.customer.inactives',['customers' =>$customers,'zones' => $zones,'sun'=>$sun])
             ->with('i', (request()->input('page', 1) - 1) * 5);
 
     }
@@ -130,9 +137,28 @@ class CustomerController extends Controller
         $currentMonth = date('m');
        $customers = DB::table('customers')
            ->whereRaw('MONTH(connection_date) = ?',[$currentMonth])
-              ->orderBy('id', 'DESC')->paginate(8);
+              ->orderBy('id', 'DESC')->paginate(7);
 
-        return view ('superadmin.customer.current',['customers' =>$customers])
+        $count = DB::table('customers')
+            ->whereYear('created_at', Carbon::now()->year)
+            ->whereMonth('connection_date', Carbon::now()->month)
+            ->count();
+
+
+        $count1 = DB::table('customers')
+            ->whereIn('status', [1])
+            ->whereYear('created_at', Carbon::now()->year)
+            ->whereMonth('connection_date', Carbon::now()->month)
+            ->count();
+
+        $count2 = DB::table('customers')
+            ->whereIn('status', [0])
+            ->whereYear('created_at', Carbon::now()->year)
+            ->whereMonth('connection_date', Carbon::now()->month)
+            ->count();
+
+
+        return view ('superadmin.customer.current',['customers' =>$customers,'count' => $count,'count1' => $count1,'count2'=>$count2])
             ->with('i');
 
 
@@ -149,21 +175,13 @@ class CustomerController extends Controller
 
     }
 
-    public function search() {
+    public function mySearch() {
 
-        // Sets the parameters from the get request to the variables.
-        $name = Request::get('name');
-        $hasCoffeeMachine = Request::get('hasCoffeeMachine');
-
-        // Perform the query using Query Builder
-        $result = DB::table('zones')
-            ->select(DB::raw("*"))
-            ->where('zone_name', '=', $name)
-            ->where('has_coffee_machine', '=', $hasCoffeeMachine)
-            ->get();
-
-        return $result;
-    }
-
+            $q = Input::get ( 'q' );
+            $zone = Zone::where('zone_name','LIKE','%'.$q.'%')->get();
+            if(count($zone) > 0)
+                return view('superadmin.customer.manageCustomer')->withDetails($zone)->withQuery ( $q );
+            else return view ('superadmin.customer.manageCustomer')->withMessage('No Details found. Try to search again !');
+     }
 
 }

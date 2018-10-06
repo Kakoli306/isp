@@ -52,7 +52,7 @@
 
                             <td class="center">
                                 <input type="hidden" value="{{ $BillingById->id }}" name="customer_id">
-                                <a href="{{ route('edit',['id'=>$BillingById->id]) }}" class="on-default edit-row"><i class="fas fa-pencil-alt"></i></a>
+                                <a href="{{ route('edit',['id'=>$BillingById->id]) }}" class="btn btn-info">Edit</a>
                             </td>
                             </tr>
                         </tbody>
@@ -160,10 +160,7 @@
                     <div class="card-body">
                     <div class="row">
 
-                    </div>
-
                         <table class="table table-bordered table-striped mb-0 table-responsive" id="datatable-editable">
-
                         <thead>
                         <tr>
                             <th>#</th>
@@ -188,19 +185,19 @@
 
                         <td class="center">
 
-                            <a class="btn btn-info" href="">Print</a>
+                            <a class="mb-1 mt-1 mr-1 btn btn-default" href="">Print</a>
 
                             <input type="hidden" value="{{ $value->id }}" name="billing_id">
 
-                            <a href="{{ route('edit-amount',['id'=>$value->id]) }}" class="on-default edit-row">
-                                <i class="fas fa-pencil-alt"></i></a>
+                            <a href="{{ route('edit-amount',['id'=>$value->id]) }}" class="mb-1 mt-1 mr-1 btn btn-info">
+                            Edit</a>
 
 
                             <form action="{{ route('delete-billing') }}" method="POST">
                                 {{ csrf_field() }}
                                 <input type="hidden" value="{{$value->id}}" name="billing_id">
                                 <button type="submit" onclick="return confirm('Are u sure want to delete this !!!')"
-                                        class="on-default remove-row"><i class="far fa-trash-alt"></i>
+                                        class="mb-1 mt-1 mr-1 btn btn-outline-danger">Delete
                                 </button>
                             </form>
                         </td>
@@ -211,4 +208,5 @@
                         </table>
                     </div>
                 </div>
+    </div>
 @endsection

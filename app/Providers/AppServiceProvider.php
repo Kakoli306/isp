@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Customer;
 use Illuminate\Support\ServiceProvider;
 use Schema;
 use Illuminate\Support\Facades\View;
@@ -21,14 +22,24 @@ class AppServiceProvider extends ServiceProvider
 
 
         View::composer('superadmin.includes.header',function($view){
-           $user = Auth::user()->id;
-            $role =  User::whereHas('roles', function($q){$q->whereIn('roles.id',['Auth::user()->id']);})->first();
+           //$user = Auth::user()->userId;
+            $role =  User::whereHas('roles', function($q){$q->whereIn('roles.id',['Auth::user()->userId']);})->first();
 
 
-        //dd($photographers);
+        //dd($user);
 
-        $view->with('role',$role);
-                });
+        $view->with('role',$role);});
+
+        view()->composer('superadmin.includes.aside', function ($view) {
+
+            // Get the $data
+            $customer = Customer::orderBy('id', 'desc')->get();
+
+            $view->with('customer', $customer);
+           // dd($customer);
+
+        });
+
 
 
 

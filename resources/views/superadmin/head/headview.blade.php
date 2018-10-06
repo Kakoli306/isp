@@ -6,25 +6,60 @@ View Account Head
 
 @section('content')
 
-    <section class="card">
+    <div id="editbodyload" class="col-md-12" style="  background:#FFFFFF; border:1px solid #999999;"
+             id="bodyload">
+
+
+            <div class="col-md-12" style=" margin-top:5px; margin-bottom: 5px; font-size:14px;  color:red; font-weight:bold; text-align: center;">
+                <b></b>
+            </div>
+            <div class="col-md-12" style=" background:#606060; margin-top:20px; margin-bottom: 15px; min-height:45px; padding:8px 0px 0px 15px; font-size:16px; font-family:Lucida Sans Unicode; color:#FFFFFF; font-weight:bold;">
+                <div class="col-md-6">
+                    <b>View Account Head Information</b>
+                </div>
+
+                <div class="col-md-12" style="">
+                    <button id="btn_add" name="btn_add"  class="btn btn-info btn-xs pull-right">ADD NEW </button>
+                </div>
+
+                <div class="row">
+
+
+                    <div class="col-sm-6">
+                        <div class="pull-right">
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-3" style="">
+                        <form>
+                            <div class="input-group">
+                                <input type="search_text" name="search_text" id="search_text" class="form-control" placeholder="Search for...">
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+
+    </div>
+
+                    <section class="card">
         <div class="container">
             <!-- Important to work AJAX CSRF -->
             <meta name="_token" content="{!! csrf_token() !!}" />
             <body>
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-12 margin-tb">
-                        <div class="pull-right">
-                            <button id="btn_add" name="btn_add" class="btn btn-default pull-right">Add New </button>
-                        </div>
-                    </div>
+                    <div class="col-md-12 margin-tb">
+                           </div>
                 </div>
 
                 <div class="row">
-                    <div class="col-md-8 col-md-offset-2">
+                    <div class="col-md-12 col-md-offset-2">
                         <table class="table table-striped table-hover ">
                             <thead>
-                            <tr class="info">
+                            <tr class="">
                                 <th>ID </th>
                                 <th>Head Name</th>
                                 <th>Head Details</th>
@@ -94,5 +129,6 @@ View Account Head
             </body>
         </div>
     </section>
+
 
 @endsection

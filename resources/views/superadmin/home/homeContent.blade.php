@@ -92,7 +92,7 @@ isp-management
 
 				<section class="card">
 				<div class="row">
-					<div class="col-md-10 col-md-offset-2">
+					<div class="col-md-12">
 						<section class="card card-featured-left card-featured-quaternary">
 							<div class="panel panel-default">
 								<div class="panel-heading"><b>myChart</b></div>
@@ -262,6 +262,7 @@ isp-management
             </section>
         </div>
     </div>
+
                 <br/>
                 <br/>
 
@@ -277,6 +278,7 @@ isp-management
 				</div>
 			</section>
 		</div>
+
 	</div>
 				</section>
 			</div>

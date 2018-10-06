@@ -197,8 +197,6 @@
     <section role="main" class="content-body">
         <header class="page-header">
             <h2>
-                <!DOCTYPE html>
-                <html>
                 <head>
                     <script>
                         function startTime() {
@@ -224,15 +222,16 @@
                 <div id="txt"></div>
 
                 </body>
-                </html>
-
             </h2>
 
             <div class="right-wrapper text-right">
                 <ol class="breadcrumbs">
-                    <li><span>Layouts</span></li>
-                    <li><span>Default</span></li>
+
+                    <li><span>Welcome</span></li>
+                  <body>  <span class="name"> {{ Auth::user()->username }}</span></body>
                 </ol>
+
+                      </ol>
 
                 <a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fas fa-chevron-left"></i></a>
             </div>

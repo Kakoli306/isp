@@ -64,7 +64,6 @@
 
                     <div class="col-md-4">
                         <div class="form-group">
-                            <button id="btn_add" name="btn_add" class="btn btn-default pull-right">Add New Zone</button>
                             <label for="exampleInputEmail1">Zone</label>
 
                             <br/>
@@ -75,7 +74,9 @@
 
                             <select id="zone_id" type="zone_id" class="form-control"
                                     name="zone_id" required>
-                                 @foreach ($zone as $value)
+                                <option>--Select a Zone---</option>
+
+                            @foreach ($zone as $value)
                                             <option value="{{$value->id}}" > {{$value->zone_name}}</option>
                                 @endforeach
                                     </select>
@@ -118,6 +119,7 @@
                             <div class="form-group">
                             <label for="exampleInputEmail1"> Status</label>
                             <select name="status" class="form-control" style="margin-bottom: 5px;" required>
+                                <option value= >--Select--</option>
                                 <option value="1">Active</option>
                                 <option value="0">InActive</option>
                             </select>

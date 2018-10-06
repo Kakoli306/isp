@@ -13,53 +13,36 @@
 
           <ul>
             <li>
-              <time datetime="2017-04-19T00:00+00:00">04/19/2017</time>
-              <span>Company Meeting</span>
+              <time datetime=></time>
+              <span>{{date('Y-m-d H:i:s')}}</span>
             </li>
           </ul>
         </div>
 
+        @foreach($customer as $cust)
+
         <div class="sidebar-widget widget-friends">
-          <h6>Friends</h6>
+          <h6>Customers</h6>
           <ul>
             <li class="status-online">
               <figure class="profile-picture">
                 <img src="{{asset('superadmin/')}}/img/%21sample-user.jpg" alt="Joseph Doe" class="rounded-circle">
               </figure>
+
+
               <div class="profile-info">
-                <span class="name">Joseph Doe Junior</span>
-                <span class="title">Hey, how are you?</span>
+                  <span class="name">{{ $cust->customer_name }}</span>
+                  <span class="mobile">{{ $cust->mobile_no }}</span>
               </div>
+
+
             </li>
-            <li class="status-online">
-              <figure class="profile-picture">
-                <img src="{{asset('superadmin/')}}/img/%21sample-user.jpg" alt="Joseph Doe" class="rounded-circle">
-              </figure>
-              <div class="profile-info">
-                <span class="name">Joseph Doe Junior</span>
-                <span class="title">Hey, how are you?</span>
-              </div>
-            </li>
-            <li class="status-offline">
-              <figure class="profile-picture">
-                <img src="{{asset('superadmin/')}}/img/%21sample-user.jpg" alt="Joseph Doe" class="rounded-circle">
-              </figure>
-              <div class="profile-info">
-                <span class="name">Joseph Doe Junior</span>
-                <span class="title">Hey, how are you?</span>
-              </div>
-            </li>
-            <li class="status-offline">
-              <figure class="profile-picture">
-                <img src="{{asset('superadmin/')}}/img/%21sample-user.jpg" alt="Joseph Doe" class="rounded-circle">
-              </figure>
-              <div class="profile-info">
-                <span class="name">Joseph Doe Junior</span>
-                <span class="title">Hey, how are you?</span>
-              </div>
-            </li>
+
           </ul>
+
+
         </div>
+          @endforeach
 
       </div>
     </div>

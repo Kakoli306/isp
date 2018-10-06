@@ -87,7 +87,9 @@ if(Input::file('profileImage') != null){
         }
 
       public function show(){
-          $users = User::all();
+          $users = User::paginate(3);
+
+
           return view('superadmin.user.showUser',['users'=> $users])
               ->with('i', (request()->input('page', 1) - 1) * 5);
       }
@@ -159,6 +161,15 @@ if(Input::file('profileImage') != null){
         return redirect('manage-user')->with('success',' deleted successfully');
     }
 
+    public function ajaxData(Request $request){
+
+        $query = $request->get('query','');
+
+        $users = User::where('username','LIKE','%'.$query.'%')->get();
+
+        return response()->json($users);
+
+    }
 
 
 
