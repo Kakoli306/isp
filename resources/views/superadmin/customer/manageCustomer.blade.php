@@ -37,10 +37,9 @@
 
                 <div class="col-sm-8">
                     <div class="pull-right">
+                        <a class="mb-1 mt-1 mr-1 btn btn-outline-info" href="{{ route('manage-customer') }}"> View all </a>
                         <a class="btn btn-default" href="{{ route('show-actives') }}"> Only Active </a>
                         <a class="btn btn-default" href="{{ route('show-inactives') }}"> Only InActive </a>
-                        <a class="mb-1 mt-1 mr-1 btn btn-outline-info" href="{{ route('manage-customer') }}"> View all </a>
-
                     </div>
                 </div>
 
@@ -62,8 +61,8 @@
                 </div>
             </div>
 
-            <div class="card-body">
-                <div class="row">
+            <div class="row" style="margin-bottom:10px;">
+                <div class="col-md-4">
                     <div class="summary">
                         <h4 class="title">Total Bill Amount : {{$sun}}</h4>
                         <div class="info">
@@ -71,23 +70,25 @@
                         </div>
                     </div>
 
-
-                <div class="col-sm-6">
-                    <div class="pull-right">
-                        <div class="col-md-4">
-                            <a href="?q=printclient" id="print_link" target="_blank" class="btn btn-info btn-xs pull-right" >Print Client List</a>
-                        </div>
-
-                    </div>
                 </div>
 
-                <div class="col-md-3" style="">
+                <div class="col-md-4 col-md-offset-4">
+
+                </div>
+
+                <div class="col-md-4 col-md-offset-4">
                     <form>
                         <div class="input-group">
                             <input type="search_text" name="search_text" id="search_text" class="form-control" placeholder="Search for...">
                         </div>
                     </form>
                 </div>
+
+            </div>
+
+
+            <div class="card-body">
+                <div class="row">
 
                     <table class="table table-bordered table-striped mb-0 table-responsive" id="datatable-editable">
 
@@ -104,7 +105,7 @@
                         <th>Zone</th>
                         <th>IP</th>
                         <th>Customer Status</th>
-                        <th>Actions</th>
+                        <th width="280px">Actions</th>
                     </tr>
                     </thead>
                     <tbody>

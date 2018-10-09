@@ -20,7 +20,7 @@ $(document).ready(function(){
         // Populate Data in Edit Modal Form
         $.ajax({
             type: "GET",
-            url: url + '/' + zone_id,
+            url: url + '/zone' + zone_id,
             success: function (data) {
 
                 $('#zone_id').val(data.id);
@@ -84,7 +84,7 @@ $(document).ready(function(){
                 $('#myModal').modal('hide')
             },
             error: function (data) {
-               /* $('#myModal').append(data.responseText);
+              /* $('#myModal').append(data.responseText);
                 console.log('Error:', data.responseText);*/
                 console.log('Error:', data);
 

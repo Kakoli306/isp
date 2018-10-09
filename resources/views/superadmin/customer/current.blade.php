@@ -19,7 +19,7 @@
                 </div>
 
             </div>
-            <div class="col-md-12" style=" margin-top:5px; margin-bottom: 5px; font-size:14px;  color:red; font-weight:bold; text-align: center;">
+            <div class="col-md-12" style=" margin-top:3px; margin-bottom: 3px; font-size:14px;  color:red; font-weight:bold; text-align: center;">
                 <b></b>
             </div>
 
@@ -71,7 +71,7 @@
                                 <h3>{{$count}}</h3>
                                 <h3>All</h3>
                             </div>
-                            <div class="col-md-4 btn-info text-center full" style="background-color:#41e4d6;" id="finished">
+                            <div class="col-md-4 btn-info text-center full" style="background-color:#678bd3;" id="finished">
                                 <h3>{{$count1}}</h3>
                                 <h3>Active</h3>
                             </div>
@@ -85,12 +85,10 @@
                         <div class="table-responsive">
 
                             <table class="table table-bordered table-striped mb-0 table-responsive" id="datatable-editable">
-
                                 <thead>
                                 <tr>
                                     <th>#</th>
                                     <th>Customer Name</th>
-                                    <th>Address</th>
                                     <th>Connection Date</th>
                                     <th>Mobile Number</th>
                                     <th>Speed</th>
@@ -106,7 +104,6 @@
                                     <tr>
                                         <td>{{ ++$i }}</td>
                                         <td>{{ $customer->customer_name }}</td>
-                                        <td>{{ $customer->address }}</td>
                                         <td>{{ $customer->connection_date}}</td>
                                         <td>{{ $customer->mobile_no }}</td>
                                         <td>{{ $customer->speed}}</td>

@@ -18,29 +18,12 @@ View Account Head
                     <b>View Account Head Information</b>
                 </div>
 
-                <div class="col-md-12" style="">
+                <div class="col-md-12" >
+                    <div style="float:right; padding-right:10px">
                     <button id="btn_add" name="btn_add"  class="btn btn-info btn-xs pull-right">ADD NEW </button>
                 </div>
 
-                <div class="row">
-
-
-                    <div class="col-sm-6">
-                        <div class="pull-right">
-
-                        </div>
-                    </div>
-
-                    <div class="col-md-3" style="">
-                        <form>
-                            <div class="input-group">
-                                <input type="search_text" name="search_text" id="search_text" class="form-control" placeholder="Search for...">
-                            </div>
-                        </form>
-                    </div>
-
-                </div>
-            </div>
+                 </div>
 
     </div>
 

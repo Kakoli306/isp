@@ -14,9 +14,6 @@
                  id="bodyload">
 
 
-                <div class="col-md-12" style=" margin-top:5px; margin-bottom: 5px; font-size:14px;  color:red; font-weight:bold; text-align: center;">
-                    <b></b>
-                </div>
                 <div class="col-md-12" style=" background:#606060; margin-top:20px; margin-bottom: 15px; min-height:45px; padding:8px 0px 0px 15px; font-size:16px; font-family:Lucida Sans Unicode; color:#FFFFFF; font-weight:bold;">
                     <div class="col-md-6">
                         <b>View Discount Information</b>
@@ -28,25 +25,24 @@
 
             <div class="card-body">
             <div class="row">
-                        <div class="col-sm-6">
-                            <div class="pull-right">
 
-                            </div>
-                        </div>
-
-                             <div class="col-sm-3" style="">
-                            <form>
-                                <div class="input-group">
-                                    <div class="pull-right">
-                                    <input type="search_text" name="search_text" id="search_text" class="form-control" placeholder="Search for...">
-                                </div>
-                                </div>
-                            </form>
-                        </div>
+                    <div class="col-sm-8">
                     </div>
-            <br/>
 
-            <div class="card-body">
+                    <div class="col-md-4">
+                        <form action="/search" method="POST" role="search">
+                            {{ csrf_field() }}
+
+                            <div class="input-group">
+                                <input type="search_text" name="search_text" id="search_text" class="form-control" placeholder="Search for...">
+                            </div>
+                        </form>
+                    </div>
+
+
+
+
+                <div class="card-body">
                 <div class="row">
                     <div class="col-sm-6">
                     </div>

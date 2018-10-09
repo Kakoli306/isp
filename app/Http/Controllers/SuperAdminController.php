@@ -26,17 +26,12 @@ class SuperAdminController extends Controller
         $expenses = Expense::sum('price');
         $heads = Product::count();
         $cust = Customer::orderBy('id', 'desc')->take(3)->get();
+        $user = User::orderBy('userId', 'desc')->take(2)->get();
 
-        $result = DB::table('expenses')
-            ->select(
-                DB::raw("month as month"),
-                DB::raw("SUM(price) as price"))
-            ->orderBy('month', 'ASC')
-            ->groupBy(DB::raw("month"))
-            ->get();
-        //dd($result);
+        $exp = DB::table('expenses')->sum('price');
+        $bill = DB::table('billings')->sum('payment_amount');
 
-        return view('superadmin.home.homeContent',compact('zones','users','customers','incomes','expenses','heads','cust','result'));
+        return view('superadmin.home.homeContent',compact('zones','users','customers','incomes','expenses','heads','cust','user','exp','bill'));
     }
 
     public function headshow($id){
@@ -55,6 +50,7 @@ class SuperAdminController extends Controller
         )
             ->whereYear('created_at',Carbon::now()->year)
             ->groupBy('months')
+            ->orderBy('months','ASC')
             ->get();
 
         $inc = Income::select(
@@ -63,6 +59,7 @@ class SuperAdminController extends Controller
         )
             ->whereYear('created_at',Carbon::now()->year)
             ->groupBy('months')
+            ->orderBy('months','ASC')
             ->get();
 
         $conn = Customer::select(
@@ -71,6 +68,7 @@ class SuperAdminController extends Controller
         )
             ->whereYear('connection_date',Carbon::now()->year)
             ->groupBy('months')
+            ->orderBy('months','ASC')
             ->get();
 
         $exp = Expense::select(
@@ -79,6 +77,7 @@ class SuperAdminController extends Controller
         )
             ->whereYear('created_at',Carbon::now()->year)
             ->groupBy('months')
+            ->orderBy('months','ASC')
             ->get();
 
         $all = collect($ab)->merge($inc)->merge($conn)->merge($exp);
@@ -88,6 +87,7 @@ class SuperAdminController extends Controller
             ->groupBy(function ($merged) {
                 return $merged->months;
             });
+
         return view ('superadmin.report.yearly',compact('year','merged'));
 
     }
@@ -96,13 +96,49 @@ class SuperAdminController extends Controller
     {
         // return $month;
 
-        $ab = Billing::select(
+        $ab =
+            Billing::select(
             DB::raw('sum(payment_amount) as sums'),
-            DB::raw("DATE_FORMAT(month,'%Y-%m') as months")
+            DB::raw("DATE_FORMAT(month,'%Y-%m') as month")
         )
-            ->groupBy('months')
+                ->groupBy('month')
+                ->where(DB::raw("(DATE_FORMAT(month,'%Y-%m'))"),$month)
             ->get();
-        dd($ab);
+
+        $income = Income::select(
+            DB::raw('sum(amount) as incomes'),
+            DB::raw("DATE_FORMAT(created_at,'%Y-%m') as month")
+        )
+            ->groupBy('month')
+            ->where(DB::raw("(DATE_FORMAT(created_at,'%Y-%m'))"),$month)
+            ->get();
+
+        $con = Customer::select(
+            DB::raw('sum(connection_charge) as charge'),
+            DB::raw("DATE_FORMAT(connection_date,'%Y-%m') as month")
+        )
+            ->groupBy('month')
+            ->where(DB::raw("(DATE_FORMAT(connection_date,'%Y-%m'))"),$month)
+            ->get();
+
+        /*$expense = Expense::select(
+            DB::raw('sum(price) as exp'),
+            DB::raw("DATE_FORMAT(date,'%Y-%m') as month")
+        )
+            ->groupBy('month')
+            ->where(DB::raw("(DATE_FORMAT(date,'%Y-%m'))"),$month)
+            ->get();
+       // dd($expense);*/
+
+        $news = collect($ab)->merge($income)->merge($con);
+        $merged = $news->sortBy('month');
+
+        $res = $news->sortBy(function ($merged) {
+            return $merged->month;
+        });
+
+        return view ('superadmin.report.probmonth',compact('res'));
+
 
     }
 
@@ -119,16 +155,19 @@ class SuperAdminController extends Controller
 
       public function chart()
     {
-        $result = DB::table('expenses')
+        $exp = DB::table('expenses')->sum('price');
+        $bill = DB::table('billings')->sum('payment_amount');
+
+        /*DB::table('expenses')
             ->select(
                 DB::raw("month as month"),
                 DB::raw("SUM(price) as price"))
             ->orderBy('month', 'ASC')
             ->groupBy(DB::raw("month"))
-            ->get();
+            ->get();*/
 
         //dd($result);
-        return response()->json($result);
+        return response()->json($exp,$bill);
 
     }
 

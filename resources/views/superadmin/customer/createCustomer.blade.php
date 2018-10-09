@@ -9,6 +9,10 @@
     <div class="card">
         <div class="view overlay">
         <div class="card-body">
+
+            <!-- Important to work AJAX CSRF -->
+            <meta name="_token" content="{!! csrf_token() !!}" />
+
             <h2 class="text-center text-success">{{Session::get('message')}}</h2>
 
             <form role="form" enctype="multipart/form-data" method="post" action="{{ route('new-customer')}}">
@@ -71,6 +75,11 @@
                             <!--<a class="btn btn-default" style="padding: 0px 6px;font-size: 12px;
                                     float:right;"href="" data-toggle="modal" data-target="#create">
                                 <i class="fas fa-plus">Add Zone</i></a> -->
+
+                            <div class="col-md-12" style="">
+                                <button id="btn_add" name="btn_add"  class="btn btn-info btn-xs pull-right">ADD NEW </button>
+                            </div>
+
 
                             <select id="zone_id" type="zone_id" class="form-control"
                                     name="zone_id" required>
@@ -136,8 +145,11 @@
         </div>
 
 
-<!-- zone modal -->
-        <div id="create" class="modal fade" role="dialog" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <!-- Passing BASE URL to AJAX -->
+        <input id="url" type="hidden" value="{{ \Request::url() }}">
+
+        <!-- zone modal -->
+      <!--  <div id="create" class="modal fade" role="dialog" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -167,9 +179,10 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <!-- MODAL SECTION -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -236,11 +249,14 @@
             $('#zone_name').val('');
 
         }); --}}
+
+
     </script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script src="{{asset('js/zonescript.js')}}"></script>
+    <script src="{{asset('js/newscript.js')}}"></script>
+    </div>
 
 
 @endsection

@@ -5,65 +5,106 @@
 @endsection
 
 @section('content')
+
+    <div class="row">
+        <div class="col-md-12 "
+             style=" background:#606060; margin-top:20px; margin-bottom: 15px; min-height:45px; padding:8px 0px 0px 15px; font-size:16px; font-family:Lucida Sans Unicode; color:#FFFFFF; font-weight:bold;">
+            <div class="row">
+                <div class="col-md-4">
+                    <?php $date = \Carbon\Carbon::now();
+                    ?>
+                    <b>View <?php echo $date->format('F'); ?> Expense Report Sheet</b>
+                </div>
+                <div class="col-md-4" style="font-family: Helvetica;">
+                    <div class="col-md-">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div style="float:right; padding-right:10px">
+                        <a id="print_client_bill" class="btn btn-info btn-sm"
+                           href="">Daily Accounting Statement <span class="glyphicon glyphicon-print"></span></a>
+                        <a class="btn btn-success btn-sm" href="">Print Statement <span class="glyphicon glyphicon-plus"></span></a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-12"
+         style=" background:#606060; margin-top:20px; margin-bottom: 15px; min-height:45px; padding:8px 0px 0px 15px; font-size:16px; font-family:Lucida Sans Unicode; color:#FFFFFF; font-weight:bold;">
+
+
+        <div class="form-group row">
+            <label class="col-lg-3 control-label text-lg-right pt-2 ">Select Month</label>
+            <div class="col-lg-6">
+                <div class="input-daterange input-group" data-plugin-datepicker>
+                    <span class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span></span>
+
+                    <input type="text" class="form-control" name="start">
+                    <span class="input-group-text border-left-0 border-right-0 rounded-0">
+															Select Date
+														</span>
+                    <input type="text" class="form-control" name="end">
+                </div>
+            </div>
+
+            <div class="col-lg-3">
+                <button type="submit"  name="search" class="btn btn-primary"><i class="fa fa-search"></i>&nbsp;&nbsp;Search</button>
+            </div>
+
+        </div>
+
+
+    </div>
+
+
     <section class="card">
-        <div class="container">
-            <!-- Important to work AJAX CSRF -->
-            <meta name="_token" content="{!! csrf_token() !!}" />
 
-            <body>
+                        <table class="table table-bordered">
 
-            <div class="container">
-
-                <div class="row">
-                    <div class="col-md-8 col-md-offset-2">
-                        <table class="table table-striped table-hover ">
                             <thead>
-                            <tr class="info">
+                            <tr>
                                 <th>#</th>
-                                <th>Head name </th>
+                                <th>Account Head</th>
                                 <th>Expense</th>
-                            </tr>
+                               </tr>
                             </thead>
-                            <tbody id="products-list" name="products-list">
 
-                            <?php $all= DB::table('expenses')
-                                ->join('products', 'expenses.product_id', '=', 'products.id')
-                                ->select('expenses.*', 'products.name')
-                                ->select('product_id')
-                                ->groupBy('product_id')
-                                ->get();
-                              ?>
-
+                            <tbody>
 
                             @foreach ($expenses as $expense)
-                                <tr id="expense{{$expense->product_id}}" class="active">
+                                <tr>
                                     <td>{{ ++$i }}</td>
-                                    <td>{{$expense->dates}}<td>
-                                    <td>{{$expense->sums}}</td>
-                                    <td>
-
-                                        <?php
-
-                                        $var = DB::table('expenses')->where('product_id',$expense->product_id)->sum('price') ;
-
-                                        ?>
+                                    <?php $all = \App\Product::where('id',$expense->heads )->first(); ?>
+                                    <td style="color: RoyalBlue;">
+                                        <a style="color: RoyalBlue;" href="{{ url('/product/view/'.$all->id) }}">{{$all->name}}</a>
                                     </td>
+                                    <td>{{$expense->sums}}</td>
                                 </tr>
                             @endforeach
                             </tbody>
                         </table>
-                    </div>
+
+            <div class="row">
+
+                <div class="col-md-12 bg-slate-800">
+                    <h4 class="text-center">
+                        <strong><small>Total expense : </small>{{$total}}</strong>
+                    </h4>
                 </div>
+                <div class="col-md-12 bg-grey-800">
+                    <h4 class="text-center">
+
+
+                        <strong><small>Balance Ammount In Word :  </small>
+                        </strong>
+                    </h4>
+                </div>
+
             </div>
-            </body>
 
-            <div class="mb-3">
-                <strong class="amount">Total expense : {{$total}}</strong>
-
-            </div>
-
-
-        </div>
     </section>
 
     @endsection

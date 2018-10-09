@@ -18,27 +18,34 @@
         </div>
     </div>
 
+    <div class="row" style="margin-bottom:10px;">
+        <div class="col-md-4">
+            <div class="summary">
+                <div class="info">
+                    <strong class="amount"></strong>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-md-4 col-md-offset-4">
+
+        </div>
+
+        <div class="col-md-4 col-md-offset-4">
+            <form>
+                <div class="input-group">
+                    <input type="search_text" name="search_text" id="search_text" class="form-control" placeholder="Search for...">
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+
     <div class="card-body">
         <div class="container">
             <div class="row">
-                <div class="summary">
-                    <h4 class="title">UnPaid Client</h4>
-                </div>
-
-
-                <div class="col-sm-6">
-                    <div class="pull-right">
-
-                    </div>
-                </div>
-
-                <div class="col-md-3" style="">
-                    <form>
-                        <div class="input-group">
-                            <input type="search_text" name="search_text" id="search_text" class="form-control" placeholder="Search for...">
-                        </div>
-                    </form>
-                </div>
 
 
                 <section class="card">

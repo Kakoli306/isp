@@ -18,6 +18,25 @@
         </div>
     </div>
 
+    <div class="row" style="margin-bottom:10px;">
+        <div class="col-md-4">
+
+        </div>
+        <div class="col-md-4 col-md-offset-4">
+
+        </div>
+
+        <div class="col-md-4 col-md-offset-4">
+            <form>
+                <div class="input-group">
+                    <input type="search_text" name="search_text" id="search_text" class="form-control" placeholder="Search for...">
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+
     <div class="card-body">
         <div class="container">
             <div class="row">
@@ -31,20 +50,14 @@
                     </div>
                 </div>
 
-                <div class="col-md-3" style="">
-                    <form>
-                        <div class="input-group">
-                            <input type="search_text" name="search_text" id="search_text" class="form-control" placeholder="Search for...">
-                        </div>
-                    </form>
-                </div>
+                <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
 
 
                 <!-- start: page -->
     <section class="card">
         <div class="card-body">
-            <table class="table table-responsive-lg table-bordered table-striped table-sm mb-0">
-
+            <table class="table table-bordered table-striped mb-0 table-responsive" id="datatable-editable">
                 <thead>
                 <tr>
                     <th>#</th>
@@ -105,26 +118,23 @@
             {{ $users->links() }}
 
         </div>
+
+
         <script type="text/javascript">
-
-            var url = "{{ route('autocomplete.ajax') }}";
-
-            $('#search_text').typeahead({
-
+            var path = "{{ route('autocomplete') }}";
+            $('input.typeahead').typeahead({
                 source:  function (query, process) {
-
-                    return $.get(url, { query: query }, function (data) {
-
+                    return $.get(path, { query: query }, function (data) {
                         return process(data);
-
                     });
-
                 }
-
             });
-
         </script>
 
 
     </section>
+
+            </div>
+        </div>
+    </div>
     @endsection

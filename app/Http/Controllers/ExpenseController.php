@@ -137,38 +137,36 @@ class ExpenseController extends Controller
     {
         $total = DB::table('expenses')->sum('price');
 
-        /*$expenses = DB::table('expenses')
+        /* $exp = DB::table('expenses')
             ->join('products', 'expenses.product_id', '=', 'products.id')
-            ->select('expenses.*', 'products.name')
-            ->whereMonth('date', Carbon::now()->month)
-            ->latest()->paginate(8);*/
-
-        $all= DB::table('expenses')
-            ->join('products', 'expenses.product_id', '=', 'products.id')
-            ->select('expenses.*', 'products.name')
-            ->select('product_id',DB::raw('count(*) as count'))
-            ->groupBy('product_id')
+            ->select('expenses.price','expenses.product_id', 'products.*', DB::raw('sum(price) as sums'))
+          ->groupBy('product_id')
             ->get();
 
+        dd($exp);*/
 
-        $exp = DB::table('expenses')
-            ->join('products', 'expenses.product_id', '=', 'products.id')
-            ->select('expenses.*', 'products.name')
-            ->get();
-       // dd($exp);
 
         $expenses = Expense::select(
             DB::raw('sum(price) as sums'),
-            DB::raw("DATE_FORMAT(created_at,'%D %M %Y') as dates",Carbon::now()->month)
+            DB::raw('(product_id) as heads')
         )
-            ->groupBy('dates')
+            ->groupBy('heads')
             ->get();
-//dd($expenses);
 
-
-
-        return view ('superadmin.expense.new',['expenses' =>$expenses,'total' => $total,'exp' => $exp])
+        return view ('superadmin.expense.new',['expenses' =>$expenses,'total' => $total])
             ->with('i', (request()->input('page', 1) - 1) * 5);
 
     }
+
+
+    public function exp($date){
+
+        $billings = DB::table('expenses')
+            ->join('products', 'expenses.product_id', '=', 'products.id')
+            ->select('expenses.*', 'products.name')
+            ->where('date', '=', $date)
+            ->get();
+        return view('superadmin.report.showallexp',compact('billings'));
+    }
+
 }

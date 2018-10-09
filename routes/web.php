@@ -34,7 +34,7 @@ Route::group(['middleware'=>'role:superadmin||admin'], function() {
     Route::post('/store-user', 'UserController@store')->name('user-store');
    Route::get('/manage-user', 'UserController@show')->name('user-show');
 
-    Route::get('autocomplete-ajax',array('as'=>'autocomplete.ajax','uses'=>'UserController@ajaxData'));
+    Route::get('autocomplete', 'UserController@autocomplete')->name('autocomplete');
 
     Route::get('/changePassword','UserController@showChangePasswordForm')->name('ch');
     Route::post('/changePassword','UserController@changePassword')->name('changePassword');
@@ -77,6 +77,7 @@ Route::post('/billing/unpaid', 'BillingController@unpaid')->name('show-unpaid');
 Route::get('/discount', 'BillingController@discount')->name('discount');
 Route::get('/paid', 'NewController@paid')->name('paid_customer');
 Route::get('/unpaid', 'NewController@unpaid')->name('unpaid_customer');
+Route::get('/billing/showing/{id}', 'BillingController@showBilling');
 
 
 Route::get('/monthly', 'NewController@monthly')->name('monthly');
@@ -90,6 +91,8 @@ Route::get('/daily/date/{id}', 'NewController@daily');
 Route::get('/con/date/{id}', 'NewController@con');
 Route::get('/inc/date/{id}', 'NewController@inc');
 Route::get('/exp/date/{id}', 'NewController@exp');
+
+Route::get('/product/view/{id}', 'NewController@product');
 
 Route::get('/income_report', 'NewController@report')->name('inc_report');
 
@@ -120,11 +123,8 @@ Route::get('/exp_report', 'ExpenseController@report')->name('expense_report');
 
 Route::get('/downloadPDF/{id}','SuperAdminController@downloadPDF')->name('pdf');
 
-Route::get('/stock/chart','SuperAdminController@chart');
-
 Route::get('/chart','SuperAdminController@newchart');
 
-//Route::get('/manage-user',array('as'=>'autocomplete.ajax','uses'=>'UserController@ajaxData'));
 
 
 

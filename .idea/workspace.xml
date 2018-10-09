@@ -2,18 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="76fd6b11-2e7f-4f86-9477-088928b2a757" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/public/js/newscript.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/superadmin/billing/show.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/superadmin/report/probmonth.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/superadmin/report/product.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/BillingController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/BillingController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CustomerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CustomerController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ExpenseController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ExpenseController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/NewController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/NewController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/SuperAdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/SuperAdminController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Archive.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Image/download (4).jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/superadmin/img/ab.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/zonescript.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/zonescript.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/expenses/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/expenses/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/income/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/income/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/superadmin/billing/add.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/superadmin/billing/add.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/superadmin/billing/connection.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/superadmin/billing/connection.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/superadmin/billing/discount.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/superadmin/billing/discount.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/superadmin/billing/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/superadmin/billing/edit.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/superadmin/customer/actives.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/superadmin/customer/actives.blade.php" afterDir="false" />
@@ -23,14 +24,19 @@
       <change beforePath="$PROJECT_DIR$/resources/views/superadmin/customer/manageCustomer.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/superadmin/customer/manageCustomer.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/superadmin/customer/paid.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/superadmin/customer/paid.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/superadmin/customer/unpaid.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/superadmin/customer/unpaid.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/superadmin/expense/new.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/superadmin/expense/new.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/superadmin/head/headview.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/superadmin/head/headview.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/superadmin/home/homeContent.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/superadmin/home/homeContent.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/superadmin/includes/aside.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/superadmin/includes/aside.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/superadmin/includes/header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/superadmin/includes/header.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/superadmin/includes/sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/superadmin/includes/sidebar.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/superadmin/master.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/superadmin/master.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/superadmin/report/inc_report.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/superadmin/report/inc_report.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/superadmin/report/monthly.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/superadmin/report/monthly.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/superadmin/report/showallcon.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/superadmin/report/showallcon.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/superadmin/report/showallexp.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/superadmin/report/showallexp.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/superadmin/report/showallinc.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/superadmin/report/showallinc.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/superadmin/report/statement.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/superadmin/report/statement.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/superadmin/report/today.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/superadmin/report/today.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/superadmin/user/showUser.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/superadmin/user/showUser.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/superadmin/user/userdetails.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/superadmin/user/userdetails.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/superadmin/zone/zoneview.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/superadmin/zone/zoneview.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -105,14 +111,14 @@
     <session id="311168028">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="28" />
+          <entry key="project.closed" value="33" />
           <entry key="project.open.time.11" value="2" />
           <entry key="project.open.time.12" value="2" />
-          <entry key="project.open.time.13" value="3" />
+          <entry key="project.open.time.13" value="4" />
           <entry key="project.open.time.14" value="1" />
           <entry key="project.open.time.15" value="2" />
-          <entry key="project.open.time.16" value="4" />
-          <entry key="project.open.time.17" value="2" />
+          <entry key="project.open.time.16" value="5" />
+          <entry key="project.open.time.17" value="3" />
           <entry key="project.open.time.18" value="3" />
           <entry key="project.open.time.19" value="2" />
           <entry key="project.open.time.20" value="1" />
@@ -121,23 +127,24 @@
           <entry key="project.open.time.4" value="1" />
           <entry key="project.open.time.40" value="1" />
           <entry key="project.open.time.45" value="1" />
+          <entry key="project.open.time.5" value="1" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="31" />
+          <entry key="project.opened" value="36" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="env" value="3" />
-          <entry key="js" value="28" />
-          <entry key="php" value="23083" />
+          <entry key="js" value="36" />
+          <entry key="php" value="25570" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key=".env file" value="3" />
-          <entry key="Blade" value="12143" />
-          <entry key="JavaScript" value="28" />
-          <entry key="PHP" value="10940" />
+          <entry key="Blade" value="13792" />
+          <entry key="JavaScript" value="36" />
+          <entry key="PHP" value="11778" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -145,20 +152,20 @@
           <entry key="env" value="3" />
           <entry key="ico" value="1" />
           <entry key="jpg" value="3" />
-          <entry key="js" value="14" />
+          <entry key="js" value="16" />
           <entry key="md" value="2" />
-          <entry key="php" value="726" />
+          <entry key="php" value="819" />
           <entry key="png" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key=".env file" value="3" />
-          <entry key="Blade" value="447" />
+          <entry key="Blade" value="512" />
           <entry key="Image" value="5" />
-          <entry key="JavaScript" value="14" />
+          <entry key="JavaScript" value="16" />
           <entry key="Markdown" value="2" />
-          <entry key="PHP" value="279" />
+          <entry key="PHP" value="307" />
         </counts>
       </usages-collector>
     </session>
@@ -166,10 +173,19 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/NewController.php">
+        <entry file="file://$PROJECT_DIR$/resources/views/superadmin/billing/show.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-316">
-              <caret line="37" column="52" selection-start-line="37" selection-start-column="52" selection-end-line="37" selection-end-column="52" />
+            <state relative-caret-position="194">
+              <caret line="128" column="31" selection-start-line="128" selection-start-column="31" selection-end-line="128" selection-end-column="31" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/SuperAdminController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="364">
+              <caret line="131" column="9" selection-start-line="131" selection-start-column="9" selection-end-line="131" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -177,30 +193,29 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/superadmin/report/statement.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="509">
-              <caret line="90" selection-start-line="63" selection-start-column="4" selection-end-line="90" />
-              <folding>
-                <element signature="e#161#352#0#HTML" expanded="true" />
-                <element signature="e#624#655#0#HTML" expanded="true" />
-                <element signature="e#787#826#0#HTML" expanded="true" />
-                <element signature="e#1404#1595#0#HTML" expanded="true" />
-                <element signature="e#1431#1622#0#HTML" expanded="true" />
-              </folding>
+            <state relative-caret-position="-285">
+              <caret line="58" selection-start-line="58" selection-end-line="58" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/income/index.blade.php">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/NewController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="23">
-              <caret line="35" column="8" selection-start-line="35" selection-start-column="8" selection-end-line="35" selection-end-column="8" />
+            <state relative-caret-position="248">
+              <caret line="37" lean-forward="true" selection-start-line="37" selection-end-line="37" />
               <folding>
-                <element signature="e#183#374#0#HTML" expanded="true" />
-                <element signature="e#728#759#0#HTML" expanded="true" />
-                <element signature="e#937#976#0#HTML" expanded="true" />
-                <element signature="e#1424#1615#0#HTML" expanded="true" />
+                <element signature="e#40#56#0#PHP" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/views/superadmin/report/probmonth.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="291">
+              <caret line="37" column="47" selection-start-line="37" selection-start-column="47" selection-end-line="37" selection-end-column="47" />
             </state>
           </provider>
         </entry>
@@ -208,25 +223,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/superadmin/report/monthly.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="335">
-              <caret line="37" column="32" selection-start-line="37" selection-start-column="32" selection-end-line="37" selection-end-column="32" />
-              <folding>
-                <element signature="e#1166#1191#0#HTML" expanded="true" />
-              </folding>
+            <state relative-caret-position="718">
+              <caret line="118" column="24" selection-start-line="118" selection-start-column="24" selection-end-line="118" selection-end-column="24" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resources/views/superadmin/billing/connection.blade.php">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/superadmin/report/yearly.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="39" column="67" selection-start-line="39" selection-start-column="67" selection-end-line="39" selection-end-column="67" />
-              <folding>
-                <element signature="e#173#364#0#HTML" expanded="true" />
-                <element signature="e#686#717#0#HTML" expanded="true" />
-                <element signature="e#1399#1590#0#HTML" expanded="true" />
-              </folding>
+            <state relative-caret-position="230">
+              <caret line="40" column="37" selection-start-line="40" selection-start-column="37" selection-end-line="40" selection-end-column="37" />
             </state>
           </provider>
         </entry>
@@ -272,57 +279,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/SuperAdmin.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/NewController.php" />
-        <option value="$PROJECT_DIR$/resources/views/welcome.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/layouts/app.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/superadmin/report/inc_report.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/superadmin/report/yearly.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/superadmin/chartjs.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/superadmin/chart.blade.php" />
-        <option value="$PROJECT_DIR$/resources/master1.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/superadmin/master1.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/index.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/superadmin/google-line-chart.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/ExpenseController.php" />
         <option value="$PROJECT_DIR$/config/app.php" />
         <option value="$PROJECT_DIR$/resources/highchart.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/superadmin/highchart.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/superadmin/report/monthly.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/superadmin/user/editUser.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/superadmin/expense/new.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/superadmin/customer/sd.php" />
         <option value="$PROJECT_DIR$/resources/views/superadmin/pdf.blade.php" />
         <option value="$PROJECT_DIR$/app/Customer.php" />
-        <option value="$PROJECT_DIR$/resources/views/superadmin/home/homeContent.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/superadmin/includes/aside.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/superadmin/user/del.blade.php" />
         <option value="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" />
-        <option value="$PROJECT_DIR$/resources/views/superadmin/master.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/superadmin/user/userdetails.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/SuperAdminController.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/UserController.php" />
-        <option value="$PROJECT_DIR$/routes/web.php" />
         <option value="$PROJECT_DIR$/resources/views/superadmin/includes/sidebar.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/superadmin/includes/header.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/CustomerController.php" />
+        <option value="$PROJECT_DIR$/resources/views/income/index.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/superadmin/billing/connection.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/UserController.php" />
+        <option value="$PROJECT_DIR$/resources/views/superadmin/customer/current.blade.php" />
+        <option value="$PROJECT_DIR$/public/js/zonescript.js" />
+        <option value="$PROJECT_DIR$/resources/views/superadmin/customer/createCustomer.blade.php" />
+        <option value="$PROJECT_DIR$/public/js/newscript.js" />
+        <option value="$PROJECT_DIR$/resources/views/superadmin/report/inc_report.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/superadmin/user/showUser.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/superadmin/billing/edit.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/superadmin/customer/actives.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/superadmin/customer/inactives.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/superadmin/customer/createCustomer.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/CustomerController.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/BillingController.php" />
-        <option value="$PROJECT_DIR$/resources/views/superadmin/billing/edit.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/superadmin/billing/add.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/superadmin/customer/paid.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/superadmin/customer/unpaid.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/superadmin/head/headview.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/superadmin/billing/discount.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/superadmin/master.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/superadmin/zone/zoneview.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/expenses/index.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/income/index.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/superadmin/billing/discount.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/superadmin/customer/manageCustomer.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/superadmin/user/showUser.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/superadmin/customer/current.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/superadmin/home/homeContent.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/ExpenseController.php" />
+        <option value="$PROJECT_DIR$/resources/views/superadmin/expense/new.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/superadmin/report/product.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/BillingController.php" />
+        <option value="$PROJECT_DIR$/routes/web.php" />
+        <option value="$PROJECT_DIR$/resources/views/superadmin/billing/add.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/superadmin/billing/show.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/superadmin/report/statement.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/superadmin/billing/connection.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/NewController.php" />
+        <option value="$PROJECT_DIR$/resources/views/superadmin/report/today.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/superadmin/report/showallexp.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/superadmin/report/showallcon.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/superadmin/report/showallinc.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/superadmin/report/monthly.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/superadmin/report/probmonth.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/SuperAdminController.php" />
       </list>
     </option>
   </component>
@@ -465,6 +472,12 @@
             <path>
               <item name="isp-management_29" type="b2602c69:ProjectViewProjectNode" />
               <item name="isp-management_29" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Providers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="isp-management_29" type="b2602c69:ProjectViewProjectNode" />
+              <item name="isp-management_29" type="462c0819:PsiDirectoryNode" />
               <item name="database" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -488,6 +501,13 @@
               <item name="isp-management_29" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="expenses" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="isp-management_29" type="b2602c69:ProjectViewProjectNode" />
+              <item name="isp-management_29" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="income" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -503,22 +523,6 @@
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="superadmin" type="462c0819:PsiDirectoryNode" />
-              <item name="billing" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="isp-management_29" type="b2602c69:ProjectViewProjectNode" />
-              <item name="isp-management_29" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="superadmin" type="462c0819:PsiDirectoryNode" />
-              <item name="customer" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="isp-management_29" type="b2602c69:ProjectViewProjectNode" />
-              <item name="isp-management_29" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="superadmin" type="462c0819:PsiDirectoryNode" />
               <item name="expense" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -527,15 +531,7 @@
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="superadmin" type="462c0819:PsiDirectoryNode" />
-              <item name="head" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="isp-management_29" type="b2602c69:ProjectViewProjectNode" />
-              <item name="isp-management_29" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="superadmin" type="462c0819:PsiDirectoryNode" />
-              <item name="includes" type="462c0819:PsiDirectoryNode" />
+              <item name="home" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="isp-management_29" type="b2602c69:ProjectViewProjectNode" />
@@ -544,22 +540,6 @@
               <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="superadmin" type="462c0819:PsiDirectoryNode" />
               <item name="report" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="isp-management_29" type="b2602c69:ProjectViewProjectNode" />
-              <item name="isp-management_29" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="superadmin" type="462c0819:PsiDirectoryNode" />
-              <item name="user" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="isp-management_29" type="b2602c69:ProjectViewProjectNode" />
-              <item name="isp-management_29" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="superadmin" type="462c0819:PsiDirectoryNode" />
-              <item name="zone" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="isp-management_29" type="b2602c69:ProjectViewProjectNode" />
@@ -681,12 +661,16 @@
       <workItem from="1538541035621" duration="19177000" />
       <workItem from="1538634417508" duration="188000" />
       <workItem from="1538634896573" duration="15918000" />
-      <workItem from="1538800531456" duration="22071000" />
+      <workItem from="1538800531456" duration="22642000" />
+      <workItem from="1538886644381" duration="1500000" />
+      <workItem from="1538890171219" duration="17926000" />
+      <workItem from="1538974520088" duration="19265000" />
+      <workItem from="1539059948086" duration="20033000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="785566000" />
+    <option name="totallyTimeSpent" value="844861000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="719" extended-state="0" />
@@ -694,10 +678,10 @@
     <layout>
       <window_info id="npm" order="0" side_tool="true" />
       <window_info id="Favorites" order="1" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="2" weight="0.26171243" />
+      <window_info active="true" content_ui="combo" id="Project" order="2" visible="true" weight="0.2657512" />
       <window_info id="Structure" order="3" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Event Log" order="0" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="1" />
+      <window_info anchor="bottom" id="Version Control" order="1" weight="0.32854864" />
       <window_info anchor="bottom" id="Terminal" order="2" weight="0.7352472" />
       <window_info anchor="bottom" id="Docker" order="3" show_stripe_button="false" />
       <window_info anchor="bottom" id="Message" order="4" />
@@ -722,104 +706,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/resources/views/superadmin/user/editUser.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="331">
-          <caret line="76" selection-start-line="76" selection-end-line="76" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/superadmin/customer/editCustomer.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="137">
-          <caret line="33" column="34" selection-start-line="33" selection-start-column="34" selection-end-line="33" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/IncomeController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="25" column="8" selection-start-line="25" selection-end-line="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/superadmin/customer/sd.php" />
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ExpenseController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="235">
-          <caret line="56" column="34" lean-forward="true" selection-start-line="56" selection-start-column="34" selection-end-line="56" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/superadmin/pdf.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" selection-start-line="26" selection-end-line="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/app.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="458">
-          <caret line="221" selection-start-line="221" selection-end-line="221" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/zonescript.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1080">
-          <caret line="3" column="40" selection-start-line="3" selection-start-column="40" selection-end-line="3" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/home.blade.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Customer.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="4" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Billing.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="1" lean-forward="true" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/superadmin/js/theme.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-14628" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/superadmin/user/del.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="547">
-          <caret line="109" column="11" selection-start-line="109" selection-start-column="11" selection-end-line="109" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/Image/user.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/Image/icone.ico">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/superadmin/img/blog-image-1.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/superadmin/img/ab.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Providers/AppServiceProvider.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/layouts/app.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="735">
@@ -834,27 +720,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/superadmin/home/homeContent.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="229" column="28" selection-start-line="223" selection-start-column="28" selection-end-line="229" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/superadmin/customer/inactives.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="28" column="57" selection-start-line="28" selection-start-column="57" selection-end-line="28" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/superadmin/customer/actives.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" selection-start-line="11" selection-end-line="80" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/superadmin/includes/aside.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="585">
@@ -862,234 +727,357 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/superadmin/master.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1845">
-          <caret line="123" column="13" selection-start-line="123" selection-start-column="13" selection-end-line="123" selection-end-column="38" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/public/js/ajaxscript.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Product.php">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/superadmin/customer/createCustomer.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="246">
-          <caret line="77" selection-start-line="77" selection-end-line="77" />
+        <state relative-caret-position="412">
+          <caret line="257" column="38" selection-start-line="257" selection-start-column="29" selection-end-line="257" selection-end-column="38" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/superadmin/zone/zoneview.blade.php">
+    <entry file="file://$PROJECT_DIR$/public/js/newscript.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
+        <state relative-caret-position="-311">
+          <caret line="13" selection-start-line="13" selection-end-line="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ZoneController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-283">
+          <caret line="4" column="4" lean-forward="true" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/superadmin/customer/current.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="621">
+          <caret line="73" column="48" selection-start-line="73" selection-start-column="48" selection-end-line="73" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/superadmin/report/inc_report.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="42" column="46" selection-start-line="42" selection-start-column="46" selection-end-line="42" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/UserController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="571">
+          <caret line="181" column="37" selection-start-line="181" selection-start-column="37" selection-end-line="181" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Expense.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="59" selection-start-line="8" selection-start-column="49" selection-end-line="8" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/superadmin/billing/connection.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="32" column="34" selection-start-line="32" selection-start-column="34" selection-end-line="32" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/zonescript.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="660">
+          <caret line="44" column="13" selection-start-line="44" selection-start-column="13" selection-end-line="44" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/superadmin/user/userdetails.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1635">
+          <caret line="109" selection-start-line="109" selection-end-line="109" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/superadmin/user/showUser.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="25" column="11" selection-start-line="25" selection-start-column="11" selection-end-line="25" selection-end-column="11" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CustomerController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1187">
+        <state relative-caret-position="42">
           <caret line="51" column="20" selection-start-line="51" selection-start-column="20" selection-end-line="51" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/superadmin/customer/inactives.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="86">
+          <caret line="58" column="30" lean-forward="true" selection-start-line="58" selection-start-column="30" selection-end-line="58" selection-end-column="30" />
           <folding>
-            <element signature="e#40#56#0#PHP" expanded="true" />
+            <element signature="e#2534#2561#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/superadmin/customer/paid.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="82">
-          <caret line="28" column="34" selection-start-line="28" selection-start-column="34" selection-end-line="28" selection-end-column="34" />
-          <folding>
-            <element signature="e#157#348#0#HTML" expanded="true" />
-          </folding>
+        <state relative-caret-position="172">
+          <caret line="23" selection-start-line="23" selection-end-line="23" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/ajaxscript.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/superadmin/includes/sidebar.blade.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/superadmin/customer/unpaid.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="549">
-          <caret line="51" column="88" selection-start-line="51" selection-start-column="62" selection-end-line="51" selection-end-column="88" />
+        <state relative-caret-position="345">
+          <caret line="23" selection-start-line="23" selection-end-line="23" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/superadmin/user/userdetails.blade.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/superadmin/customer/actives.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="534">
-          <caret line="109" selection-start-line="109" selection-end-line="109" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/superadmin/billing/edit.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="344">
-          <caret line="187" column="27" selection-start-line="187" selection-end-line="188" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/UserController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="88" column="27" selection-start-line="88" selection-start-column="27" selection-end-line="88" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/BillingController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="122" column="22" lean-forward="true" selection-start-line="122" selection-start-column="22" selection-end-line="122" selection-end-column="22" />
+        <state relative-caret-position="240">
+          <caret line="28" lean-forward="true" selection-start-line="22" selection-start-column="16" selection-end-line="28" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/superadmin/head/headview.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="277">
-          <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
-          <folding>
-            <element signature="e#12105#12160#0#HTML" expanded="true" />
-            <element signature="e#12226#12336#0#HTML" expanded="true" />
-            <element signature="e#12416#12607#0#HTML" expanded="true" />
-          </folding>
+        <state relative-caret-position="137">
+          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/superadmin/master.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="397">
+          <caret line="127" column="91" selection-start-line="127" selection-start-column="91" selection-end-line="127" selection-end-column="91" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/superadmin/zone/zoneview.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="167">
+          <caret line="23" column="22" lean-forward="true" selection-start-line="23" selection-start-column="22" selection-end-line="23" selection-end-column="22" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/superadmin/billing/discount.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="373">
-          <caret line="72" column="104" selection-start-line="72" selection-start-column="104" selection-end-line="72" selection-end-column="104" />
-          <folding>
-            <element signature="e#2714#2739#0#HTML" expanded="true" />
-          </folding>
+        <state relative-caret-position="311">
+          <caret line="25" column="35" selection-start-line="25" selection-start-column="35" selection-end-line="25" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/superadmin/home/homeContent.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="447">
+          <caret line="222" selection-start-line="222" selection-end-line="222" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/superadmin/customer/manageCustomer.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="53">
+          <caret line="87" selection-start-line="87" selection-end-line="87" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/expenses/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="23" selection-start-line="23" selection-end-line="23" />
+        <state relative-caret-position="19">
+          <caret line="4" column="11" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/superadmin/billing/amountedit.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-53" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/income/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="314">
+          <caret line="70" column="38" selection-start-line="70" selection-start-column="18" selection-end-line="70" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/superadmin/includes/sidebar.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="121" column="89" selection-start-line="121" selection-start-column="62" selection-end-line="121" selection-end-column="89" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/superadmin/report/product.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="388">
+          <caret line="65" column="52" selection-start-line="65" selection-start-column="52" selection-end-line="65" selection-end-column="52" />
           <folding>
-            <element signature="e#167#358#0#HTML" expanded="true" />
+            <element signature="e#667#698#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/superadmin/report/showBilling.blade.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="350">
+          <caret line="79" column="33" selection-start-line="79" selection-start-column="12" selection-end-line="79" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/BillingController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="427">
+          <caret line="164" column="84" selection-start-line="164" selection-start-column="84" selection-end-line="164" selection-end-column="84" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/superadmin/expense/new.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="339">
+          <caret line="64" column="58" selection-start-line="64" selection-start-column="38" selection-end-line="64" selection-end-column="58" />
+          <folding>
+            <element signature="e#3425#3450#0#HTML" expanded="true" />
+            <element signature="e#3491#3516#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/superadmin/billing/add.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="698">
+          <caret line="134" column="92" selection-start-line="134" selection-start-column="92" selection-end-line="134" selection-end-column="92" />
+          <folding>
+            <element signature="e#3649#3674#0#HTML" expanded="true" />
+            <element signature="e#3719#3744#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/superadmin/billing/edit.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="19" column="115" selection-start-line="19" selection-start-column="33" selection-end-line="19" selection-end-column="115" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/superadmin/billing/show.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="194">
+          <caret line="128" column="31" selection-start-line="128" selection-start-column="31" selection-end-line="128" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/superadmin/report/today.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
+          <folding>
+            <element signature="e#178#369#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/superadmin/report/showallexp.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="547">
+          <caret line="52" lean-forward="true" selection-start-line="52" selection-end-line="52" />
+          <folding>
+            <element signature="e#173#364#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/superadmin/report/showallinc.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="235">
+          <caret line="56" column="35" selection-start-line="56" selection-start-column="35" selection-end-line="56" selection-end-column="35" />
+          <folding>
+            <element signature="e#173#364#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/superadmin/report/showallcon.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="314">
+          <caret line="52" lean-forward="true" selection-start-line="52" selection-end-line="52" />
+          <folding>
+            <element signature="e#173#364#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/superadmin/report/yearly.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="40" column="37" selection-start-line="40" selection-start-column="37" selection-end-line="40" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/superadmin/report/monthly.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="718">
+          <caret line="118" column="24" selection-start-line="118" selection-start-column="24" selection-end-line="118" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ExpenseController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="142">
+          <caret line="135" column="28" selection-start-line="135" selection-start-column="28" selection-end-line="135" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Providers/AppServiceProvider.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="13" column="7" selection-start-line="13" selection-start-column="7" selection-end-line="13" selection-end-column="7" />
+          <folding>
+            <element signature="e#33#50#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/SuperAdminController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="67">
-          <caret line="33" column="22" lean-forward="true" selection-start-line="33" selection-start-column="22" selection-end-line="33" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/superadmin/expense/new.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="900">
-          <caret line="60" column="54" selection-start-line="60" selection-start-column="54" selection-end-line="60" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/web.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-910">
-          <caret line="36" column="33" selection-start-line="36" selection-start-column="33" selection-end-line="36" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/superadmin/billing/add.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="579">
-          <caret line="45" column="59" selection-start-line="45" selection-start-column="59" selection-end-line="45" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/NewController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-316">
-          <caret line="37" column="52" selection-start-line="37" selection-start-column="52" selection-end-line="37" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/superadmin/customer/manageCustomer.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="48" selection-start-line="15" selection-start-column="48" selection-end-line="15" selection-end-column="48" />
-          <folding>
-            <element signature="e#165#356#0#HTML" expanded="true" />
-            <element signature="e#678#709#0#HTML" expanded="true" />
-            <element signature="e#867#906#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/superadmin/customer/unpaid.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="61">
-          <caret line="8" column="21" lean-forward="true" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/superadmin/report/monthly.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="335">
-          <caret line="37" column="32" selection-start-line="37" selection-start-column="32" selection-end-line="37" selection-end-column="32" />
-          <folding>
-            <element signature="e#1166#1191#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/superadmin/user/showUser.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="47">
-          <caret line="24" selection-start-line="24" selection-end-line="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/superadmin/customer/current.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="9" column="8" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
-          <folding>
-            <element signature="e#956#1147#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/income/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="35" column="8" selection-start-line="35" selection-start-column="8" selection-end-line="35" selection-end-column="8" />
-          <folding>
-            <element signature="e#183#374#0#HTML" expanded="true" />
-            <element signature="e#728#759#0#HTML" expanded="true" />
-            <element signature="e#937#976#0#HTML" expanded="true" />
-            <element signature="e#1424#1615#0#HTML" expanded="true" />
-          </folding>
+        <state relative-caret-position="364">
+          <caret line="131" column="9" selection-start-line="131" selection-start-column="9" selection-end-line="131" selection-end-column="9" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/superadmin/report/statement.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="509">
-          <caret line="90" selection-start-line="63" selection-start-column="4" selection-end-line="90" />
+        <state relative-caret-position="-285">
+          <caret line="58" selection-start-line="58" selection-end-line="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/NewController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="248">
+          <caret line="37" lean-forward="true" selection-start-line="37" selection-end-line="37" />
           <folding>
-            <element signature="e#161#352#0#HTML" expanded="true" />
-            <element signature="e#624#655#0#HTML" expanded="true" />
-            <element signature="e#787#826#0#HTML" expanded="true" />
-            <element signature="e#1404#1595#0#HTML" expanded="true" />
-            <element signature="e#1431#1622#0#HTML" expanded="true" />
+            <element signature="e#40#56#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/superadmin/billing/connection.blade.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/superadmin/report/probmonth.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="39" column="67" selection-start-line="39" selection-start-column="67" selection-end-line="39" selection-end-column="67" />
-          <folding>
-            <element signature="e#173#364#0#HTML" expanded="true" />
-            <element signature="e#686#717#0#HTML" expanded="true" />
-            <element signature="e#1399#1590#0#HTML" expanded="true" />
-          </folding>
+        <state relative-caret-position="291">
+          <caret line="37" column="47" selection-start-line="37" selection-start-column="47" selection-end-line="37" selection-end-column="47" />
         </state>
       </provider>
     </entry>

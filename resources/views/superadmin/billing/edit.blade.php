@@ -31,7 +31,7 @@
                             <th>Connection Date</th>
                             <th>Zone</th>
                             <th>IP</th>
-                            <th>Actions</th>
+                            <th class="col-lg-1">Actions</th>
                         </tr>
                         </thead>
 
@@ -189,7 +189,7 @@
 
                             <input type="hidden" value="{{ $value->id }}" name="billing_id">
 
-                            <a href="{{ route('edit-amount',['id'=>$value->id]) }}" class="mb-1 mt-1 mr-1 btn btn-info">
+                            <a href="{{ route('edit-amount',['id'=>$value->id]) }}" class=" btn-info">
                             Edit</a>
 
 

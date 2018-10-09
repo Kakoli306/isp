@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Expense;
 use App\Income;
 use App\Billing;
+use App\Product;
 use Carbon\Carbon;
 use App\Customer;
 use Illuminate\Support\Facades\Auth;
@@ -50,7 +51,7 @@ class NewController extends Controller
     public function paid(){
         $customers = DB::table('customers')
             ->where('bill_status', 1)
-            ->orderBy('id', 'DESC')->paginate(8);
+            ->orderBy('id', 'DESC')->paginate(2);
 
         return view ('superadmin.customer.paid',['customers' =>$customers])
             ->with('i', (request()->input('page', 1) - 1) * 5);
@@ -211,12 +212,18 @@ public function con($date){
     }
 
     public function exp($date){
-
         $billings = DB::table('expenses')
             ->join('products', 'expenses.product_id', '=', 'products.id')
             ->select('expenses.*', 'products.name')
             ->where('date', '=', $date)
             ->get();
         return view('superadmin.report.showallexp',compact('billings','users'));
+    }
+
+
+    public function product($id){
+
+        $exp = Expense::where('product_id',$id)->get();
+        return view('superadmin.report.product',compact('exp'));
     }
 }

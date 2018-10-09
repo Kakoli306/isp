@@ -11,9 +11,7 @@ Bill Collection
 					 style=" background:#606060; margin-top:20px; margin-bottom: 15px; min-height:45px; padding:8px 0px 0px 15px; font-size:16px; font-family:Lucida Sans Unicode; color:#FFFFFF; font-weight:bold;">
 					<div class="row">
 						<div class="col-md-4">
-							<b>View Customer Billing Information <?php $date = \Carbon\Carbon::now();
-                                echo $date->format('F');
-                                ?></b>
+							<b>View Customer Billing Information </b>
 						</div>
 						<div class="col-md-4" style="font-family: Helvetica;">
 							<div class="col-md-">
@@ -32,40 +30,70 @@ Bill Collection
 					</div>
 				</div>
 			</div>
-			<div class="row" style="margin-bottom:10px;">
-				<div class="col-md-4">
-					<div class="btn-group" role="group">
-						<a class="btn btn-info btn-sm" id="print_link" href="?q=view_report_paganition&flag=INVOICE"
-						   target="_blank">Print
-							Invoice</a>
-					</div>
-				</div>
-				<div class="col-md-4 col-md-offset-4">
-					<select id="zone_id" type="zone_id" class="form-control"
-							name="zone_id" required>
-						<option>--Select a Zone---</option>
-
-						@foreach ($zones as $value)
-							<option value="{{$value->id}}" > {{$value->zone_name}}</option>
-						@endforeach
-					</select>
-
-				</div>
-
-				<div class="col-md-4 col-md-offset-4">
-					<form>
-						<div class="input-group">
-							<input type="search_text" name="search_text" id="search_text" class="form-control" placeholder="Search for...">
-						</div>
-					</form>
-				</div>
-
-			</div>
 
 
        <section class="card">
 		   <div class="card-body">
-		<table class="table table-bordered table-striped mb-0 table-responsive" id="datatable-editable">
+			   <div class="row">
+
+				   <div class="col-sm-8">
+					   <div class="pull-right">
+
+                           <?php $date = \Carbon\Carbon::now();
+                           ?>
+						   <b>View <?php echo $date->format('F Y'); ?> Billing Information</b>
+
+					   </div>
+				   </div>
+
+				   <div class="col-md-4">
+					   <form action="/search" method="POST" role="search">
+						   {{ csrf_field() }}
+
+						   <div class="input-group">
+							   <select id="zone_id" type="zone_id" class="form-control"
+									   name="zone_id" required>
+								   <option>--Select a Zone---</option>
+
+								   @foreach ($zones as $value)
+									   <option value="{{$value->id}}" > {{$value->zone_name}}</option>
+								   @endforeach
+							   </select>
+						   </div>
+					   </form>
+				   </div>
+			   </div>
+
+			   <div class="row" style="margin-bottom:10px;">
+				   <div class="col-md-4">
+					   <div class="summary">
+						   <a id="print_client_bill" class="btn btn-info btn-sm"
+							  href="?q=print_client_bill">Print Invoice<span class="glyphicon glyphicon-print"></span></a>
+						   <div class="info">
+							   <strong class="amount"></strong>
+						   </div>
+					   </div>
+
+				   </div>
+
+				   <div class="col-md-4 col-md-offset-4">
+
+				   </div>
+
+				   <div class="col-md-4 col-md-offset-4">
+					   <form>
+						   <div class="input-group">
+							   <input type="search_text" name="search_text" id="search_text" class="form-control" placeholder="Search for...">
+						   </div>
+					   </form>
+				   </div>
+
+			   </div>
+
+
+
+
+			   <table class="table table-bordered table-striped mb-0 table-responsive" id="datatable-editable">
 
 			<thead>
 			<tr>
@@ -100,10 +128,12 @@ Bill Collection
 					@if($diff > 0)
 
 						<td>{{ ++$i }}</td>
- <td><a href="{{ route('pdf',['id'=>$customer->id]) }}" target="_blank" class="btn btn-outline-info "><i class="fas fa-invoice"></i> Print</a>	</td>
+ <td><a href="{{ route('pdf',['id'=>$customer->id]) }}" target="_blank"><i class="fas fa-print"></i></a>	</td>
 
 							<td>{{ $customer->customer_name }}</td>
-                            <td>{{ $customer->id }}</td>
+							<td style="color: RoyalBlue;">
+								<a style="color: RoyalBlue;" href="{{ url('/billing/showing/'.$customer->id) }}">{{$customer->id}}</a>
+							</td>
                             <td>{{ $customer->address }}</td>
 							<td>{{ $customer->zone_name }}</td>
 							<td>{{ $customer->mobile_no }}</td>
@@ -171,7 +201,7 @@ Bill Collection
 					<td class="center">
 						<input type="hidden" value="{{ $customer->id }}" name="customer_id">
 
-						<a class="btn-facebook" href="{{ url('billing/edit/'.$customer->id) }}">Edit</a>
+						<a class="btn-info" href="{{ url('billing/edit/'.$customer->id) }}">Edit</a>
 
 						@if($customer->bill_status == 0)
 
@@ -179,7 +209,7 @@ Bill Collection
 								{{ csrf_field() }}
 								<input type="hidden" value="{{$customer->id}}}" name="id">
 									<button type="submit" onclick="return confirm('Are u sure want to unpaid this !!!')"
-										class="mb-1 mt-1 mr-1 btn btn-info">Unpaid</button>
+										class="btn-secondary">Unpaid</button>
 							</form>
 
 						@else

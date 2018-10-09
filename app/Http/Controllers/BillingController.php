@@ -151,5 +151,18 @@ class BillingController extends Controller
         return redirect()->back();
     }
 
+    public function showBilling($id)
+    {
 
-}
+        $BillingById = Customer::where('id', $id)->first();
+        $users = DB::table('billings')
+            ->join('users', 'billings.userId', '=', 'users.userId')
+            ->select('billings.*', 'users.username')
+            ->where('billings.userId', Auth::user()->userId)
+            ->first();
+        $bills = Billing::where('customer_id',$id)->get();
+
+        return view('superadmin.billing.show', compact('BillingById', 'users','bills'));
+
+    }
+    }
