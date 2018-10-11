@@ -25,7 +25,7 @@
                         dur="0.9s"
                         repeatCount="indefinite" />
                 </path>
-                <circle fill="#fff" cx="36" cy="18" r="1">
+                <circle fill="{{ $chart->loaderColor }}" cx="36" cy="18" r="1">
                     <animateTransform
                         attributeName="transform"
                         type="rotate"

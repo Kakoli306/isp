@@ -21,7 +21,6 @@ class BillingController extends Controller
 
         $zones = DB::table('zones')->get();
 
-
         return view('superadmin.billing.add',['customers'=> $customers,'zones'=>$zones])
             ->with('i', (request()->input('page', 1) - 1) * 5);
 

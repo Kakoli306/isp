@@ -49,8 +49,6 @@ class CustomerController extends Controller
              ->orderBy('customers.id', 'DESC')
             ->paginate(8);
 
-      //  dd($customers);
-
         $sun = Customer::sum('bill_amount');
         $zones = DB::table('zones')->get();
 

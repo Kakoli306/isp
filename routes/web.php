@@ -118,14 +118,12 @@ Route::delete('zone/{zone_id}', 'ZoneController@destroy');
 Route::resource('expenses','ExpenseController');
 Route::get('/head/show/{id}', 'SuperAdminController@headshow')->name('head-show');
 Route::get('/exp_report', 'ExpenseController@report')->name('expense_report');
-
-//Route::get('pdfview/{id}',array('as'=>'pdfview'));
-
-Route::get('/downloadPDF/{id}','SuperAdminController@downloadPDF')->name('pdf');
-
+Route::get('/downloadPDF/{id}',array('as'=>'pdfview','uses'=>'SuperAdminController@downloadPDF'));
+Route::get('/download/{id}','SuperAdminController@download');
 Route::get('/chart','SuperAdminController@newchart');
 
 
+Route::get('/sms', 'SuperAdminController@send');
 
 
 

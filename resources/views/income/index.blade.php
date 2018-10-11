@@ -6,9 +6,8 @@
 
 @section('content')
 
-<div class="row">
-
-            <div class="col-md-12 "
+         <div class="row">
+             <div class="col-md-12 "
                  style=" background:#606060; margin-top:20px; margin-bottom: 15px; min-height:45px; padding:8px 0px 0px 15px; font-size:16px; font-family:Lucida Sans Unicode; color:#FFFFFF; font-weight:bold;">
                 <div class="row">
                     <div class="col-md-4">
@@ -55,10 +54,7 @@
                 <div class="col-lg-3">
                     <button type="submit"  name="search" class="btn btn-primary"><i class="fa fa-search"></i>&nbsp;&nbsp;Search</button>
                 </div>
-
             </div>
-
-
         </div>
 
     @if ($message = Session::get('success'))

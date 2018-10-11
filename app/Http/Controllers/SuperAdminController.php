@@ -14,7 +14,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use Barryvdh\DomPDF\Facade as PDF;
-
+use Illuminate\Support\Facades\Input;
+use Nexmo\Laravel\Facade\Nexmo;
 class SuperAdminController extends Controller
 {
     public function index(){
@@ -26,7 +27,7 @@ class SuperAdminController extends Controller
         $expenses = Expense::sum('price');
         $heads = Product::count();
         $cust = Customer::orderBy('id', 'desc')->take(3)->get();
-        $user = User::orderBy('userId', 'desc')->take(2)->get();
+        $user = User::orderBy('userId', 'desc')->take(3)->get();
 
         $exp = DB::table('expenses')->sum('price');
         $bill = DB::table('billings')->sum('payment_amount');
@@ -50,7 +51,6 @@ class SuperAdminController extends Controller
         )
             ->whereYear('created_at',Carbon::now()->year)
             ->groupBy('months')
-            ->orderBy('months','ASC')
             ->get();
 
         $inc = Income::select(
@@ -59,7 +59,6 @@ class SuperAdminController extends Controller
         )
             ->whereYear('created_at',Carbon::now()->year)
             ->groupBy('months')
-            ->orderBy('months','ASC')
             ->get();
 
         $conn = Customer::select(
@@ -68,7 +67,6 @@ class SuperAdminController extends Controller
         )
             ->whereYear('connection_date',Carbon::now()->year)
             ->groupBy('months')
-            ->orderBy('months','ASC')
             ->get();
 
         $exp = Expense::select(
@@ -77,15 +75,15 @@ class SuperAdminController extends Controller
         )
             ->whereYear('created_at',Carbon::now()->year)
             ->groupBy('months')
-            ->orderBy('months','ASC')
             ->get();
 
         $all = collect($ab)->merge($inc)->merge($conn)->merge($exp);
         $merged = $all->sortBy('months');
 
+
         $year = $merged
             ->groupBy(function ($merged) {
-                return $merged->months;
+                return ($merged->months);
             });
 
         return view ('superadmin.report.yearly',compact('year','merged'));
@@ -95,15 +93,29 @@ class SuperAdminController extends Controller
     public function new($month)
     {
         // return $month;
+       $d =  Billing::where('month')
+            ->orWhere('month', 'like', '%' . Input::get('month') . '%')->get();
+//dd($d);
 
-        $ab =
-            Billing::select(
+        $ab = Billing::select(
+            DB::raw('sum(payment_amount) as sums'),
+            DB::raw("(month) as month")
+        )
+            ->groupBy('month')
+            ->orWhere(DB::raw("month"),$month, 'like', '%' )
+            ->get();
+       // dd($ab);
+
+
+        $ab = Billing::select(
             DB::raw('sum(payment_amount) as sums'),
             DB::raw("DATE_FORMAT(month,'%Y-%m') as month")
         )
                 ->groupBy('month')
-                ->where(DB::raw("(DATE_FORMAT(month,'%Y-%m'))"),$month)
+                ->orWhere(DB::raw("(DATE_FORMAT(month,'%Y-%m'))"),$month, 'like', '%' )
+           // ->orWhere('month', 'like', '%' . Input::get($month) . '%')
             ->get();
+
 
         $income = Income::select(
             DB::raw('sum(amount) as incomes'),
@@ -121,39 +133,56 @@ class SuperAdminController extends Controller
             ->where(DB::raw("(DATE_FORMAT(connection_date,'%Y-%m'))"),$month)
             ->get();
 
-        /*$expense = Expense::select(
-            DB::raw('sum(price) as exp'),
-            DB::raw("DATE_FORMAT(date,'%Y-%m') as month")
+        $expense = Expense::select(
+            DB::raw('sum(price) as expenses'),
+            DB::raw("DATE_FORMAT(created_at,'%Y-%m') as dates")
         )
-            ->groupBy('month')
-            ->where(DB::raw("(DATE_FORMAT(date,'%Y-%m'))"),$month)
+            ->where(DB::raw("(DATE_FORMAT(created_at,'%Y-%m'))"),$month)
+            ->groupBy('dates')
             ->get();
-       // dd($expense);*/
 
-        $news = collect($ab)->merge($income)->merge($con);
+
+        $news = collect($ab)->merge($income)->merge($con)->merge($expense);
+         // dd($news);
+
         $merged = $news->sortBy('month');
 
-        $res = $news->sortBy(function ($merged) {
-            return $merged->month;
-        });
+        $res = $merged
+            ->groupBy(function ($merged) {
+                return $merged->month;
 
-        return view ('superadmin.report.probmonth',compact('res'));
+            });
+
+        return view ('superadmin.report.probmonth',compact('res','merged'));
 
 
     }
 
     public function downloadPDF($id)
     {
-        $customers = Customer::find($id);
-        //$cust = Customer::all();
-
-      //  dd($customers,$cust );
-
-            $pdf = PDF::loadView('superadmin.pdf', compact('customers'));
-            return $pdf->stream('invoice.pdf');
+        $customer = DB::table('customers')
+            ->join('zones', 'customers.zone_id', '=', 'zones.id')
+            ->select('customers.*', 'zones.zone_name')
+            ->where('customers.id',$id)->first();
+           return view('superadmin.pdf',compact('customer'));
     }
 
-      public function chart()
+    public function download($id)
+    {
+        $customer = DB::table('customers')
+            ->join('zones', 'customers.zone_id', '=', 'zones.id')
+            ->select('customers.*', 'zones.zone_name')
+            ->where('customers.id',$id)->first();
+
+
+            //Customer::find($id);
+
+        $pdf = PDF::loadView('superadmin.pdf', compact('customer'));
+        return $pdf->download('Billing.pdf');
+
+    }
+
+public function chart()
     {
         $exp = DB::table('expenses')->sum('price');
         $bill = DB::table('billings')->sum('payment_amount');
@@ -183,5 +212,19 @@ class SuperAdminController extends Controller
 
         return response()->json($result1);
     }
+
+
+
+
+ public function send(){
+        Nexmo::message()->send([
+            'to'   => '01521517435',
+            'from' => '01683731580',
+            'text' => 'Using the facade to send a message.'
+        ]);
+    }
+
+
+
 
 }

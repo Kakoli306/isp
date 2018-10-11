@@ -8,7 +8,6 @@ isp-management
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12 col-xl-4">
-				<h5 class="font-weight-semibold text-dark text-uppercase mb-3 mt-3">Box Colors</h5>
 				<div class="row">
 					<div class="col-12">
 						<section class="card mb-4">
@@ -66,7 +65,6 @@ isp-management
 
 
 			<div class="col-lg-12 col-xl-4">
-				<h5 class="font-weight-semibold text-dark text-uppercase mb-3 mt-3">Box Colors</h5>
 				<div class="row">
 					<div class="col-12">
 						<section class="card mb-4">
@@ -123,7 +121,6 @@ isp-management
 				</div>
 						</div>
 			<div class="col-lg-12 col-xl-4">
-				<h5 class="font-weight-semibold text-dark text-uppercase mb-3 mt-3">Box Colors</h5>
 				<div class="row">
 					<div class="col-12">
 						<section class="card mb-4">
@@ -181,7 +178,6 @@ isp-management
 
 		</div>
 
-		<h5 class="font-weight-semibold text-dark text-uppercase mb-3 mt-3">Border Color Positions</h5>
 		<div class="row">
 			<div class="col-lg-6">
 				<section class="card">
@@ -217,10 +213,6 @@ isp-management
 
 						</table>
 					</div>
-                    <div class="summary-footer">
-                        <a href="{{  url("/zone")  }}">Zone all</a>
-                    </div>
-
                 </section>
 			</div>
 
@@ -291,15 +283,10 @@ isp-management
 
 
 
-		<div class="col-lg-6">
+		<!-- <div class="col-lg-6">
 	       <div class="row mb-3">
-
-
-
-           </div>
-
-
-                <section class="card">
+		   </div>
+			<section class="card">
 				<div class="row">
 		<div class="col-lg-10 col-md-offset-2">
 			<section class="card card-featured-left card-featured-quaternary">
@@ -314,7 +301,7 @@ isp-management
 
 	</div>
 				</section>
-			</div>
+			</div> -->
 
 	</div>
 
