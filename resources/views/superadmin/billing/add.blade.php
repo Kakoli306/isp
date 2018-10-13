@@ -90,9 +90,6 @@ Bill Collection
 
 			   </div>
 
-
-
-
 			   <table class="table table-bordered table-striped mb-0 table-responsive" id="datatable-editable">
 
 			<thead>
@@ -141,41 +138,12 @@ Bill Collection
 							<td>{{ $customer->ip_address}}</td>
 
 					<td>
+
                         <?php $lifetime_paid=DB::table('billings')->where('customer_id',$customer->id)->sum('payment_amount'); ?>
-                        <?php
-                        $flag=$customer->bill_amount;
-                        $flag1 = $customer->month_amount;
-
-                        $sum=$flag - $flag1;
-                        ?>
-
-                        <?php
-						$date = Carbon\Carbon::parse(($customer->connection_date));
-						$now = Carbon\Carbon::now()->subMonth();
-
-						$diff = $date->diffInMonths($now);
-
-                        $a =$diff * $customer->bill_amount;
-
-                        $flag=$customer->bill_amount;
-                        $flag1 = $customer->month_amount;
-
-                        $sum=$flag - $flag1;
-
-                        $pay = $lifetime_paid;
-                        $ok = $pay - $sum;
-
-                        $predue = $a - $ok;
-                        echo $predue;
-
-                        ?>
-					</td>
-
-					<td>
 
                         <?php
 
-						$date = Carbon\Carbon::parse(($customer->connection_date));
+                        $date = Carbon\Carbon::parse(($customer->connection_date));
                         $now = Carbon\Carbon::now();
 
                         $diff = $date->diffInMonths($now);
@@ -193,6 +161,48 @@ Bill Collection
 
                         //dd($due);
                         ?>
+                        <?php
+                        $flag=$customer->bill_amount;
+                        $flag1 = $customer->month_amount;
+
+                        $sum=$flag - $flag1;
+                        ?>
+
+                        <?php
+                        if  ($due == 0 )
+
+                        {
+                           echo $predue = 0;
+
+                        }
+
+                        else
+                        {
+
+                        $date = Carbon\Carbon::parse(($customer->connection_date));
+						$now = Carbon\Carbon::now()->subMonth();
+
+						$diff = $date->diffInMonths($now);
+
+                        $a =$diff * $customer->bill_amount;
+
+                        $flag=$customer->bill_amount;
+                        $flag1 = $customer->month_amount;
+
+                        $sum=$flag - $flag1;
+
+                        $pay = $lifetime_paid;
+                        $ok = $pay - $sum;
+
+                        $predue = $a - $ok;
+                        echo $predue;
+                     }
+                        ?>
+					</td>
+
+					<td>
+
+
 
 						{{$due}}</td>
 

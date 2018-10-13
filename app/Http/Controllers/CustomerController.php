@@ -173,13 +173,4 @@ class CustomerController extends Controller
 
     }
 
-    public function mySearch() {
-
-            $q = Input::get ( 'q' );
-            $zone = Zone::where('zone_name','LIKE','%'.$q.'%')->get();
-            if(count($zone) > 0)
-                return view('superadmin.customer.manageCustomer')->withDetails($zone)->withQuery ( $q );
-            else return view ('superadmin.customer.manageCustomer')->withMessage('No Details found. Try to search again !');
-     }
-
 }

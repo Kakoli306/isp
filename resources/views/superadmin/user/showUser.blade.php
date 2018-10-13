@@ -6,7 +6,11 @@
 
 @section('content')
 
-    <div class="row">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
         <div class="col-md-12 "
              style=" background:#606060; margin-top:20px; margin-bottom: 15px; min-height:45px; padding:8px 0px 0px 15px; font-size:16px; font-family:Lucida Sans Unicode; color:#FFFFFF; font-weight:bold;">
             <div class="row">
@@ -16,48 +20,34 @@
 
             </div>
         </div>
-    </div>
 
-    <div class="row" style="margin-bottom:10px;">
-        <div class="col-md-4">
-
-        </div>
-        <div class="col-md-4 col-md-offset-4">
-
-        </div>
-
-        <div class="col-md-4 col-md-offset-4">
-            <form>
-                <div class="input-group">
-                    <input type="search_text" name="search_text" id="search_text" class="form-control" placeholder="Search for...">
-                </div>
-            </form>
-        </div>
-
-    </div>
-
+    <!-- start: page -->
+    <section class="card">
 
     <div class="card-body">
-        <div class="container">
-            <div class="row">
-                <div class="summary">
+
+        <div class="row" >
+            <div class="col-md-4">
+
+            </div>
+            <div class="col-md-4 col-md-offset-4">
+
+            </div>
+
+            <div class="col-md-4 col-md-offset-4">
+                <div class="input-group">
+                    <input type="text" name="search" id="search" class="form-control" placeholder="Search for...">
                 </div>
+            </div>
 
+            <h3 align="center">Total Data : <span id="total_records"></span></h3>
 
-                <div class="col-sm-6">
-                    <div class="pull-right">
+        </div>
+        <br/>
 
-                    </div>
-                </div>
-
-                <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
-
-
-                <!-- start: page -->
-    <section class="card">
-        <div class="card-body">
             <table class="table table-bordered table-striped mb-0 table-responsive" id="datatable-editable">
+
+
                 <thead>
                 <tr>
                     <th>#</th>
@@ -77,7 +67,7 @@
 
 
                 @foreach($users as $user)
-                    <tr>
+                    <tr id="demo">
                         <td>{{ ++$i }}</td>
                         <td>{{ $user->fullname }}</td>
                         <td>{{ $user->username }}</td>
@@ -115,26 +105,35 @@
                 </tbody>
                 @endforeach
             </table>
-            {{ $users->links() }}
-
         </div>
-
-
-        <script type="text/javascript">
-            var path = "{{ route('autocomplete') }}";
-            $('input.typeahead').typeahead({
-                source:  function (query, process) {
-                    return $.get(path, { query: query }, function (data) {
-                        return process(data);
-                    });
-                }
-            });
-        </script>
-
 
     </section>
 
-            </div>
-        </div>
-    </div>
-    @endsection
+<script>
+    $(document).keyup(function(){
+
+    fetch_user_data();
+
+    function fetch_user_data(query = '')
+    {
+    $.ajax({
+    url:"{{ route('search') }}",
+    method:'GET',
+    data:{query:query},
+    dataType:'json',
+    success:function(data)
+    {
+
+      $('#demo').hide();
+
+    $('tbody').html(data.table_data);
+    $('#total_records').text(data.total_data);
+    }
+    })
+    }
+
+
+    });
+    </script>
+
+@endsection
