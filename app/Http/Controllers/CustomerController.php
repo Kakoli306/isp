@@ -11,15 +11,15 @@ use Illuminate\Support\Facades\Input;
 use Carbon\Carbon;
 class CustomerController extends Controller
 {
-    public function create(){
+    public function create()
+    {
 
         $zone = Zone::all();
-        return view('superadmin.customer.createCustomer',compact('zone'));
-        }
+        return view('superadmin.customer.createCustomer', compact('zone'));
+    }
 
-    public function save( Request $request){
-
-
+    public function save(Request $request)
+    {
         $customers = new Customer();
         $customers->customer_name = $request->customer_name;
         $customers->mobile_no = $request->mobile_no;
@@ -41,39 +41,45 @@ class CustomerController extends Controller
         return redirect()->back()->with('message', 'Customer info saved ');
     }
 
-    public function manageCustomer(Request $request){
+    public function manageCustomer(Request $request)
+    {
 
-        $customers =   DB::table('customers')
-             ->join('zones', 'customers.zone_id', '=', 'zones.id')
-             ->select('customers.*', 'zones.zone_name')
-             ->orderBy('customers.id', 'DESC')
+        $customers = DB::table('customers')
+            ->join('zones', 'customers.zone_id', '=', 'zones.id')
+            ->select('customers.*', 'zones.zone_name')
+            ->orderBy('customers.id', 'DESC')
             ->paginate(8);
 
         $sun = Customer::sum('bill_amount');
         $zones = DB::table('zones')->get();
 
 
-        return view('superadmin.customer.manageCustomer',['customers'=> $customers,'zones' => $zones,'sun' => $sun])
+        return view('superadmin.customer.manageCustomer', ['customers' => $customers, 'zones' => $zones, 'sun' => $sun])
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
 
-    public function inactiveCustomer($id) {
+    public function inactiveCustomer($id)
+    {
 
-        DB::table('customers')->where('id',$id)->update(['status' => 0]);
+        DB::table('customers')->where('id', $id)->update(['status' => 0]);
         return redirect('/customer/manage')->with('message', 'this guy is  unactive now');
     }
-    public function activeCustomer($id) {
 
-        DB::table('customers')->where('id',$id)->update(['status' => 1]);
+    public function activeCustomer($id)
+    {
+
+        DB::table('customers')->where('id', $id)->update(['status' => 1]);
         return redirect('/customer/manage')->with('message', 'this guy is  active now successfully');
     }
 
-    public function editCustomer($id){
+    public function editCustomer($id)
+    {
         $zone = Zone::all();
-        $customerById = Customer::where('id',$id)->first();
-        return view('superadmin.customer.editCustomer',compact('customerById','zone'));
+        $customerById = Customer::where('id', $id)->first();
+        return view('superadmin.customer.editCustomer', compact('customerById', 'zone'));
     }
+
     public function updateCustomer(Request $request)
     {
         $customer = Customer::find($request->customer_id);
@@ -94,7 +100,7 @@ class CustomerController extends Controller
         $customer->speed = $request->speed;
         $customer->status = $request->status;
         $customer->save();
-        return redirect('customer/manage')->with('message','this info updated successfully');
+        return redirect('customer/manage')->with('message', 'this info updated successfully');
     }
 
     public function deleteCustomer(Request $request)
@@ -102,10 +108,11 @@ class CustomerController extends Controller
         $customer = Customer::find($request->customer_id);
         $customer->delete();
 
-        return redirect('customer/manage')->with('success',' deleted successfully');
+        return redirect('customer/manage')->with('success', ' deleted successfully');
     }
 
-    public function actives(){
+    public function actives()
+    {
         $customers = DB::table('customers')
             ->where('status', 1)
             ->orderBy('id', 'DESC')->paginate(8);
@@ -113,12 +120,13 @@ class CustomerController extends Controller
         $zones = DB::table('zones')->get();
         $sun = Customer::sum('bill_amount');
 
-        return view ('superadmin.customer.actives',['customers' =>$customers,'zones' => $zones,'sun'=>$sun])
+        return view('superadmin.customer.actives', ['customers' => $customers, 'zones' => $zones, 'sun' => $sun])
             ->with('i', (request()->input('page', 1) - 1) * 5);
 
     }
 
-    public function inactive(){
+    public function inactive()
+    {
         $customers = DB::table('customers')
             ->where('status', 0)
             ->orderBy('id', 'DESC')->paginate(8);
@@ -126,16 +134,17 @@ class CustomerController extends Controller
         $zones = DB::table('zones')->get();
         $sun = Customer::sum('bill_amount');
 
-        return view ('superadmin.customer.inactives',['customers' =>$customers,'zones' => $zones,'sun'=>$sun])
+        return view('superadmin.customer.inactives', ['customers' => $customers, 'zones' => $zones, 'sun' => $sun])
             ->with('i', (request()->input('page', 1) - 1) * 5);
 
     }
 
-    public function current(){
+    public function current()
+    {
         $currentMonth = date('m');
-       $customers = DB::table('customers')
-           ->whereRaw('MONTH(connection_date) = ?',[$currentMonth])
-              ->orderBy('id', 'DESC')->paginate(7);
+        $customers = DB::table('customers')
+            ->whereRaw('MONTH(connection_date) = ?', [$currentMonth])
+            ->orderBy('id', 'DESC')->paginate(7);
 
         $count = DB::table('customers')
             ->whereYear('created_at', Carbon::now()->year)
@@ -156,21 +165,103 @@ class CustomerController extends Controller
             ->count();
 
 
-        return view ('superadmin.customer.current',['customers' =>$customers,'count' => $count,'count1' => $count1,'count2'=>$count2])
+        return view('superadmin.customer.current', ['customers' => $customers, 'count' => $count, 'count1' => $count1, 'count2' => $count2])
             ->with('i');
 
 
     }
 
-    public function charge(){
+    public function charge()
+    {
         $currentMonth = date('m');
         $customers = DB::table('customers')
-            ->whereRaw('MONTH(connection_date) = ?',[$currentMonth])
+            ->whereRaw('MONTH(connection_date) = ?', [$currentMonth])
             ->paginate(8);
 
-        return view ('superadmin.billing.connection',['customers' =>$customers])
+        return view('superadmin.billing.connection', ['customers' => $customers])
             ->with('i', (request()->input('page', 1) - 1) * 5);
 
     }
+
+    public function action(Request $request)
+
+    {
+        if ($request->ajax()) {
+            $output = '';
+            $query = $request->get('query');
+            if ($query != '') {
+                $data = DB::table('customers')
+                    ->where('customer_name', 'like', '%' . $query . '%')
+                    ->orWhere('mobile_no', 'like', '%' . $query . '%')
+                    ->orWhere('address', 'like', '%' . $query . '%')
+                    ->orWhere('speed', 'like', '%' . $query . '%')
+                    ->orWhere('bill_amount', 'like', '%' . $query . '%')
+                    ->orWhere('ip_address', 'like', '%' . $query . '%')
+                    ->orWhere('connection_date', 'like', '%' . $query . '%')
+                    ->orderBy('id', 'asc')
+                    ->get();
+                // $data;
+
+            }
+            else
+            {
+                $data = DB::table('customers')
+                    ->orderBy('id', 'asc')
+                    ->get();
+            }
+            $total_row = $data->count();
+            if($total_row > 0)
+            {
+                foreach($data as $row)
+                {
+                    $output .= '
+        <tr>
+        <td></td>
+         <td>'.$row->customer_name.'</td>
+         <td>'.$row->id.'</td>
+         <td>'.$row->address.'</td>
+         <td>'.$row->mobile_no.'</td>
+         <td>'.$row->speed.'</td>
+         <td>'.$row->bill_amount.'</td>
+         <td>'.$row->connection_date.'</td>
+         <td></td>
+                  <td>'.$row->ip_address.'</td>
+              <td></td>
+         <td><a style="color: RoyalBlue;"   href=' . route('edit',['id'=>$row->id]) . '>Edit</a>
+         <a style="color: RoyalBlue;"   <form  href = ' . route('delete',['id'=>$row->id]). '>Delete
+         
+                                   
+                                </a>
+                                
+                                
+                                </td>
+
+        
+
+
+        </tr>
+        ';
+                }
+            }
+            else
+            {
+                $output = '
+       <tr>
+        <td align="center" colspan="5">No Data Found</td>
+       </tr>
+       ';
+            }
+            $data = array(
+                'table_data'  => $output,
+                'total_data'  => $total_row
+            );
+
+            echo json_encode($data);
+        }
+    }
+
+
+
+
 
 }

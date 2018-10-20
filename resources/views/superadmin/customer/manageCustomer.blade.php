@@ -6,6 +6,9 @@
 
 @section('content')
 
+
+
+
     <div class="row">
         <div class="col-md-12 "
              style=" background:#606060; margin-top:20px; margin-bottom: 15px; min-height:45px; padding:8px 0px 0px 15px; font-size:16px; font-family:Lucida Sans Unicode; color:#FFFFFF; font-weight:bold;">
@@ -79,7 +82,7 @@
                 <div class="col-md-4 col-md-offset-4">
                     <form>
                         <div class="input-group">
-                            <input type="search_text" name="search_text" id="search_text" class="form-control" placeholder="Search for...">
+                            <input type="text" name="search" id="search" class="form-control" placeholder="Search Customer...">
                         </div>
                     </form>
                 </div>
@@ -91,6 +94,7 @@
                 <div class="row">
 
                     <table class="table table-bordered table-striped mb-0 table-responsive" id="datatable-editable">
+                        <h3 align="center">Total Data : <span id="total_records"></span></h3>
 
                     <thead>
                     <tr>
@@ -160,5 +164,35 @@
         </div>
     </section>
     <!-- end: page -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+
+    <script>
+        $(document).keyup(function(){
+
+            fetch_customer_data();
+
+            function fetch_customer_data(query = '')
+            {
+                $.ajax({
+                    url:"{{ route('search.action') }}",
+                    method:'GET',
+                    data:{query:query},
+                    dataType:'json',
+                    success:function(data)
+                    {
+                        $('tbody').html(data.table_data);
+                        $('#total_records').text(data.total_data);
+                    }
+                })
+            }
+
+            $(document).on('keyup', '#search', function(){
+                var query = $(this).val();
+                fetch_customer_data(query);
+            });
+        });
+    </script>
+
 
 @endsection

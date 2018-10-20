@@ -20,7 +20,7 @@ class ZoneController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -32,7 +32,7 @@ class ZoneController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($zone_id)
@@ -44,8 +44,8 @@ class ZoneController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $zone_id)
@@ -59,12 +59,50 @@ class ZoneController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($zone_id)
     {
         $zone = Zone::destroy($zone_id);
         return response()->json($zone);
+    }
+
+    public function search(Request $request)
+
+    {
+
+        if ($request->ajax()) {
+
+            $output = "";
+
+            $products = DB::table('zones')
+                ->where('zone_name', 'LIKE', '%' . $request->search . "%")->get();
+
+            if ($products) {
+
+                foreach ($products as $key => $product) {
+
+                    $output .= '<tr>' .
+
+                        '<td>' . $product->id . '</td>' .
+
+                        '<td>' . $product->title . '</td>' .
+
+                        '<td>' . $product->description . '</td>' .
+
+                        '<td>' . $product->price . '</td>' .
+
+                        '</tr>';
+
+                }
+
+
+                return Response($output);
+            }
+              
+
+        }
+
     }
 }

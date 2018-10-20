@@ -216,14 +216,6 @@ public function chart()
 
 
 
- public function send(){
-        Nexmo::message()->send([
-            'to'   => '01521517435',
-            'from' => '01683731580',
-            'text' => 'Using the facade to send a message.'
-        ]);
-    }
-
 
 
 

@@ -62,7 +62,12 @@ Route::group(['prefix'=>'customer'], function() {
     Route::get('/inactive', 'CustomerController@inactive')->name('show-inactives');
     Route::get('/current', 'CustomerController@current')->name('yes');
     Route::get('/discount', 'CustomerController@discount')->name('discount');
+
 });
+
+Route::get('/search/action', 'CustomerController@action')->name('search.action');
+Route::get('/sea','ZoneController@search');
+
 
 Route::get('/charge', 'CustomerController@charge')->name('connection');
 
@@ -122,8 +127,8 @@ Route::get('/downloadPDF/{id}',array('as'=>'pdfview','uses'=>'SuperAdminControll
 Route::get('/download/{id}','SuperAdminController@download');
 Route::get('/chart','SuperAdminController@newchart');
 
+Route::get('/sms', 'SmsController@sendSms');
 
-Route::get('/sms', 'SuperAdminController@send');
 
 
 

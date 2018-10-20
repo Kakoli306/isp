@@ -89,7 +89,8 @@ class UserController extends Controller
     public function show()
     {
 
-        $users = User::all();
+        $users = DB::table('users')
+        ->paginate(3);
 
         return view('superadmin.user.showUser', ['users' => $users])
             ->with('i', (request()->input('page', 1) - 1) * 5);

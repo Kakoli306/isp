@@ -42,7 +42,6 @@ View All Zone
                 </div>
             </form>
         </div>
-
     </div>
 
 
@@ -92,8 +91,8 @@ View All Zone
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                             <h4 class="modal-title" id="myModalLabel">Zone Form</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                         </div>
                         <div class="modal-body">
                             <form id="frmProducts" name="frmProducts" class="form-horizontal" novalidate="">

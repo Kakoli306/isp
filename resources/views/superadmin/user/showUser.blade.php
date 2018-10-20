@@ -36,11 +36,9 @@
 
             <div class="col-md-4 col-md-offset-4">
                 <div class="input-group">
-                    <input type="text" name="search" id="search" class="form-control" placeholder="Search for...">
+                    <input type="text" name="search" id="search" class="form-control" placeholder="Search User...">
                 </div>
             </div>
-
-            <h3 align="center">Total Data : <span id="total_records"></span></h3>
 
         </div>
         <br/>
@@ -105,7 +103,9 @@
                 </tbody>
                 @endforeach
             </table>
-        </div>
+        {{ $users->links() }}
+
+    </div>
 
     </section>
 

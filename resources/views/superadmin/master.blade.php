@@ -54,7 +54,6 @@
 @include('superadmin.includes.aside')
 
 <!-- Vendor -->
-<script src="{{asset('superadmin/')}}/vendor/jquery/jquery.js"></script>
 <script src="{{asset('superadmin/')}}/vendor/jquery-browser-mobile/jquery.browser.mobile.js"></script>
 <script src="{{asset('superadmin/')}}/vendor/jquery-cookie/jquery-cookie.js"></script>
 <script src="{{asset('superadmin/')}}/master/style-switcher/style.switcher.js"></script>
@@ -64,7 +63,6 @@
 <script src="{{asset('superadmin/')}}/vendor/common/common.js"></script>
 <script src="{{asset('superadmin/')}}/vendor/nanoscroller/nanoscroller.js"></script>
 <script src="{{asset('superadmin/')}}/vendor/magnific-popup/jquery.magnific-popup.js"></script>
-<script src="{{asset('superadmin/')}}/vendor/jquery-placeholder/jquery-placeholder.js"></script>
 
 <!-- Specific Page Vendor -->
 
@@ -125,7 +123,6 @@
 
 <script src="{{asset('superadmin/')}}/js/examples/examples.dashboard.js"></script>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/css/bootstrap.min.css" />
 
 
 </body>

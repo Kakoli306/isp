@@ -89,7 +89,8 @@ Bill Collection
 				   </div>
 
 			   </div>
-
+				 <div class="row" style="margin-bottom:10px;">
+				 	<div class="col-md-12 ">
 			   <table class="table table-bordered table-striped mb-0 table-responsive" id="datatable-editable">
 
 			<thead>
@@ -240,6 +241,8 @@ Bill Collection
 
     @endforeach
 		</table>
+	</div>
+	</div>
 		{{ $customers->links() }}
 	</div>
 </section>

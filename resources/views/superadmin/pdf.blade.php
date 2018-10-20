@@ -9814,15 +9814,6 @@
                             <img src="{{asset('superadmin/')}}/img/invoice-logo.png" alt="OKLER Themes"
                         </div> -->
                         <div class="col-sm-6 text-right">
-                            <address>
-                                Okler Themes Ltd
-                                <br/>
-                                123 Porto Street, New York, USA
-                                <br/>
-                                Phone: +12 3 4567-8901
-                                <br/>
-                                okler@okler.net
-                            </address>
                                 </div>
 
                     </div>
@@ -9833,13 +9824,12 @@
                             <div>
                                 <p class="h5 mb-1 text-dark font-weight-semibold">To:</p>
                                 <address>
-                                    Envato
+                                    {{$customer->customer_name}}
                                     <br/>
-                                    121 King Street, Melbourne, Australia
+                                    {{$customer->address}}<br/>
+                                    Phone:  {{$customer->mobile_no}}
                                     <br/>
-                                    Phone: +61 3 8376 6284
-                                    <br/>
-                                    info@envato.com
+                                    {{$customer->email}}
                                 </address>
                             </div>
                         </div>
@@ -9876,8 +9866,6 @@
                     <table class="table table-borderless">
                     <thead>
                     <tr class="text-dark">
-                        <th id="cell-id"     class="font-weight-semibold">#SL</th>
-                        <th id="cell-item"   class="font-weight-semibold">Description</th>
                         <th id="cell-desc"   class="font-weight-semibold">Month</th>
                         <th id="cell-price"  class="text-center font-weight-semibold">Speed</th>
                         <th id="cell-qty"    class="text-center font-weight-semibold">Bill Amount</th>
@@ -9885,9 +9873,7 @@
                     </thead>
                     <tbody>
                     <tr>
-                        <td>123456</td>
-                        <td class="font-weight-semibold text-dark">Porto HTML5 Template</td>
-                        <td><?php $date = \Carbon\Carbon::now();
+                            <td><?php $date = \Carbon\Carbon::now();
                             echo $date->format('F')
                             ?>
                         </td>
