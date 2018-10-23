@@ -11,7 +11,7 @@ class SmsController extends Controller
     public function page(){
         return view('superadmin.includes.sms');
     }
-    public function sendSms()
+    public function sendSms(Request $request)
     {
 
         $accountSid = config('app.twilio')['AC58f5bee5c907ee47b15e22a6c7452afc'];
@@ -28,7 +28,7 @@ class SmsController extends Controller
                     // A Twilio phone number you purchased at twilio.com/console
                     'from' => '+13092478919',
                     // the body of the text message you'd like to send
-                    'body' => 'Hey hello'
+                    'body' =>  $request->sms
                 )
             );
         }
@@ -36,5 +36,9 @@ class SmsController extends Controller
         {
             echo "Error: " . $e->getMessage();
         }
+
+        return redirect()->back()->with('success','sms sent successfully');
     }
+
+
 }

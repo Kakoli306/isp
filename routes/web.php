@@ -131,11 +131,16 @@ Route::get('/exp_report', 'ExpenseController@report')->name('expense_report');
 Route::get('/downloadPDF/{id}',array('as'=>'pdfview','uses'=>'SuperAdminController@downloadPDF'));
 Route::get('/download/{id}','SuperAdminController@download');
 Route::get('/chart','SuperAdminController@newchart');
+
+//sms
 Route::get('/smspage', 'SmsController@page');
-Route::get('/sms', 'SmsController@sendSms');
+Route::post('/sms', 'SmsController@sendSms');
 
-
-
+Route::get('importExport', 'ExcelController@importExport');
+// Route for export/download tabledata to .csv, .xls or .xlsx
+Route::get('downloadExcel/{type}', 'ExcelController@downloadExcel');
+// Route for import excel data to database.
+Route::post('importExcel', 'ExcelController@importExcel');
 
 
 

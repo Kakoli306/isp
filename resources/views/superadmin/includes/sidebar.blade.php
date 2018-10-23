@@ -145,7 +145,7 @@
                                         Yearly Balance Report
                                     </a>
 
-                                    <a class="nav-link" href="#">
+                                    <a class="nav-link" href={{url('/importExport')}}>
                                         Export in Excel file
                                     </a>
 
