@@ -43,11 +43,11 @@
         </div>
         <br/>
 
-            <table class="table table-bordered table-striped mb-0 table-responsive" id="datatable-editable">
-
-
+            <table class="table table-responsive-md mb-0" id="datatable-editable">
                 <thead>
-                <tr>
+
+
+                    <tr>
                     <th>#</th>
                     <th>Full Name</th>
                     <th>User Name</th>
@@ -55,25 +55,33 @@
                     <th>Mobile Number</th>
                     <th>User Type</th>
                     <th>Status</th>
-                    <th>Details</th>
                     <th>Edit</th>
-                    <th>Chage Pass</th>
                 </tr>
                 </thead>
                 <tbody>
+                <?php
 
+                $data1 = App\User::find(Auth::user()->userId)->roles;
+                    ?>
 
+                    @foreach($users as $user)
+          <?php
 
-                @foreach($users as $user)
-                    <tr id="demo">
+        $data = App\User::find($user->userId)->roles;
+
+             ?>
+
+             @if($data1[0]->name != "superadmin")
+
+              @if($data[0]->name != "superadmin")
+
+              <tr id="demo">
                         <td>{{ ++$i }}</td>
                         <td>{{ $user->fullname }}</td>
-                        <td>{{ $user->username }}</td>
+                        <td><a style="color: RoyalBlue;" href="{{ route('user-details',['id'=>$user->userId])  }}">{{ $user->username }}</a></td>
                         <td>{{ $user->email }}</td>
                         <td>{{ $user->phone }}</td>
-                        <td>
-                            Superadmin
-                        </td>
+                        <td>{{$data[0]->name}}</td>
                         <td>
                             @if($user->status == 1)
                                 Active
@@ -82,12 +90,12 @@
                             @endif
                         </td>
 
-                        <td><a style="color: RoyalBlue;" href="{{ route('user-details',['id'=>$user->userId])  }}">User details</a></td>
-
-
                         <td><a style="color: RoyalBlue;" href="{{url('user/edit/'.$user->userId)}}">Edit</a> </td>
 
-                        <td><a style="color: RoyalBlue;" href="{{ route('ch') }}">Change Password</a></td>
+
+
+                      <td><a style="color: RoyalBlue;" href="{{ route('ch') }}">Change Password</a></td>
+
 
                     <!--<td><form action="{{ route('delete-user') }}" method="POST">
                                 @csrf
@@ -97,43 +105,38 @@
                                 </button>
                             </form>
                             </td> -->
+                        </tr>
+              @endif
+          @else
+                      <tr id="demo">
+                      <td>{{ ++$i }}</td>
+                      <td>{{ $user->fullname }}</td>
+                      <td><a style="color: RoyalBlue;" href="{{ route('user-details',['id'=>$user->userId])  }}">{{ $user->username }}</a></td>
+                      <td>{{ $user->email }}</td>
+                      <td>{{ $user->phone }}</td>
+                      <td>{{$data[0]->name}}</td>
+                      <td>
+                          @if($user->status == 1)
+                              Active
+                          @else
+                              InActive
+                          @endif
+                      </td>
 
+                      <td><a style="color: RoyalBlue;" href="{{url('user/edit/'.$user->userId)}}">Edit</a> </td>
 
-                    </tr>
+                          <td><a style="color: RoyalBlue;" href="{{ route('ch') }}">Change Password</a></td>
+
+                  </tr>
+             @endif
+                    @endforeach
+
                 </tbody>
-                @endforeach
             </table>
-        {{ $users->links() }}
+        <div class="pull-right">{{ $users->links() }}</div>
 
     </div>
 
     </section>
-
-<script>
-    $(document).keyup(function(){
-
-    fetch_user_data();
-
-    function fetch_user_data(query = '')
-    {
-    $.ajax({
-    url:"{{ route('search') }}",
-    method:'GET',
-    data:{query:query},
-    dataType:'json',
-    success:function(data)
-    {
-
-      $('#demo').hide();
-
-    $('tbody').html(data.table_data);
-    $('#total_records').text(data.total_data);
-    }
-    })
-    }
-
-
-    });
-    </script>
 
 @endsection

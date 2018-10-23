@@ -126,7 +126,7 @@ Bill Collection
 					@if($diff > 0)
 
 						<td>{{ ++$i }}</td>
-                           <td><a href="{{ url('downloadPDF',['id'=>$customer->id]) }}" target="_blank"><i class="fas fa-print"></i></a>	</td>
+                           <td style="color: RoyalBlue;"><a style="color: RoyalBlue;" href="{{ url('downloadPDF',['id'=>$customer->id]) }}" target="_blank"><i class="fas fa-print"></i></a>	</td>
 							<td>{{ $customer->customer_name }}</td>
 							<td style="color: RoyalBlue;">
 								<a style="color: RoyalBlue;" href="{{ url('/billing/showing/'.$customer->id) }}">{{$customer->id}}</a>
@@ -243,7 +243,7 @@ Bill Collection
 		</table>
 	</div>
 	</div>
-		{{ $customers->links() }}
+			   <div class="pull-right">{{ $customers->links() }}</div>
 	</div>
 </section>
 <!-- end: page -->

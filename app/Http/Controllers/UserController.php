@@ -89,10 +89,10 @@ class UserController extends Controller
     public function show()
     {
 
-        $users = DB::table('users')
-        ->paginate(3);
+        $users = DB::table('users')->paginate(3);
+        $roles = Role::all();
 
-        return view('superadmin.user.showUser', ['users' => $users])
+        return view('superadmin.user.showUser', ['users' => $users,'roles' => $roles])
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -169,74 +169,9 @@ class UserController extends Controller
         return redirect('manage-user')->with('success', ' deleted successfully');
     }
 
-    public function result(Request $request)
-
-
-    {
-        if ($request->ajax()) {
-            $output = '';
-            $query = $request->get('query');
-            if ($query != '') {
-                $data = DB::table('users')
-                    ->where('fullname', 'like', '%' . $query . '%')
-                    ->orWhere('username', 'like', '%' . $query . '%')
-                    ->orWhere('email', 'like', '%' . $query . '%')
-                    ->orWhere('phone', 'like', '%' . $query . '%')
-                    ->orWhere('address', 'like', '%' . $query . '%')
-                    ->orderBy('userId', 'asc')
-                    ->get();
-                // $data;
-
-            } else {
-
-                $data = DB::table('users')
-                    ->orderBy('userId', 'asc')
-                    ->get();
-                // return $data;
-            }
-            $total_row = $data->count();
-
-            if ($total_row > 0) {
-                 $total_row = $data->count();
-                if ($total_row > 0) {
-                    foreach ($data as $row) {
-                        $output .= '
-        <tr>
-         <td>' . $row->fullname . '</td>
-         <td>' . $row->username . '</td>
-         <td>' . $row->email . '</td>
-         <td>' . $row->phone . '</td>
-         <td>' . $row->address . '</td>
-                        <td><a style="color: RoyalBlue;"    href=' . route('user-details',['id'=>$row->userId]) . '>User details</a></td>
-
-
-
-        </tr>
-        ';
-                           }
-                } else {
-                    $output = '
-       <tr>
-        <td align="center" colspan="5">No Data Found</td>
-       </tr>
-       ';
-                }
-
-
-                return $data;
-            }
-        }
-
-
-      //  return $data;
-
-    }
 
 }
 
-// return $request->all();
-/* $result=User::where('username', 'LIKE', "%{$request->input('query')}%")->get();
- return response()->json($result);*/
 
 
 

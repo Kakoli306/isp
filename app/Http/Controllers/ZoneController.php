@@ -13,7 +13,7 @@ class ZoneController extends Controller
      */
     public function index()
     {
-        $zones = Zone::all();
+        $zones = Zone::latest()->paginate(5);
         return view('superadmin.zone.zoneview')->with('zones', $zones);
     }
 
@@ -68,41 +68,5 @@ class ZoneController extends Controller
         return response()->json($zone);
     }
 
-    public function search(Request $request)
 
-    {
-
-        if ($request->ajax()) {
-
-            $output = "";
-
-            $products = DB::table('zones')
-                ->where('zone_name', 'LIKE', '%' . $request->search . "%")->get();
-
-            if ($products) {
-
-                foreach ($products as $key => $product) {
-
-                    $output .= '<tr>' .
-
-                        '<td>' . $product->id . '</td>' .
-
-                        '<td>' . $product->title . '</td>' .
-
-                        '<td>' . $product->description . '</td>' .
-
-                        '<td>' . $product->price . '</td>' .
-
-                        '</tr>';
-
-                }
-
-
-                return Response($output);
-            }
-              
-
-        }
-
-    }
 }

@@ -16,7 +16,7 @@ class ProductController extends Controller
     {
         $products = Product::latest()->paginate(5);
         return view('superadmin.head.headview')->with('products', $products)
-            ->with('i', (request()->input()));
+            ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**

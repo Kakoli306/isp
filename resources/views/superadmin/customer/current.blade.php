@@ -119,9 +119,12 @@
                                 </tbody>
                                 @endforeach
                             </table>
-                            {{ $customers->links() }}
                         </div>
+                        <div class="pull-right">{{ $customers->links() }}</div>
+
                     </div>
+
+
                 </div>
 
 

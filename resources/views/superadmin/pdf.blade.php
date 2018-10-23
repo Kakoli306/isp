@@ -9787,11 +9787,6 @@
             background-color: #c9302c
         }
 
-
-
-
-
-
         /*# sourceMappingURL=bootstrap.css.map */
 
 
@@ -9806,7 +9801,7 @@
 
     </div>
 
-        <div class="card-body">
+        <div class="col-sm-12">
             <div>
                 <header>
                     <div class="row">
@@ -9822,19 +9817,17 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <div>
-                                <p class="h5 mb-1 text-dark font-weight-semibold">To:</p>
-                                <address>
+                                <p class="h5">To:</p>
                                     {{$customer->customer_name}}
                                     <br/>
                                     {{$customer->address}}<br/>
                                     Phone:  {{$customer->mobile_no}}
                                     <br/>
                                     {{$customer->email}}
-                                </address>
-                            </div>
+                           </div>
                         </div>
                     </div>
-
+                    <br/>
                     <table class="table table-borderless">
                         <thead>
                         <tr class="text-dark">
@@ -9861,7 +9854,7 @@
                         </tr>
                         </tbody>
                     </table>
-<br/>
+                    <br/>
 
                     <table class="table table-borderless">
                     <thead>
@@ -9887,40 +9880,17 @@
                         <div>
                             <div class="col-sm-6">
                                 <p class="h5 mb-1 text-dark font-weight-semibold">Terms & Conditions:</p>
-                                <address>
-                                   1. All due payment must be paid before 10 th of the month
+                                   1. All due payment must be paid before 10th of the month
                                     <br/>
-                                   2. Unable to pay in due time will result in terminate of te service
+                                   2. Unable to pay in due time will result in terminate of the service
                                     <br/>
-                                </address>
                             </div>
                         </div>
                     </div>
+                    <br/>
 
 
-                    <div class="invoice-summary">
-                    <div class="row justify-content-end">
-                        <div class="col-sm-4">
-                            <table class="table h6 text-dark">
-                                <tbody>
-                                <tr class="b-top-0">
-                                    <td colspan="2">Subtotal</td>
-                                    <td class="text-left">$73.00</td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2">Shipping</td>
-                                    <td class="text-left">$0.00</td>
-                                </tr>
-                                <tr class="h4">
-                                    <td colspan="2">Grand Total</td>
-                                    <td class="text-left">$73.00</td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                     </div>
 
             <div class="text-right mr-4">
                 <a href="{{ url('download',['id'=>$customer->id]) }}" class="btn btn-default">Submit Invoice</a>

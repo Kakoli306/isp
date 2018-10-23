@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /*
  * This file is part of sebastian/environment.
  *
@@ -7,49 +7,38 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
-declare(strict_types=1);
-
 namespace SebastianBergmann\Environment;
 
 final class Console
 {
     /**
-     * @var int
-     */
-    const STDIN  = 0;
-
-    /**
-     * @var int
-     */
-    const STDOUT = 1;
-
-    /**
-     * @var int
-     */
-    const STDERR = 2;
-
-    /**
      * Returns true if STDOUT supports colorization.
      *
      * This code has been copied and adapted from
-     * Symfony\Component\Console\Output\OutputStream.
+     * Symfony\Component\Console\Output\StreamOutput.
      */
     public function hasColorSupport(): bool
     {
+        if ('Hyper' === \getenv('TERM_PROGRAM')) {
+            return true;
+        }
+
         if ($this->isWindows()) {
             // @codeCoverageIgnoreStart
-            return false !== \getenv('ANSICON') || 'ON' === \getenv('ConEmuANSI') || 'xterm' === \getenv('TERM');
+            return (\function_exists('sapi_windows_vt100_support') && @sapi_windows_vt100_support(\STDOUT))
+                || false !== \getenv('ANSICON')
+                || 'ON' === \getenv('ConEmuANSI')
+                || 'xterm' === \getenv('TERM');
             // @codeCoverageIgnoreEnd
         }
 
-        if (!\defined('STDOUT')) {
-            // @codeCoverageIgnoreStart
-            return false;
-            // @codeCoverageIgnoreEnd
+        if ($this->isInteractive(\STDOUT)) {
+            return true;
         }
 
-        return $this->isInteractive(STDOUT);
+        $stat = @\fstat(\STDOUT);
+        // Check if formatted mode is S_IFCHR
+        return $stat ? 0020000 === ($stat['mode'] & 0170000) : false;
     }
 
     /**
@@ -63,7 +52,7 @@ final class Console
             return $this->getNumberOfColumnsWindows();
         }
 
-        if (!$this->isInteractive(self::STDIN)) {
+        if (!$this->isInteractive(\STDIN)) {
             return 80;
         }
 
@@ -73,16 +62,17 @@ final class Console
     /**
      * Returns if the file descriptor is an interactive terminal or not.
      *
-     * @param int|resource $fileDescriptor
+     * @param resource $fileDescriptor
      */
-    public function isInteractive($fileDescriptor = self::STDOUT): bool
+    public function isInteractive($fileDescriptor = \STDOUT): bool
     {
-        return \function_exists('posix_isatty') && @\posix_isatty($fileDescriptor);
+        return (\function_exists('stream_isatty') && @\stream_isatty($fileDescriptor))
+            || (\function_exists('posix_isatty') && @\posix_isatty($fileDescriptor));
     }
 
     private function isWindows(): bool
     {
-        return DIRECTORY_SEPARATOR === '\\';
+        return \DIRECTORY_SEPARATOR === '\\';
     }
 
     /**
@@ -120,7 +110,7 @@ final class Console
                 'mode CON',
                 [
                     1 => ['pipe', 'w'],
-                    2 => ['pipe', 'w']
+                    2 => ['pipe', 'w'],
                 ],
                 $pipes,
                 null,

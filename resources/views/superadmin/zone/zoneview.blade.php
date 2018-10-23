@@ -78,6 +78,7 @@ View All Zone
                             @endforeach
                             </tbody>
                         </table>
+                        <div class="pull-right">{{ $zones->links() }}</div>
 
                 </div>
                 </section>
@@ -114,9 +115,11 @@ View All Zone
             </body>
 
             <!-- Scripts -->
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-            <script src="{{asset('js/zonescript.js')}}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+    <script src="{{asset('js/zonescript.js')}}"></script>
+
+
 
 
 

@@ -41,7 +41,6 @@
             <th>Head</th>
             <th>Amount</th>
             <th>Description</th>
-
             <th width="280px">Action</th>
         </tr>
 
@@ -58,17 +57,16 @@
                     <form action="{{ route('expenses.destroy',$expense->id) }}" method="POST">
 
 
-                        <a class="btn btn-primary" href="{{ route('expenses.edit',$expense->id) }}">Edit</a>
+                        <button class="btn-outline-info" href="{{ route('expenses.edit',$expense->id) }}">Edit</button>
 
 
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Delete</button>
+                        <button type="submit" class="btn-outline-danger">Delete</button>
                     </form>
                 </td>
             </tr>
         @endforeach
     </table>
-    {{ $expenses->links() }}
-
+    <div class="pull-right">{{ $expenses->links() }}</div>
 @endsection

@@ -220,11 +220,6 @@ return [
         'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
         'Charts' => ConsoleTVs\Charts\Facades\Charts::class,
-        'twilio' => [
-            'TWILIO_AUTH_TOKEN'  => env('90106f0bc5d9de829cc2d5c2df7a82d9'),
-            'TWILIO_ACCOUNT_SID' => env('AC58f5bee5c907ee47b15e22a6c7452afc'),
-            'TWILIO_APP_SID'     => env('SK5d8f303917a3eade9ce360f60260c0a0')
-        ],
 
     ],
 

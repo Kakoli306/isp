@@ -1,5 +1,7 @@
 <?php
 
+use App\User;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,6 +14,9 @@
 */
 
 Route::get('/', function () {
+
+
+
     return view('welcome');
 });
 
@@ -56,7 +61,7 @@ Route::group(['prefix'=>'customer'], function() {
     Route::post('/active/{id}', 'CustomerController@activeCustomer')->name('active-customer');
     Route::get('/edit/{id}', 'CustomerController@editCustomer')->name('edit');
     Route::post('/update', 'CustomerController@updateCustomer')->name('update');
-    Route::post('/delete', 'CustomerController@deleteCustomer')->name('delete');
+    Route::get('/delete/{id}', 'CustomerController@deleteCustomer')->name('delete');
 
     Route::get('/actives', 'CustomerController@actives')->name('show-actives');
     Route::get('/inactive', 'CustomerController@inactive')->name('show-inactives');
@@ -66,7 +71,7 @@ Route::group(['prefix'=>'customer'], function() {
 });
 
 Route::get('/search/action', 'CustomerController@action')->name('search.action');
-Route::get('/sea','ZoneController@search');
+Route::get('/sea','ZoneController@search')->name('sea');
 
 
 Route::get('/charge', 'CustomerController@charge')->name('connection');
@@ -126,7 +131,7 @@ Route::get('/exp_report', 'ExpenseController@report')->name('expense_report');
 Route::get('/downloadPDF/{id}',array('as'=>'pdfview','uses'=>'SuperAdminController@downloadPDF'));
 Route::get('/download/{id}','SuperAdminController@download');
 Route::get('/chart','SuperAdminController@newchart');
-
+Route::get('/smspage', 'SmsController@page');
 Route::get('/sms', 'SmsController@sendSms');
 
 

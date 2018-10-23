@@ -6,25 +6,26 @@ View Account Head
 
 @section('content')
 
-    <div id="editbodyload" class="col-md-12" style="  background:#FFFFFF; border:1px solid #999999;"
-             id="bodyload">
-
-
-            <div class="col-md-12" style=" margin-top:5px; margin-bottom: 5px; font-size:14px;  color:red; font-weight:bold; text-align: center;">
-                <b></b>
-            </div>
-            <div class="col-md-12" style=" background:#606060; margin-top:20px; margin-bottom: 15px; min-height:45px; padding:8px 0px 0px 15px; font-size:16px; font-family:Lucida Sans Unicode; color:#FFFFFF; font-weight:bold;">
-                <div class="col-md-6">
-                    <b>View Account Head Information</b>
+    <div class="row">
+        <div class="col-md-12 "
+             style=" background:#606060; margin-top:20px; margin-bottom: 15px; min-height:45px; padding:8px 0px 0px 15px; font-size:16px; font-family:Lucida Sans Unicode; color:#FFFFFF; font-weight:bold;">
+            <div class="row">
+                <div class="col-md-4">
+                   <b>View Account Head Information
+                    </b>
                 </div>
-
-                <div class="col-md-12" >
+                <div class="col-md-4" style="font-family: Helvetica;">
+                    <div class="col-md-">
+                    </div>
+                </div>
+                <div class="col-md-4">
                     <div style="float:right; padding-right:10px">
-                    <button id="btn_add" name="btn_add"  class="btn btn-info btn-xs pull-right">ADD NEW </button>
+                        <button id="btn_add" name="btn_add"  class="btn btn-info btn-xs pull-right">ADD NEW </button>
+                    </div>
                 </div>
 
-                 </div>
-
+            </div>
+        </div>
     </div>
 
                     <section class="card">
@@ -52,18 +53,18 @@ View Account Head
                             <tbody id="products-list" name="products-list">
                             @foreach ($products as $product)
                                 <tr id="product{{$product->id}}" class="active">
-                                    <td>{{$product->id}}</td>
+                                    <td>{{ ++$i }}</td>
                                     <td>{{$product->name}}</td>
                                     <td>{{$product->price}}</td>
                                     <td width="35%">
-                                        <button class="btn btn-warning btn-detail open_modal" value="{{$product->id}}">Edit</button>
-                                        <button class="btn btn-danger btn-delete delete-product" value="{{$product->id}}">Delete</button>
+                                        <button class=" btn-info open_modal" value="{{$product->id}}">Edit</button>
+                                        <button class=" btn-danger delete-product" value="{{$product->id}}">Delete</button>
                                     </td>
                                 </tr>
                             @endforeach
                             </tbody>
                         </table>
-                        {{ $products->links() }}
+                        <div class="pull-right">{{ $products->links() }}</div>
 
                     </div>
                 </div>
@@ -107,7 +108,6 @@ View Account Head
 
             <!-- Scripts -->
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
             <script src="{{asset('js/ajaxscript.js')}}"></script>
             </body>
         </div>

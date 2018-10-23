@@ -258,8 +258,8 @@ isp-management
 		</div>
 
 		<div class="col-md-6">
-			<h4 class="mt-0 mb-0">Graph Widgets</h4>
-			<p class="mb-3">Add graphs in widgets and show extra information.</p>
+			<h4 class="mt-0 mb-0">Billing Graphs</h4>
+			<p></p>
 		</div>
 
 

@@ -88,18 +88,17 @@
 
 
                     <!--<a class="btn btn-info" href="{{ route('income.show',$income->incomeId) }}">Show</a>-->
-                        <a class="btn btn-primary" href="{{ route('income.edit',$income->incomeId) }}">Edit</a>
+                        <button class="btn-info" href="{{ route('income.edit',$income->incomeId) }}">Edit</button>
 
 
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Delete</button>
+                        <button type="submit" class="btn-danger">Delete</button>
                     </form>
                 </td>
             </tr>
         @endforeach
     </table>
-    {{ $shows->links() }}
-
+         <div class="pull-right">{{ $shows->links() }}</div>
 
 @endsection

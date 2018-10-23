@@ -103,9 +103,10 @@ class CustomerController extends Controller
         return redirect('customer/manage')->with('message', 'this info updated successfully');
     }
 
-    public function deleteCustomer(Request $request)
+    public function deleteCustomer($customer_id)
     {
-        $customer = Customer::find($request->customer_id);
+        //return $request->all();
+        $customer = Customer::find($customer_id);
         $customer->delete();
 
         return redirect('customer/manage')->with('success', ' deleted successfully');
@@ -183,13 +184,14 @@ class CustomerController extends Controller
 
     }
 
-    public function action(Request $request)
-
+    function action(Request $request)
     {
-        if ($request->ajax()) {
+        if($request->ajax())
+        {
             $output = '';
             $query = $request->get('query');
-            if ($query != '') {
+            if($query != '')
+            {
                 $data = DB::table('customers')
                     ->where('customer_name', 'like', '%' . $query . '%')
                     ->orWhere('mobile_no', 'like', '%' . $query . '%')
@@ -200,15 +202,17 @@ class CustomerController extends Controller
                     ->orWhere('connection_date', 'like', '%' . $query . '%')
                     ->orderBy('id', 'asc')
                     ->get();
-                // $data;
 
             }
             else
             {
                 $data = DB::table('customers')
-                    ->orderBy('id', 'asc')
+                    ->join('zones', 'customers.zone_id', '=', 'zones.id')
+                    ->select('customers.*', 'zones.zone_name')
+                    ->orderBy('id', 'desc')
                     ->get();
             }
+            $i = 1;
             $total_row = $data->count();
             if($total_row > 0)
             {
@@ -216,7 +220,7 @@ class CustomerController extends Controller
                 {
                     $output .= '
         <tr>
-        <td></td>
+         <td>'.$i++.'</td>
          <td>'.$row->customer_name.'</td>
          <td>'.$row->id.'</td>
          <td>'.$row->address.'</td>
@@ -224,22 +228,37 @@ class CustomerController extends Controller
          <td>'.$row->speed.'</td>
          <td>'.$row->bill_amount.'</td>
          <td>'.$row->connection_date.'</td>
+         <td>'.$row->zone_name.'</td>
+         <td>'.$row->ip_address.'</td>
          <td></td>
-                  <td>'.$row->ip_address.'</td>
-              <td></td>
+
+                        
+         <td class="center">
+         
+         <?php
+         <td class="center">
+                                @if('.$row->status.' == 1)
+
+                                    <form action='. route('inactive-customer',['id'=>$row->id]) .' method="POST">
+                                        {{ csrf_field() }}
+                                        <button type="submit" name="btn"  class="btn btn-danger btn-sm">Inactive</button>
+                                    </form>
+
+                                @else
+                                    <form action="'. route('active-customer',['id'=>$row->id]) .' method="POST">
+                                        {{ csrf_field() }}
+                                        <button type="submit" name="btn"  class="btn btn-success btn-sm">active</button>
+                                    </form>
+
+                                @endif
+                            </td>
+                           ?>
+                  
          <td><a style="color: RoyalBlue;"   href=' . route('edit',['id'=>$row->id]) . '>Edit</a>
          <a style="color: RoyalBlue;"   <form  href = ' . route('delete',['id'=>$row->id]). '>Delete
          
-                                   
-                                </a>
-                                
-                                
-                                </td>
-
         
-
-
-        </tr>
+          </tr>
         ';
                 }
             }
@@ -259,9 +278,4 @@ class CustomerController extends Controller
             echo json_encode($data);
         }
     }
-
-
-
-
-
 }

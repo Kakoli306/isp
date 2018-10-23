@@ -1,11 +1,10 @@
 <div class="inner-wrapper">
     <!-- start: sidebar -->
+
     <aside id="sidebar-left" class="sidebar-left">
 
         <div class="sidebar-header">
-            <div class="sidebar-title">
-                Navigation
-            </div>
+
             <div class="sidebar-toggle d-none d-md-block" data-toggle-class="sidebar-left-collapsed" data-target="html" data-fire-event="sidebar-left-toggle">
                 <i class="fas fa-bars" aria-label="Toggle sidebar"></i>
             </div>
@@ -162,7 +161,7 @@
                             </a>
                             <ul class="nav nav-children">
                                 <li>
-                                    <a class="nav-link" href="#">
+                                    <a class="nav-link" href="{{ url('/smspage') }}">
                                         Due SMS
                                     </a>
 
@@ -194,35 +193,67 @@
     </aside>
     <!-- end: sidebar -->
 
-    <section role="main" class="content-body">
-        <header class="page-header">
-            <h2>
-                <head>
+
+
+            <section role="main" class="content-body">
+
+                <header class="page-header">
+                    <h2></h2>
+                    <h2></h2>
+                    <h2></h2>
+                    <h2></h2>
+                    <h2></h2>
+                    <h2></h2>
+                    <h2></h2>
+                    <h2></h2>
+                    <h2></h2>
+                    <h2></h2>
+                    <h2 id="currentTime"</h2>
+
+                    <head>
+
+                    <style>
+                        @import url(https://fonts.googleapis.com/css?family=Oswald:300,400);
+                        body {
+                        }
+                        #currentTime {
+                            text-align: center;
+                            color: #f05b19;
+                            margin: 100px auto;
+                        }
+                    </style>
                     <script>
-                        function startTime() {
-                            var today = new Date();
-                            var h = today.getHours();
-                            var m = today.getMinutes();
-                            var s = today.getSeconds();
-                            m = checkTime(m);
-                            s = checkTime(s);
-                            document.getElementById('txt').innerHTML =
-                                h + ":" + m + ":" + s;
-                            var t = setTimeout(startTime, 500);
+                        window.onload = function() {
+                            clock();
+                            function clock() {
+                                var now = new Date();
+                                var TwentyFourHour = now.getHours();
+                                var hour = now.getHours();
+                                var min = now.getMinutes();
+                                var mid = 'pm';
+                                if (min < 10) {
+                                    min = "0" + min;
+                                }
+                                if (hour > 12) {
+                                    hour = hour - 12;
+                                }
+                                if(hour==0){
+                                    hour=12;
+                                }
+                                if(TwentyFourHour < 12) {
+                                    mid = 'am';
+                                }
+                                document.getElementById('currentTime').innerHTML = hour+':'+min +' '+ mid ;
+                                setTimeout(clock, 1000);
+                            }
                         }
-                        function checkTime(i) {
-                            if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
-                            return i;
-                        }
+
                     </script>
                 </head>
-
-                <body onload="startTime()">
-
-                <div id="txt"></div>
-
-                </body>
+                    </body>
             </h2>
+
+
 
             <div class="right-wrapper text-right">
                 <ol class="breadcrumbs">

@@ -12,9 +12,8 @@
                 <div class="panel-group">
                     <!--Dashboard Section-->
                     <div class="panel panel-default">
-                        <div class="panel-heading" id="" > <i class="fa fa-user"></i> <SPAN>Profile</SPAN>
                             <div class="text-left;">
-                                <a href="{{ route('user-show') }}" type="button" class="btn btn-outline-success" ><i class="fa fa-pencil-square-o"></i>Back</a>
+                                <a href="{{ route('user-show') }}" type="button" class="btn btn-outline-success" ><i class="fa fa-arrow-circle-left"></i></a>
                             </div>
 
                         </div>
@@ -27,8 +26,9 @@
                                         <div class="row">
                                             <div class="col-md-3"></div>
                                             <div class="col-md-5" >
-                                                <div style="text-align: center; margin-top: 10px;">
+                                                <div class="panel-heading" id="" > <i class="fa fa-user"></i> <SPAN>Profile</SPAN>
 
+                                                    <div style="text-align: center; margin-top: 10px;">
                                                     <img src="{{$userId->photo}}" alt="User Image" width="150" height="150">
                                                 </div>
 

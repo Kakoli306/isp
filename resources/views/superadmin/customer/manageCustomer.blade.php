@@ -6,9 +6,6 @@
 
 @section('content')
 
-
-
-
     <div class="row">
         <div class="col-md-12 "
              style=" background:#606060; margin-top:20px; margin-bottom: 15px; min-height:45px; padding:8px 0px 0px 15px; font-size:16px; font-family:Lucida Sans Unicode; color:#FFFFFF; font-weight:bold;">
@@ -114,61 +111,66 @@
                     </thead>
                     <tbody>
 
-                    @foreach($customers as $customer)
-                        <tr>
-                            <td>{{ ++$i }}</td>
-                            <td>{{ $customer->customer_name }}</td>
-                            <td>{{ $customer->id }}</td>
-                            <td>{{ $customer->address }}</td>
-                            <td>{{ $customer->mobile_no }}</td>
-                            <td>{{ $customer->speed}}</td>
-                            <td>{{ $customer->bill_amount	}}</td>
-                            <td>{{ $customer->connection_date}}</td>
-                            <td> {{ $customer->zone_name }}</td>
-                            <td>{{ $customer->ip_address}}</td>
-                            <td class="center">
-                                @if($customer->status == 1)
+                    {{--@foreach($customers as $customer)--}}
+                        {{--<tr>--}}
+                            {{--<td>{{ ++$i }}</td>--}}
+                            {{--<td>{{ $customer->customer_name }}</td>--}}
+                            {{--<td>{{ $customer->id }}</td>--}}
+                            {{--<td>{{ $customer->address }}</td>--}}
+                            {{--<td>{{ $customer->mobile_no }}</td>--}}
+                            {{--<td>{{ $customer->speed}}</td>--}}
+                            {{--<td>{{ $customer->bill_amount	}}</td>--}}
+                            {{--<td>{{ $customer->connection_date}}</td>--}}
+                            {{--<td> {{ $customer->zone_name }}</td>--}}
+                            {{--<td>{{ $customer->ip_address}}</td>--}}
+                            {{--<td class="center">--}}
+                                {{--@if($customer->status == 1)--}}
 
-                                    <form action="{{ route('inactive-customer',['id'=>$customer->id]) }}" method="POST">
-                                        {{ csrf_field() }}
-                                        <button type="submit" name="btn"  class="btn btn-danger btn-sm">Inactive</button>
-                                    </form>
+                                    {{--<form action="{{ route('inactive-customer',['id'=>$customer->id]) }}" method="POST">--}}
+                                        {{--{{ csrf_field() }}--}}
+                                        {{--<button type="submit" name="btn"  class="btn btn-danger btn-sm">Inactive</button>--}}
+                                    {{--</form>--}}
 
-                                @else
-                                    <form action="{{ route('active-customer',['id'=>$customer->id]) }}" method="POST">
-                                        {{ csrf_field() }}
-                                        <button type="submit" name="btn"  class="btn btn-success btn-sm">active</button>
-                                    </form>
+                                {{--@else--}}
+                                    {{--<form action="{{ route('active-customer',['id'=>$customer->id]) }}" method="POST">--}}
+                                        {{--{{ csrf_field() }}--}}
+                                        {{--<button type="submit" name="btn"  class="btn btn-success btn-sm">active</button>--}}
+                                    {{--</form>--}}
 
-                                @endif
-                            </td>
+                                {{--@endif--}}
+                            {{--</td>--}}
 
-                            <td class="center">
-                                <a class=" btn-info" href="{{ route('edit',['id'=>$customer->id]) }}">Edit</a>
-                                <form action="{{ route('delete') }}" method="POST"  title="Delete" >
-                                    {{csrf_field()}}
+                            {{--<td class="center">--}}
+                                {{--<a class=" btn-info" href="{{ route('edit',['id'=>$customer->id]) }}">Edit</a>--}}
+                                {{--<form action="{{ route('delete') }}" method="POST"  title="Delete" >--}}
+                                    {{--{{csrf_field()}}--}}
 
-                                    <input type="hidden" value="{{$customer->id}}" name="customer_id">
-                                    <button type="submit" name="btn" onclick="return confirm('Are u sure to delete this !!!')"
-                                            class="btn-outline-danger">Delete
-                                    </button>
-                                </form>
-                            </td>
-                        </tr>
-                    </tbody>
-                    @endforeach
+                                    {{--<input type="hidden" value="{{$customer->id}}" name="customer_id">--}}
+                                    {{--<button type="submit" name="btn" onclick="return confirm('Are u sure to delete this !!!')"--}}
+                                            {{--class="btn-outline-danger">Delete--}}
+                                    {{--</button>--}}
+                                {{--</form>--}}
+                            {{--</td>--}}
+                        {{--</tr>--}}
+                    {{--</tbody>--}}
+                    {{--@endforeach--}}
+
                 </table>
-                {{ $customers->links() }}
-            </div>
+
+                </div>
+
         </div>
+            <div class="pull-right">{{ $customers->links() }}</div>
+
         </div>
+
     </section>
     <!-- end: page -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 
 
     <script>
-        $(document).keyup(function(){
+        $(document).ready(function(){
 
             fetch_customer_data();
 

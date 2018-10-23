@@ -8,43 +8,62 @@
       <div class="sidebar-right-wrapper">
 
         <div class="sidebar-widget widget-calendar">
-          <h6>Upcoming Tasks</h6>
           <div data-plugin-datepicker data-plugin-skin="dark"></div>
 
           <ul>
-            <li>
-              <time datetime=></time>
-              <span>{{date('Y-m-d H:i:s')}}</span>
-            </li>
-          </ul>
+             </ul>
         </div>
 
-        @foreach($customer as $cust)
+        <h6>Customers</h6>
 
-        <div class="sidebar-widget widget-friends">
-          <h6>Customers</h6>
-          <ul>
-            <li class="status-online">
+        <div class="row" style="height:350px; Serif;overflow:auto;">
+
+
+          <div class="column-6" style="background-color:#180c22; ">
+
+                <ul>
+                  @foreach($cust as $customer)
+
+                  <li class="status-online">
+                <figure class="profile-picture">
+                  <img src="{{asset('superadmin/')}}/img/%21sample-user.jpg" alt="Joseph Doe" class="rounded-circle">
+                </figure>
+
+                <div class="profile-info">
+                  <span class="name">{{ $customer->customer_name }}</span>
+                  <p>{{ $customer->mobile_no }}</p>
+                  @endforeach
+
+                </div>
+              </li>
+            </ul>
+          </div>
+
+
+            <div class="column-6" style="background-color:#180c22; ">
+            <ul>
+              @foreach($cust1 as $customer)
+
+              <li class="status-online">
               <figure class="profile-picture">
                 <img src="{{asset('superadmin/')}}/img/%21sample-user.jpg" alt="Joseph Doe" class="rounded-circle">
               </figure>
 
-
               <div class="profile-info">
-                  <span class="name">{{ $cust->customer_name }}</span>
-                  <span class="mobile">{{ $cust->mobile_no }}</span>
+                <span>{{ $customer->customer_name }}</span>
+                <p>{{ $customer->mobile_no }}</p>
+
+                @endforeach
+
               </div>
-
-
             </li>
-
           </ul>
-
-
+          </div>
         </div>
-          @endforeach
+
+        </body>
+      </div>
 
       </div>
-    </div>
   </div>
 </aside>

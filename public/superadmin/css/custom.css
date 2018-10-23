@@ -1,1 +1,46 @@
 /* Add here all your CSS customizations */
+
+
+body {
+    font-family: 'Source+Code+Pro:500', sans-serif
+}
+
+.nav {
+    width: auto;
+    height: auto;
+    margin-left: 10px;
+    margin-top: 3px;
+    list-style: none
+}
+.nav a,
+p.link a {
+    text-decoration: none;
+}
+.nav li {
+    text-align: justify;
+    width: 200px;
+    padding: 4px;
+    transition: all .2s linear;
+    background-color: #000;
+    border: 1px solid #333
+}
+
+.nav a {
+    color: #fff
+}
+
+.nav li:hover {
+    -moz-transform: translate(30px, 00px);
+    -webkit-transform: translate(30px, 00px);
+    -moz-border-radius: 0 9px 9px 0;
+    -webkit-border-radius: 0 9px 9px 0;
+    border-radius: 0 9px 9px 0;
+    transform: translate(30px, 00px);
+    background: -webkit-gradient(linear, 80% 20%, 10% 21%, from(#D20000), to(#610028));
+    background: -ms-gradient(linear, 80% 20%, 10% 21%, from(#D20000), to(#610028));
+    background: -moz-gradient(linear, 80% 20%, 10% 21%, from(#D20000), to(#610028))
+}
+
+.nav li:active {
+    background-color: #D8D8D8
+}
