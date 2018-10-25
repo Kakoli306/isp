@@ -79,7 +79,7 @@
                 <div class="col-md-4 col-md-offset-4">
                     <form>
                         <div class="input-group">
-                            <input type="search_text" name="search_text" id="search_text" class="form-control" placeholder="Search for...">
+                            <input type="text" name="search" id="search" class="form-control" placeholder="Search Customer...">
                         </div>
                     </form>
                 </div>
@@ -90,6 +90,7 @@
 
             <section class="card">
         <div class="container">
+            <h3 align="center">Total Data : <span id="total_records"></span></h3>
 
                         <table class="table table-bordered table-striped mb-0 table-responsive" id="datatable-editable">
 
@@ -105,56 +106,85 @@
                         <th>Connection Date</th>
                         <th>Zone</th>
                         <th>IP</th>
-                        <th>Status</th>
-                        <th>Customer Status</th>
                         <th>Actions</th>
                     </tr>
                     </thead>
                     <tbody>
 
-                    @foreach($customers as $customer)
-                        <tr>
-                            <td>{{ ++$i }}</td>
-                            <td>{{ $customer->customer_name }}</td>
-                            <td>{{ $customer->id }}</td>
-                            <td>{{ $customer->address }}</td>
-                            <td>{{ $customer->mobile_no }}</td>
-                            <td>{{ $customer->speed}}</td>
-                            <td>{{ $customer->bill_amount	}}</td>
-                            <td>{{ $customer->connection_date}}</td>
-                            <td>{{ $customer->zone_id }}</td>
-                            <td>{{ $customer->ip_address}}</td>
-                            <td>{{ $customer->status == 1 ? 'Active' : 'Inactive' }}</td>
-                            <td class="center">
-                                @if($customer->status == 1)
+                    {{--@foreach($customers as $customer)--}}
+                        {{--<tr>--}}
+                            {{--<td>{{ ++$i }}</td>--}}
+                            {{--<td>{{ $customer->customer_name }}</td>--}}
+                            {{--<td>{{ $customer->id }}</td>--}}
+                            {{--<td>{{ $customer->address }}</td>--}}
+                            {{--<td>{{ $customer->mobile_no }}</td>--}}
+                            {{--<td>{{ $customer->speed}}</td>--}}
+                            {{--<td>{{ $customer->bill_amount	}}</td>--}}
+                            {{--<td>{{ $customer->connection_date}}</td>--}}
+                            {{--<td>{{ $customer->zone_id }}</td>--}}
+                            {{--<td>{{ $customer->ip_address}}</td>--}}
+                            {{--<td>{{ $customer->status == 1 ? 'Active' : 'Inactive' }}</td>--}}
+                            {{--<td class="center">--}}
+                                {{--@if($customer->status == 1)--}}
 
-                                    <form action="{{ route('inactive-customer',['id'=>$customer->id]) }}" method="POST">
-                                        {{ csrf_field() }}
-                                        <button type="submit" name="btn"  class="btn btn-danger btn-sm">Inactive</button>
-                                    </form>
+                                    {{--<form action="{{ route('inactive-customer',['id'=>$customer->id]) }}" method="POST">--}}
+                                        {{--{{ csrf_field() }}--}}
+                                        {{--<button type="submit" name="btn"  class="btn btn-danger btn-sm">Inactive</button>--}}
+                                    {{--</form>--}}
 
-                                @else
-                                    <form action="{{ route('active-customer',['id'=>$customer->id]) }}" method="POST">
-                                        {{ csrf_field() }}
-                                        <button type="submit" name="btn"  class="btn btn-success btn-sm">active</button>
-                                    </form>
+                                {{--@else--}}
+                                    {{--<form action="{{ route('active-customer',['id'=>$customer->id]) }}" method="POST">--}}
+                                        {{--{{ csrf_field() }}--}}
+                                        {{--<button type="submit" name="btn"  class="btn btn-success btn-sm">active</button>--}}
+                                    {{--</form>--}}
 
-                            @endif
+                            {{--@endif--}}
 
-                            <td class="center">
+                            {{--<td class="center">--}}
 
-                                <a class="btn btn-info" href="{{ route('edit',['id'=>$customer->id]) }}">Edit</a>
+                                {{--<a class="btn btn-info" href="{{ route('edit',['id'=>$customer->id]) }}">Edit</a>--}}
 
-                            </td>
-                        </tr>
-                    </tbody>
-                    @endforeach
+                            {{--</td>--}}
+                        {{--</tr>--}}
+                    {{--</tbody>--}}
+                    {{--@endforeach--}}
 
                 </table>
                 {{ $customers->links() }}
 
-            </div>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+            <script>
+                $(document).ready(function(){
+
+                    fetch_actives_data();
+
+                    function fetch_actives_data(query = '')
+                    {
+                        $.ajax({
+                            url:"{{ route('action') }}",
+                            method:'GET',
+                            data:{query:query},
+                            dataType:'json',
+                            success:function(data)
+                            {
+                                $('tbody').html(data.table_data);
+                                $('#total_records').text(data.total_data);
+                            }
+                        })
+                    }
+
+                    $(document).on('keyup', '#search', function(){
+                        var query = $(this).val();
+                        fetch_actives_data(query);
+                    });
+                });
+            </script>
+
+
+
         </div>
+            </section>
             </div>
         </div>
     </section>

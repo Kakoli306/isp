@@ -1,6 +1,6 @@
 @extends('superadmin.master')
 @section('title')
-isp-management
+	isp-management
 @endsection
 @section('content')
 
@@ -119,7 +119,7 @@ isp-management
 						</section>
 					</div>
 				</div>
-						</div>
+			</div>
 			<div class="col-lg-12 col-xl-4">
 				<div class="row">
 					<div class="col-12">
@@ -213,7 +213,7 @@ isp-management
 
 						</table>
 					</div>
-                </section>
+				</section>
 			</div>
 
 			<div class="col-lg-6">
@@ -250,24 +250,20 @@ isp-management
 
 						</table>
 					</div>
+
 				</section>
 			</div>
 
-
-
-		</div>
-
-		<div class="col-md-6">
-			<h4 class="mt-0 mb-0">Billing Graphs</h4>
-			<p></p>
 		</div>
 
 
 
-		<div class="col-lg-12">
-			<section class="card">
-				<div class="row">
-					<div class="col-md-6">
+<br/>
+<div class="col-md-12">
+	<div class="row">
+	<div class="col-md-6">
+
+
 						<section class="card card-featured-left card-featured-quaternary">
 							<div class="panel panel-default">
 								<div class="panel-heading"><b></b></div>
@@ -276,33 +272,31 @@ isp-management
 								</div>
 							</div>
 						</section>
-					</div>
-				</div>
-			</section>
+
 		</div>
 
 
 
-		<!-- <div class="col-lg-6">
-	       <div class="row mb-3">
-		   </div>
-			<section class="card">
-				<div class="row">
-		<div class="col-lg-10 col-md-offset-2">
+
+
+		<div class="col-md-6">
+
+
 			<section class="card card-featured-left card-featured-quaternary">
 				<div class="panel panel-default">
-					<div class="panel-heading"><b>myChart</b></div>
+					<div class="panel-heading"><b></b></div>
 					<div class="panel-body">
-						<canvas id="canvas" height="280" width="400"></canvas>
+						<canvas id="myChart" height="280" width="400"></canvas>
 					</div>
 				</div>
 			</section>
+
 		</div>
 
-	</div>
-				</section>
-			</div> -->
 
+
+	</div>
+	</div>
 	</div>
 
 
@@ -312,66 +306,16 @@ isp-management
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.js" charset="utf-8"></script>
 
 
-    {{--var Months = new Array();--}}
-    {{--var Prices = new Array();--}}
-    {{--var Test = {!! json_encode($result->toArray()) !!}--}}
-
-
-
-   {{--// console.log(Test);--}}
-
-	{{--@foreach($result as $d)--}}
-
-			{{--rrr.push({{$d}})--}}
-
-	{{--@endforeach--}}
-
- {{--$(document).ready(function(Test){--}}
-     {{--//alert(rrr);--}}
-    {{--// $.get(url, function(Test){--}}
-        {{--console.log(Test);--}}
-        {{--Test.forEach(function(Test){--}}
-        {{--// Months.push(Test.month);--}}
-        {{--// Prices.push(Test.price);--}}
-
-
-    {{--});--}}
-
-
-    {{--var ctx = document.getElementById("canvas").getContext('2d');--}}
-    {{--var myChart = new Chart(ctx, {--}}
-    {{--type: 'bar',--}}
-    {{--data: {--}}
-    {{--labels:Months,--}}
-    {{--datasets: [{--}}
-        {{--label: 'Expense',--}}
-        {{--data: Prices,--}}
-        {{--borderWidth: 1--}}
-    {{--}]--}}
-    {{--},--}}
-    {{--options: {--}}
-    {{--scales: {--}}
-    {{--yAxes: [{--}}
-    {{--ticks: {--}}
-    {{--beginAtZero:true--}}
-    {{--}--}}
-    {{--}]--}}
-    {{--}--}}
-    {{--}--}}
-    {{--});--}}
-    {{--// });--}}
-    {{--});--}}
-
 
 	<script>
         var ctx = document.getElementById("myChart").getContext('2d');
         var myChart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: ["Billing", "Expenses"],
+                labels: ["Expenses", "Income"],
                 datasets: [{
-                    label: 'Sum Of Billing Information',
-                    data: ["<?php echo $exp; ?>", "<?php echo $bill; ?>"],
+                    label: 'Billing Information',
+                    data: ["<?php echo $exp; ?>","<?php echo $incomes; ?>"],
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)',
@@ -402,7 +346,6 @@ isp-management
             }
         });
 	</script>
-
 
 
 	<script type="text/javascript">
@@ -471,7 +414,7 @@ isp-management
                 });
             });
         });
-    </script>
+	</script>
 
 
 

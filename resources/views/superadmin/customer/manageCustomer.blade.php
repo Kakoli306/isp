@@ -18,6 +18,9 @@
                 </div>
                 <div class="col-md-4" style="font-family: Helvetica;">
                     <div class="col-md-">
+
+                        @if(session("message")){{session('message')}}
+                            @endif
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -126,6 +129,15 @@
                             {{--<td class="center">--}}
                                 {{--@if($customer->status == 1)--}}
 
+                                    {{--<a class=" btn-info" href="{{ url('customer/inactive/'.$customer->id) }}">Inactive</a>--}}
+
+                                {{--@else--}}
+                                    {{--<a class=" btn-info" href="{{ route('active-customer',['id'=>$customer->id]) }}">active</a>--}}
+
+
+                                {{--@endif--}}
+                                {{--@if($customer->status == 1)--}}
+
                                     {{--<form action="{{ route('inactive-customer',['id'=>$customer->id]) }}" method="POST">--}}
                                         {{--{{ csrf_field() }}--}}
                                         {{--<button type="submit" name="btn"  class="btn btn-danger btn-sm">Inactive</button>--}}
@@ -142,8 +154,8 @@
 
                             {{--<td class="center">--}}
                                 {{--<a class=" btn-info" href="{{ route('edit',['id'=>$customer->id]) }}">Edit</a>--}}
-                                {{--<form action="{{ route('delete') }}" method="POST"  title="Delete" >--}}
-                                    {{--{{csrf_field()}}--}}
+                                {{--<form action="{{ route('delete') }}"  title="Delete" >--}}
+
 
                                     {{--<input type="hidden" value="{{$customer->id}}" name="customer_id">--}}
                                     {{--<button type="submit" name="btn" onclick="return confirm('Are u sure to delete this !!!')"--}}

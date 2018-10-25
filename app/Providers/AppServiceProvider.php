@@ -22,13 +22,13 @@ class AppServiceProvider extends ServiceProvider
 
 
         View::composer('superadmin.includes.header',function($view){
-           //$user = Auth::user()->userId;
+            //$user = Auth::user()->userId;
             $role =  User::whereHas('roles', function($q){$q->whereIn('roles.id',['Auth::user()->userId']);})->first();
 
 
-        //dd($user);
+            //dd($user);
 
-        $view->with('role',$role);
+            $view->with('role',$role);
 
 
         });
@@ -36,15 +36,15 @@ class AppServiceProvider extends ServiceProvider
         View::composer('superadmin.includes.aside', function ($view) {
 
             // Get the $data
-          //  $customer = Customer::orderBy('id', 'desc')->get();
+            //  $customer = Customer::orderBy('id', 'desc')->get();
 
             $cus = Customer::count();
             $customer = $cus/2;
 
             $cust = Customer::orderBy('id', 'desc')->take($customer)->get();
-           // $cust1 = Customer::orderBy('id', 'asc')->take($customer)->get();
+            // $cust1 = Customer::orderBy('id', 'asc')->take($customer)->get();
 
-           // dd($cust);
+            // dd($cust);
 
             $view->with('cust', $cust);
 
@@ -61,7 +61,7 @@ class AppServiceProvider extends ServiceProvider
             $cus = Customer::count();
             $customer = $cus/2;
 
-           // $cust = Customer::orderBy('id', 'desc')->take($customer)->get();
+            // $cust = Customer::orderBy('id', 'desc')->take($customer)->get();
             $cust1 = Customer::orderBy('id', 'asc')->take($customer)->get();
 
             // dd($cust);

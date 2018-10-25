@@ -7,8 +7,8 @@ use App\Customer;
 use App\Zone;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Input;
 use Carbon\Carbon;
+
 class CustomerController extends Controller
 {
     public function create()
@@ -61,15 +61,22 @@ class CustomerController extends Controller
 
     public function inactiveCustomer($id)
     {
+        $abc = Customer::where('id',$id)->first();
+       $abc->status = 1;
+       $abc->save();
 
-        DB::table('customers')->where('id', $id)->update(['status' => 0]);
-        return redirect('/customer/manage')->with('message', 'this guy is  unactive now');
+        return redirect()->back()->with('message', 'This guy is  unactive now');
     }
 
     public function activeCustomer($id)
     {
 
-        DB::table('customers')->where('id', $id)->update(['status' => 1]);
+       // DB::table('customers')->where('id', $id)->update(['status' => 1]);
+
+        $def = Customer::where('id',$id)->first();
+        $def->status = 0;
+        $def->save();
+
         return redirect('/customer/manage')->with('message', 'this guy is  active now successfully');
     }
 
@@ -112,19 +119,6 @@ class CustomerController extends Controller
         return redirect('customer/manage')->with('success', ' deleted successfully');
     }
 
-    public function actives()
-    {
-        $customers = DB::table('customers')
-            ->where('status', 1)
-            ->orderBy('id', 'DESC')->paginate(8);
-
-        $zones = DB::table('zones')->get();
-        $sun = Customer::sum('bill_amount');
-
-        return view('superadmin.customer.actives', ['customers' => $customers, 'zones' => $zones, 'sun' => $sun])
-            ->with('i', (request()->input('page', 1) - 1) * 5);
-
-    }
 
     public function inactive()
     {
@@ -217,8 +211,10 @@ class CustomerController extends Controller
             if($total_row > 0)
             {
                 foreach($data as $row)
-                {
-                    $output .= '
+
+
+                    if($row->status === 0){
+                        $output .= '
         <tr>
          <td>'.$i++.'</td>
          <td>'.$row->customer_name.'</td>
@@ -230,29 +226,12 @@ class CustomerController extends Controller
          <td>'.$row->connection_date.'</td>
          <td>'.$row->zone_name.'</td>
          <td>'.$row->ip_address.'</td>
-         <td></td>
-
-                        
+                              
          <td class="center">
-         
-         <?php
-         <td class="center">
-                                @if('.$row->status.' == 1)
-
-                                    <form action='. route('inactive-customer',['id'=>$row->id]) .' method="POST">
-                                        {{ csrf_field() }}
-                                        <button type="submit" name="btn"  class="btn btn-danger btn-sm">Inactive</button>
-                                    </form>
-
-                                @else
-                                    <form action="'. route('active-customer',['id'=>$row->id]) .' method="POST">
-                                        {{ csrf_field() }}
-                                        <button type="submit" name="btn"  class="btn btn-success btn-sm">active</button>
-                                    </form>
-
-                                @endif
+       
+          <a class = "btn btn-danger btn-sm"  href=' . route('inactive-customer',['id'=>$row->id]) . '>Inactive</a>
+                           
                             </td>
-                           ?>
                   
          <td><a style="color: RoyalBlue;"   href=' . route('edit',['id'=>$row->id]) . '>Edit</a>
          <a style="color: RoyalBlue;"   <form  href = ' . route('delete',['id'=>$row->id]). '>Delete
@@ -260,7 +239,36 @@ class CustomerController extends Controller
         
           </tr>
         ';
-                }
+                    }
+
+                    else
+
+                    {
+                        $output .= '
+        <tr>
+         <td>'.$i++.'</td>
+         <td>'.$row->customer_name.'</td>
+         <td>'.$row->id.'</td>
+         <td>'.$row->address.'</td>
+         <td>'.$row->mobile_no.'</td>
+         <td>'.$row->speed.'</td>
+         <td>'.$row->bill_amount.'</td>
+         <td>'.$row->connection_date.'</td>
+         <td>'.$row->zone_name.'</td>
+         <td>'.$row->ip_address.'</td>
+              
+         <td class="center">
+        
+                                   <a class = "btn btn-success btn-sm"  href=' . route('active-customer',['id'=>$row->id]) . '>Active</a>
+                            </td>
+                  
+         <td><a class="btn-info"   href=' . route('edit',['id'=>$row->id]) . '>Edit</a>
+         <a class="btn-outline-danger"   <form  href = ' . route('delete',['id'=>$row->id]). '>Delete
+         
+        
+          </tr>
+        ';
+                    }
             }
             else
             {

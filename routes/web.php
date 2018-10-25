@@ -57,21 +57,23 @@ Route::group(['prefix'=>'customer'], function() {
     Route::get('/create', 'CustomerController@create')->name('add-customer');
     Route::post('/new', 'CustomerController@save')->name('new-customer');
     Route::get('/manage', 'CustomerController@manageCustomer')->name('manage-customer');
-    Route::post('/inactive/{id}', 'CustomerController@inactiveCustomer')->name('inactive-customer');
-    Route::post('/active/{id}', 'CustomerController@activeCustomer')->name('active-customer');
+    Route::get('/inactive/{id}', 'CustomerController@inactiveCustomer')->name('inactive-customer');
+    Route::get('/active/{id}', 'CustomerController@activeCustomer')->name('active-customer');
     Route::get('/edit/{id}', 'CustomerController@editCustomer')->name('edit');
     Route::post('/update', 'CustomerController@updateCustomer')->name('update');
     Route::get('/delete/{id}', 'CustomerController@deleteCustomer')->name('delete');
 
-    Route::get('/actives', 'CustomerController@actives')->name('show-actives');
+    Route::get('/actives', 'LiveSearchController@actives')->name('show-actives');
     Route::get('/inactive', 'CustomerController@inactive')->name('show-inactives');
     Route::get('/current', 'CustomerController@current')->name('yes');
     Route::get('/discount', 'CustomerController@discount')->name('discount');
 
 });
-
+//search
 Route::get('/search/action', 'CustomerController@action')->name('search.action');
 Route::get('/sea','ZoneController@search')->name('sea');
+Route::get('/act', 'LiveSearchController@action')->name('action');
+
 
 
 Route::get('/charge', 'CustomerController@charge')->name('connection');
@@ -130,7 +132,11 @@ Route::get('/head/show/{id}', 'SuperAdminController@headshow')->name('head-show'
 Route::get('/exp_report', 'ExpenseController@report')->name('expense_report');
 Route::get('/downloadPDF/{id}',array('as'=>'pdfview','uses'=>'SuperAdminController@downloadPDF'));
 Route::get('/download/{id}','SuperAdminController@download');
+
+//chart
 Route::get('/chart','SuperAdminController@newchart');
+Route::get('/bar-chart', 'SuperAdminController@mychart');
+
 
 //sms
 Route::get('/smspage', 'SmsController@page');

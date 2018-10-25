@@ -15,7 +15,6 @@ use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Support\Facades\Input;
-use Nexmo\Laravel\Facade\Nexmo;
 class SuperAdminController extends Controller
 {
     public function index(){
@@ -32,7 +31,17 @@ class SuperAdminController extends Controller
         $exp = DB::table('expenses')->sum('price');
         $bill = DB::table('billings')->sum('payment_amount');
 
-        return view('superadmin.home.homeContent',compact('zones','users','customers','incomes','expenses','heads','cust','user','exp','bill'));
+        $expe = DB::table('expenses')
+            ->select(
+                DB::raw("month as month"),
+                DB::raw("SUM(price) as price"))
+            ->orderBy('month', 'ASC')
+            ->groupBy(DB::raw("month"))
+            ->get();
+
+//dd($expe);
+
+        return view('superadmin.home.homeContent',compact('zones','users','customers','incomes','expenses','heads','cust','user','exp','bill','expe'));
     }
 
     public function headshow($id){
@@ -182,23 +191,6 @@ class SuperAdminController extends Controller
 
     }
 
-public function chart()
-    {
-        $exp = DB::table('expenses')->sum('price');
-        $bill = DB::table('billings')->sum('payment_amount');
-
-        /*DB::table('expenses')
-            ->select(
-                DB::raw("month as month"),
-                DB::raw("SUM(price) as price"))
-            ->orderBy('month', 'ASC')
-            ->groupBy(DB::raw("month"))
-            ->get();*/
-
-        //dd($result);
-        return response()->json($exp,$bill);
-
-    }
 
     public function newchart()
     {
@@ -213,7 +205,23 @@ public function chart()
         return response()->json($result1);
     }
 
+public function mychart()
 
+{
+    $expenses = Expense::where(DB::raw("(month)"))
+        ->get();
+
+    $chart = Charts::database($expenses, 'bar', 'highcharts')
+        ->title("Monthly new Register Users")
+        ->elementLabel("Total Users")
+        ->dimensions(1000, 500)
+        ->responsive(false)
+        ->groupByMonth(DB::raw("month"), true);
+
+
+   // return view('chart',compact('chart'));
+
+}
 
 
 

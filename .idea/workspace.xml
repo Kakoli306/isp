@@ -2,17 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="76fd6b11-2e7f-4f86-9477-088928b2a757" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/views/superadmin/includes/importExport.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/isp-management.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/isp-management.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CustomerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CustomerController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/SmsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/SmsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/SuperAdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/SuperAdminController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/superadmin/includes/sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/superadmin/includes/sidebar.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/superadmin/includes/sms.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/superadmin/includes/sms.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/superadmin/customer/actives.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/superadmin/customer/actives.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/superadmin/customer/manageCustomer.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/superadmin/customer/manageCustomer.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/superadmin/home/homeContent.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/superadmin/home/homeContent.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/superadmin/includes/aside.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/superadmin/includes/aside.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_files.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_files.php" afterDir="false" />
@@ -93,9 +94,9 @@
     <session id="311168028">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="41" />
+          <entry key="project.closed" value="43" />
           <entry key="project.open.time.10" value="1" />
-          <entry key="project.open.time.11" value="2" />
+          <entry key="project.open.time.11" value="3" />
           <entry key="project.open.time.12" value="2" />
           <entry key="project.open.time.13" value="4" />
           <entry key="project.open.time.14" value="3" />
@@ -103,7 +104,7 @@
           <entry key="project.open.time.16" value="5" />
           <entry key="project.open.time.17" value="3" />
           <entry key="project.open.time.18" value="5" />
-          <entry key="project.open.time.19" value="3" />
+          <entry key="project.open.time.19" value="4" />
           <entry key="project.open.time.20" value="1" />
           <entry key="project.open.time.21" value="2" />
           <entry key="project.open.time.22" value="1" />
@@ -113,7 +114,7 @@
           <entry key="project.open.time.45" value="1" />
           <entry key="project.open.time.5" value="1" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="44" />
+          <entry key="project.opened" value="46" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -121,18 +122,18 @@
           <entry key="env" value="17" />
           <entry key="js" value="36" />
           <entry key="json" value="2" />
-          <entry key="php" value="31102" />
+          <entry key="php" value="32423" />
           <entry key="sa" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key=".env file" value="17" />
-          <entry key="Blade" value="16583" />
-          <entry key="HTML" value="43" />
+          <entry key="Blade" value="16874" />
+          <entry key="HTML" value="46" />
           <entry key="JSON" value="2" />
           <entry key="JavaScript" value="36" />
-          <entry key="PHP" value="14476" />
+          <entry key="PHP" value="15503" />
           <entry key="PLAIN_TEXT" value="1" />
         </counts>
       </usages-collector>
@@ -145,7 +146,7 @@
           <entry key="js" value="19" />
           <entry key="json" value="5" />
           <entry key="md" value="2" />
-          <entry key="php" value="952" />
+          <entry key="php" value="961" />
           <entry key="png" value="6" />
           <entry key="sa" value="2" />
         </counts>
@@ -153,13 +154,13 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key=".env file" value="6" />
-          <entry key="Blade" value="590" />
+          <entry key="Blade" value="595" />
           <entry key="CSS" value="5" />
           <entry key="Image" value="16" />
           <entry key="JSON" value="5" />
           <entry key="JavaScript" value="19" />
           <entry key="Markdown" value="2" />
-          <entry key="PHP" value="362" />
+          <entry key="PHP" value="366" />
           <entry key="PLAIN_TEXT" value="2" />
         </counts>
       </usages-collector>
@@ -170,26 +171,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/web.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="518">
-              <caret line="144" selection-start-line="144" selection-end-line="144" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/superadmin/includes/sidebar.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="211">
-              <caret line="147" column="81" selection-start-line="147" selection-start-column="81" selection-end-line="147" selection-end-column="81" />
+            <state relative-caret-position="402">
+              <caret line="72" column="3" selection-start-line="72" selection-end-line="73" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ExcelController.php">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/LiveSearchController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="351">
-              <caret line="72" column="31" selection-start-line="72" selection-start-column="31" selection-end-line="72" selection-end-column="31" />
+            <state relative-caret-position="561">
+              <caret line="71" selection-start-line="71" selection-end-line="71" />
               <folding>
                 <element signature="e#40#68#0#PHP" expanded="true" />
               </folding>
@@ -198,24 +190,53 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CustomerController.php">
+        <entry file="file://$PROJECT_DIR$/resources/views/superadmin/customer/actives.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="708">
-              <caret line="216" column="30" selection-start-line="216" selection-start-column="30" selection-end-line="216" selection-end-column="30" />
+            <state relative-caret-position="744">
+              <caret line="108" selection-start-line="108" selection-end-line="108" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/superadmin/home/homeContent.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="764">
+              <caret line="316" column="47" selection-start-line="316" selection-start-column="47" selection-end-line="316" selection-end-column="47" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Providers/AppServiceProvider.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1365">
+              <caret line="91" selection-start-line="91" selection-end-line="91" />
               <folding>
-                <element signature="e#40#56#0#PHP" expanded="true" />
+                <element signature="e#33#50#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/superadmin/includes/importExport.blade.php">
+        <entry file="file://$PROJECT_DIR$/resources/views/superadmin/includes/aside.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="26" selection-start-line="26" selection-end-line="26" />
+            <state relative-caret-position="195">
+              <caret line="13" column="78" selection-start-line="13" selection-start-column="78" selection-end-line="13" selection-end-column="78" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CustomerController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="493">
+              <caret line="226" column="8" selection-start-line="226" selection-end-line="227" />
               <folding>
-                <element signature="e#892#957#0#HTML" expanded="true" />
+                <element signature="e#40#56#0#PHP" expanded="true" />
+                <element signature="n#style#0;n#a#0;n#td#11;n#tr#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a#1;n#td#11;n#tr#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -224,8 +245,12 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/superadmin/customer/manageCustomer.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1414">
-              <caret line="191" column="33" selection-start-line="191" selection-start-column="28" selection-end-line="191" selection-end-column="33" />
+            <state relative-caret-position="337">
+              <caret line="84" column="26" selection-start-line="84" selection-end-line="85" />
+              <folding>
+                <element signature="e#168#359#0#HTML" expanded="true" />
+                <element signature="e#834#873#0#HTML" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -256,6 +281,7 @@
       <find>js/</find>
       <find>css/</find>
       <find>master/</find>
+      <find>newch</find>
     </findStrings>
     <replaceStrings>
       <replace>{{asset('superadmin/')}}/</replace>
@@ -271,8 +297,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/resources/views/superadmin/billing/show.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/superadmin/report/statement.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/NewController.php" />
         <option value="$PROJECT_DIR$/resources/views/superadmin/report/today.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/superadmin/report/showallexp.blade.php" />
@@ -284,14 +308,11 @@
         <option value="$PROJECT_DIR$/resources/views/superadmin/report/probmonth.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/BillingController.php" />
         <option value="$PROJECT_DIR$/config/nexmo.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/SuperAdminController.php" />
         <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/resources/views/superadmin/master.blade.php" />
         <option value="$PROJECT_DIR$/public/superadmin/css/custom.css" />
-        <option value="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" />
         <option value="$PROJECT_DIR$/resources/views/superadmin/user/userdetails.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/ProductController.php" />
-        <option value="$PROJECT_DIR$/resources/views/superadmin/includes/aside.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/superadmin/customer/current.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/superadmin/customer/paid.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/superadmin/customer/unpaid.blade.php" />
@@ -299,7 +320,6 @@
         <option value="$PROJECT_DIR$/resources/views/superadmin/head/headview.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/superadmin/billing/discount.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/expenses/index.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/superadmin/home/homeContent.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/superadmin/pdf.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/superadmin/billing/add.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/superadmin/user/editUser.blade.php" />
@@ -307,7 +327,6 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/ZoneController.php" />
         <option value="$PROJECT_DIR$/resources/views/superadmin/zone/zoneview.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/superadmin/user/search.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/superadmin/customer/manageCustomer.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/UserController.php" />
         <option value="$PROJECT_DIR$/resources/views/superadmin/user/showUser.blade.php" />
         <option value="$PROJECT_DIR$/composer.json" />
@@ -317,11 +336,18 @@
         <option value="$PROJECT_DIR$/app/Exports/UsersExport.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/SmsController.php" />
         <option value="$PROJECT_DIR$/resources/views/superadmin/includes/sms.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/CustomerController.php" />
         <option value="$PROJECT_DIR$/resources/views/superadmin/includes/sidebar.blade.php" />
-        <option value="$PROJECT_DIR$/routes/web.php" />
         <option value="$PROJECT_DIR$/resources/views/superadmin/includes/importExport.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/ExcelController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/SuperAdminController.php" />
+        <option value="$PROJECT_DIR$/resources/views/superadmin/home/homeContent.blade.php" />
+        <option value="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" />
+        <option value="$PROJECT_DIR$/resources/views/superadmin/customer/manageCustomer.blade.php" />
+        <option value="$PROJECT_DIR$/routes/web.php" />
+        <option value="$PROJECT_DIR$/resources/views/superadmin/includes/aside.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/CustomerController.php" />
+        <option value="$PROJECT_DIR$/resources/views/superadmin/customer/actives.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/LiveSearchController.php" />
       </list>
     </option>
   </component>
@@ -429,6 +455,8 @@
       <path value="$PROJECT_DIR$/vendor/maatwebsite/excel" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-util" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php56" />
+      <path value="$PROJECT_DIR$/vendor/laravelcollective/html" />
+      <path value="$PROJECT_DIR$/vendor/yajra/laravel-datatables-oracle" />
     </include_path>
   </component>
   <component name="ProjectFrameBounds" fullScreen="true">
@@ -441,6 +469,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -469,7 +498,8 @@
             <path>
               <item name="isp-management_29" type="b2602c69:ProjectViewProjectNode" />
               <item name="isp-management_29" type="462c0819:PsiDirectoryNode" />
-              <item name="config" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Providers" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="isp-management_29" type="b2602c69:ProjectViewProjectNode" />
@@ -505,6 +535,14 @@
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="superadmin" type="462c0819:PsiDirectoryNode" />
+              <item name="customer" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="isp-management_29" type="b2602c69:ProjectViewProjectNode" />
+              <item name="isp-management_29" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="superadmin" type="462c0819:PsiDirectoryNode" />
               <item name="includes" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -512,29 +550,10 @@
               <item name="isp-management_29" type="462c0819:PsiDirectoryNode" />
               <item name="routes" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="isp-management_29" type="b2602c69:ProjectViewProjectNode" />
-              <item name="isp-management_29" type="462c0819:PsiDirectoryNode" />
-              <item name="vendor" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="isp-management_29" type="b2602c69:ProjectViewProjectNode" />
-              <item name="isp-management_29" type="462c0819:PsiDirectoryNode" />
-              <item name="vendor" type="462c0819:PsiDirectoryNode" />
-              <item name="maatwebsite" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="isp-management_29" type="b2602c69:ProjectViewProjectNode" />
-              <item name="isp-management_29" type="462c0819:PsiDirectoryNode" />
-              <item name="vendor" type="462c0819:PsiDirectoryNode" />
-              <item name="maatwebsite" type="462c0819:PsiDirectoryNode" />
-              <item name="excel" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -652,12 +671,14 @@
       <workItem from="1540009167859" duration="18974000" />
       <workItem from="1540096099132" duration="21215000" />
       <workItem from="1540182550506" duration="21946000" />
-      <workItem from="1540268707323" duration="19877000" />
+      <workItem from="1540268707323" duration="20302000" />
+      <workItem from="1540358412172" duration="259000" />
+      <workItem from="1540445343593" duration="20820000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="975727000" />
+    <option name="totallyTimeSpent" value="997231000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
@@ -665,11 +686,11 @@
     <layout>
       <window_info id="npm" order="0" side_tool="true" />
       <window_info id="Favorites" order="1" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="2" weight="0.21890146" />
+      <window_info active="true" content_ui="combo" id="Project" order="2" visible="true" weight="0.21890146" />
       <window_info id="Structure" order="3" side_tool="true" weight="0.24959612" />
       <window_info anchor="bottom" id="Event Log" order="0" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="1" weight="0.32854864" />
-      <window_info anchor="bottom" id="Terminal" order="2" weight="0.7352472" />
+      <window_info anchor="bottom" id="Terminal" order="2" weight="0.73424655" />
       <window_info anchor="bottom" id="Docker" order="3" show_stripe_button="false" />
       <window_info anchor="bottom" id="Message" order="4" />
       <window_info anchor="bottom" id="Find" order="5" weight="0.32695374" />
@@ -693,33 +714,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/HomeController.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/SuperAdminController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="236">
-          <caret line="24" column="39" selection-start-line="24" selection-start-column="39" selection-end-line="24" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Providers/AppServiceProvider.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="410">
-          <caret line="68" column="19" selection-start-line="68" selection-start-column="19" selection-end-line="68" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/superadmin/report/statement.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="96" column="36" selection-start-line="96" selection-start-column="36" selection-end-line="96" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/superadmin/img/blog-image-1.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/superadmin/img/post-thumb-2.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -741,13 +735,6 @@
         <state relative-caret-position="-995" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/superadmin/customer/paid.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="430">
-          <caret line="90" column="8" selection-start-line="90" selection-start-column="8" selection-end-line="90" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/income/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="460">
@@ -766,13 +753,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="355">
           <caret line="73" column="19" selection-start-line="73" selection-end-line="74" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/superadmin/home/homeContent.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3435">
-          <caret line="229" column="68" selection-start-line="229" selection-start-column="44" selection-end-line="229" selection-end-column="68" />
         </state>
       </provider>
     </entry>
@@ -822,13 +802,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
           <caret line="188" column="76" selection-start-line="188" selection-start-column="62" selection-end-line="188" selection-end-column="76" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/superadmin/includes/aside.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-215">
-          <caret line="21" column="39" selection-start-line="21" selection-start-column="39" selection-end-line="21" selection-end-column="39" />
         </state>
       </provider>
     </entry>
@@ -895,9 +868,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1458">
           <caret line="170" selection-start-line="170" selection-end-line="170" />
-          <folding>
-            <element signature="e#40#68#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -908,21 +878,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/sa">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="557">
-          <caret line="78" lean-forward="true" selection-start-line="78" selection-end-line="78" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/sa" />
     <entry file="file://$PROJECT_DIR$/resources/views/superadmin/user/showUser.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="5" selection-start-line="5" selection-end-line="5" />
-          <folding>
-            <element signature="e#2247#2272#0#HTML" expanded="true" />
-            <element signature="e#3777#3802#0#HTML" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -930,9 +890,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1000">
           <caret line="104" column="26" selection-start-line="104" selection-start-column="26" selection-end-line="104" selection-end-column="26" />
-          <folding>
-            <element signature="e#4648#4732#0#HTML" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -957,9 +914,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="295">
           <caret line="31" column="17" lean-forward="true" selection-start-line="31" selection-start-column="17" selection-end-line="31" selection-end-column="17" />
-          <folding>
-            <element signature="e#40#68#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -973,13 +927,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Exports/UsersExport.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="11" column="45" selection-start-line="11" selection-start-column="45" selection-end-line="11" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Exports/UsersExport.php" />
     <entry file="file://$PROJECT_DIR$/config/app.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="518">
@@ -987,17 +935,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/superadmin/includes/sidebar.blade.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ExcelController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
-          <caret line="147" column="81" selection-start-line="147" selection-start-column="81" selection-end-line="147" selection-end-column="81" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/superadmin/customer/manageCustomer.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1414">
-          <caret line="191" column="33" selection-start-line="191" selection-start-column="28" selection-end-line="191" selection-end-column="33" />
+        <state relative-caret-position="975">
+          <caret line="72" column="31" selection-start-line="72" selection-start-column="31" selection-end-line="72" selection-end-column="31" />
+          <folding>
+            <element signature="e#40#68#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1005,33 +949,101 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="390">
           <caret line="26" selection-start-line="26" selection-end-line="26" />
-          <folding>
-            <element signature="e#892#957#0#HTML" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/web.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/SuperAdminController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="518">
-          <caret line="144" selection-start-line="144" selection-end-line="144" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CustomerController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="708">
-          <caret line="216" column="30" selection-start-line="216" selection-start-column="30" selection-end-line="216" selection-end-column="30" />
+        <state relative-caret-position="64">
+          <caret line="24" column="16" selection-start-line="24" selection-start-column="8" selection-end-line="24" selection-end-column="16" />
           <folding>
             <element signature="e#40#56#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ExcelController.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/superadmin/home/homeContent.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
-          <caret line="72" column="31" selection-start-line="72" selection-start-column="31" selection-end-line="72" selection-end-column="31" />
+        <state relative-caret-position="764">
+          <caret line="316" column="47" selection-start-line="316" selection-start-column="47" selection-end-line="316" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Customer.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/superadmin/includes/sidebar.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1346">
+          <caret line="147" column="81" selection-start-line="147" selection-start-column="81" selection-end-line="147" selection-end-column="81" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/superadmin/customer/paid.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1350">
+          <caret line="90" column="8" selection-start-line="90" selection-start-column="8" selection-end-line="90" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/superadmin/customer/manageCustomer.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="337">
+          <caret line="84" column="26" selection-start-line="84" selection-end-line="85" />
+          <folding>
+            <element signature="e#168#359#0#HTML" expanded="true" />
+            <element signature="e#834#873#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/superadmin/includes/aside.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="78" selection-start-line="13" selection-start-column="78" selection-end-line="13" selection-end-column="78" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="402">
+          <caret line="72" column="3" selection-start-line="72" selection-end-line="73" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Providers/AppServiceProvider.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1365">
+          <caret line="91" selection-start-line="91" selection-end-line="91" />
+          <folding>
+            <element signature="e#33#50#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/superadmin/customer/actives.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="744">
+          <caret line="108" selection-start-line="108" selection-end-line="108" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CustomerController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="226" column="8" selection-start-line="226" selection-end-line="227" />
+          <folding>
+            <element signature="e#40#56#0#PHP" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#td#11;n#tr#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#1;n#td#11;n#tr#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/LiveSearchController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="561">
+          <caret line="71" selection-start-line="71" selection-end-line="71" />
           <folding>
             <element signature="e#40#68#0#PHP" expanded="true" />
           </folding>
