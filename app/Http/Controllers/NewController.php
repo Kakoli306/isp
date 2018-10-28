@@ -5,11 +5,11 @@ namespace App\Http\Controllers;
 use App\Expense;
 use App\Income;
 use App\Billing;
-use App\Product;
 use Carbon\Carbon;
 use App\Customer;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 class NewController extends Controller
 {
     public function statement(){
@@ -58,6 +58,78 @@ class NewController extends Controller
 
     }
 
+    function search(Request $request)
+    {
+        if($request->ajax())
+        {
+            $output = '';
+            $query = $request->get('query');
+            if($query != '')
+            {
+                $data = DB::table('customers')
+                    ->where('bill_status', 1)
+
+                    ->where('customer_name', 'like', '%' . $query . '%')
+                    ->orWhere('mobile_no', 'like', '%' . $query . '%')
+                    ->orWhere('address', 'like', '%' . $query . '%')
+                    ->orWhere('speed', 'like', '%' . $query . '%')
+                    ->orWhere('bill_amount', 'like', '%' . $query . '%')
+                    ->orWhere('ip_address', 'like', '%' . $query . '%')
+                    ->orWhere('email', 'like', '%' . $query . '%')
+                    ->orderBy('id', 'asc')
+                    ->get();
+
+            }
+            else
+            {
+                $data = DB::table('customers')
+                   ->where('bill_status', 1)
+                    ->orderBy('id', 'desc')
+                    ->get();
+            }
+            $i = 1;
+            $total_row = $data->count();
+            if($total_row > 0)
+            {
+                foreach($data as $row)
+                {
+
+                    $output .= '
+        <tr>
+        
+                    
+         <td>'.$i++.'</td>
+         <td>'.$row->customer_name.'</td>
+         <td>'.$row->id.'</td>
+         <td>'.$row->address.'</td>
+         <td>'.$row->mobile_no.'</td>
+         <td>'.$row->speed.'</td>
+         <td>'.$row->bill_amount.'</td>
+          <td>'.$row->email.'</td>
+          <td>0</td>
+         <td>'.$row->ip_address.'</td>
+        </tr>
+        ';
+                }
+            }
+            else
+            {
+                $output = '
+       <tr>
+        <td align="center" colspan="5">No Data Found</td>
+       </tr>
+       ';
+            }
+            $data = array(
+                'table_data'  => $output,
+                'total_data'  => $total_row
+            );
+
+            echo json_encode($data);
+        }
+    }
+
+
     public function unpaid(){
         $customers = DB::table('customers')
             ->where('bill_status', 0)
@@ -65,6 +137,94 @@ class NewController extends Controller
         return view ('superadmin.customer.unpaid',['customers' =>$customers])
             ->with('i', (request()->input('page', 1) - 1) * 5);
 
+    }
+
+    function searchabs(Request $request)
+    {
+        if($request->ajax())
+        {
+
+            $output = '';
+            $query = $request->get('query');
+            if($query != '')
+            {
+                $data = DB::table('customers')
+                    ->where('bill_status', 0)
+
+                    ->where('customer_name', 'like', '%' . $query . '%')
+                    ->orWhere('mobile_no', 'like', '%' . $query . '%')
+                    ->orWhere('address', 'like', '%' . $query . '%')
+                    ->orWhere('speed', 'like', '%' . $query . '%')
+                    ->orWhere('bill_amount', 'like', '%' . $query . '%')
+                    ->orWhere('ip_address', 'like', '%' . $query . '%')
+                    ->orWhere('email', 'like', '%' . $query . '%')
+                    ->orderBy('id', 'asc')
+                    ->get();
+
+            }
+            else
+            {
+                $data = DB::table('customers')
+                    ->where('bill_status', 0)
+                    ->orderBy('id', 'desc')
+                    ->get();
+            }
+            $i = 1;
+            $total_row = $data->count();
+            if($total_row > 0)
+            {
+                foreach($data as $row)
+                {
+                    $lifetime_paid=DB::table('billings')->where('customer_id',$row->id)->sum('payment_amount');
+
+                                $date = Carbon::parse(($row->connection_date));
+                                $now = Carbon::now();
+
+                               $diff = $date->diffInMonths($now);
+                               $a =$diff * $row->bill_amount;
+
+                                $flag=$row->bill_amount;
+                               $flag1 = $row->month_amount;
+
+                               $sum=$flag - $flag1;
+                                $pay = $lifetime_paid;
+                                $ok = $pay - $sum;
+
+                              $due = $a - $ok;
+
+                    $output .= '
+        <tr>
+        
+                    
+         <td>'.$i++.'</td>
+         <td>'.$row->customer_name.'</td>
+         <td>'.$row->id.'</td>
+         <td>'.$row->address.'</td>
+         <td>'.$row->mobile_no.'</td>
+         <td>'.$row->speed.'</td>
+         <td>'.$row->bill_amount.'</td>
+          <td>'.$row->email.'</td>
+          <td>'.$due.'</td>
+         <td>'.$row->ip_address.'</td>
+        </tr>
+        ';
+                }
+            }
+            else
+            {
+                $output = '
+       <tr>
+        <td align="center" colspan="5">No Data Found</td>
+       </tr>
+       ';
+            }
+            $data = array(
+                'table_data'  => $output,
+                'total_data'  => $total_row
+            );
+
+            echo json_encode($data);
+        }
     }
 
     public function monthly(){

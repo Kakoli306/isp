@@ -8,10 +8,13 @@
 
     <div class="card">
         <div class="view overlay">
-        <div class="card-body">
+            <div class="pull-right">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                    Zone Add
+                </button>
+            </div>
 
-            <!-- Important to work AJAX CSRF -->
-            <meta name="_token" content="{!! csrf_token() !!}" />
+            <div class="card-body">
 
             <h2 class="text-center text-success">{{Session::get('message')}}</h2>
 
@@ -68,18 +71,7 @@
 
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Zone</label>
-
-                            <br/>
-                            <br/>
-                            <!--<a class="btn btn-default" style="padding: 0px 6px;font-size: 12px;
-                                    float:right;"href="" data-toggle="modal" data-target="#create">
-                                <i class="fas fa-plus">Add Zone</i></a> -->
-
-                            <div class="col-md-12" style="">
-                                <button id="btn_add" name="btn_add"  class="btn btn-info btn-xs pull-right">ADD NEW </button>
-                            </div>
-
+                            <label for="exampleInputEmail1">Zone Select</label>
 
                             <select id="zone_id" type="zone_id" class="form-control"
                                     name="zone_id" required>
@@ -145,9 +137,6 @@
         </div>
 
 
-        <!-- Passing BASE URL to AJAX -->
-        <input id="url" type="hidden" value="{{ \Request::url() }}">
-
         <!-- zone modal -->
       <!--  <div id="create" class="modal fade" role="dialog" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -181,82 +170,37 @@
         </div>
     </div> -->
 
+
+
         <!-- MODAL SECTION -->
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Zone Form</h4>
-                </div>
-                <div class="modal-body">
-                    <form id="frmProducts" name="frmProducts" class="form-horizontal" novalidate="">
-                        <div class="form-group error">
-                            <label for="inputName" class="col-sm-3 control-label">Name</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control has-error" id="zone_name" name="zone_name" placeholder="Zone Name" value="">
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="myModalLabel">Zone Form</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <form role="form" enctype="multipart/form-data" method="post" action="{{ url('zoneStore')}}">
+                            {{ csrf_field() }}
+
+                            <div class="form-group error">
+                                <label for="inputName" class="col-sm-3 control-label">Name</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control has-error" id="zone_name" name="zone_name" placeholder="Zone Name" value="">
+                                </div>
                             </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" id="btn-save" value="add">Save Changes</button>
-                    <input type="hidden" id="zone_id" name="zone_id" value="0">
+
+                                <input type="submit" class="btn btn-primary" id="btn-save" value="add">
+
+                        </form>
+
+                    </div>
+
                 </div>
             </div>
         </div>
-    </div>
-
-
-    <script type="text/javascript">
-
-
-        {{-- ajax Form Add Zone--}}
-        {{-- $(document).on('click','.create-modal', function() {
-            $('#create').modal('show');
-            $('.form-horizontal').show();
-            $('.modal-zone_name').text('Add Zone');
-        });
-        $("#add").click(function() {
-            $.ajax({
-                type: 'POST',
-                url: 'addZone',
-                data: {
-                    '_token': $('input[name=_token]').val(),
-                    'zone_name': $('input[name=zone_name]').val(),
-                },
-                success: function(data){
-                    if ((data.errors)) {
-                        $('.error').removeClass('hidden');
-                        $('.error').text(data.errors.zone_name);
-                    } else {
-                        $('.error').remove();
-                        $('#table').append("<tr class='zone" + data.id + "'>"+
-                            "<td>" + data.id + "</td>"+
-                            "<td>" + data.zone_name + "</td>"+
-                            "<td>" + data.created_at + "</td>"+
-                            "<td><button class='show-modal btn btn-info btn-sm' data-id='" + data.id + "' data-zone_name='" + data.zone_name + "'>" +
-                            "<span class='fa fa-eye'></span></button> " +
-                            "<button class='edit-modal btn btn-warning btn-sm' data-id='" + data.id + "' data-zone_name='" + data.zone_name + "'>" +
-                            "<span class='glyphicon glyphicon-pencil'></span>" +
-                            "</button> " +
-                            "<button class='delete-modal btn btn-danger btn-sm' data-id='" + data.id + "' data-zone_name='" + data.zone_name  + "'>" +
-                            "<span class='glyphicon glyphicon-trash'></span></button></td>"+
-                            "</tr>");
-                    }
-                },
-            });
-            $('#zone_name').val('');
-
-        }); --}}
-
-
-    </script>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script src="{{asset('js/newscript.js')}}"></script>
-    </div>
+</div>
 
 
 @endsection

@@ -57,7 +57,7 @@
                     <form action="{{ route('expenses.destroy',$expense->id) }}" method="POST">
 
 
-                        <button class="btn-outline-info" href="{{ route('expenses.edit',$expense->id) }}">Edit</button>
+                        <a class="btn-outline-info" href="{{ route('expenses.edit',$expense->id) }}">Edit</a>
 
 
                         @csrf

@@ -116,7 +116,7 @@
 
                             </div>
 
-                            <table class="table table-bordered table-striped mb-0 table-responsive" id="datatable-editable">
+                            <table class="table table-bordered">
 
                                 <thead>
                                 <tr>

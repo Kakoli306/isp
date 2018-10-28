@@ -18,12 +18,13 @@
         </div>
     </div>
 
-    <div class="row" style="margin-bottom:10px;">
+    <section class="card">
+        <div class="card-body">
+
+        <div class="row">
         <div class="col-md-4">
             <div class="summary">
-                <div class="info">
-                    <strong class="amount"></strong>
-                </div>
+
             </div>
 
         </div>
@@ -44,13 +45,10 @@
 
 
     <div class="card-body">
-        <div class="container">
         <div class="row">
 
-    <section class="card">
-        <div class="container">
-
-                <table class="table table-bordered table-striped mb-0 table-responsive" id="datatable-editable">
+                <table class="table table-bordered">
+                    <h3 align="center">Total Data : <span id="total_records"></span></h3>
 
                     <thead>
                     <tr>
@@ -68,29 +66,61 @@
                     </thead>
                     <tbody>
 
-                    @foreach($customers as $customer)
-                        <tr>
-                            <td>{{ ++$i }}</td>
-                            <td>{{ $customer->customer_name }}</td>
-                            <td>{{ $customer->id }}</td>
-                            <td>{{ $customer->address }}</td>
-                            <td>{{ $customer->mobile_no }}</td>
-                            <td>{{ $customer->speed}}</td>
-                            <td>{{ $customer->bill_amount	}}</td>
-                            <td>{{ $customer->email}}</td>
-                            <td>0</td>
-                            <td>{{ $customer->ip_address}}</td>
-                        </tr>
-                    </tbody>
-                    @endforeach
+                    {{--@foreach($customers as $customer)--}}
+                        {{--<tr>--}}
+                            {{--<td>{{ ++$i }}</td>--}}
+                            {{--<td>{{ $customer->customer_name }}</td>--}}
+                            {{--<td>{{ $customer->id }}</td>--}}
+                            {{--<td>{{ $customer->address }}</td>--}}
+                            {{--<td>{{ $customer->mobile_no }}</td>--}}
+                            {{--<td>{{ $customer->speed}}</td>--}}
+                            {{--<td>{{ $customer->bill_amount	}}</td>--}}
+                            {{--<td>{{ $customer->email}}</td>--}}
+                            {{--<td>0</td>--}}
+                            {{--<td>{{ $customer->ip_address}}</td>--}}
+                        {{--</tr>--}}
+                    {{--</tbody>--}}
+                    {{--@endforeach--}}
                 </table>
-            <div class="pull-right">{{ $customers->links() }}</div>
-
+            <div>
+                <div class="pull-right">{{ $customers->links() }}</div>
             </div>
-    </section>
+
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+            <script>
+                $(document).ready(function(){
+
+                    fetch_paid_data();
+
+                    function fetch_paid_data(query = '')
+                    {
+                        $.ajax({
+                            url:"{{ route('bse') }}",
+                            method:'GET',
+                            data:{query:query},
+                            dataType:'json',
+                            success:function(data)
+                            {
+                                $('tbody').html(data.table_data);
+                                $('#total_records').text(data.total_data);
+                            }
+                        })
+                    }
+
+                    $(document).on('keyup', '#search_text', function(){
+                        var query = $(this).val();
+                        fetch_paid_data(query);
+                    });
+                });
+            </script>
+
         </div>
     </div>
-    </div>
+        </div>
+    </section>
+
+
 
     <!-- end: page -->
 

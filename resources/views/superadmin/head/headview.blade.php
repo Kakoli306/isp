@@ -28,20 +28,14 @@ View Account Head
         </div>
     </div>
 
-                    <section class="card">
-        <div class="container">
-            <!-- Important to work AJAX CSRF -->
+    <section class="card">
+                   <!-- Important to work AJAX CSRF -->
             <meta name="_token" content="{!! csrf_token() !!}" />
             <body>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12 margin-tb">
-                           </div>
-                </div>
 
-                <div class="row">
-                    <div class="col-md-12 col-md-offset-2">
-                        <table class="table table-striped table-hover ">
+
+                    <div class="col-md-12 ">
+                        <table class="table table-bordered ">
                             <thead>
                             <tr class="">
                                 <th>ID </th>
@@ -67,8 +61,7 @@ View Account Head
                         <div class="pull-right">{{ $products->links() }}</div>
 
                     </div>
-                </div>
-            </div>
+
 
             <!-- Passing BASE URL to AJAX -->
             <input id="url" type="hidden" value="{{ \Request::url() }}">
@@ -110,7 +103,7 @@ View Account Head
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
             <script src="{{asset('js/ajaxscript.js')}}"></script>
             </body>
-        </div>
+
     </section>
 
 

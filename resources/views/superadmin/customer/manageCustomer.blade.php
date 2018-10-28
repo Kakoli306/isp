@@ -19,7 +19,8 @@
                 <div class="col-md-4" style="font-family: Helvetica;">
                     <div class="col-md-">
 
-                        @if(session("message")){{session('message')}}
+                        @if(session("message"))
+                            <strong>{{session('message')}}</strong>
                             @endif
                     </div>
                 </div>
@@ -93,7 +94,7 @@
             <div class="card-body">
                 <div class="row">
 
-                    <table class="table table-bordered table-striped mb-0 table-responsive" id="datatable-editable">
+                    <table class="table table-bordered">
                         <h3 align="center">Total Data : <span id="total_records"></span></h3>
 
                     <thead>

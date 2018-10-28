@@ -37,6 +37,7 @@
 	<!-- Theme Custom CSS -->
 	<link rel="stylesheet" href="{{asset('superadmin/')}}/css/custom.css">
 
+
 	<!-- Head Libs -->
 	<script src="{{asset('superadmin/')}}/vendor/modernizr/modernizr.js"></script>
 	<script src="{{asset('superadmin/')}}/master/style-switcher/style.switcher.localstorage.js"></script>

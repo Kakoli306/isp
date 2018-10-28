@@ -28,7 +28,7 @@ class ExpenseController extends Controller
         ->get();
        // dd($exp);*/
 
-        return view('expenses.index',compact('expenses','exp'))
+        return view('expenses.index',compact('expenses'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 

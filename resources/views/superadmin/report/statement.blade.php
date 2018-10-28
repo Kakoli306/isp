@@ -62,13 +62,12 @@
 
 
     <section class="card">
-        <div class="container">
             <div class="card-body">
                 <div class="row">
                     <div class="col-sm-6">
                     </div>
                 </div>
-                <table class="table table-bordered table-striped mb-0" id="datatable-default">
+                <table class="table table-bordered">
 
                     <thead>
                     <tr>
@@ -132,7 +131,6 @@
                 </table>
 
             </div>
-        </div>
 
 
 <?php function numtowords($num){

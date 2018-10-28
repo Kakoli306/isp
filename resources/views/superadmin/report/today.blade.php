@@ -54,12 +54,8 @@
     </div>
 
     <section class="card">
-        <div class="container">
-
                 <div class="card-body">
-
-
-                <table class="table table-bordered table-striped mb-0 table-responsive" id="datatable-editable">
+                <table class="table table-bordered">
 
                     <thead>
                     <tr>
@@ -105,7 +101,7 @@
 
 
                 </table>
-            </div>
+
         </div>
     </section>
     <!-- end: page -->

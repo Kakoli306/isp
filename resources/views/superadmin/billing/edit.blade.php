@@ -17,7 +17,7 @@
                     <input type="hidden"  name="id" value="{{$BillingById->customer_id}}">
 
 
-                    <table class="table table-bordered table-striped mb-0 table-responsive" id="datatable-editable">
+                    <table class="table table-bordered">
 
                         <thead>
                         <tr>
@@ -31,7 +31,7 @@
                             <th>Connection Date</th>
                             <th>Zone</th>
                             <th>IP</th>
-                            <th class="col-lg-1">Actions</th>
+                            <th>Actions</th>
                         </tr>
                         </thead>
 
@@ -160,7 +160,7 @@
                     <div class="card-body">
                     <div class="row">
 
-                        <table class="table table-bordered table-striped mb-0 table-responsive" id="datatable-editable">
+                        <table class="table table-bordered">
                         <thead>
                         <tr>
                             <th>#</th>
@@ -183,23 +183,20 @@
 
 
 
-                        <td class="center">
+                        <td>
 
-                            <a class="mb-1 mt-1 mr-1 btn btn-default" href="">Print</a>
-
-                            <input type="hidden" value="{{ $value->id }}" name="billing_id">
-
-                            <a href="{{ route('edit-amount',['id'=>$value->id]) }}" class=" btn-info">
-                            Edit</a>
-
+                            {{--<a class=" btn btn-default" href="">Print</a>--}}
 
                             <form action="{{ route('delete-billing') }}" method="POST">
+
+                                <a class="btn-outline-info" href="{{ route('edit-amount',$value->id) }}">Edit</a>
+
+
                                 {{ csrf_field() }}
                                 <input type="hidden" value="{{$value->id}}" name="billing_id">
-                                <button type="submit" onclick="return confirm('Are u sure want to delete this !!!')"
-                                        class="mb-1 mt-1 mr-1 btn btn-outline-danger">Delete
-                                </button>
+                                <button type="submit" class="btn-outline-danger">Delete</button>
                             </form>
+
                         </td>
                     </tr>
 

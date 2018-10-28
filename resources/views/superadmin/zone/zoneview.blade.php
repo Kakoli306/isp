@@ -11,7 +11,6 @@ View All Zone
              style=" background:#606060; margin-top:20px; margin-bottom: 15px; min-height:45px; padding:8px 0px 0px 15px; font-size:16px; font-family:Lucida Sans Unicode; color:#FFFFFF; font-weight:bold;">
             <div class="row">
                 <div class="col-md-4">
-                    <b>View Zone Information </b>
                 </div>
                 <div class="col-md-4" style="font-family: Helvetica;">
                     <div class="col-md-">
@@ -27,26 +26,7 @@ View All Zone
         </div>
     </div>
 
-    <div class="row" style="margin-bottom:10px;">
-        <div class="col-md-4">
-            <div class="btn-group" role="group">
-            </div>
-        </div>
-        <div class="col-md-4 col-md-offset-4">
-        </div>
-
-        <div class="col-md-4 col-md-offset-4">
-            <form>
-                <div class="input-group">
-                    <input type="search_text" name="search_text" id="search_text" class="form-control" placeholder="Search for...">
-                </div>
-            </form>
-        </div>
-    </div>
-
-
-
-            <!-- Important to work AJAX CSRF -->
+    <!-- Important to work AJAX CSRF -->
             <meta name="_token" content="{!! csrf_token() !!}" />
 
             <body>
@@ -67,12 +47,12 @@ View All Zone
                             <tbody id="products-list" name="products-list">
                             @foreach ($zones as $zone)
                                 <tr id="zone{{$zone->id}}" class="active">
-                                    <td>{{$zone->id}}</td>
+                                    <td>{{++$i}}</td>
                                     <td>{{$zone->zone_name}}</td>
 
                                     <td width="35%">
-                                        <button class="btn btn-warning btn-detail open_modal" value="{{$zone->id}}">Edit</button>
-                                        <button class="btn btn-danger btn-delete delete-zone" value="{{$zone->id}}">Delete</button>
+                                        <button class="btn-outline-danger btn-detail open_modal" value="{{$zone->id}}">Edit</button>
+                                        <button class="btn-outline-info btn-delete delete-zone" value="{{$zone->id}}">Delete</button>
                                     </td>
                                 </tr>
                             @endforeach
@@ -116,11 +96,6 @@ View All Zone
 
             <!-- Scripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-
     <script src="{{asset('js/zonescript.js')}}"></script>
-
-
-
-
 
 @endsection

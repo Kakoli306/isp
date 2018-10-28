@@ -32,7 +32,7 @@
 
 
     <section class="card">
-        <table class="table table-bordered table-striped mb-0" id="datatable-default">
+        <table class="table table-bordered">
 
                             <thead>
                             <tr>

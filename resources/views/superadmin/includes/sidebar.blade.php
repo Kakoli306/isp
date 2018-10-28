@@ -208,6 +208,8 @@
                     <h2></h2>
                     <h2></h2>
                     <h2></h2>
+                    <h2></h2>
+                    <h2></h2>
                     <h2 id="currentTime"</h2>
 
                     <head>

@@ -14,7 +14,8 @@ class ZoneController extends Controller
     public function index()
     {
         $zones = Zone::latest()->paginate(5);
-        return view('superadmin.zone.zoneview')->with('zones', $zones);
+        return view('superadmin.zone.zoneview')->with('zones', $zones)
+            ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -27,6 +28,12 @@ class ZoneController extends Controller
     {
         $zone = Zone::create($request->input());
         return response()->json($zone);
+    }
+
+    public function storeZone(Request $request)
+    {
+        $zone = Zone::create($request->input());
+        return redirect()->back()->with('success','New Zone Added.');
     }
 
     /**

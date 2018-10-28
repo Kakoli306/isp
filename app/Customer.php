@@ -13,8 +13,8 @@ class Customer extends Model
 
 
     protected $fillable = [
-        'customer_name', 'mobile_no', 'email','blood_group','national_id','occupation','address','zone_id','month_amount',
-        'connection_charge','ip_address','connection_date','speed','status','bill_status'
+        'customer_name','mobile_no', 'email','blood_group','national_id','occupation','address','month_amount',
+        'connection_charge','ip_address','connection_date','speed','status'
     ];
 
 

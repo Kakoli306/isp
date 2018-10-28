@@ -120,19 +120,7 @@ class CustomerController extends Controller
     }
 
 
-    public function inactive()
-    {
-        $customers = DB::table('customers')
-            ->where('status', 0)
-            ->orderBy('id', 'DESC')->paginate(8);
 
-        $zones = DB::table('zones')->get();
-        $sun = Customer::sum('bill_amount');
-
-        return view('superadmin.customer.inactives', ['customers' => $customers, 'zones' => $zones, 'sun' => $sun])
-            ->with('i', (request()->input('page', 1) - 1) * 5);
-
-    }
 
     public function current()
     {
@@ -187,6 +175,9 @@ class CustomerController extends Controller
             if($query != '')
             {
                 $data = DB::table('customers')
+                    ->join('zones', 'customers.zone_id', '=', 'zones.id')
+                    ->select('customers.*', 'zones.zone_name')
+
                     ->where('customer_name', 'like', '%' . $query . '%')
                     ->orWhere('mobile_no', 'like', '%' . $query . '%')
                     ->orWhere('address', 'like', '%' . $query . '%')
@@ -194,6 +185,7 @@ class CustomerController extends Controller
                     ->orWhere('bill_amount', 'like', '%' . $query . '%')
                     ->orWhere('ip_address', 'like', '%' . $query . '%')
                     ->orWhere('connection_date', 'like', '%' . $query . '%')
+                    ->orWhere('zone_name', 'like', '%' . $query . '%')
                     ->orderBy('id', 'asc')
                     ->get();
 
@@ -233,8 +225,8 @@ class CustomerController extends Controller
                            
                             </td>
                   
-         <td><a style="color: RoyalBlue;"   href=' . route('edit',['id'=>$row->id]) . '>Edit</a>
-         <a style="color: RoyalBlue;"   <form  href = ' . route('delete',['id'=>$row->id]). '>Delete
+         <td><a class="btn-info"   href=' . route('edit',['id'=>$row->id]) . '>Edit</a>
+         <a class="btn-outline-danger"   <form  href = ' . route('delete',['id'=>$row->id]). '>Delete
          
         
           </tr>

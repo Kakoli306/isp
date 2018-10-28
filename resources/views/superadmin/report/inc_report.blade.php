@@ -4,6 +4,23 @@
 @endsection
 @section('content')
 
+    <div class="row">
+        <div class="col-md-12 "
+             style=" background:#606060; margin-top:20px; margin-bottom: 15px; min-height:45px; padding:8px 0px 0px 15px; font-size:16px; font-family:Lucida Sans Unicode; color:#FFFFFF; font-weight:bold;">
+            <div class="row">
+                <div class="col-md-4">
+                    <?php $date = \Carbon\Carbon::now();
+                    ?>
+                    <b>Monthly Income Sheet of <?php echo $date->format('F Y'); ?></b>
+                </div>
+                <div class="col-md-4" style="font-family: Helvetica;">
+                    <div class="col-md-">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
 
     <div class="col-md-12"
          style=" background:#606060; margin-top:20px; margin-bottom: 15px; min-height:45px; padding:8px 0px 0px 15px; font-size:16px; font-family:Lucida Sans Unicode; color:#FFFFFF; font-weight:bold;">
@@ -27,42 +44,25 @@
             <div class="col-lg-3">
                 <button type="submit"  name="search" class="btn btn-primary"><i class="fa fa-search"></i>&nbsp;&nbsp;Search</button>
             </div>
-
-        </div>
-
-
-    </div>
-
-    <div class="row">
-        <div class="col-md-12 "
-             style=" background:#606060; margin-top:20px; margin-bottom: 15px; min-height:45px; padding:8px 0px 0px 15px; font-size:16px; font-family:Lucida Sans Unicode; color:#FFFFFF; font-weight:bold;">
-            <div class="row">
-                <div class="col-md-4">
-                    <?php $date = \Carbon\Carbon::now();
-                    ?>
-                    <b>Monthly Income Sheet of <?php echo $date->format('F Y'); ?></b>
-                </div>
-                <div class="col-md-4" style="font-family: Helvetica;">
-                    <div class="col-md-">
-                    </div>
-                </div>
-
-            </div>
         </div>
     </div>
-
-
-
 
     <section class="card">
-        <div class="container">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-sm-6">
-                    </div>
-                </div>
-                <table class="table table-bordered table-striped mb-0" id="datatable-default">
 
+        <div class="col-sm-6" >
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-12" >
+                <h2 style="text-align:center;"> <?php $date = \Carbon\Carbon::now();
+                    echo $date->format('F Y');
+                    ?>
+                </h2>
+            </div>
+            <div class="col-md-12" id="month_print">
+                <table class="table table-bordered">
                     <thead>
                     <tr>
                         <th>#</th>
@@ -98,7 +98,7 @@
                             </td>
 
                             <td>
-                            <?php
+                                <?php
 
                                 $total = $merged->sum(function ($merged) {
                                     return $merged->sums + $merged->charge + $merged->incomes;
@@ -107,14 +107,15 @@
                                 ?>
 
                                 {{$total}}
-                                </td>
+                            </td>
 
                         </tr>
                     @endforeach
-                    </tbody>
                 </table>
             </div>
+
         </div>
+
     </section>
 
 

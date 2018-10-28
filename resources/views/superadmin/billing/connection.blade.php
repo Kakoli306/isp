@@ -52,48 +52,67 @@
 
     </div>
 
-
     <section class="card">
-        <div class="container">
+        <div class="card-body">
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="summary">
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-4 col-md-offset-4">
+
+                </div>
+
+
+            </div>
+
 
             <div class="card-body">
                 <div class="row">
-                    <div class="col-sm-6">
-                    </div>
-                </div>
-                <table class="table table-bordered table-striped mb-0 table-responsive" id="datatable-editable">
 
-                    <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Connection Date</th>
-                        <th>Customer Name</th>
-                        <th>Address</th>
-                        <th>Mobile Number</th>
-                        <th>Speed</th>
-                        <th>IP</th>
-                        <th>Connection Charge</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-
-                    @foreach($customers as $customer)
+                    <table class="table table-bordered">
+                        <thead>
                         <tr>
-                            <td>{{ ++$i }}</td>
-                            <td>{{ $customer->connection_date}}</td>
-                            <td>{{ $customer->customer_name }}</td>
-                            <td>{{ $customer->address }}</td>
-                            <td>{{ $customer->mobile_no }}</td>
-                            <td>{{ $customer->speed}}</td>
-                            <td>{{ $customer->ip_address}}</td>
-                            <td>{{ $customer->connection_charge}}</td>
-                        </tr>
-                    </tbody>
-                    @endforeach
-                </table>
+                            <th>#</th>
+                            <th>Connection Date</th>
+                            <th>Customer Name</th>
+                            <th>Address</th>
+                            <th>Mobile Number</th>
+                            <th>Speed</th>
+                            <th>IP</th>
+                            <th>Connection Charge</th>  </tr>
+                        </thead>
+                        <tbody>
+
+                        @foreach($customers as $customer)
+                            <tr>
+                                <td>{{ ++$i }}</td>
+                                <td>{{ $customer->connection_date}}</td>
+                                <td>{{ $customer->customer_name }}</td>
+                                <td>{{ $customer->address }}</td>
+                                <td>{{ $customer->mobile_no }}</td>
+                                <td>{{ $customer->speed}}</td>
+                                <td>{{ $customer->ip_address}}</td>
+                                <td>{{ $customer->connection_charge}}</td>
+                            </tr>
+                        </tbody>
+                        @endforeach
+                    </table>
+                    <div>
+                        <div class="pull-right">{{ $customers->links() }}</div>
+                    </div>
+
+
+                </div>
             </div>
         </div>
     </section>
+
+
     <!-- end: page -->
 
 @endsection

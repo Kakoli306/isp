@@ -32,6 +32,8 @@
     </div>
 
     <section class="card">
+        <h3 align="center">Total Data : <span id="total_records"></span></h3>
+
         <div class="card-body">
             <div class="row">
 
@@ -104,56 +106,78 @@
                         <th>Connection Date</th>
                         <th>Zone</th>
                         <th>IP</th>
-                        <th>Status</th>
                         <th>Customer Status</th>
-                        <th>Actions</th>
                     </tr>
                     </thead>
                     <tbody>
 
-                    @foreach($customers as $customer)
-                        <tr>
-                            <td>{{ ++$i }}</td>
-                            <td>{{ $customer->customer_name }}</td>
-                            <td>{{ $customer->id }}</td>
-                            <td>{{ $customer->address }}</td>
-                            <td>{{ $customer->mobile_no }}</td>
-                            <td>{{ $customer->speed}}</td>
-                            <td>{{ $customer->bill_amount	}}</td>
-                            <td>{{ $customer->connection_date}}</td>
-                            <td>{{ $customer->zone_id }}</td>
-                            <td>{{ $customer->ip_address}}</td>
-                            <td>{{ $customer->status == 1 ? 'Active' : 'Inactive' }}</td>
+                    {{--@foreach($customers as $customer)--}}
+                        {{--<tr>--}}
+                            {{--<td>{{ ++$i }}</td>--}}
+                            {{--<td>{{ $customer->customer_name }}</td>--}}
+                            {{--<td>{{ $customer->id }}</td>--}}
+                            {{--<td>{{ $customer->address }}</td>--}}
+                            {{--<td>{{ $customer->mobile_no }}</td>--}}
+                            {{--<td>{{ $customer->speed}}</td>--}}
+                            {{--<td>{{ $customer->bill_amount	}}</td>--}}
+                            {{--<td>{{ $customer->connection_date}}</td>--}}
+                            {{--<td>{{ $customer->zone_id }}</td>--}}
+                            {{--<td>{{ $customer->ip_address}}</td>--}}
 
-                            <td class="center">
-                                @if($customer->status == 1)
+                            {{--<td class="center">--}}
+                                {{--@if($customer->status == 0)--}}
 
-                                    <form action="{{ route('inactive-customer',['id'=>$customer->id]) }}" method="POST">
-                                        {{ csrf_field() }}
-                                        <button type="submit" name="btn"  class="btn btn-danger btn-sm">Inactive</button>
-                                    </form>
+                                    {{--<form action="{{ route('inactive-customer',['id'=>$customer->id]) }}" method="POST">--}}
+                                        {{--{{ csrf_field() }}--}}
+                                        {{--<button type="submit" name="btn"  class="btn btn-danger btn-sm">Inactive</button>--}}
+                                    {{--</form>--}}
 
-                                @else
-                                    <form action="{{ route('active-customer',['id'=>$customer->id]) }}" method="POST">
-                                        {{ csrf_field() }}
-                                        <button type="submit" name="btn"  class="btn btn-success btn-sm">active</button>
-                                    </form>
+                                {{--@else--}}
+                                    {{--<form action="{{ route('active-customer',['id'=>$customer->id]) }}" method="POST">--}}
+                                        {{--{{ csrf_field() }}--}}
+                                        {{--<button type="submit" name="btn"  class="btn btn-success btn-sm">active</button>--}}
+                                    {{--</form>--}}
 
-                            @endif
+                            {{--@endif--}}
 
-                            <td class="center">
-                                <input type="hidden" value="{{ $customer->id }}" name="customerId">
-                                <a href="{{ route('edit',['id'=>$customer->id]) }}" class="on-default edit-row">
-                                    <i class="fas fa-pencil-alt"></i></a>
 
-                            </td>
-                        </tr>
-                    </tbody>
-                    @endforeach
+                        {{--</tr>--}}
+                    {{--</tbody>--}}
+                    {{--@endforeach--}}
                 </table>
                 {{ $customers->links() }}
 
-            </div>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+            <script>
+                $(document).ready(function(){
+
+                    fetch_inactives_data();
+
+                    function fetch_inactives_data(query = '')
+                    {
+                        $.ajax({
+                            url:"{{ route('unse') }}",
+                            method:'GET',
+                            data:{query:query},
+                            dataType:'json',
+                            success:function(data)
+                            {
+                                $('tbody').html(data.table_data);
+                                $('#total_records').text(data.total_data);
+                            }
+                        })
+                    }
+
+                    $(document).on('keyup', '#search_text', function(){
+                        var query = $(this).val();
+                        fetch_inactives_data(query);
+                    });
+                });
+            </script>
+
+
+        </div>
                 </div>
             </div>
         </div>

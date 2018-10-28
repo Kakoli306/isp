@@ -91,7 +91,7 @@ Bill Collection
 			   </div>
 				 <div class="row" style="margin-bottom:10px;">
 				 	<div class="col-md-12 ">
-			   <table class="table table-bordered table-striped mb-0 table-responsive" id="datatable-editable">
+			   <table class="table table-bordered">
 
 			<thead>
 			<tr>
@@ -126,7 +126,7 @@ Bill Collection
 					@if($diff > 0)
 
 						<td>{{ ++$i }}</td>
-                           <td style="color: RoyalBlue;"><a style="color: RoyalBlue;" href="{{ url('downloadPDF',['id'=>$customer->id]) }}" target="_blank"><i class="fas fa-print"></i></a>	</td>
+                           <td style="color: RoyalBlue;"><a style="color: RoyalBlue;" href="{{ url('downloadPDF',['id'=>$customer->id]) }}" target="_blank"><i class="fas fa-print"></i></a></td>
 							<td>{{ $customer->customer_name }}</td>
 							<td style="color: RoyalBlue;">
 								<a style="color: RoyalBlue;" href="{{ url('/billing/showing/'.$customer->id) }}">{{$customer->id}}</a>
@@ -211,7 +211,7 @@ Bill Collection
 					<td class="center">
 						<input type="hidden" value="{{ $customer->id }}" name="customer_id">
 
-						<a class="btn-info" href="{{ url('billing/edit/'.$customer->id) }}">Edit</a>
+						<a class="btn-outline-info" href="{{ url('billing/edit/'.$customer->id) }}">Edit</a>
 
 						@if($customer->bill_status == 0)
 
@@ -219,7 +219,7 @@ Bill Collection
 								{{ csrf_field() }}
 								<input type="hidden" value="{{$customer->id}}}" name="id">
 									<button type="submit" onclick="return confirm('Are u sure want to unpaid this !!!')"
-										class="btn-secondary">Unpaid</button>
+										class="btn-outline-success">Unpaid</button>
 							</form>
 
 						@else
@@ -227,7 +227,7 @@ Bill Collection
 								{{ csrf_field() }}
 								<input type="hidden" value="{{$customer->id}}}" name="id">
 								<button type="submit" onclick="return confirm('Are u sure want to paid this !!!')"
-										class="mb-1 mt-1 mr-1 btn btn-outline-success">Paid</button>
+										class="btn-outline-primary">Paid</button>
 							</form>
 
 						@endif

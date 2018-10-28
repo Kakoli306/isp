@@ -39,9 +39,6 @@ Route::group(['middleware'=>'role:superadmin||admin'], function() {
     Route::post('/store-user', 'UserController@store')->name('user-store');
    Route::get('/manage-user', 'UserController@show')->name('user-show');
 
-   //search
-    Route::get('/search','UserController@result')->name('search');
-
     Route::get('/changePassword','UserController@showChangePasswordForm')->name('ch');
     Route::post('/changePassword','UserController@changePassword')->name('changePassword');
     Route::get('/details/{id}', 'UserController@details')->name('user-details');
@@ -64,7 +61,7 @@ Route::group(['prefix'=>'customer'], function() {
     Route::get('/delete/{id}', 'CustomerController@deleteCustomer')->name('delete');
 
     Route::get('/actives', 'LiveSearchController@actives')->name('show-actives');
-    Route::get('/inactive', 'CustomerController@inactive')->name('show-inactives');
+    Route::get('/inactive', 'LiveSearchController@inactive')->name('show-inactives');
     Route::get('/current', 'CustomerController@current')->name('yes');
     Route::get('/discount', 'CustomerController@discount')->name('discount');
 
@@ -73,6 +70,10 @@ Route::group(['prefix'=>'customer'], function() {
 Route::get('/search/action', 'CustomerController@action')->name('search.action');
 Route::get('/sea','ZoneController@search')->name('sea');
 Route::get('/act', 'LiveSearchController@action')->name('action');
+Route::get('/search','UserController@result')->name('search');
+Route::get('/un/act', 'LiveSearchController@unactive')->name('unse');
+Route::get('/bse', 'NewController@search')->name('bse');
+Route::get('/abs', 'NewController@searchabs')->name('abs');
 
 
 
@@ -122,6 +123,8 @@ Route::resource('income','IncomeController');
 Route::get('/zone', 'ZoneController@index');
 Route::get('zone/{zone_id?}', 'ZoneController@show');
 Route::post('zone', 'ZoneController@store');
+Route::post('zoneStore', 'ZoneController@storeZone');
+
 Route::put('zone/{zone_id}', 'ZoneController@update');
 Route::delete('zone/{zone_id}', 'ZoneController@destroy');
 

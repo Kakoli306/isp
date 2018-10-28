@@ -52,12 +52,10 @@
     </div>
 
     <section class="card">
-        <div class="container">
-
             <div class="card-body">
 
 
-                <table class="table table-bordered table-striped mb-0" id="datatable-default">
+                <table class="table table-bordered">
 
                     <thead>
                     <tr>
@@ -85,7 +83,6 @@
 
                 </table>
             </div>
-        </div>
     </section>
     <!-- end: page -->
 

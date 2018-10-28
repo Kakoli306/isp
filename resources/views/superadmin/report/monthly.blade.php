@@ -60,8 +60,6 @@
 
 
     <section class="card">
-        <div class="container">
-
             <div class="card-body">
                 <div class="row">
                     <div class="col-sm-6">
@@ -112,7 +110,6 @@
 
                 </table>
             </div>
-        </div>
     </section>
     <!-- end: page -->
 

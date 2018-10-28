@@ -62,7 +62,7 @@
 
     <section class="card">
 
-                        <table class="table table-bordered">
+        <table class="table table-bordered">
 
                             <thead>
                             <tr>

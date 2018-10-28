@@ -8,10 +8,14 @@
       <div class="sidebar-right-wrapper">
 
         <div class="sidebar-widget widget-calendar">
-          <div data-plugin-datepicker data-plugin-skin="dark"></div>
+
+            {{--<p>Date: <input type="text" ></p>--}}
+
+            {{--<div data-plugin-datepicker data-plugin-skin="dark"></div>--}}
+            <div id="datepicker11"></div>
           <ul>
             <li>
-              <input type="text" class="form-control" name="search" id="search" placeholder="Search...">
+              {{--<input type="text" class="form-control" name="search" id="search" placeholder="Search...">--}}
             </li>
           </ul>
           <ul>
@@ -64,6 +68,8 @@
             </ul>
           </div>
         </div>
+
+
 
         </body>
       </div>
