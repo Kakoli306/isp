@@ -11,11 +11,17 @@
         <div class="col-md-12 "
              style=" background:#606060; margin-top:20px; margin-bottom: 15px; min-height:45px; padding:8px 0px 0px 15px; font-size:16px; font-family:Lucida Sans Unicode; color:#FFFFFF; font-weight:bold;">
             <div class="row">
-                <div class="col-md-4">
-                    <a id="print_client_bill" class="btn btn-info btn-sm"
-                       href="{{route('expense_report')}}">Back To Expense report <span class="glyphicon glyphicon-print"></span></a>
+                <div class="text-left;">
+                    <script>
+                        function goBack() {
+                            window.history.back()
+                        }
+                    </script>
+
+                    <button onclick="goBack()"><i class="fas fa-arrow-left"></i> </button>
 
                 </div>
+
                 <div class="col-md-4" style="font-family: Helvetica;">
                     <div class="col-md-">
                     </div>

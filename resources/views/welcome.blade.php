@@ -4,6 +4,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
+                <div class="center">
                 <div class="card">
                     <div class="card-header">{{ __('Login') }}</div>
 
@@ -57,15 +58,20 @@
                                         {{ __('Login') }}
                                     </button>
 
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
+
+                                    {{--<a class="btn btn-link" href="{{ route('password.request') }}">--}}
+                                        {{--{{ __('Forgot Your Password?') }}--}}
+                                    {{--</a>--}}
                                 </div>
                             </div>
                         </form>
                     </div>
                 </div>
+                </div>
+                <p class="text-center text-muted mt-3 mb-3">&copy; Copyright Brotherhood Infotech. All Rights Reserved</p>
+
             </div>
         </div>
     </div>
+
 @endsection

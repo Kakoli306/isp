@@ -51,7 +51,7 @@ class NewController extends Controller
     public function paid(){
         $customers = DB::table('customers')
             ->where('bill_status', 1)
-            ->orderBy('id', 'DESC')->paginate(2);
+            ->orderBy('id', 'DESC')->paginate(6);
 
         return view ('superadmin.customer.paid',['customers' =>$customers])
             ->with('i', (request()->input('page', 1) - 1) * 5);
@@ -60,80 +60,91 @@ class NewController extends Controller
 
     function search(Request $request)
     {
-        if($request->ajax())
-        {
-            $output = '';
-            $query = $request->get('query');
-            if($query != '')
-            {
-                $data = DB::table('customers')
-                    ->where('bill_status', 1)
+        if ($request->ajax()) {
+                $output = '';
+                $query = $request->get('query');
+                if ($query != '') {
+                    $data = DB::table('customers')
+                       // ->where('bill_status', 1)
+                        ->where('customer_name', 'like', '%' . $query . '%')
+                        ->orWhere('mobile_no', 'like', '%' . $query . '%')
+                        ->orWhere('address', 'like', '%' . $query . '%')
+                        ->orWhere('speed', 'like', '%' . $query . '%')
+                        ->orWhere('bill_amount', 'like', '%' . $query . '%')
+                        ->orWhere('ip_address', 'like', '%' . $query . '%')
+                        ->orWhere('email', 'like', '%' . $query . '%')
+                        ->orderBy('id', 'asc')
+                        ->get();
 
-                    ->where('customer_name', 'like', '%' . $query . '%')
-                    ->orWhere('mobile_no', 'like', '%' . $query . '%')
-                    ->orWhere('address', 'like', '%' . $query . '%')
-                    ->orWhere('speed', 'like', '%' . $query . '%')
-                    ->orWhere('bill_amount', 'like', '%' . $query . '%')
-                    ->orWhere('ip_address', 'like', '%' . $query . '%')
-                    ->orWhere('email', 'like', '%' . $query . '%')
-                    ->orderBy('id', 'asc')
-                    ->get();
+                } else {
+                    $data = DB::table('customers')
+                        ->where('bill_status', 1)
+                        ->orderBy('id', 'desc')
+                        ->get();
+                    }
+                $i = 1;
+                $total_row = $data->count();
+                if ($total_row > 0) {
+                    foreach ($data as $row) {
 
-            }
-            else
-            {
-                $data = DB::table('customers')
-                   ->where('bill_status', 1)
-                    ->orderBy('id', 'desc')
-                    ->get();
-            }
-            $i = 1;
-            $total_row = $data->count();
-            if($total_row > 0)
-            {
-                foreach($data as $row)
-                {
+                          $lifetime_paid=DB::table('billings')->where('customer_id',$row->id)->sum('payment_amount');
 
-                    $output .= '
+                        $date = Carbon::parse(($row->connection_date));
+                        $now =Carbon::now();
+
+                        $diff = $date->diffInMonths($now);
+                        $a =$diff * $row->bill_amount;
+
+                        $flag=$row->bill_amount;
+                        $flag1 = $row->month_amount;
+
+                        $sum=$flag - $flag1;
+
+                        $pay = $lifetime_paid;
+                        $ok = $pay - $sum;
+
+                        $due = $a - $ok;
+                        if($due == 0) {
+
+                            $output .= '
         <tr>
-        
-                    
-         <td>'.$i++.'</td>
-         <td>'.$row->customer_name.'</td>
-         <td>'.$row->id.'</td>
-         <td>'.$row->address.'</td>
-         <td>'.$row->mobile_no.'</td>
-         <td>'.$row->speed.'</td>
-         <td>'.$row->bill_amount.'</td>
-          <td>'.$row->email.'</td>
+     
+         <td>' . $i++ . '</td>
+         <td>' . $row->customer_name . '</td>
+         <td><a style="color: RoyalBlue;"   href=' . url('billing/showing',['id'=>$row->id]) . '>' . $row->id . '</a></td> 
+         <td>' . $row->address . '</td>
+         <td>' . $row->mobile_no . '</td>
+         <td>' . $row->speed . '</td>
+         <td>' . $row->bill_amount . '</td>
+          <td>' . $row->email . '</td>
           <td>0</td>
-         <td>'.$row->ip_address.'</td>
+         <td>' . $row->ip_address . '</td>
         </tr>
         ';
-                }
-            }
-            else
-            {
-                $output = '
+                        }
+                    }
+                } else {
+                    $output = '
        <tr>
+       
         <td align="center" colspan="5">No Data Found</td>
        </tr>
        ';
-            }
-            $data = array(
-                'table_data'  => $output,
-                'total_data'  => $total_row
-            );
+                }
+                $data = array(
+                    'table_data' => $output,
+                    'total_data' => $total_row
+                );
 
-            echo json_encode($data);
+                echo json_encode($data);
+            }
         }
-    }
 
 
     public function unpaid(){
+
         $customers = DB::table('customers')
-            ->where('bill_status', 0)
-            ->orderBy('id', 'DESC')->paginate(8);
+            ->orderBy('id', 'DESC')->paginate(5);
         return view ('superadmin.customer.unpaid',['customers' =>$customers])
             ->with('i', (request()->input('page', 1) - 1) * 5);
 
@@ -149,8 +160,7 @@ class NewController extends Controller
             if($query != '')
             {
                 $data = DB::table('customers')
-                    ->where('bill_status', 0)
-
+                    ->where('bill_status', 1)
                     ->where('customer_name', 'like', '%' . $query . '%')
                     ->orWhere('mobile_no', 'like', '%' . $query . '%')
                     ->orWhere('address', 'like', '%' . $query . '%')
@@ -158,14 +168,15 @@ class NewController extends Controller
                     ->orWhere('bill_amount', 'like', '%' . $query . '%')
                     ->orWhere('ip_address', 'like', '%' . $query . '%')
                     ->orWhere('email', 'like', '%' . $query . '%')
-                    ->orderBy('id', 'asc')
+                    ->orderBy('id', 'desc')
                     ->get();
 
             }
             else
             {
                 $data = DB::table('customers')
-                    ->where('bill_status', 0)
+                    ->where('bill_status', 1)
+
                     ->orderBy('id', 'desc')
                     ->get();
             }
@@ -191,23 +202,24 @@ class NewController extends Controller
                                 $ok = $pay - $sum;
 
                               $due = $a - $ok;
+                    if($due != 0) {
 
-                    $output .= '
+
+                        $output .= '
         <tr>
-        
-                    
-         <td>'.$i++.'</td>
-         <td>'.$row->customer_name.'</td>
-         <td>'.$row->id.'</td>
-         <td>'.$row->address.'</td>
-         <td>'.$row->mobile_no.'</td>
-         <td>'.$row->speed.'</td>
-         <td>'.$row->bill_amount.'</td>
-          <td>'.$row->email.'</td>
-          <td>'.$due.'</td>
-         <td>'.$row->ip_address.'</td>
+           <td>' . $i++ . '</td>
+         <td>' . $row->customer_name . '</td>
+        <td><a style="color: RoyalBlue;"   href=' . url('billing/showing',['id'=>$row->id]) . '>' . $row->id . '</a></td> 
+         <td>' . $row->address . '</td>
+         <td>' . $row->mobile_no . '</td>
+         <td>' . $row->speed . '</td>
+         <td>' . $row->bill_amount . '</td>
+          <td>' . $row->email . '</td>
+          <td>' . $due . '</td>
+         <td>' . $row->ip_address . '</td>
         </tr>
         ';
+                    }
                 }
             }
             else
@@ -386,4 +398,85 @@ public function con($date){
         $exp = Expense::where('product_id',$id)->get();
         return view('superadmin.report.product',compact('exp'));
     }
+
+//    function filter(Request $request)
+//    {
+//        if($request->ajax())
+//        {
+//            $output = '';
+//            $query1 = $request->get('from_date');
+//            $query2 = $request->get('to_date');
+//            if($query1 != '' && $query2 != '' )
+//            {
+//                $data = Customer::whereBetween
+//                ('connection_date', [$query1, $query2])->orderBy('connection_date', 'DESC')->get();
+//
+//            }
+//
+//            else
+//            {
+//                $data = DB::table('customers')
+//                    ->orderBy('id', 'desc')
+//                    ->get();
+//            }
+//
+//
+//            $i = 1;
+//            $total_row = $data->count();
+//            if($total_row > 0)
+//            {
+//                foreach($data as $row)
+//                {
+//
+//                    $output = '<tr><td>'.$i++.'</td><td>'.$row->ip_address.'</td></tr>';
+//                }
+//            }
+//            else
+//            {
+//                $output = '
+//       <tr>
+//        <td align="center" colspan="5">No Data Found</td>
+//       </tr>
+//       ';
+//            }
+//            $data = array(
+//                'table_data'  => $output,
+//                'total_data'  => $total_row
+//            );
+//
+//            echo json_encode($data);
+//        }
+//    }
+
+public function filter(Request $request){
+    $startDt = date('Y-m-d', strtotime($request->startDate));
+    $endDt = date('Y-m-d', strtotime($request->endDate));
+
+    $data = DB::table('customers')
+        ->whereBetween('connection_date', [$startDt, $endDt])
+       ->paginate(7);
+
+//dd($data);
+    $count = DB::table('customers')
+        ->whereYear('created_at', Carbon::now()->year)
+        ->whereMonth('connection_date', Carbon::now()->month)
+        ->count();
+
+
+    $count1 = DB::table('customers')
+        ->whereIn('status', [1])
+        ->whereYear('created_at', Carbon::now()->year)
+        ->whereMonth('connection_date', Carbon::now()->month)
+        ->count();
+
+    $count2 = DB::table('customers')
+        ->whereIn('status', [0])
+        ->whereYear('created_at', Carbon::now()->year)
+        ->whereMonth('connection_date', Carbon::now()->month)
+        ->count();
+    return view ('superadmin.report.consearch',compact('res','users','data','count','count1','count2','customers'))
+        ->with('i', (request()->input('page', 1) - 1) * 5);
+
+}
+
 }

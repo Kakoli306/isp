@@ -6,7 +6,11 @@
 
 @section('content')
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
     <div class="row">
+
         <div class="col-md-12 "
              style=" background:#606060; margin-top:20px; margin-bottom: 15px; min-height:45px; padding:8px 0px 0px 15px; font-size:16px; font-family:Lucida Sans Unicode; color:#FFFFFF; font-weight:bold;">
             <div class="row">
@@ -27,7 +31,7 @@
                 <div class="col-md-4">
                     <div style="float:right; padding-right:10px">
                         <a id="print_client_bill" class="btn btn-info btn-sm"
-                           href="{{route('add-customer') }}">Add Customer <span class="glyphicon glyphicon-print"></span></a>
+                           href="">Add Customer <span class="glyphicon glyphicon-print"></span></a>
                     </div>
                 </div>
 
@@ -37,8 +41,18 @@
 
     <section class="card">
         <div class="card-body">
-            <div class="row">
+            <div class="text-left;">
+                <script>
+                    function goBack() {
+                        window.history.back()
+                    }
+                </script>
 
+                <button onclick="goBack()"><i class="fas fa-arrow-left"></i> </button>
+
+            </div>
+
+            <div class="row">
                 <div class="col-sm-8">
                     <div class="pull-right">
                         <a class="mb-1 mt-1 mr-1 btn btn-outline-info" href="{{ route('manage-customer') }}"> View all </a>
@@ -48,8 +62,7 @@
                 </div>
 
                 <div class="col-md-4">
-                    <form action="/search" method="POST" role="search">
-                        {{ csrf_field() }}
+                    <form>
 
                         <div class="input-group">
                         <select id="zone_id" type="zone_id" class="form-control"
@@ -57,7 +70,7 @@
                             <option>--Select a Zone---</option>
 
                             @foreach ($zones as $value)
-                                <option value="{{$value->id}}" > {{$value->zone_name}}</option>
+                                <option value="{{$value->zone_name}}" > {{$value->zone_name}}</option>
                             @endforeach
                         </select>
                         </div>
@@ -179,15 +192,14 @@
 
     </section>
     <!-- end: page -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 
 
     <script>
         $(document).ready(function(){
 
-            fetch_customer_data();
+            fetch_paid_data();
 
-            function fetch_customer_data(query = '')
+            function fetch_paid_data(query = '')
             {
                 $.ajax({
                     url:"{{ route('search.action') }}",
@@ -204,7 +216,13 @@
 
             $(document).on('keyup', '#search', function(){
                 var query = $(this).val();
-                fetch_customer_data(query);
+                fetch_paid_data(query);
+            });
+
+            $(document).on('change', '#zone_id', function(){
+                var query = $(this).val();
+                console.log(query);
+                fetch_paid_data(query);
             });
         });
     </script>

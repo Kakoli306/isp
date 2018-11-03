@@ -26,13 +26,27 @@ View All Zone
         </div>
     </div>
 
+
+
     <!-- Important to work AJAX CSRF -->
             <meta name="_token" content="{!! csrf_token() !!}" />
 
             <body>
 
                 <section class="card">
+
                     <div class="card-body">
+                        <div class="text-left;">
+                            <script>
+                                function goBack() {
+                                    window.history.back()
+                                }
+                            </script>
+
+                            <button onclick="goBack()"><i class="fas fa-arrow-left"></i> </button>
+
+                        </div>
+
                         <table class="table table-bordered">
 
                             <thead>

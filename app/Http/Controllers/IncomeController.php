@@ -125,6 +125,41 @@ class IncomeController extends Controller
         return redirect()->route('income.index')
             ->with('success',' deleted successfully');
 
-
     }
-}
+    public function filter(Request $request)
+    {
+        $startDt = date('Y-m-d', strtotime($request->startDate));
+        $endDt = date('Y-m-d', strtotime($request->endDate));
+
+        $data = DB::table('incomes')
+            ->whereBetween('incda', [$startDt, $endDt])
+            ->paginate(7);
+
+        return view('superadmin.search.isearch', compact( 'data'))
+            ->with('i', (request()->input('page', 1) - 1) * 5);
+    }
+
+    public function idfiter(Request $request)
+    {
+        $startDt = date('Y-m-d', strtotime($request->startDate));
+        $endDt = date('Y-m-d', strtotime($request->endDate));
+
+        $data = DB::table('billings')
+            ->whereBetween('month', [$startDt, $endDt])
+            ->get();
+
+        $data1 = DB::table('incomes')
+            ->whereBetween('incda', [$startDt, $endDt])
+            ->get();
+
+        $data2 = DB::table('customers')
+            ->whereBetween('connection_date', [$startDt, $endDt])
+            ->get();
+      //  dd($data2,$data,$data1);
+        $users = collect($data)->merge($data1)->merge($data2);
+//dd($users);
+
+        return view('superadmin.search.irsearch', compact( 'users','data'))
+            ->with('i', (request()->input('page', 1) - 1) * 5);
+    }
+    }

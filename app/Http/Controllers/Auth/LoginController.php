@@ -21,22 +21,22 @@ class LoginController extends Controller
     */
 
 
- protected function authenticated(Request $request, $user)
-    {
-         if($user->hasRole('superadmin')){
-            return redirect('/superadminPage');
-        }
-        else if($user->hasRole('admin')){
-            return redirect('/adminPage');
-        }
-        else if($user->hasRole('user')){
-            return redirect('/user');
-        }
-
-        else{
-            return redirect('/');
-        }
-    }
+// protected function authenticated(Request $request, $user)
+//    {
+//         if($user->hasRole('superadmin')){
+//            return redirect('/superadminPage');
+//        }
+//        else if($user->hasRole('admin')){
+//            return redirect('/adminPage');
+//        }
+//        else if($user->hasRole('user')){
+//            return redirect('/user');
+//        }
+//
+//        else{
+//            return redirect('/');
+//        }
+//    }
 
     use AuthenticatesUsers;
 
@@ -45,7 +45,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.

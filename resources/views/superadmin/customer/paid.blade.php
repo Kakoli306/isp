@@ -23,6 +23,17 @@
 
         <div class="row">
         <div class="col-md-4">
+            <div class="text-left;">
+                <script>
+                    function goBack() {
+                        window.history.back()
+                    }
+                </script>
+
+                <button onclick="goBack()"><i class="fas fa-arrow-left"></i> </button>
+
+            </div>
+
             <div class="summary">
 
             </div>
@@ -33,12 +44,24 @@
 
         </div>
 
-        <div class="col-md-4 col-md-offset-4">
-            <form>
-                <div class="input-group">
+        <div class="row">
+            {{--<form action="{{route('psearch')}}" method="post">--}}
+                {{--{{ csrf_field() }}--}}
+                {{--<div class="row">--}}
+                    {{--<div class="col-md-6 text-center">--}}
+                        {{--<input type="search_text" name="search_text" id="search_text" class="form-control" placeholder="Search...">--}}
+                    {{--</div>--}}
+
+                    {{--<div class="col-md-4">--}}
+                        {{--<input type="submit" class="btn btn-success btn-block" name="btnSearch" value="Search">--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+            {{--</form>--}}
+
+            <div class="input-group">
                     <input type="search_text" name="search_text" id="search_text" class="form-control" placeholder="Search for...">
                 </div>
-            </form>
+
         </div>
 
     </div>
@@ -67,6 +90,29 @@
                     <tbody>
 
                     {{--@foreach($customers as $customer)--}}
+                        {{-- $lifetime_paid=DB::table('billings')->where('customer_id',$customer->id)->sum('payment_amount');}}
+
+
+
+                        {{--$date = Carbon\Carbon::parse(($customer->connection_date));--}}
+                        {{--$now = Carbon\Carbon::now();--}}
+
+                        {{--$diff = $date->diffInMonths($now);--}}
+                        {{--$a =$diff * $customer->bill_amount;--}}
+
+                        {{--$flag=$customer->bill_amount;--}}
+                        {{--$flag1 = $customer->month_amount;--}}
+
+                        {{--$sum=$flag - $flag1;--}}
+
+                        {{--$pay = $lifetime_paid;--}}
+                        {{--$ok = $pay - $sum;--}}
+
+                        {{--$due = $a - $ok;--}}
+
+                        {{--//dd($due);--}}
+
+                        {{--@if($due == 0)--}}
                         {{--<tr>--}}
                             {{--<td>{{ ++$i }}</td>--}}
                             {{--<td>{{ $customer->customer_name }}</td>--}}
@@ -79,7 +125,8 @@
                             {{--<td>0</td>--}}
                             {{--<td>{{ $customer->ip_address}}</td>--}}
                         {{--</tr>--}}
-                    {{--</tbody>--}}
+                    </tbody>
+                    {{--@endif--}}
                     {{--@endforeach--}}
                 </table>
             <div>

@@ -25,6 +25,16 @@
             </div>
         </div>
     </div>
+    <div class="text-left;">
+        <script>
+            function goBack() {
+                window.history.back()
+            }
+        </script>
+
+        <button onclick="goBack()"><i class="fas fa-arrow-left"></i> </button>
+
+    </div>
 
 
     @if ($message = Session::get('success'))

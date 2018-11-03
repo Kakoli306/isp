@@ -17,7 +17,7 @@
 
                   <input  name ="id" value="{{ $custId->id }}">
 
-                    <table class="table table-bordered table-striped mb-0 table-responsive" id="datatable-editable">
+                    <table class="table table-bordered" id="">
 
                         <thead>
                         <tr>

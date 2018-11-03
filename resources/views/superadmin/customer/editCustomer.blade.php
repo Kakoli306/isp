@@ -123,35 +123,37 @@
 
 
         <!-- zone modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title"></h4>
+                        <h4 class="modal-title" id="myModalLabel">Zone Form</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                     </div>
                     <div class="modal-body">
-                        <form class="form-horizontal" role="form">
-                            <div class="form-group row add">
-                                <label class="control-label col-sm-2" for="zone_name">Zone Name :</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="zone_name" name="zone_name"
-                                           placeholder="Provide Zone Name" required>
-                                    <p class="error text-center alert alert-danger hidden"></p>
+                        <form role="form" enctype="multipart/form-data" method="post" action="{{ url('zoneStore')}}">
+                            {{ csrf_field() }}
+
+                            <div class="form-group error">
+                                <label for="inputName" class="col-sm-3 control-label">Name</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control has-error" id="zone_name" name="zone_name" placeholder="Zone Name" value="">
                                 </div>
                             </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-warning" type="submit" id="btn-save">
+                                    <span class="glyphicon glyphicon-plus"></span>Insert Zone
+                                </button>
+                            </div>
+                            {{--<input type="submit" class="btn btn-primary" id="btn-save" value="add">--}}
+
                         </form>
+
                     </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-warning" type="submit" id="add">
-                            <span class="glyphicon glyphicon-plus"></span>Insert Zone
-                        </button>
-                        <button class="btn btn-warning" type="button" data-dismiss="modal">
-                            <span class="glyphicon glyphicon-remove"></span>Close
-                        </button>
-                    </div>
+
                 </div>
             </div>
         </div>
+
     </div>
 @endsection

@@ -13,7 +13,18 @@ isp-manager
 
      </div>
       <div class="card-body">
-<form role="form" enctype="multipart/form-data" method="post" action="{{route('user-store')}}" >
+        <div class="text-left;">
+          <script>
+              function goBack() {
+                  window.history.back()
+              }
+          </script>
+
+          <button onclick="goBack()"><i class="fas fa-arrow-left"></i> </button>
+
+        </div>
+
+        <form role="form" enctype="multipart/form-data" method="post" action="{{route('user-store')}}" >
   @csrf
                   <div class="row" style="padding:10px; font-size: 12px;">
 
@@ -84,18 +95,18 @@ isp-manager
                         </select>
                       </div>
 
-                      <div class="form-group">
-                        <label for="exampleInputEmail1">Permission</label>
+                      {{--<div class="form-group">--}}
+                        {{--<label for="exampleInputEmail1">Permission</label>--}}
 
-                        <div class="form-group" style="border: 1px solid #CCCCCC; padding: 5px; border-radius:4px;">
-                            @foreach($permissions as $permission)
-                          <label class="checkbox-inline">
-                            <input type="checkbox" name="WorkPermission[]" style="font-size: 12px;" class="wclschekbox" id="inlineCheckbox1"
-                                   value="{{$permission->id}}" > {{$permission->name}}
-                          </label>
-                            @endforeach
-                        </div>
-                      </div>
+                        {{--<div class="form-group" style="border: 1px solid #CCCCCC; padding: 5px; border-radius:4px;">--}}
+                            {{--@foreach($permissions as $permission)--}}
+                          {{--<label class="checkbox-inline">--}}
+                            {{--<input type="checkbox" name="WorkPermission[]" style="font-size: 12px;" class="wclschekbox" id="inlineCheckbox1"--}}
+                                   {{--value="{{$permission->id}}" > {{$permission->name}}--}}
+                          {{--</label>--}}
+                            {{--@endforeach--}}
+                        {{--</div>--}}
+                      {{--</div>--}}
 
 
                       <div class="row" style="padding: 5px 0px 15px 0px; float:right; font-size: 12px; text-align: center;">

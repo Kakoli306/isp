@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Customer;
+use App\Expense;
+use App\Billing;
+use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 class LiveSearchController extends Controller
 {
     public function actives()
@@ -185,4 +189,43 @@ class LiveSearchController extends Controller
         }
     }
 
+    public function filterByDate(Request $request){
+        $startDt = date('Y-m-d', strtotime($request->startDate));
+        $endDt = date('Y-m-d', strtotime($request->endDate));
+       //return $startDt;
+
+        $users = DB::table('incomes')
+            ->join('users', 'incomes.userId', '=', 'users.userId')
+            ->select('incomes.*', 'users.username')
+            ->where('incomes.userId',Auth::user()->userId)
+            ->first();
+
+        $billings = Billing::select(
+            DB::raw('(payment_amount) as sums'),
+            DB::raw("DATE_FORMAT(created_at,'%D %M %Y') as dates")
+        )
+            ->whereMonth('created_at',Carbon::now()->month)
+            ->orderBy('dates')
+            ->get();
+
+        $expense = Expense::select(
+            DB::raw('(price) as expenses'),
+            DB::raw("DATE_FORMAT(created_at,'%D %M %Y') as dates")
+        )
+            ->whereMonth('created_at',Carbon::now()->month)
+            ->orderBy('dates')
+            ->get();
+
+        $data = DB::table('billings')->whereBetween('month', [$startDt, $endDt])->get();
+        $news = collect($expense)->merge($billings);
+        $merged = $news->sortBy('dates');
+
+        $res = $news->sortBy(function ($merged) {
+            return $merged->dates;
+        });
+
+
+        return view ('superadmin.report.search',compact('res','users','data'))
+            ->with('i', (request()->input('page', 1) - 1) * 5);
+    }
 }

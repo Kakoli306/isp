@@ -26,24 +26,30 @@
          style=" background:#606060; margin-top:20px; margin-bottom: 15px; min-height:45px; padding:8px 0px 0px 15px; font-size:16px; font-family:Lucida Sans Unicode; color:#FFFFFF; font-weight:bold;">
 
 
-        <div class="form-group row">
-            <label class="col-lg-3 control-label text-lg-right pt-2 ">From Date</label>
-            <div class="col-lg-6">
-                <div class="input-daterange input-group" data-plugin-datepicker>
-                    <span class="input-group-prepend">
-                        <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span></span>
+        <div class="form-group">
+            <form action="{{route('idfiter')}}" method="post">
+                {{ csrf_field() }}
+                <div class="row">
+                    <div class="col-md-1 text-center">
+                        <label class="text-white">Date</label>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="date" class="form-control" name="startDate">
+                    </div>
 
-                    <input type="text" class="form-control" name="start">
-                    <span class="input-group-text border-left-0 border-right-0 rounded-0">
-															to Date
-														</span>
-                    <input type="text" class="form-control" name="end">
+                    <div class="col-md-1 text-center">
+                        <span>To</span>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="date" class="form-control" name="endDate">
+                    </div>
+
+                    <div class="col-md-2">
+                        <input type="submit" class="btn btn-success btn-block" name="btnSearch" value="Search">
+                    </div>
                 </div>
-            </div>
+            </form>
 
-            <div class="col-lg-3">
-                <button type="submit"  name="search" class="btn btn-primary"><i class="fa fa-search"></i>&nbsp;&nbsp;Search</button>
-            </div>
         </div>
     </div>
 
@@ -60,7 +66,21 @@
                     echo $date->format('F Y');
                     ?>
                 </h2>
+
+
             </div>
+            <div class="text-left;">
+                <script>
+                    function goBack() {
+                        window.history.back()
+                    }
+                </script>
+
+                <button onclick="goBack()"><i class="fas fa-arrow-left"></i> </button>
+
+            </div>
+
+
             <div class="col-md-12" id="month_print">
                 <table class="table table-bordered">
                     <thead>

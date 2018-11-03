@@ -54,10 +54,6 @@ class UserController extends Controller
 
             $user->attachRole(Role::where('name', $request->user_type)->first());
 
-            foreach ($request->WorkPermission as $permission) {
-
-                $user->attachPermission(Permission::where('name', $request->WorkPermission)->first());
-            }
 
             return redirect()->back()->with('message', 'User Create Successfully');
         } else {
@@ -76,10 +72,6 @@ class UserController extends Controller
             $user->attachRole(Role::where('name', $request->user_type)->first());
 
 
-            //dd($userrole);
-            // foreach ($request->WorkPermission as $key=>$value){
-//return $value;
-            // $user->permissions()->attach(Permission::where('name',$request->WorkPermission)->first());
 
         }
 

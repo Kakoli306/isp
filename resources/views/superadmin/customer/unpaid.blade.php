@@ -24,6 +24,17 @@
 
         <div class="row" style="margin-bottom:10px;">
         <div class="col-md-4">
+            <div class="text-left;">
+                <script>
+                    function goBack() {
+                        window.history.back()
+                    }
+                </script>
+
+                <button onclick="goBack()"><i class="fas fa-arrow-left"></i> </button>
+
+            </div>
+
             <div class="summary">
                 <div class="info">
                     <strong class="amount"></strong>
@@ -37,6 +48,7 @@
         </div>
 
         <div class="col-md-4 col-md-offset-4">
+
             <form>
                 <div class="input-group">
                     <input type="search_text" name="search_text" id="search_text" class="form-control" placeholder="Search for...">
@@ -76,6 +88,7 @@
 
                     {{--@foreach($customers as $customer)--}}
                         {{--<tr>--}}
+                           {{----}}
                             {{--<td>{{ ++$i }}</td>--}}
                             {{--<td>{{ $customer->customer_name }}</td>--}}
                             {{--<td>{{ $customer->id }}</td>--}}
@@ -108,17 +121,15 @@
 //                                $pay = $lifetime_paid;
 //                                $ok = $pay - $sum;
 //
-//                                $due = $a - $ok;
-
-                                //dd($due);
+//                                $due = $a - $ok
 //                                echo $due
 //                                ?>
 
-                            {{--</td>--}}
+                            </td>
 
                             {{--<td>{{ $customer->ip_address}}</td>--}}
                         {{--</tr>--}}
-                    {{--</tbody>--}}
+                    </tbody>
                     {{--@endforeach--}}
 
                 </table>
@@ -135,7 +146,7 @@
                         function fetch_unpaid_data(query = '')
                         {
                             $.ajax({
-                                url:"{{ route('bse') }}",
+                                url:"{{ route('abs') }}",
                                 method:'GET',
                                 data:{query:query},
                                 dataType:'json',

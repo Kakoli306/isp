@@ -116,8 +116,21 @@ trait AuthenticatesUsers
      */
     protected function authenticated(Request $request, $user)
     {
-        //
+        if($user->hasRole('superadmin')){
+            return redirect('/superadminPage');
+        }
+        else if($user->hasRole('admin')){
+            return redirect('/adminPage');
+        }
+        else if($user->hasRole('user')){
+            return redirect('/user');
+        }
+
+        else{
+            return redirect('/');
+        }
     }
+
 
     /**
      * Get the failed login response instance.

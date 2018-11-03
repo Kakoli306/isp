@@ -10,6 +10,24 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+    <div class="panel panel-default">
+        {{--<div class="text-left;">--}}
+            {{--<a href="{{ route('create-user') }}" type="button" class="btn btn-outline-success" ><i class="fa fa-arrow-circle-left"></i></a>--}}
+        {{--</div>--}}
+
+        <div class="text-left;">
+            <script>
+                function goBack() {
+                    window.history.back()
+                }
+            </script>
+
+            <button onclick="goBack()"><i class="fas fa-arrow-left"></i> </button>
+
+        </div>
+
+
+    </div>
 
         <div class="col-md-12 "
              style=" background:#606060; margin-top:20px; margin-bottom: 15px; min-height:45px; padding:8px 0px 0px 15px; font-size:16px; font-family:Lucida Sans Unicode; color:#FFFFFF; font-weight:bold;">
@@ -33,13 +51,6 @@
             <div class="col-md-4 col-md-offset-4">
 
             </div>
-
-            <div class="col-md-4 col-md-offset-4">
-                <div class="input-group">
-                    <input type="text" name="search" id="search" class="form-control" placeholder="Search User...">
-                </div>
-            </div>
-
         </div>
         <br/>
 
@@ -56,6 +67,7 @@
                     <th>User Type</th>
                     <th>Status</th>
                     <th>Edit</th>
+                        <th>Change Password</th>
                 </tr>
                 </thead>
                 <tbody>

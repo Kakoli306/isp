@@ -5,7 +5,6 @@ Bill Collection
 @endsection
 
 @section('content')
-
 	<div class="row">
 				<div class="col-md-12 "
 					 style=" background:#606060; margin-top:20px; margin-bottom: 15px; min-height:45px; padding:8px 0px 0px 15px; font-size:16px; font-family:Lucida Sans Unicode; color:#FFFFFF; font-weight:bold;">
@@ -15,7 +14,10 @@ Bill Collection
 						</div>
 						<div class="col-md-4" style="font-family: Helvetica;">
 							<div class="col-md-">
-								<b>Total Bill Amount</b>
+                                <?php $bill=DB::table('billings')->sum('payment_amount'); ?>
+								<b>Total Bill Amount {{$bill}}
+
+								</b>
 							</div>
 						</div>
 						<div class="col-md-4">
@@ -37,6 +39,17 @@ Bill Collection
 			   <div class="row">
 
 				   <div class="col-sm-8">
+					   <div class="text-left;">
+						   <script>
+                               function goBack() {
+                                   window.history.back()
+                               }
+						   </script>
+
+						   <button onclick="goBack()"><i class="fas fa-arrow-left"></i> </button>
+
+					   </div>
+
 					   <div class="pull-right">
 
                            <?php $date = \Carbon\Carbon::now();
@@ -50,16 +63,16 @@ Bill Collection
 					   <form action="/search" method="POST" role="search">
 						   {{ csrf_field() }}
 
-						   <div class="input-group">
-							   <select id="zone_id" type="zone_id" class="form-control"
-									   name="zone_id" required>
-								   <option>--Select a Zone---</option>
+						   {{--<div class="input-group">--}}
+							   {{--<select id="zone_id" type="zone_id" class="form-control"--}}
+									   {{--name="zone_id" required>--}}
+								   {{--<option>--Select a Zone---</option>--}}
 
-								   @foreach ($zones as $value)
-									   <option value="{{$value->id}}" > {{$value->zone_name}}</option>
-								   @endforeach
-							   </select>
-						   </div>
+								   {{--@foreach ($zones as $value)--}}
+									   {{--<option value="{{$value->id}}" > {{$value->zone_name}}</option>--}}
+								   {{--@endforeach--}}
+							   {{--</select>--}}
+						   {{--</div>--}}
 					   </form>
 				   </div>
 			   </div>
@@ -81,17 +94,18 @@ Bill Collection
 				   </div>
 
 				   <div class="col-md-4 col-md-offset-4">
-					   <form>
-						   <div class="input-group">
-							   <input type="search_text" name="search_text" id="search_text" class="form-control" placeholder="Search for...">
-						   </div>
-					   </form>
+					   {{--<form>--}}
+						   {{--<div class="input-group">--}}
+							   {{--<input type="search_text" name="search_text" id="search_text" class="form-control" placeholder="Search for...">--}}
+						   {{--</div>--}}
+					   {{--</form>--}}
 				   </div>
 
 			   </div>
 				 <div class="row" style="margin-bottom:10px;">
 				 	<div class="col-md-12 ">
 			   <table class="table table-bordered">
+				   {{--<h3 align="center">Total Data : <span id="total_records"></span></h3>--}}
 
 			<thead>
 			<tr>
@@ -116,13 +130,38 @@ Bill Collection
 			@foreach($customers as $customer)
 
 				<tr>
+                    <?php $lifetime_paid=DB::table('billings')->where('customer_id',$customer->id)->sum('payment_amount'); ?>
+
                     <?php
+
+                    $date = Carbon\Carbon::parse(($customer->connection_date));
+                    $now = Carbon\Carbon::now();
+
+                    $diff = $date->diffInMonths($now);
+                    $a =$diff * $customer->bill_amount;
+
+                    $flag=$customer->bill_amount;
+                    $flag1 = $customer->month_amount;
+
+                    $sum=$flag - $flag1;
+
+                    $pay = $lifetime_paid;
+                    $ok = $pay - $sum;
+
+                    $due = $a - $ok;
+
+                    //dd($due);
+                    ?>
+						@if($due != 0)
+
+						<?php
                     $date = Carbon\Carbon::parse(($customer->connection_date));
                     $now = Carbon\Carbon::now();
 
                     $diff = $date->diffInMonths($now);
 
                     ?>
+
 					@if($diff > 0)
 
 						<td>{{ ++$i }}</td>
@@ -140,35 +179,6 @@ Bill Collection
 
 					<td>
 
-                        <?php $lifetime_paid=DB::table('billings')->where('customer_id',$customer->id)->sum('payment_amount'); ?>
-
-                        <?php
-
-                        $date = Carbon\Carbon::parse(($customer->connection_date));
-                        $now = Carbon\Carbon::now();
-
-                        $diff = $date->diffInMonths($now);
-                        $a =$diff * $customer->bill_amount;
-
-                        $flag=$customer->bill_amount;
-                        $flag1 = $customer->month_amount;
-
-                        $sum=$flag - $flag1;
-
-                        $pay = $lifetime_paid;
-                        $ok = $pay - $sum;
-
-                        $due = $a - $ok;
-
-                        //dd($due);
-                        ?>
-                        <?php
-                        $flag=$customer->bill_amount;
-                        $flag1 = $customer->month_amount;
-
-                        $sum=$flag - $flag1;
-                        ?>
-
                         <?php
                         if  ($due == 0 )
 
@@ -176,8 +186,8 @@ Bill Collection
                            echo $predue = 0;
 
                         }
+                         else
 
-                        else
                         {
 
                         $date = Carbon\Carbon::parse(($customer->connection_date));
@@ -194,47 +204,50 @@ Bill Collection
 
                         $pay = $lifetime_paid;
                         $ok = $pay - $sum;
-
                         $predue = $a - $ok;
+
                         echo $predue;
                      }
+
                         ?>
 					</td>
 
-					<td>
+					<td>{{$due}}</td>
 
+							<td class="center">
+							@if($customer->bill_status == 0)
 
-
-						{{$due}}</td>
-
-
-					<td class="center">
-						<input type="hidden" value="{{ $customer->id }}" name="customer_id">
-
-						<a class="btn-outline-info" href="{{ url('billing/edit/'.$customer->id) }}">Edit</a>
-
-						@if($customer->bill_status == 0)
-
-							<form action="{{ route('show-unpaid') }}" method="POST">
-								{{ csrf_field() }}
-								<input type="hidden" value="{{$customer->id}}}" name="id">
-									<button type="submit" onclick="return confirm('Are u sure want to unpaid this !!!')"
-										class="btn-outline-success">Unpaid</button>
-							</form>
+							{{--<form action="{{ route('show-unpaid') }}" method="POST">--}}
+								{{--{{ csrf_field() }}--}}
+								{{--<input type="hidden" value="{{$customer->id}}}" name="id">--}}
+									{{--<button type="submit" onclick="return confirm('Are u sure want to unpaid this !!!')"--}}
+										{{--class="btn-outline-success">Unpaid</button>--}}
+							{{--</form>--}}
 
 						@else
-							<form action="{{ route('show-paid') }}" method="POST">
+
+									<form action="{{route('show-paid')}}" method="POST">
 								{{ csrf_field() }}
-								<input type="hidden" value="{{$customer->id}}}" name="id">
-								<button type="submit" onclick="return confirm('Are u sure want to paid this !!!')"
+
+										<input type="hidden" value="{{ $customer->id }}" name="customer_id">
+
+										<a class="btn-outline-info" href="{{ url('billing/edit/'.$customer->id) }}">Edit</a>
+
+
+										<input type="hidden"  name="amount" value="{{$customer->bill_amount}}">
+
+										<input type="hidden" value="{{$customer->id}}" name="customer_id">
+								<button type="submit" onclick="return confirm('Are u sure want to paid {{$customer->bill_amount}}!!!')"
 										class="btn-outline-primary">Paid</button>
 							</form>
 
 						@endif
-					</td>
+								@else
+								@endif
+
+							</td>
 				</tr>
 				@else
-
 				@endif
 
 			</tbody>
@@ -247,5 +260,41 @@ Bill Collection
 	</div>
 </section>
 <!-- end: page -->
+	{{--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>--}}
+
+
+	{{--<script>--}}
+        {{--$(document).ready(function(){--}}
+
+            {{--fetch_customer_data();--}}
+
+            {{--function fetch_customer_data(query = '')--}}
+            {{--{--}}
+                {{--$.ajax({--}}
+                    {{--url:"{{ route('billsearch') }}",--}}
+                    {{--method:'GET',--}}
+                    {{--data:{query:query},--}}
+                    {{--dataType:'json',--}}
+                    {{--success:function(data)--}}
+                    {{--{--}}
+                        {{--$('tbody').html(data.table_data);--}}
+                        {{--$('#total_records').text(data.total_data);--}}
+                    {{--}--}}
+                {{--})--}}
+            {{--}--}}
+
+            {{--$(document).on('keyup', '#search', function(){--}}
+                {{--var query = $(this).val();--}}
+                {{--fetch_customer_data(query);--}}
+            {{--});--}}
+
+            {{--$(document).on('change', '#zone_id', function(){--}}
+                {{--var query = $(this).val();--}}
+                {{--console.log(query);--}}
+                {{--fetch_customer_data(query);--}}
+            {{--});--}}
+        {{--});--}}
+	{{--</script>--}}
+
 
 @endsection

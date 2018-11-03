@@ -9,6 +9,17 @@
     <div class="row">
         <div class="col-lg-12">
                 <section class="card">
+                    <div class="text-left;">
+                        <script>
+                            function goBack() {
+                                window.history.back()
+                            }
+                        </script>
+
+                        <button onclick="goBack()"><i class="fas fa-arrow-left"></i> </button>
+
+                    </div>
+
                     <header class="card-header">
 
                     </header>

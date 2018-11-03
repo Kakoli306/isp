@@ -36,24 +36,29 @@
          style=" background:#606060; margin-top:20px; margin-bottom: 15px; min-height:45px; padding:8px 0px 0px 15px; font-size:16px; font-family:Lucida Sans Unicode; color:#FFFFFF; font-weight:bold;">
 
 
-        <div class="form-group row">
-            <label class="col-lg-3 control-label text-lg-right pt-2 ">From Date</label>
-            <div class="col-lg-6">
-                <div class="input-daterange input-group" data-plugin-datepicker>
-                    <span class="input-group-prepend">
-                        <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span></span>
+        <div class="form-group">
+            <form action="{{route('filter-by-date')}}" method="post">
+                {{ csrf_field() }}
+                <div class="row">
+                    <div class="col-md-1 text-center">
+                        <label class="text-white">Date</label>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="date" class="form-control" name="startDate">
+                    </div>
 
-                    <input type="text" class="form-control" name="start">
-                    <span class="input-group-text border-left-0 border-right-0 rounded-0">
-															To Date
-														</span>
-                    <input type="text" class="form-control" name="end">
+                    <div class="col-md-1 text-center">
+                        <span>To</span>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="date" class="form-control" name="endDate">
+                    </div>
+
+                    <div class="col-md-2">
+                        <input type="submit" class="btn btn-success btn-block" name="btnSearch" value="Search">
+                    </div>
                 </div>
-            </div>
-
-            <div class="col-lg-3">
-                <button type="submit"  name="search" class="btn btn-primary"><i class="fa fa-search"></i>&nbsp;&nbsp;Search</button>
-            </div>
+            </form>
 
         </div>
 
@@ -65,6 +70,17 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-sm-6">
+                        <div class="text-left;">
+                            <script>
+                                function goBack() {
+                                    window.history.back()
+                                }
+                            </script>
+
+                            <button onclick="goBack()"><i class="fas fa-arrow-left"></i> </button>
+
+                        </div>
+
                     </div>
                 </div>
                 <table class="table table-bordered">
@@ -133,108 +149,108 @@
             </div>
 
 
-<?php function numtowords($num){
-$decones = array(
-            '01' => "One",
-            '02' => "Two",
-            '03' => "Three",
-            '04' => "Four",
-            '05' => "Five",
-            '06' => "Six",
-            '07' => "Seven",
-            '08' => "Eight",
-            '09' => "Nine",
-            10 => "Ten",
-            11 => "Eleven",
-            12 => "Twelve",
-            13 => "Thirteen",
-            14 => "Fourteen",
-            15 => "Fifteen",
-            16 => "Sixteen",
-            17 => "Seventeen",
-            18 => "Eighteen",
-            19 => "Nineteen"
-            );
-$ones = array(
-            0 => " ",
-            1 => "One",
-            2 => "Two",
-            3 => "Three",
-            4 => "Four",
-            5 => "Five",
-            6 => "Six",
-            7 => "Seven",
-            8 => "Eight",
-            9 => "Nine",
-            10 => "Ten",
-            11 => "Eleven",
-            12 => "Twelve",
-            13 => "Thirteen",
-            14 => "Fourteen",
-            15 => "Fifteen",
-            16 => "Sixteen",
-            17 => "Seventeen",
-            18 => "Eighteen",
-            19 => "Nineteen"
-            );
-$tens = array(
-            0 => "",
-            2 => "Twenty",
-            3 => "Thirty",
-            4 => "Forty",
-            5 => "Fifty",
-            6 => "Sixty",
-            7 => "Seventy",
-            8 => "Eighty",
-            9 => "Ninety"
-            );
-$hundreds = array(
-            "Hundred",
-            "Thousand",
-            "Million",
-            "Billion",
-            "Trillion",
-            "Quadrillion"
-            ); //limit t quadrillion
-$num = number_format($num,2,".",",");
-$num_arr = explode(".",$num);
-$wholenum = $num_arr[0];
-$decnum = $num_arr[1];
-$whole_arr = array_reverse(explode(",",$wholenum));
-krsort($whole_arr);
-$rettxt = "";
-foreach($whole_arr as $key => $i){
-    if($i < 20){
-        $rettxt .= $ones[$i];
-    }
-    elseif($i < 100){
-        $rettxt .= $tens[substr($i,0,1)];
-        $rettxt .= " ".$ones[substr($i,1,1)];
-    }
-    else{
-        $rettxt .= $ones[substr($i,0,1)]." ".$hundreds[0];
-        $rettxt .= " ".$tens[substr($i,1,1)];
-        $rettxt .= " ".$ones[substr($i,2,1)];
-    }
-    if($key > 0){
-        $rettxt .= " ".$hundreds[$key]." ";
-    }
-
-}
-$rettxt = $rettxt." peso/s";
-
-if($decnum > 0){
-    $rettxt .= " and ";
-    if($decnum < 20){
-        $rettxt .= $decones[$decnum];
-    }
-    elseif($decnum < 100){
-        $rettxt .= $tens[substr($decnum,0,1)];
-        $rettxt .= " ".$ones[substr($decnum,1,1)];
-    }
-    $rettxt = $rettxt." centavo/s";
-}
-return $rettxt;} ?>
+<?php //function numtowords($num){
+//$decones = array(
+//            '01' => "One",
+//            '02' => "Two",
+//            '03' => "Three",
+//            '04' => "Four",
+//            '05' => "Five",
+//            '06' => "Six",
+//            '07' => "Seven",
+//            '08' => "Eight",
+//            '09' => "Nine",
+//            10 => "Ten",
+//            11 => "Eleven",
+//            12 => "Twelve",
+//            13 => "Thirteen",
+//            14 => "Fourteen",
+//            15 => "Fifteen",
+//            16 => "Sixteen",
+//            17 => "Seventeen",
+//            18 => "Eighteen",
+//            19 => "Nineteen"
+//            );
+//$ones = array(
+//            0 => " ",
+//            1 => "One",
+//            2 => "Two",
+//            3 => "Three",
+//            4 => "Four",
+//            5 => "Five",
+//            6 => "Six",
+//            7 => "Seven",
+//            8 => "Eight",
+//            9 => "Nine",
+//            10 => "Ten",
+//            11 => "Eleven",
+//            12 => "Twelve",
+//            13 => "Thirteen",
+//            14 => "Fourteen",
+//            15 => "Fifteen",
+//            16 => "Sixteen",
+//            17 => "Seventeen",
+//            18 => "Eighteen",
+//            19 => "Nineteen"
+//            );
+//$tens = array(
+//            0 => "",
+//            2 => "Twenty",
+//            3 => "Thirty",
+//            4 => "Forty",
+//            5 => "Fifty",
+//            6 => "Sixty",
+//            7 => "Seventy",
+//            8 => "Eighty",
+//            9 => "Ninety"
+//            );
+//$hundreds = array(
+//            "Hundred",
+//            "Thousand",
+//            "Million",
+//            "Billion",
+//            "Trillion",
+//            "Quadrillion"
+//            ); //limit t quadrillion
+//$num = number_format($num,2,".",",");
+//$num_arr = explode(".",$num);
+//$wholenum = $num_arr[0];
+//$decnum = $num_arr[1];
+//$whole_arr = array_reverse(explode(",",$wholenum));
+//krsort($whole_arr);
+//$rettxt = "";
+//foreach($whole_arr as $key => $i){
+//    if($i < 20){
+//        $rettxt .= $ones[$i];
+//    }
+//    elseif($i < 100){
+//        $rettxt .= $tens[substr($i,0,1)];
+//        $rettxt .= " ".$ones[substr($i,1,1)];
+//    }
+//    else{
+//        $rettxt .= $ones[substr($i,0,1)]." ".$hundreds[0];
+//        $rettxt .= " ".$tens[substr($i,1,1)];
+//        $rettxt .= " ".$ones[substr($i,2,1)];
+//    }
+//    if($key > 0){
+//        $rettxt .= " ".$hundreds[$key]." ";
+//    }
+//
+//}
+//$rettxt = $rettxt." peso/s";
+//
+//if($decnum > 0){
+//    $rettxt .= " and ";
+//    if($decnum < 20){
+//        $rettxt .= $decones[$decnum];
+//    }
+//    elseif($decnum < 100){
+//        $rettxt .= $tens[substr($decnum,0,1)];
+//        $rettxt .= " ".$ones[substr($decnum,1,1)];
+//    }
+//    $rettxt = $rettxt." centavo/s";
+//}
+//return $rettxt;} ?>
 
 
 
@@ -242,16 +258,13 @@ return $rettxt;} ?>
 
             <div class="col-md-12 bg-slate-800">
                 <h4 class="text-center">
-                    <strong><small>Total Balance :{{$new}}  </small>
+                    <strong><small>Total Balance :  </small>
                     </strong>
                 </h4>
             </div>
             <div class="col-md-12 bg-grey-800">
                 <h4 class="text-center">
-                    <strong><small> <?php echo  numtowords($new);
-                             ?>
-                        </small>
-                    </strong>
+
                 </h4>
             </div>
 

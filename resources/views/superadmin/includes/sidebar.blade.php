@@ -4,10 +4,11 @@
     <aside id="sidebar-left" class="sidebar-left">
 
         <div class="sidebar-header">
-
             <div class="sidebar-toggle d-none d-md-block" data-toggle-class="sidebar-left-collapsed" data-target="html" data-fire-event="sidebar-left-toggle">
                 <i class="fas fa-bars" aria-label="Toggle sidebar"></i>
             </div>
+
+
         </div>
 
         <div class="nano">
@@ -16,10 +17,18 @@
 
                     <ul class="nav nav-main">
                         <li>
+                            @role('superadmin')
                             <a class="nav-link" href="{{url("/superadminPage")}}">
                                 <i class="fas fa-home" aria-hidden="true"></i>
                                 <span>Dashboard</span>
                             </a>
+                            @endrole
+                            @role('admin')
+                            <a class="nav-link" href="{{url("/adminPage")}}">
+                                <i class="fas fa-home" aria-hidden="true"></i>
+                                <span>Dashboard</span>
+                            </a>
+                            @endrole
                         </li>
                         <li class="nav-parent nav-expanded nav-active">
                             <a class="nav-link" href="#">
@@ -165,7 +174,7 @@
                                         Due SMS
                                     </a>
 
-                                    <a class="nav-link" href="#">
+                                    <a class="nav-link" href="{{ url('/smspage') }}">
                                         Occational SMS
                                     </a>
 
@@ -270,5 +279,3 @@
             </div>
         </header>
 
-
-        <!-- start: page -->

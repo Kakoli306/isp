@@ -102,6 +102,7 @@
 											<i class="fas fa-life-ring"></i>
 										</div>
 									</div>
+
 									<div class="widget-summary-col">
 										<div class="summary">
 											<h4 class="title">Users</h4>
@@ -113,6 +114,7 @@
 											<a  href="{{route('user-show')}}">(Users)</a>
 										</div>
 									</div>
+
 								</div>
 							</div>
 
@@ -225,11 +227,18 @@
 						</div>
 						<h2 class="card-title">User table</h2>
 					</header>
+                    <?php
+                    $data1   = \App\User::find(\Illuminate\Support\Facades\Auth::user()->userId)->roles;
+
+                    ?>
+
 
 					<div class="card-body">
 						<table class="table table-responsive-md mb-0">
 							<thead>
-							<tr>
+							@if($data1[0]->name != "admin")
+
+								<tr>
 
 								<th>User Name</th>
 								<th>Email</th>
@@ -247,6 +256,7 @@
 								</tr>
 							</tbody>
 							@endforeach
+							@endif
 
 						</table>
 					</div>

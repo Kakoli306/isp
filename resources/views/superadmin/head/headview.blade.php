@@ -29,7 +29,18 @@ View Account Head
     </div>
 
     <section class="card">
-                   <!-- Important to work AJAX CSRF -->
+        <div class="text-left;">
+            <script>
+                function goBack() {
+                    window.history.back()
+                }
+            </script>
+
+            <button onclick="goBack()"><i class="fas fa-arrow-left"></i> </button>
+
+        </div>
+
+        <!-- Important to work AJAX CSRF -->
             <meta name="_token" content="{!! csrf_token() !!}" />
             <body>
 

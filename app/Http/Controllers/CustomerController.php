@@ -15,7 +15,19 @@ class CustomerController extends Controller
     {
 
         $zone = Zone::all();
-        return view('superadmin.customer.createCustomer', compact('zone'));
+
+        $cus = Customer::count();
+        $customer = (($cus+1)/2);
+
+        $cust = Customer::orderBy('id', 'desc')->take($customer)->get();
+
+        $right_customer = $customer -1;
+
+        $cust1 = Customer::orderBy('id', 'asc')->take($right_customer)->get();
+
+        //$view->with('cust', $cust);
+
+        return view('superadmin.customer.createCustomer', compact('zone','cust','cust1'));
     }
 
     public function save(Request $request)
@@ -36,7 +48,7 @@ class CustomerController extends Controller
         $customers->connection_date = $request->connection_date;
         $customers->speed = $request->speed;
         $customers->status = $request->status;
-        $customers->bill_status = 0;
+        $customers->bill_status = 1;
         $customers->save();
         return redirect()->back()->with('message', 'Customer info saved ');
     }
@@ -120,8 +132,6 @@ class CustomerController extends Controller
     }
 
 
-
-
     public function current()
     {
         $currentMonth = date('m');
@@ -186,6 +196,7 @@ class CustomerController extends Controller
                     ->orWhere('ip_address', 'like', '%' . $query . '%')
                     ->orWhere('connection_date', 'like', '%' . $query . '%')
                     ->orWhere('zone_name', 'like', '%' . $query . '%')
+                   // ->orWhere('zone_id', 'like', '%' . $query . '%')
                     ->orderBy('id', 'asc')
                     ->get();
 
@@ -278,4 +289,87 @@ class CustomerController extends Controller
             echo json_encode($data);
         }
     }
+
+    public function filter(Request $request){
+        $startDt = date('Y-m-d', strtotime($request->startDate));
+        $endDt = date('Y-m-d', strtotime($request->endDate));
+
+        $data = DB::table('customers')
+            ->whereBetween('connection_date', [$startDt, $endDt])
+            ->paginate(7);
+
+//dd($data);
+        $currentMonth = date('m');
+        $customers = DB::table('customers')
+            ->whereRaw('MONTH(connection_date) = ?', [$currentMonth])
+            ->orderBy('id', 'DESC')->paginate(7);
+        return view ('superadmin.search.connsearch',compact('res','users','data','count','count1','count2','customers'))
+            ->with('i', (request()->input('page', 1) - 1) * 5);
+
+    }
+
+    function aside(Request $request)
+    {
+        if($request->ajax())
+        {
+            $output = '';
+            $query = $request->get('query');
+            if($query != '')
+            {
+                $data = DB::table('customers')
+
+                    ->where('customer_name', 'like', '%' . $query . '%')
+                    ->get();
+
+            }
+            else
+            {
+                $cus = Customer::count();
+                $customer = (($cus+1)/2);
+
+                $cust = Customer::orderBy('id', 'desc')->get();
+
+//                $right_customer = $customer -1;
+//
+//                $cust1 = Customer::orderBy('id', 'asc')->take($right_customer)->get();
+
+//                $data = DB::table('customers')
+//                    ->get();
+            }
+
+            $total_row = $cust->count();
+
+            if($total_row > 0)
+            {
+                foreach($cust as $row)
+                {
+                    $output .= '
+        <tr>
+         <td>'.$row->customer_name.'</td>
+         <td>'.$row->mobile_no.'</td>
+
+        </tr>
+        ';
+                }
+            }
+
+            else
+            {
+                $output = '
+       <tr>
+        <td align="center" colspan="5">No Data Found</td>
+       </tr>
+       ';
+            }
+            $data = array(
+                'table_data'  => $output,
+                'total_data'  => $total_row
+            );
+
+            echo json_encode($data);
+        }
+    }
+
+
+
 }

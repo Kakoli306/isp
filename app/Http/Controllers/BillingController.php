@@ -14,12 +14,12 @@ class BillingController extends Controller
     public function add()
     {
 
+        $zones = DB::table('zones')->get();
         $customers = DB::table('customers')
             ->join('zones', 'customers.zone_id', '=', 'zones.id')
             ->select('customers.*', 'zones.zone_name')
-            ->orderBy('customers.id', 'ASC')->paginate(8);
-
-        $zones = DB::table('zones')->get();
+            ->orderBy('customers.id', 'DESC')
+            ->paginate(8);
 
         return view('superadmin.billing.add',['customers'=> $customers,'zones'=>$zones])
             ->with('i', (request()->input('page', 1) - 1) * 5);
@@ -29,6 +29,7 @@ class BillingController extends Controller
     public function editBilling($id){
 
         $BillingById = Customer::where('id',$id)->first();
+
         $users = DB::table('billings')
             ->join('users', 'billings.userId', '=', 'users.userId')
             ->select('billings.*', 'users.username')
@@ -68,7 +69,7 @@ class BillingController extends Controller
                 ->first();
         }
 
-        return view('superadmin.billing.edit',compact('BillingById','bills','users','date','ExpById'));
+        return view('superadmin.billing.edit',compact('BillingById','bills','users','BillingById1'));
     }
 
     public function adding(Request $request)
@@ -83,6 +84,9 @@ class BillingController extends Controller
         $billings->month = Carbon::now();
         $billings->dmon = Carbon::now()->format('M -Y');
         $billings->save();
+
+       // return view('superadmin.billing.edit')->with('message','Billing info saved ');
+
         return redirect()->back()->with('message', 'Billing info saved ');
     }
 
@@ -136,9 +140,14 @@ class BillingController extends Controller
 
     public function paid(Request $request){
 
-        $customers = Customer::where('id',$request->id)->first();
-        $customers->bill_status = 0;
-        $customers->save();
+       // return $request;
+        $billings = new Billing();
+        $billings->customer_id = $request->customer_id;
+        $billings->userId = Auth::user()->userId;
+        $billings->payment_amount = $request->amount;
+        $billings->month = Carbon::now();
+        $billings->dmon = Carbon::now()->format('M -Y');
+        $billings->save();
         return redirect()->back();
     }
 
@@ -163,6 +172,117 @@ class BillingController extends Controller
 
         return view('superadmin.billing.show', compact('BillingById', 'users','bills'));
 
+    }
+    function billsearch(Request $request)
+    {
+        if($request->ajax())
+        {
+            $output = '';
+            $query = $request->get('query');
+            if($query != '')
+            {
+                $data = DB::table('customers')
+                    ->join('zones', 'customers.zone_id', '=', 'zones.id')
+                    ->select('customers.*', 'zones.zone_name')
+
+                    ->where('customer_name', 'like', '%' . $query . '%')
+                    ->orWhere('mobile_no', 'like', '%' . $query . '%')
+                    ->orWhere('address', 'like', '%' . $query . '%')
+                    ->orWhere('speed', 'like', '%' . $query . '%')
+                    ->orWhere('bill_amount', 'like', '%' . $query . '%')
+                    ->orWhere('zone_name', 'like', '%' . $query . '%')
+                    ->orWhere('ip_address', 'like', '%' . $query . '%')
+                    ->orderBy('id', 'asc')
+                    ->get();
+
+            }
+            else
+            {
+                $data = DB::table('customers')
+                    ->join('zones', 'customers.zone_id', '=', 'zones.id')
+                    ->select('customers.*', 'zones.zone_name')
+                    ->orderBy('id', 'desc')
+                    ->get();
+            }
+            $i = 1;
+            $total_row = $data->count();
+            if($total_row > 0)
+            {
+                foreach($data as $row)
+
+
+                    if($row->status === 0){
+                        $output .= '
+        <tr>
+         <td>'.$i++.'</td>
+         <td>'.$row->customer_name.'</td>
+         <td>'.$row->id.'</td>
+         <td>'.$row->address.'</td>
+         <td>'.$row->mobile_no.'</td>
+         <td>'.$row->speed.'</td>
+         <td>'.$row->bill_amount.'</td>
+         <td>'.$row->connection_date.'</td>
+         <td>'.$row->zone_name.'</td>
+         <td>'.$row->ip_address.'</td>
+                              
+         <td class="center">
+       
+          <a class = "btn btn-danger btn-sm"  href=' . route('inactive-customer',['id'=>$row->id]) . '>Inactive</a>
+                           
+                            </td>
+                  
+         <td><a class="btn-info"   href=' . route('edit',['id'=>$row->id]) . '>Edit</a>
+         <a class="btn-outline-danger"   <form  href = ' . route('delete',['id'=>$row->id]). '>Delete
+         
+        
+          </tr>
+        ';
+                    }
+
+                    else
+
+                    {
+                        $output .= '
+        <tr>
+         <td>'.$i++.'</td>
+         <td>'.$row->customer_name.'</td>
+         <td>'.$row->id.'</td>
+         <td>'.$row->address.'</td>
+         <td>'.$row->mobile_no.'</td>
+         <td>'.$row->speed.'</td>
+         <td>'.$row->bill_amount.'</td>
+         <td>'.$row->connection_date.'</td>
+         <td>'.$row->zone_name.'</td>
+         <td>'.$row->ip_address.'</td>
+              
+         <td class="center">
+        
+                                   <a class = "btn btn-success btn-sm"  href=' . route('active-customer',['id'=>$row->id]) . '>Active</a>
+                            </td>
+                  
+         <td><a class="btn-info"   href=' . route('edit',['id'=>$row->id]) . '>Edit</a>
+         <a class="btn-outline-danger"   <form  href = ' . route('delete',['id'=>$row->id]). '>Delete
+         
+        
+          </tr>
+        ';
+                    }
+            }
+            else
+            {
+                $output = '
+       <tr>
+        <td align="center" colspan="5">No Data Found</td>
+       </tr>
+       ';
+            }
+            $data = array(
+                'table_data'  => $output,
+                'total_data'  => $total_row
+            );
+
+            echo json_encode($data);
+        }
     }
 
 

@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Support\Facades\Input;
+use App\Role;
 class SuperAdminController extends Controller
 {
     public function index(){
@@ -30,6 +31,7 @@ class SuperAdminController extends Controller
 
         $exp = DB::table('expenses')->sum('price');
         $bill = DB::table('billings')->sum('payment_amount');
+        $roles = Role::all();
 
         $expe = DB::table('expenses')
             ->select(
@@ -39,9 +41,9 @@ class SuperAdminController extends Controller
             ->groupBy(DB::raw("month"))
             ->get();
 
-//dd($expe);
+//dd($user);
 
-        return view('superadmin.home.homeContent',compact('zones','users','customers','incomes','expenses','heads','cust','user','exp','bill','expe'));
+        return view('superadmin.home.homeContent',compact('zones','users','customers','incomes','expenses','heads','cust','user','exp','bill','expe','roles'));
     }
 
     public function headshow($id){

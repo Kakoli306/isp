@@ -11,7 +11,8 @@
              style=" background:#606060; margin-top:20px; margin-bottom: 15px; min-height:45px; padding:8px 0px 0px 15px; font-size:16px; font-family:Lucida Sans Unicode; color:#FFFFFF; font-weight:bold;">
             <div class="row">
                 <div class="col-md-4">
-                    <?php $date = \Carbon\Carbon::now();?>
+                    <?php $date = \Carbon\Carbon::now();
+                    ?>
                     <b>View All Connection Charge Information <?php echo $date->format('F Y'); ?></b>
                 </div>
                 <div class="col-md-4" style="font-family: Helvetica;">
@@ -61,17 +62,6 @@
 
             <div class="row">
                 <div class="col-md-4">
-                    <div class="text-left;">
-                        <script>
-                            function goBack() {
-                                window.history.back()
-                            }
-                        </script>
-
-                        <button onclick="goBack()"><i class="fas fa-arrow-left"></i> </button>
-
-                    </div>
-
                     <div class="summary">
 
                     </div>
@@ -103,7 +93,7 @@
                         </thead>
                         <tbody>
 
-                        @foreach($customers as $customer)
+                        @foreach($data as $customer)
                             <tr>
                                 <td>{{ ++$i }}</td>
                                 <td>{{ $customer->connection_date}}</td>
@@ -117,9 +107,9 @@
                         </tbody>
                         @endforeach
                     </table>
-                    <div>
-                        <div class="pull-right">{{ $customers->links() }}</div>
-                    </div>
+                    {{--<div>--}}
+                        {{--<div class="pull-right">{{ $customers->links() }}</div>--}}
+                    {{--</div>--}}
 
 
                 </div>

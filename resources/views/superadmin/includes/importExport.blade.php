@@ -1,6 +1,17 @@
 @extends('superadmin.master')
 
 @section('content')
+    <div class="text-left;">
+        <script>
+            function goBack() {
+                window.history.back()
+            }
+        </script>
+
+        <button onclick="goBack()"><i class="fas fa-arrow-left"></i> </button>
+
+    </div>
+
     {{--<div class="container">--}}
         {{--<div class="panel panel-default">--}}
             {{--<div class="panel-heading">--}}
